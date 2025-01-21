@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "3Ka2ef1OU+mOB9bhibBu5zcZZeA/xJJxNGHDwrxaMxI=",
+  "Source": "MindSpace.API",
+  "BasePath": "_content/MindSpace.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

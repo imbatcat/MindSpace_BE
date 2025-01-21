@@ -1,0 +1,60 @@
+using Application.Extensions;
+using Infrastructure.Extensions;
+using Presentation.Extensions;
+using Restaurants.Infrastructure.Persistence;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// ====================================
+// === Add services to the container
+// ====================================
+
+builder.AddPresentation();
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplications();
+
+// ====================================
+// === Build the application
+// ====================================
+
+var app = builder.Build();
+
+// ====================================
+// === Use Middlewares
+// ====================================
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+//app.MapGroup("api/identity")
+//    .WithTags("Identity")
+//    .MapIdentityApi<User>();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+// ===================================================
+// === Create a scope and call the service manually
+// ===================================================
+
+using var scope = app.Services.CreateScope();
+var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+var applicationSeeder = scope.ServiceProvider.GetRequiredService<ApplicationDbContextSeeder>();
+
+try
+{
+    //await applicationSeeder.SeedAllAsync();
+}
+catch (Exception ex)
+{
+    logger.LogError(ex, "Error happens during migrations!");
+}
+
+app.Run();

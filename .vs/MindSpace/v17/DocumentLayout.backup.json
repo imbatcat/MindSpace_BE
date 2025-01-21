@@ -1,0 +1,243 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0C771A20-F532-4A09-9DD3-D85A561573D8}|MindSpace.Infrastructure\\MindSpace.Infrastructure.csproj|e:\\learning\\inclass_fpt\\2025_semester-1\\swd392\\group_project\\_project_mindspace\\mindspace.infrastructure\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C771A20-F532-4A09-9DD3-D85A561573D8}|MindSpace.Infrastructure\\MindSpace.Infrastructure.csproj|solutionrelative:mindspace.infrastructure\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C771A20-F532-4A09-9DD3-D85A561573D8}|MindSpace.Infrastructure\\MindSpace.Infrastructure.csproj|e:\\learning\\inclass_fpt\\2025_semester-1\\swd392\\group_project\\_project_mindspace\\mindspace.infrastructure\\extensions\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C771A20-F532-4A09-9DD3-D85A561573D8}|MindSpace.Infrastructure\\MindSpace.Infrastructure.csproj|solutionrelative:mindspace.infrastructure\\extensions\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C771A20-F532-4A09-9DD3-D85A561573D8}|MindSpace.Infrastructure\\MindSpace.Infrastructure.csproj|e:\\learning\\inclass_fpt\\2025_semester-1\\swd392\\group_project\\_project_mindspace\\mindspace.infrastructure\\persistence\\applicationdbcontextseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C771A20-F532-4A09-9DD3-D85A561573D8}|MindSpace.Infrastructure\\MindSpace.Infrastructure.csproj|solutionrelative:mindspace.infrastructure\\persistence\\applicationdbcontextseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78396E7C-1976-4200-BF75-4AF58F6483B9}|MindSpace.API\\MindSpace.API.csproj|e:\\learning\\inclass_fpt\\2025_semester-1\\swd392\\group_project\\_project_mindspace\\mindspace.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78396E7C-1976-4200-BF75-4AF58F6483B9}|MindSpace.API\\MindSpace.API.csproj|solutionrelative:mindspace.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C771A20-F532-4A09-9DD3-D85A561573D8}|MindSpace.Infrastructure\\MindSpace.Infrastructure.csproj|e:\\learning\\inclass_fpt\\2025_semester-1\\swd392\\group_project\\_project_mindspace\\mindspace.infrastructure\\seeders\\filereader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C771A20-F532-4A09-9DD3-D85A561573D8}|MindSpace.Infrastructure\\MindSpace.Infrastructure.csproj|solutionrelative:mindspace.infrastructure\\seeders\\filereader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C771A20-F532-4A09-9DD3-D85A561573D8}|MindSpace.Infrastructure\\MindSpace.Infrastructure.csproj|e:\\learning\\inclass_fpt\\2025_semester-1\\swd392\\group_project\\_project_mindspace\\mindspace.infrastructure\\seeders\\jsondataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C771A20-F532-4A09-9DD3-D85A561573D8}|MindSpace.Infrastructure\\MindSpace.Infrastructure.csproj|solutionrelative:mindspace.infrastructure\\seeders\\jsondataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 629,
+          "SelectedChildIndex": 14,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1646721036:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2102939616:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\MindSpace.API\\Program.cs",
+              "RelativeDocumentMoniker": "MindSpace.API\\Program.cs",
+              "ToolTip": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\MindSpace.API\\Program.cs",
+              "RelativeToolTip": "MindSpace.API\\Program.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T13:44:21.617Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\MindSpace.Infrastructure\\Persistence\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "MindSpace.Infrastructure\\Persistence\\ApplicationDbContext.cs",
+              "ToolTip": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\MindSpace.Infrastructure\\Persistence\\ApplicationDbContext.cs",
+              "RelativeToolTip": "MindSpace.Infrastructure\\Persistence\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T13:46:26.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApplicationDbContextSeeder.cs",
+              "DocumentMoniker": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\MindSpace.Infrastructure\\Persistence\\ApplicationDbContextSeeder.cs",
+              "RelativeDocumentMoniker": "MindSpace.Infrastructure\\Persistence\\ApplicationDbContextSeeder.cs",
+              "ToolTip": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\MindSpace.Infrastructure\\Persistence\\ApplicationDbContextSeeder.cs",
+              "RelativeToolTip": "MindSpace.Infrastructure\\Persistence\\ApplicationDbContextSeeder.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABoAAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T13:45:41.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "JsonDataSeeder.cs",
+              "DocumentMoniker": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\MindSpace.Infrastructure\\Seeders\\JsonDataSeeder.cs",
+              "RelativeDocumentMoniker": "MindSpace.Infrastructure\\Seeders\\JsonDataSeeder.cs",
+              "ToolTip": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\MindSpace.Infrastructure\\Seeders\\JsonDataSeeder.cs",
+              "RelativeToolTip": "MindSpace.Infrastructure\\Seeders\\JsonDataSeeder.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAYwFEAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T13:45:22.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FileReader.cs",
+              "DocumentMoniker": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\MindSpace.Infrastructure\\Seeders\\FileReader.cs",
+              "RelativeDocumentMoniker": "MindSpace.Infrastructure\\Seeders\\FileReader.cs",
+              "ToolTip": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\MindSpace.Infrastructure\\Seeders\\FileReader.cs",
+              "RelativeToolTip": "MindSpace.Infrastructure\\Seeders\\FileReader.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T13:59:31.792Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ServiceCollectionExtensions.cs",
+              "DocumentMoniker": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\MindSpace.Infrastructure\\Extensions\\ServiceCollectionExtensions.cs",
+              "RelativeDocumentMoniker": "MindSpace.Infrastructure\\Extensions\\ServiceCollectionExtensions.cs",
+              "ToolTip": "E:\\Learning\\inclass_fpt\\2025_Semester-1\\SWD392\\Group_Project\\_PROJECT_MindSpace\\MindSpace.Infrastructure\\Extensions\\ServiceCollectionExtensions.cs",
+              "RelativeToolTip": "MindSpace.Infrastructure\\Extensions\\ServiceCollectionExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T13:46:37.608Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1759,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:6:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 602,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:5:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1369,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
