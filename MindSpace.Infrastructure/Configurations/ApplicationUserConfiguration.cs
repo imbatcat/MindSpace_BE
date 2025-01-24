@@ -16,7 +16,11 @@ namespace MindSpace.Infrastructure.Configurations
             //Properties
             builder.Property(u => u.CreatedAt).HasDefaultValueSql("getdate()");
             builder.Property(u => u.UpdatedAt).HasDefaultValueSql("getdate()");
-            builder.Property(u => u.Status).HasDefaultValue(UserStatus.Enabled).HasSentinel(UserStatus.Disabled);
+            builder.Property(u => u.Status)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (UserStatus)Enum.Parse(typeof(UserStatus), v))
+                .HasDefaultValue(UserStatus.Enabled);
             builder.Property(u => u.ImageUrl).HasMaxLength(-1);
             builder.Property(u => u.FullName).HasMaxLength(256).IsUnicode();
 

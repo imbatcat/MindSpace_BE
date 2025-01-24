@@ -12,7 +12,7 @@ using MindSpace.Infrastructure.Persistence;
 namespace MindSpace.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250124032042_AddIdentity")]
+    [Migration("20250124042618_AddIdentity")]
     partial class AddIdentity
     {
         /// <inheritdoc />
@@ -223,10 +223,11 @@ namespace MindSpace.Infrastructure.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Status")
+                    b.Property<string>("Status")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(1);
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("Enabled");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
