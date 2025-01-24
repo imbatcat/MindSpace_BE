@@ -1,5 +1,6 @@
 using Application.Extensions;
 using Infrastructure.Extensions;
+using MindSpace.Domain.Entities;
 using Presentation.Extensions;
 using Restaurants.Infrastructure.Persistence;
 
@@ -32,9 +33,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.MapGroup("api/identity")
-//    .WithTags("Identity")
-//    .MapIdentityApi<User>();
+//Adds identity api endpoints
+app.MapGroup("api/identity")
+    .WithTags("Identity")
+    .MapIdentityApi<ApplicationUser>();
 
 app.UseAuthorization();
 
@@ -50,11 +52,10 @@ var applicationSeeder = scope.ServiceProvider.GetRequiredService<ApplicationDbCo
 
 try
 {
-    //await applicationSeeder.SeedAllAsync();
+    await applicationSeeder.SeedAllAsync();
 }
 catch (Exception ex)
 {
     logger.LogError(ex, "Error happens during migrations!");
 }
-
 app.Run();
