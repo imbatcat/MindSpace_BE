@@ -2,7 +2,7 @@
 using MindSpace.Domain.Commons.Constants;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MindSpace.Domain.Entities
+namespace MindSpace.Domain.Entities.Identity
 {
     public class ApplicationUser : IdentityUser<int> //Using int as key type
     {

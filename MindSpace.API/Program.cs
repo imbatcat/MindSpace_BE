@@ -1,8 +1,8 @@
-using Application.Extensions;
-using Infrastructure.Extensions;
-using MindSpace.Domain.Entities;
-using Presentation.Extensions;
-using Restaurants.Infrastructure.Persistence;
+using MindSpace.API.Extensions;
+using MindSpace.Application.Extensions;
+using MindSpace.Domain.Entities.Identity;
+using MindSpace.Infrastructure.Extensions;
+using MindSpace.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 

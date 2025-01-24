@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MindSpace.Domain.Commons.Constants;
-using MindSpace.Domain.Entities;
+using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Infrastructure.Configurations
 {
@@ -23,7 +23,6 @@ namespace MindSpace.Infrastructure.Configurations
                 .HasDefaultValue(UserStatus.Enabled);
             builder.Property(u => u.ImageUrl).HasMaxLength(-1);
             builder.Property(u => u.FullName).HasMaxLength(256).IsUnicode();
-
         }
     }
 }

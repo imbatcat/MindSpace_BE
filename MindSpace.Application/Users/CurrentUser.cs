@@ -1,4 +1,4 @@
-﻿namespace Restaurants.Applications.Users
+﻿namespace MindSpace.Application.Users
 {
     public record CurrentUser(string Id, string Email, IEnumerable<string> Roles)
     {

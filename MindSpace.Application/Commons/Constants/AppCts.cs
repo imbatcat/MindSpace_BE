@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Restaurants.Application.Commons.Constants
+namespace MindSpace.Application.Commons.Constants
 {
     public static class AppCts
     {
