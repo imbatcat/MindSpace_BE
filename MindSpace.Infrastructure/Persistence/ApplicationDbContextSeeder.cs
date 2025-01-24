@@ -1,10 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using MindSpace.Application.Commons.Interfaces.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MindSpace.Application.Commons.Interfaces.Utilities;
 
 namespace MindSpace.Infrastructure.Persistence
 {

@@ -1,6 +1,5 @@
 ﻿namespace MindSpace.Domain.InterfaceRepos;
 
-using System.Linq.Expressions;
 using Entities;
 
 public interface IGenericRepository<T> where T : BaseEntity

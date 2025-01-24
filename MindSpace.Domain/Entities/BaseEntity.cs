@@ -1,4 +1,4 @@
-﻿namespace MindSpace.Domain.Entities;
+namespace MindSpace.Domain.Entities;
 
 /// <summary>
 /// A base entity class

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using MindSpace.Application.Commons.Interfaces.Utilities;
 using MindSpace.Domain.Commons.Constants;
+using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Infrastructure.Persistence;
 

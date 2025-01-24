@@ -1,7 +1,9 @@
 ﻿using System.Runtime.Serialization;
 
-namespace MindSpace.Domain.Commons.Constants {
-    public enum UserStatus {
+namespace MindSpace.Domain.Entities.Constants
+{
+    public enum TestStatus
+    {
         [EnumMember(Value = "Enabled")]
         Enabled,
 
