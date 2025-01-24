@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace Restaurants.Applications.Users
+namespace MindSpace.Application.Users
 {
     public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
     {

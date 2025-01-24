@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using MindSpace.Application.Commons.Interfaces.Utilities;
 using MindSpace.Domain.Commons.Constants;
-using MindSpace.Domain.Entities;
+using MindSpace.Domain.Entities.Identity;
 using MindSpace.Infrastructure.Persistence;
-using Restaurants.Application.Commons.Interfaces.Utilities;
 
 namespace MindSpace.Infrastructure.Seeders
 {

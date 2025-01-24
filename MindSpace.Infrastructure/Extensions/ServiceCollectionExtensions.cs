@@ -2,14 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MindSpace.Domain.Entities;
+using MindSpace.Application.Commons.Interfaces.Utilities;
+using MindSpace.Domain.Entities.Identity;
 using MindSpace.Infrastructure.Persistence;
 using MindSpace.Infrastructure.Seeders;
-using Restaurants.Application.Commons.Interfaces.Utilities;
-using Restaurants.Infrastructure.Persistence;
-using Restaurants.Infrastructure.Seeders;
 
-namespace Infrastructure.Extensions
+namespace MindSpace.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
     {

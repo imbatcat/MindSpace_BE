@@ -1,4 +1,4 @@
-﻿namespace Restaurants.Application.Commons.Interfaces.Utilities
+﻿namespace MindSpace.Application.Commons.Interfaces.Utilities
 {
     public interface IDataSeeder
     {

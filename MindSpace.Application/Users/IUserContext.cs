@@ -1,4 +1,4 @@
-﻿namespace Restaurants.Applications.Users
+﻿namespace MindSpace.Application.Users
 {
     public interface IUserContext
     {

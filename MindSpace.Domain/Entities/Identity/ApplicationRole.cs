@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MindSpace.Domain.Entities
+namespace MindSpace.Domain.Entities.Identity
 {
     public class ApplicationRole : IdentityRole<int> // Use int as the key type
     {
