@@ -13,5 +13,8 @@ namespace MindSpace.Domain.Entities.Identity
         public DateTime? UpdatedAt { get; set; }
         public UserStatus Status { get; set; }
 
+
+        // 1 Psychologist - 1 User 
+        public virtual Psychologist Psychologist { get; set; }
     }
 }

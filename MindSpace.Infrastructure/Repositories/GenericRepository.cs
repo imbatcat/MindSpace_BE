@@ -3,7 +3,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using MindSpace.Domain.Interfaces.InterfaceRepos;
+using MindSpace.Domain.Interfaces.Repos;
 using Persistence;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity

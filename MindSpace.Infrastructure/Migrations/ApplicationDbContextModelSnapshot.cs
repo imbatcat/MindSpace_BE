@@ -125,7 +125,7 @@ namespace MindSpace.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("MindSpace.Domain.Entities.ApplicationRole", b =>
+            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.ApplicationRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -155,7 +155,7 @@ namespace MindSpace.Infrastructure.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("MindSpace.Domain.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.ApplicationUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -230,7 +230,7 @@ namespace MindSpace.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
@@ -257,11 +257,69 @@ namespace MindSpace.Infrastructure.Migrations
                         .HasFilter("[PhoneNumber] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.UseTptMappingStrategy();
+                });
+
+            modelBuilder.Entity("MindSpace.Domain.Entities.Specification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreateAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<DateTime>("UpdateAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Specifications");
+                });
+
+            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.Psychologist", b =>
+                {
+                    b.HasBaseType("MindSpace.Domain.Entities.Identity.ApplicationUser");
+
+                    b.Property<double>("AverageRating")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Bio")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<decimal>("ComissionRate")
+                        .HasColumnType("decimal(5, 2)");
+
+                    b.Property<decimal>("SessionPrice")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("SpecificationId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("SpecificationId");
+
+                    b.ToTable("Psychologists", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("MindSpace.Domain.Entities.ApplicationRole", null)
+                    b.HasOne("MindSpace.Domain.Entities.Identity.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -270,7 +328,7 @@ namespace MindSpace.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("MindSpace.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("MindSpace.Domain.Entities.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -279,7 +337,7 @@ namespace MindSpace.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("MindSpace.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("MindSpace.Domain.Entities.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -288,13 +346,13 @@ namespace MindSpace.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("MindSpace.Domain.Entities.ApplicationRole", null)
+                    b.HasOne("MindSpace.Domain.Entities.Identity.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MindSpace.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("MindSpace.Domain.Entities.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -303,11 +361,40 @@ namespace MindSpace.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("MindSpace.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("MindSpace.Domain.Entities.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.Psychologist", b =>
+                {
+                    b.HasOne("MindSpace.Domain.Entities.Identity.ApplicationUser", "User")
+                        .WithOne("Psychologist")
+                        .HasForeignKey("MindSpace.Domain.Entities.Identity.Psychologist", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.HasOne("MindSpace.Domain.Entities.Specification", "Specification")
+                        .WithMany("Psychologists")
+                        .HasForeignKey("SpecificationId")
+                        .IsRequired();
+
+                    b.Navigation("Specification");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.ApplicationUser", b =>
+                {
+                    b.Navigation("Psychologist")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MindSpace.Domain.Entities.Specification", b =>
+                {
+                    b.Navigation("Psychologists");
                 });
 #pragma warning restore 612, 618
         }
