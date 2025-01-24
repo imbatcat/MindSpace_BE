@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Compile Remove="Repositories\**" />
+    <Compile Remove="Seeders\FakeData\**" />
     <EmbeddedResource Remove="Repositories\**" />
+    <EmbeddedResource Remove="Seeders\FakeData\**" />
     <None Remove="Repositories\**" />
+    <None Remove="Seeders\FakeData\**" />
   </ItemGroup>
 	
 	<ItemGroup>
@@ -23,11 +26,11 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <Folder Include="Seeders\FakeData\" />
+	  <ProjectReference Include="..\MindSpace.Application\MindSpace.Application.csproj" />
+	  <ProjectReference Include="..\MindSpace.Domain\MindSpace.Domain.csproj" />
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <ProjectReference Include="..\MindSpace.Application\MindSpace.Application.csproj" />
-	  <ProjectReference Include="..\MindSpace.Domain\MindSpace.Domain.csproj" />
+	  <Folder Include="Migrations\" />
 	</ItemGroup>
 </Project>
