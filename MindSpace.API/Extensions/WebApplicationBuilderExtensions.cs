@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Serilog;
 
 namespace Presentation.Extensions
@@ -7,9 +8,9 @@ namespace Presentation.Extensions
     {
         public static void AddPresentation(this WebApplicationBuilder builder)
         {
-            builder.Services.AddAuthentication();
             builder.Services.AddControllers();
-            builder.Services.AddSwaggerGen(c =>
+
+    builder.Services.AddSwaggerGen(c =>
             {
                 //add bearer authentication to swagger 
                 c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
@@ -37,10 +38,10 @@ namespace Presentation.Extensions
             //tell swagger to support minimal apis, which the Identity apis are.
             builder.Services.AddEndpointsApiExplorer();
 
-            builder.Host.UseSerilog((context, configuration) =>
-            {
-                configuration.ReadFrom.Configuration(context.Configuration);
-            });
+            //builder.Host.UseSerilog((context, configuration) =>
+            //{
+            //    configuration.ReadFrom.Configuration(context.Configuration);
+            //});
         }
     }
 }

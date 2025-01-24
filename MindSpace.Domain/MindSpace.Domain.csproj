@@ -7,11 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Entities\**" />
     <Compile Remove="IRepositories\**" />
-    <EmbeddedResource Remove="Entities\**" />
     <EmbeddedResource Remove="IRepositories\**" />
-    <None Remove="Entities\**" />
     <None Remove="IRepositories\**" />
   </ItemGroup>
 

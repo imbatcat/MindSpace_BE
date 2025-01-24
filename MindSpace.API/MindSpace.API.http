@@ -1,0 +1,30 @@
+﻿@MindSpace.API_HostAddress = https://localhost:7096
+@token = CfDJ8IGx6C_J58VGnHAzo-b4N4qBazIceSgQ5zHl0HmOgbs5EmxteoBzjLL0lxYEKNT7DkWMKS3DI6zNhocl9wz4X9oKQ7O1qHAUzn7flv9CYMXjqXlXFUS2bv3swdHyjmQeoP4dbJlh8fO_3FNMCt8z4ouGOLxxPc_g4XY5IJkO-QPB6Os1sPtgXNSahPIaE8Xpd_oyR7IGnBpUuOGQ_j73taaZsLVGpo7Bdxs5VWM9kUO9TSeBHM32oG1bPJBgkK3IrofMiJxNl2p211vSCioYNC6qSGwJsUyWAIRICSgSvBbThtLgEqZ4lkQBBAnkEulMYxSpoRtb-J4jXiEwdyG18OGDdX4gjRDRI6XcGVVsJwc84eP7vHqY7CeKS3o7xAD0nJdX869g7fFpP_i8sLFXv7CS0AGaft8nSX7r2RxjejOjCHAu7taW6B3mqoLl75wwDR-A0mqScY6tPnuXqrl4JfZKXb-baqaVCvyF43XaY66X4PfOE3szjCMKE9bV2l-KaRqTo5qh0JgIzhFQF8-q7DNKXL4fwu-yfDG_kqPT5QVmPGeQrouKFjFGmn7mepLOxn2QAaxIHeN2kLAbgYi0y8yZDSEMUM8ucMYilevUVZ344eCn7SyaTGy1vJv7BVuMsBlTJ7SIOCquvija7vrTF7prKZKRmDmZSPGEkDVdUfLbvUNuegbaFgpMs2M4_TTsxSYRl3rTM4ODnX412967Nh4NyC4j2FHXAuNXGQW-Sk9xQ1YAjE-Tr7XNLyv7CLMLzQ
+
+POST {{MindSpace.API_HostAddress}}/api/identity/register 
+Content-Type: application/json
+
+{
+  "email": "user@gmail.com",
+  "password": "Password1!"
+}
+
+###
+POST {{MindSpace.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+
+{
+  "email": "student1",
+  "password": "Password1!"
+}
+
+###
+GET {{MindSpace.API_HostAddress}}/api/test
+Authorization: Bearer {{token}}
+###
+
+@id=1
+GET {{MindSpace.API_HostAddress}}/api/test/{{id}}
+Authorization: Bearer {{token}}
+
+###
