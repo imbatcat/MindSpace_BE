@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MindSpace.Application.Commons.Constants;
-using MindSpace.Application.Commons.Interfaces.Utilities;
+using MindSpace.Application.Commons.Utilities;
 using MindSpace.Infrastructure.Persistence;
 using Newtonsoft.Json;
 

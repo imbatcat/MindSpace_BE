@@ -1,4 +1,4 @@
-﻿namespace MindSpace.Domain.InterfaceRepos;
+﻿namespace MindSpace.Domain.Interfaces.InterfaceRepos;
 
 using System.Linq.Expressions;
 using Entities;

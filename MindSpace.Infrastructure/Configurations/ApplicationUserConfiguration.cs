@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MindSpace.Domain.Commons.Constants;
+using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Infrastructure.Configurations

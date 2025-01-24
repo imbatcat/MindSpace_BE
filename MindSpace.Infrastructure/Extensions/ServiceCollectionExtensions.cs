@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MindSpace.Application.Commons.Interfaces.Utilities;
+using MindSpace.Application.Commons.Utilities;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Infrastructure.Persistence;
 using MindSpace.Infrastructure.Seeders;

@@ -1,9 +1,9 @@
 ﻿namespace MindSpace.Infrastructure.Repositories;
 
 using Domain.Entities;
-using Domain.InterfaceRepos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MindSpace.Domain.Interfaces.InterfaceRepos;
 using Persistence;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity

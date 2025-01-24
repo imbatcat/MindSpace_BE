@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using MindSpace.Domain.Commons.Constants;
+using MindSpace.Domain.Entities.Constants;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MindSpace.Domain.Entities.Identity
