@@ -1,8 +1,13 @@
-﻿namespace MindSpace.Domain.Commons.Constants
+﻿using System.Runtime.Serialization;
+
+namespace MindSpace.Domain.Commons.Constants
 {
     public enum UserStatus
     {
-        Enabled = 1,
-        Disabled = 0
+        [EnumMember(Value = "Enabled")]
+        Enabled,
+
+        [EnumMember(Value ="Disabled")]
+        Disabled
     }
 }
