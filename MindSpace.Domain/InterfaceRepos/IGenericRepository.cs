@@ -3,7 +3,8 @@
 using System.Linq.Expressions;
 using Entities;
 
-public interface IGenericRepository<T> where T : BaseEntity {
+public interface IGenericRepository<T> where T : BaseEntity
+{
     // public Task<IEnumerable<T>> GetAllAsync();
     // public Task<T> GetAsync();
 
