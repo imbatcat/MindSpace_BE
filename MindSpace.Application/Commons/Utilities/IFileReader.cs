@@ -1,4 +1,4 @@
-﻿namespace MindSpace.Application.Commons.Interfaces.Utilities
+﻿namespace MindSpace.Application.Commons.Utilities
 {
     public interface IFileReader
     {
