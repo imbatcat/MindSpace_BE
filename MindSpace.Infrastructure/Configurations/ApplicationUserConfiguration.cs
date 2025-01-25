@@ -5,7 +5,7 @@ using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Infrastructure.Configurations
 {
-    public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
+    internal class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {

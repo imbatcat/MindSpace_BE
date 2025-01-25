@@ -1,17 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.Identity.Client;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.SupportingPrograms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Infrastructure.Configurations
 {
-    public class ResourceConfiguration : IEntityTypeConfiguration<Resource>
+    internal class ResourceConfiguration : IEntityTypeConfiguration<Resource>
     {
         public void Configure(EntityTypeBuilder<Resource> builder)
         {

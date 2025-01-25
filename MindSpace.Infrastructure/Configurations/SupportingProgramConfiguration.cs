@@ -5,8 +5,7 @@ using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.Infrastructure.Configurations
 {
-
-    public class SupportingProgramConfiguration : IEntityTypeConfiguration<SupportingProgram>
+    internal class SupportingProgramConfiguration : IEntityTypeConfiguration<SupportingProgram>
     {
         public void Configure(EntityTypeBuilder<SupportingProgram> builder)
         {
