@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.MindSpace.Domain.Entities;
 using System.Reflection.Emit;
 
@@ -29,7 +30,6 @@ namespace MindSpace.Infrastructure.Configurations
                 address.Property(a => a.Province).IsUnicode().HasMaxLength(50);
                 address.Property(a => a.PostalCode).HasMaxLength(10);
             });
-
         }
     }
 }

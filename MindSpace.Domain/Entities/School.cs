@@ -16,9 +16,9 @@ namespace MindSpace.Domain.Entities
             public DateOnly JoinDate { get; set; }
 
             //Navigation props
-            public virtual IEnumerable<ApplicationUser> Students { get; set; } = [];
+            public virtual IEnumerable<Student> Students { get; set; } = [];
             public int SchoolManagerId { get; set; }
-            public virtual ApplicationUser SchoolManager { get; set; }
+            public virtual Manager SchoolManager { get; set; }
         }
     }
 

@@ -23,17 +23,6 @@ namespace MindSpace.Infrastructure.Configurations
                 .HasDefaultValue(UserStatus.Enabled);
             builder.Property(u => u.ImageUrl).HasMaxLength(-1);
             builder.Property(u => u.FullName).HasMaxLength(256).IsUnicode();
-
-            //Relationships
-            builder
-                .HasOne(au => au.Student_School)
-                .WithMany(s => s.Students)
-                .HasForeignKey(au => au.Student_SchoolId);
-
-            builder
-                .HasOne(au => au.Manager_School)
-                .WithOne(s => s.SchoolManager)
-                .HasForeignKey<ApplicationUser>(au => au.Manager_SchoolId);
         }
     }
 }

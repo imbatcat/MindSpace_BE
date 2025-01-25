@@ -8,6 +8,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<TestQuestion> builder)
         {
+            builder.Property(tq => tq.Description).IsUnicode().HasMaxLength(100);
         }
     }
 }
