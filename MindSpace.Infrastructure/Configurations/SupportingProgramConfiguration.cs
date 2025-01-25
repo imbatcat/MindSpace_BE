@@ -1,14 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.SupportingPrograms;
 
 
 namespace MindSpace.Infrastructure.Configurations
 {
+
     internal class SupportingProgramConfiguration : IEntityTypeConfiguration<SupportingProgram>
     {
         public void Configure(EntityTypeBuilder<SupportingProgram> builder)
         {
+            builder.ToTable("SupportingPrograms");
+
             // Fields
             builder.Property(sp => sp.ThumbnailUrl).IsRequired()
                 .HasMaxLength(255);
