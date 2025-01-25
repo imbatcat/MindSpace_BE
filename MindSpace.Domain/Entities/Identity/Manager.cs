@@ -1,4 +1,5 @@
-﻿using MindSpace.Domain.Entities.Tests;
+﻿using MindSpace.Domain.Entities.SupportingPrograms;
+using MindSpace.Domain.Entities.Tests;
 
 namespace MindSpace.Domain.Entities.Identity
 {

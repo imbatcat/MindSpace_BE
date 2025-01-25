@@ -1,4 +1,5 @@
-﻿using MindSpace.Domain.Entities.SupportingPrograms;
+﻿using MindSpace.Domain.Entities.Appointments;
+using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.Domain.Entities.Identity
 {
@@ -25,5 +26,11 @@ namespace MindSpace.Domain.Entities.Identity
 
         // 1 Psychologist - M Feedbacks
         public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
+
+        // 1 Psychologist - M PsychologistSchedules
+        public virtual ICollection<PsychologistSchedule> PsychologistSchedules { get; set; } = new HashSet<PsychologistSchedule>();
+
+        // 1 Psychologist - M Appointments
+        public virtual ICollection<Appointment> Appointments { get; set; } = new HashSet<Appointment>();
     }
 }

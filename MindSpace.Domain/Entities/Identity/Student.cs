@@ -1,3 +1,4 @@
+using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Entities.Tests;
 
@@ -21,5 +22,11 @@ namespace MindSpace.Domain.Entities.Identity
 
         // 1 Student - M Feedbacks
         public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
+
+        // 1 Student - M Appointments
+        public virtual ICollection<Appointment> Appointments { get; set; } = new HashSet<Appointment>();
+
+        // 1 Student - M Payments
+        public virtual ICollection<Payment> Payments { get; set; } = new HashSet<Payment>();
     }
 }
