@@ -1,4 +1,4 @@
-﻿namespace MindSpace.Application.Users
+﻿namespace MindSpace.Application.UserContext
 {
     public record CurrentUser(string Id, string Email, IEnumerable<string> Roles)
     {

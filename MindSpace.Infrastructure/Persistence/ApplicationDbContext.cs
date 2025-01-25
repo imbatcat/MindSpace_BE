@@ -13,6 +13,9 @@ namespace MindSpace.Infrastructure.Persistence
 
         private DbSet<Specification> Specifications { get; set; }
         private DbSet<Psychologist> Psychologists { get; set; }
+        private DbSet<SchoolManager> SchoolManagers { get; set; }
+        private DbSet<School> Schools { get; set; }
+        private DbSet<SupportingProgram> SupportingPrograms { get; set; }
 
         // ========================
         // === Methods

@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MindSpace.Domain.Entities.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Infrastructure.Configurations
 {
@@ -14,7 +9,7 @@ namespace MindSpace.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Psychologist> builder)
         {
             // Create TPT for Psychologist
-            builder.ToTable("Psychologists");
+            builder.ToTable("Psychologists").HasBaseType<ApplicationUser>();
 
             // Fields
             builder.Property(p => p.Bio)
@@ -28,7 +23,6 @@ namespace MindSpace.Infrastructure.Configurations
 
             builder.Property(p => p.ComissionRate)
                 .HasColumnType("decimal(5, 2)");
-
 
             // 1 Specification - 1 User
             builder.HasOne(p => p.User)

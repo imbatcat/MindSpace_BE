@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using MindSpace.Application.Users;
+using MindSpace.Application.UserContext;
 
 namespace MindSpace.Application.Extensions
 {
@@ -20,7 +20,7 @@ namespace MindSpace.Application.Extensions
             services.AddValidatorsFromAssembly(applicationAssembly)
                 .AddFluentValidationAutoValidation();
 
-            services.AddScoped<IUserContext, UserContext>();
+            services.AddScoped<IUserContext, UserContext.UserContext>();
 
             services.AddHttpContextAccessor();
         }
