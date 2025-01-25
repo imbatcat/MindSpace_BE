@@ -13,7 +13,7 @@ namespace MindSpace.Domain.Entities
             public Address Address { get; set; }
             public string? Description { get; set; }
 
-            public DateOnly JoinDate { get; set; }
+            public DateTime JoinDate { get; set; }
 
             //Navigation props
             public virtual IEnumerable<Student> Students { get; set; } = [];
