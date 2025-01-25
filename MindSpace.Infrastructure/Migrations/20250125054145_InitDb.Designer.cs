@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MindSpace.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using MindSpace.Infrastructure.Persistence;
 namespace MindSpace.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250125054145_InitDb")]
+    partial class InitDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,11 +264,7 @@ namespace MindSpace.Infrastructure.Migrations
                     b.UseTptMappingStrategy();
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("MindSpace.Domain.Entities.School", b =>
-=======
             modelBuilder.Entity("MindSpace.Domain.Entities.MindSpace.Domain.Entities.School", b =>
->>>>>>> e8c28c3d2c54e60ba42b01add06c94e3f20190eb
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -298,12 +297,9 @@ namespace MindSpace.Infrastructure.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
 
-<<<<<<< HEAD
-=======
                     b.Property<int>("SchoolManagerId")
                         .HasColumnType("int");
 
->>>>>>> e8c28c3d2c54e60ba42b01add06c94e3f20190eb
                     b.Property<string>("SchoolName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -323,11 +319,7 @@ namespace MindSpace.Infrastructure.Migrations
                     b.HasIndex("PhoneNumber")
                         .IsUnique();
 
-<<<<<<< HEAD
-                    b.ToTable("Schools");
-=======
                     b.ToTable("School");
->>>>>>> e8c28c3d2c54e60ba42b01add06c94e3f20190eb
                 });
 
             modelBuilder.Entity("MindSpace.Domain.Entities.Specification", b =>
@@ -375,36 +367,9 @@ namespace MindSpace.Infrastructure.Migrations
                     b.Property<int>("ManagerId")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
-                    b.Property<int>("MaxQuantity")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
-                    b.Property<string>("PdffileUrl")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
                     b.Property<int>("PsychologistId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SchoolId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDateAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ThumbnailUrl")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-=======
-                    b.Property<int>("PsychologistId")
-                        .HasColumnType("int");
-
->>>>>>> e8c28c3d2c54e60ba42b01add06c94e3f20190eb
                     b.Property<DateTime>("UpdateAt")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
@@ -416,18 +381,6 @@ namespace MindSpace.Infrastructure.Migrations
 
                     b.HasIndex("PsychologistId");
 
-<<<<<<< HEAD
-                    b.HasIndex("SchoolId");
-
-                    b.ToTable("SupportingPrograms");
-                });
-
-            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.SchoolManager", b =>
-                {
-                    b.HasBaseType("MindSpace.Domain.Entities.Identity.ApplicationUser");
-
-                    b.ToTable("SchoolManager", (string)null);
-=======
                     b.ToTable("SupportingProgram");
                 });
 
@@ -621,7 +574,6 @@ namespace MindSpace.Infrastructure.Migrations
                         .HasFilter("[SchoolId] IS NOT NULL");
 
                     b.ToTable("Managers", (string)null);
->>>>>>> e8c28c3d2c54e60ba42b01add06c94e3f20190eb
                 });
 
             modelBuilder.Entity("MindSpace.Domain.Entities.Identity.Psychologist", b =>
@@ -714,15 +666,9 @@ namespace MindSpace.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("MindSpace.Domain.Entities.School", b =>
-                {
-                    b.OwnsOne("MindSpace.Domain.Entities.Address", "Address", b1 =>
-=======
             modelBuilder.Entity("MindSpace.Domain.Entities.MindSpace.Domain.Entities.School", b =>
                 {
                     b.OwnsOne("MindSpace.Domain.Entities.Owned.Address", "Address", b1 =>
->>>>>>> e8c28c3d2c54e60ba42b01add06c94e3f20190eb
                         {
                             b1.Property<int>("SchoolId")
                                 .HasColumnType("int");
@@ -753,11 +699,7 @@ namespace MindSpace.Infrastructure.Migrations
 
                             b1.HasKey("SchoolId");
 
-<<<<<<< HEAD
-                            b1.ToTable("Schools");
-=======
                             b1.ToTable("School");
->>>>>>> e8c28c3d2c54e60ba42b01add06c94e3f20190eb
 
                             b1.WithOwner()
                                 .HasForeignKey("SchoolId");
@@ -769,88 +711,15 @@ namespace MindSpace.Infrastructure.Migrations
 
             modelBuilder.Entity("MindSpace.Domain.Entities.SupportingProgram", b =>
                 {
-<<<<<<< HEAD
-                    b.HasOne("MindSpace.Domain.Entities.Identity.SchoolManager", "SchoolManager")
-                        .WithMany("SupportingPrograms")
-                        .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-=======
                     b.HasOne("MindSpace.Domain.Entities.Identity.Manager", "Manager")
                         .WithMany("SupportingPrograms")
                         .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
->>>>>>> e8c28c3d2c54e60ba42b01add06c94e3f20190eb
                         .IsRequired();
 
                     b.HasOne("MindSpace.Domain.Entities.Identity.Psychologist", "Psychologist")
                         .WithMany("SupportingPrograms")
                         .HasForeignKey("PsychologistId")
-<<<<<<< HEAD
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
-                    b.HasOne("MindSpace.Domain.Entities.School", "School")
-                        .WithMany("SupportingPrograms")
-                        .HasForeignKey("SchoolId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
-                    b.OwnsOne("MindSpace.Domain.Entities.Address", "Address", b1 =>
-                        {
-                            b1.Property<int>("SupportingProgramId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("City")
-                                .HasMaxLength(50)
-                                .IsUnicode(true)
-                                .HasColumnType("nvarchar(50)");
-
-                            b1.Property<string>("PostalCode")
-                                .HasMaxLength(10)
-                                .HasColumnType("nvarchar(10)");
-
-                            b1.Property<string>("Province")
-                                .HasMaxLength(50)
-                                .IsUnicode(true)
-                                .HasColumnType("nvarchar(50)");
-
-                            b1.Property<string>("Street")
-                                .HasMaxLength(100)
-                                .IsUnicode(true)
-                                .HasColumnType("nvarchar(100)");
-
-                            b1.Property<string>("Ward")
-                                .HasMaxLength(50)
-                                .IsUnicode(true)
-                                .HasColumnType("nvarchar(50)");
-
-                            b1.HasKey("SupportingProgramId");
-
-                            b1.ToTable("SupportingPrograms");
-
-                            b1.WithOwner()
-                                .HasForeignKey("SupportingProgramId");
-                        });
-
-                    b.Navigation("Address")
-                        .IsRequired();
-
-                    b.Navigation("SchoolManager");
-
-                    b.Navigation("Psychologist");
-
-                    b.Navigation("School");
-                });
-
-            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.SchoolManager", b =>
-                {
-                    b.HasOne("MindSpace.Domain.Entities.Identity.ApplicationUser", "User")
-                        .WithOne("SchoolManager")
-                        .HasForeignKey("MindSpace.Domain.Entities.Identity.SchoolManager", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-=======
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -932,7 +801,6 @@ namespace MindSpace.Infrastructure.Migrations
 
                     b.Navigation("School");
 
->>>>>>> e8c28c3d2c54e60ba42b01add06c94e3f20190eb
                     b.Navigation("User");
                 });
 
@@ -975,11 +843,7 @@ namespace MindSpace.Infrastructure.Migrations
 
             modelBuilder.Entity("MindSpace.Domain.Entities.Identity.ApplicationUser", b =>
                 {
-<<<<<<< HEAD
-                    b.Navigation("SchoolManager")
-=======
                     b.Navigation("Manager")
->>>>>>> e8c28c3d2c54e60ba42b01add06c94e3f20190eb
                         .IsRequired();
 
                     b.Navigation("Psychologist")
@@ -1001,19 +865,11 @@ namespace MindSpace.Infrastructure.Migrations
                     b.Navigation("Students");
                 });
 
-            modelBuilder.Entity("MindSpace.Domain.Entities.School", b =>
-                {
-                    b.Navigation("SupportingPrograms");
-                });
-
             modelBuilder.Entity("MindSpace.Domain.Entities.Specification", b =>
                 {
                     b.Navigation("Psychologists");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.SchoolManager", b =>
-=======
             modelBuilder.Entity("MindSpace.Domain.Entities.Tests.Test", b =>
                 {
                     b.Navigation("TestResponses");
@@ -1032,7 +888,6 @@ namespace MindSpace.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("MindSpace.Domain.Entities.Identity.Manager", b =>
->>>>>>> e8c28c3d2c54e60ba42b01add06c94e3f20190eb
                 {
                     b.Navigation("SupportingPrograms");
                 });

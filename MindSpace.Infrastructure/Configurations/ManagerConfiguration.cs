@@ -19,6 +19,12 @@ namespace MindSpace.Infrastructure.Configurations
             builder.HasOne(m => m.User)
                 .WithOne(u => u.Manager)
                 .HasForeignKey<SchoolManager>(u => u.Id);
+
+            // 1 SchoolManager - 1 School
+            builder
+                .HasOne(m => m.School)
+                .WithOne(sc => sc.SchoolManager)
+                .HasForeignKey<Manager>(m => m.SchoolId);
         }
     }
 }
