@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MindSpace.Domain.Entities.SupportingPrograms;
+using MindSpace.Domain.Entities;
 
 
 namespace MindSpace.Infrastructure.Configurations
 {
+
     internal class SupportingProgramConfiguration : IEntityTypeConfiguration<SupportingProgram>
     {
         public void Configure(EntityTypeBuilder<SupportingProgram> builder)

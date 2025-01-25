@@ -16,7 +16,10 @@ namespace MindSpace.Infrastructure.Configurations
             builder.Property(t => t.Title).IsUnicode().IsRequired().HasMaxLength(100);
             builder.Property(t => t.Description).IsUnicode().HasMaxLength(100);
             builder.Property(t => t.QuestionCount).HasDefaultValue(0);
-            builder.Property(t => t.Price).HasPrecision(18, 2).HasDefaultValue(0m); //Allow 18 digits (integer + fractional) and 2 digits after decimal
+            builder.Property(t => t.Price)
+                .HasPrecision(10, 2)
+                .IsRequired()
+                .HasAnnotation("Range", new[] { "0", "999999.99" });
             builder.Property(t => t.TestStatus)
             .HasConversion(
                 v => v.ToString(),
@@ -29,7 +32,7 @@ namespace MindSpace.Infrastructure.Configurations
                 .HasForeignKey(t => t.TestCategoryId);
             builder
                 .HasOne(t => t.Manager)
-                .WithMany(tc => tc.Tests)
+                .WithMany(m => m.Tests)
                 .HasForeignKey(t => t.ManagerId)
                 .OnDelete(DeleteBehavior.NoAction);
         }

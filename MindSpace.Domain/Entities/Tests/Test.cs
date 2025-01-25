@@ -14,9 +14,9 @@ namespace MindSpace.Domain.Entities.Tests
         //Relationships
         public int TestCategoryId { get; set; }
         public virtual TestCategory TestCategory { get; set; }
-        public virtual IEnumerable<TestTestQuestion> TestTestQuestions { get; set; } = [];
-        public virtual IEnumerable<TestResponse> TestResponses { get; set; } = [];
+        public virtual ICollection<TestTestQuestion> TestTestQuestions { get; set; } = new HashSet<TestTestQuestion>();
+        public virtual ICollection<TestResponse> TestResponses { get; set; } = new HashSet<TestResponse>();
         public int ManagerId { get; set; }
-        public virtual ApplicationUser Manager { get; set; }
+        public virtual Manager Manager { get; set; }
     }
 }

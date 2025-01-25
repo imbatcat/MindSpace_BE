@@ -8,7 +8,10 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Student> builder)
         {
-            builder.ToTable("Students");
+            //TPT mapping
+            builder.ToTable("Students").HasBaseType<ApplicationUser>();
+
+            //Properties
             builder
                 .HasOne(s => s.User)
                 .WithOne(au => au.Student)

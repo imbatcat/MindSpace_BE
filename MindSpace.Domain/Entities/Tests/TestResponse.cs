@@ -8,7 +8,7 @@ namespace MindSpace.Domain.Entities.Tests
 
         //Relationships
         public int StudentId { get; set; }
-        public ApplicationUser Student { get; set; }
+        public virtual Student Student { get; set; }
 
         public int TestId { get; set; }
         public virtual Test Test { get; set; }
