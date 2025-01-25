@@ -1,11 +1,16 @@
-﻿namespace MindSpace.Domain.Entities.Identity
+using MindSpace.Domain.Entities.Tests;
+
+namespace MindSpace.Domain.Entities.Identity
 {
     public class Student : ApplicationUser
     {
-        // 1 Student - 1 User
+        //1 Student - 1 User
         public virtual ApplicationUser User { get; set; }
 
-        // 1 School - M Students
+        //1 Student - M TestResponses
+        public virtual ICollection<TestResponse> TestResponses { get; set; } = new HashSet<TestResponse>();
+
+        //1 School - M Students
         public int SchoolId { get; set; }
         public virtual School School { get; set; }
 

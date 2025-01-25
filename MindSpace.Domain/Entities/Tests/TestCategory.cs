@@ -5,6 +5,6 @@
         public string Name { get; set; }
 
         //Navigation props
-        public virtual IEnumerable<Test> Tests { get; set; }
+        public virtual ICollection<Test> Tests { get; set; } = new HashSet<Test>();
     }
 }

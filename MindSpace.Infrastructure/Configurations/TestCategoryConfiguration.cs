@@ -4,7 +4,7 @@ using MindSpace.Domain.Entities.Tests;
 
 namespace MindSpace.Infrastructure.Configurations
 {
-    public class TestCategoryConfiguration : IEntityTypeConfiguration<TestCategory>
+    internal class TestCategoryConfiguration : IEntityTypeConfiguration<TestCategory>
     {
         public void Configure(EntityTypeBuilder<TestCategory> builder)
         {

@@ -9,6 +9,6 @@ namespace MindSpace.Domain.Entities.Tests
         public QuestionFormats QuestionFormat { get; set; }
 
         //Relationships
-        public virtual IEnumerable<TestTestQuestion> TestTestQuestions { get; set; } = [];
+        public virtual ICollection<TestTestQuestion> TestTestQuestions { get; set; } = new HashSet<TestTestQuestion>();
     }
 }

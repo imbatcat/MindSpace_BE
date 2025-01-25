@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MindSpace.Infrastructure.Configurations
 {
-    public class SupportingProgramHistoryConfiguration : IEntityTypeConfiguration<SupportingProgramHistory>
+    internal class SupportingProgramHistoryConfiguration : IEntityTypeConfiguration<SupportingProgramHistory>
     {
         public void Configure(EntityTypeBuilder<SupportingProgramHistory> builder)
         {

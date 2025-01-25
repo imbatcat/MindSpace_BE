@@ -8,6 +8,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<TestResponse> builder)
         {
+            //Properties
             builder.Property(tr => tr.TotalScore).IsRequired();
 
             //Relationships

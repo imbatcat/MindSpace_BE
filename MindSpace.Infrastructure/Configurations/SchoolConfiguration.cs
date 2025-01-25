@@ -4,11 +4,10 @@ using MindSpace.Domain.Entities;
 
 namespace MindSpace.Infrastructure.Configurations
 {
-    public class SchoolConfiguration : IEntityTypeConfiguration<School>
+    internal class SchoolConfiguration : IEntityTypeConfiguration<School>
     {
         public void Configure(EntityTypeBuilder<School> builder)
         {
-
             // Indexing
             builder.HasIndex(s => s.ContactEmail).IsUnique();
             builder.HasIndex(s => s.PhoneNumber).IsUnique();

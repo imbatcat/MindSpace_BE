@@ -23,7 +23,7 @@ namespace MindSpace.Domain.Entities
         public virtual SchoolManager SchoolManager { get; set; }
 
 
-        // 1 School - 1 SupportingPrograms
+        // 1 School - M SupportingPrograms
         public virtual ICollection<SupportingProgram> SupportingPrograms { get; set; } = new HashSet<SupportingProgram>();
     }
 }
