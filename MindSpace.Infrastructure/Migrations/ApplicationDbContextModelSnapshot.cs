@@ -175,8 +175,8 @@ namespace MindSpace.Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly?>("DateOfBirth")
+                        .HasColumnType("date");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -402,6 +402,40 @@ namespace MindSpace.Infrastructure.Migrations
                     b.HasIndex("SchoolId");
 
                     b.ToTable("SupportingPrograms");
+                });
+
+            modelBuilder.Entity("MindSpace.Domain.Entities.SupportingProgramHistory", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupportingProgramId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("JoinedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("UpdateAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.HasKey("StudentId", "SupportingProgramId");
+
+                    b.HasIndex("SupportingProgramId");
+
+                    b.ToTable("SupportingProgramHistory");
                 });
 
             modelBuilder.Entity("MindSpace.Domain.Entities.Tests.Test", b =>
@@ -688,7 +722,7 @@ namespace MindSpace.Infrastructure.Migrations
 
             modelBuilder.Entity("MindSpace.Domain.Entities.School", b =>
                 {
-                    b.OwnsOne("MindSpace.Domain.Entities.Address", "Address", b1 =>
+                    b.OwnsOne("MindSpace.Domain.Entities.Owned.Address", "Address", b1 =>
                         {
                             b1.Property<int>("SchoolId")
                                 .HasColumnType("int");
@@ -743,17 +777,13 @@ namespace MindSpace.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
-<<<<<<< HEAD
                     b.HasOne("MindSpace.Domain.Entities.School", "School")
                         .WithMany("SupportingPrograms")
                         .HasForeignKey("SchoolId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
-                    b.OwnsOne("MindSpace.Domain.Entities.Address", "Address", b1 =>
-=======
                     b.OwnsOne("MindSpace.Domain.Entities.Owned.Address", "Address", b1 =>
->>>>>>> 37255f149271ebc5dd941b85c4a221131b1f85fc
                         {
                             b1.Property<int>("SupportingProgramId")
                                 .HasColumnType("int");
@@ -784,11 +814,7 @@ namespace MindSpace.Infrastructure.Migrations
 
                             b1.HasKey("SupportingProgramId");
 
-<<<<<<< HEAD
                             b1.ToTable("SupportingPrograms");
-=======
-                            b1.ToTable("SupportingProgram");
->>>>>>> 37255f149271ebc5dd941b85c4a221131b1f85fc
 
                             b1.WithOwner()
                                 .HasForeignKey("SupportingProgramId");
@@ -796,17 +822,31 @@ namespace MindSpace.Infrastructure.Migrations
 
                     b.Navigation("Address")
                         .IsRequired();
-<<<<<<< HEAD
-=======
-
-                    b.Navigation("Manager");
->>>>>>> 37255f149271ebc5dd941b85c4a221131b1f85fc
 
                     b.Navigation("Psychologist");
 
                     b.Navigation("School");
 
                     b.Navigation("SchoolManager");
+                });
+
+            modelBuilder.Entity("MindSpace.Domain.Entities.SupportingProgramHistory", b =>
+                {
+                    b.HasOne("MindSpace.Domain.Entities.Identity.Student", "Student")
+                        .WithMany("SupportingProgramHistory")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MindSpace.Domain.Entities.SupportingProgram", "SupportingProgram")
+                        .WithMany("SupportingProgramHistory")
+                        .HasForeignKey("SupportingProgramId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("SupportingProgram");
                 });
 
             modelBuilder.Entity("MindSpace.Domain.Entities.Tests.Test", b =>
@@ -953,6 +993,11 @@ namespace MindSpace.Infrastructure.Migrations
                     b.Navigation("Psychologists");
                 });
 
+            modelBuilder.Entity("MindSpace.Domain.Entities.SupportingProgram", b =>
+                {
+                    b.Navigation("SupportingProgramHistory");
+                });
+
             modelBuilder.Entity("MindSpace.Domain.Entities.Tests.Test", b =>
                 {
                     b.Navigation("TestResponses");
@@ -978,6 +1023,11 @@ namespace MindSpace.Infrastructure.Migrations
             modelBuilder.Entity("MindSpace.Domain.Entities.Identity.SchoolManager", b =>
                 {
                     b.Navigation("SupportingPrograms");
+                });
+
+            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.Student", b =>
+                {
+                    b.Navigation("SupportingProgramHistory");
                 });
 #pragma warning restore 612, 618
         }

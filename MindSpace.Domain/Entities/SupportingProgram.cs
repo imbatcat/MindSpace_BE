@@ -1,4 +1,5 @@
 ﻿using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Entities.Owned;
 
 namespace MindSpace.Domain.Entities
 {
@@ -25,5 +26,9 @@ namespace MindSpace.Domain.Entities
         // 1 School - M Supporting Program
         public int SchoolId { get; set; }
         public virtual School School { get; set; }
+
+
+        // M Students - M Supporting Program
+        public ICollection<SupportingProgramHistory> SupportingProgramHistory { get; set; } = new HashSet<SupportingProgramHistory>();
     }
 }

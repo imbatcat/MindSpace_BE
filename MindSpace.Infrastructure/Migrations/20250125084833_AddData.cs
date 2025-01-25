@@ -34,7 +34,7 @@ namespace MindSpace.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", maxLength: -1, nullable: true),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateOfBirth = table.Column<DateOnly>(type: "date", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "getdate()"),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "getdate()"),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "Enabled"),
@@ -359,15 +359,7 @@ namespace MindSpace.Infrastructure.Migrations
                     StartDateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ManagerId = table.Column<int>(type: "int", nullable: false),
                     PsychologistId = table.Column<int>(type: "int", nullable: false),
-<<<<<<<< HEAD:MindSpace.Infrastructure/Migrations/20250125073336_AddData.cs
                     SchoolId = table.Column<int>(type: "int", nullable: false),
-========
-                    Address_City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Address_Street = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Address_Ward = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Address_Province = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Address_PostalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
->>>>>>>> 37255f149271ebc5dd941b85c4a221131b1f85fc:MindSpace.Infrastructure/Migrations/20250125060707_InitDb.cs
                     CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
@@ -440,6 +432,35 @@ namespace MindSpace.Infrastructure.Migrations
                         name: "FK_TestTestQuestion_Test_TestId",
                         column: x => x.TestId,
                         principalTable: "Test",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SupportingProgramHistory",
+                columns: table => new
+                {
+                    SupportingProgramId = table.Column<int>(type: "int", nullable: false),
+                    StudentId = table.Column<int>(type: "int", nullable: false),
+                    JoinedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SupportingProgramHistory", x => new { x.StudentId, x.SupportingProgramId });
+                    table.ForeignKey(
+                        name: "FK_SupportingProgramHistory_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SupportingProgramHistory_SupportingPrograms_SupportingProgramId",
+                        column: x => x.SupportingProgramId,
+                        principalTable: "SupportingPrograms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -527,6 +548,11 @@ namespace MindSpace.Infrastructure.Migrations
                 column: "SchoolId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SupportingProgramHistory_SupportingProgramId",
+                table: "SupportingProgramHistory",
+                column: "SupportingProgramId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SupportingPrograms_ManagerId",
                 table: "SupportingPrograms",
                 column: "ManagerId");
@@ -592,10 +618,7 @@ namespace MindSpace.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Students");
-
-            migrationBuilder.DropTable(
-                name: "SupportingPrograms");
+                name: "SupportingProgramHistory");
 
             migrationBuilder.DropTable(
                 name: "TestResponse");
@@ -607,10 +630,10 @@ namespace MindSpace.Infrastructure.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Psychologists");
+                name: "Students");
 
             migrationBuilder.DropTable(
-                name: "SchoolManager");
+                name: "SupportingPrograms");
 
             migrationBuilder.DropTable(
                 name: "TestQuestion");
@@ -619,16 +642,22 @@ namespace MindSpace.Infrastructure.Migrations
                 name: "Test");
 
             migrationBuilder.DropTable(
-                name: "Specifications");
+                name: "Psychologists");
 
             migrationBuilder.DropTable(
-                name: "Schools");
+                name: "SchoolManager");
+
+            migrationBuilder.DropTable(
+                name: "TestCategory");
+
+            migrationBuilder.DropTable(
+                name: "Specifications");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "TestCategory");
+                name: "Schools");
         }
     }
 }

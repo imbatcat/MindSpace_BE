@@ -1,4 +1,5 @@
 ﻿using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Entities.Owned;
 
 namespace MindSpace.Domain.Entities
 {
@@ -10,7 +11,7 @@ namespace MindSpace.Domain.Entities
         public Address Address { get; set; }
         public string? Description { get; set; }
 
-            public DateTime JoinDate { get; set; }
+        public DateTime JoinDate { get; set; }
 
 
         // 1 School - M Students
