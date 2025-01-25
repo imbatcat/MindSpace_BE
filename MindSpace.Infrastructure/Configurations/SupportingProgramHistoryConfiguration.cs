@@ -8,6 +8,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<SupportingProgramHistory> builder)
         {
+            builder.ToTable("SupportingProgramHistory");
             // M Supporting Program - M Student
             builder.HasKey(spd => new { spd.StudentId, spd.SupportingProgramId });
 
