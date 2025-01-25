@@ -14,10 +14,16 @@ namespace MindSpace.Domain.Entities.Identity
         public int SpecificationId { get; set; }
         public virtual Specification Specification { get; set; }
 
+
         // 1 Psychologist - 1 User 
         public virtual ApplicationUser User { get; set; }
 
+
         // 1 Psychologist - M SupportingProgram
         public virtual ICollection<SupportingProgram> SupportingPrograms { get; set; } = new HashSet<SupportingProgram>();
+
+
+        // 1 Psychologist - M Feedbacks
+        public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
     }
 }

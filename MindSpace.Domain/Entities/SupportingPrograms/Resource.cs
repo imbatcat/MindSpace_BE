@@ -15,5 +15,9 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
         // 1 SchoolManager - M Resources
         public int SchoolManagerId { get; set; }
         public SchoolManager SchoolManager { get; set; }
+
+
+        // 1 Resource - M ResourceSection
+        public virtual ICollection<ResourceSection> ResourceSections { get; set; } = new List<ResourceSection>();
     }
 }
