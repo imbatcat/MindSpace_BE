@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MindSpace.Domain.Entities;
+using MindSpace.Domain.Entities.SupportingPrograms;
 using System;
 using System.Collections.Generic;
 using System.Linq;

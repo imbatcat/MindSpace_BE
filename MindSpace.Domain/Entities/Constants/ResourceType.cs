@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MindSpace.Domain.Entities.Constants
 {
-    internal enum ResourceType
+    public enum ResourceType
     {
         [EnumMember(Value = "Blog")]
         Blog,
