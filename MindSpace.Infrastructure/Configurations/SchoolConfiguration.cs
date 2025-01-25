@@ -8,6 +8,8 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<School> builder)
         {
+            builder.ToTable("Schools");
+
             // Indexing
             builder.HasIndex(s => s.ContactEmail).IsUnique();
             builder.HasIndex(s => s.PhoneNumber).IsUnique();

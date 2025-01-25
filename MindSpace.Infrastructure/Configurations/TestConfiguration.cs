@@ -9,6 +9,8 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Test> builder)
         {
+            builder.ToTable("Tests");
+
             //Indexing
             builder.HasIndex(t => t.Title).IsUnique();
 
