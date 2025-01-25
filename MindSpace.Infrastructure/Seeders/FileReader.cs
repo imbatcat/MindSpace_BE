@@ -1,9 +1,5 @@
-﻿using MindSpace.Application.Commons.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using MindSpace.Application.Commons.Utilities;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Infrastructure.Seeders
 {

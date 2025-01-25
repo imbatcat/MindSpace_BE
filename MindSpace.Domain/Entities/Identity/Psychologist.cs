@@ -18,8 +18,10 @@ namespace MindSpace.Domain.Entities.Identity
         public int SpecificationId { get; set; }
         public virtual Specification Specification { get; set; }
 
-
         // 1 Psychologist - 1 User 
         public virtual ApplicationUser User { get; set; }
+
+        // 1 Psychologist - M SupportingPrograms
+        public virtual IEnumerable<SupportingProgram> SupportingPrograms { get; set; }
     }
 }

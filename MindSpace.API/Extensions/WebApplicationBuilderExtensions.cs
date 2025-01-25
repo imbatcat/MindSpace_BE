@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-using Serilog;
+﻿using Microsoft.OpenApi.Models;
 
 namespace MindSpace.API.Extensions
 {
