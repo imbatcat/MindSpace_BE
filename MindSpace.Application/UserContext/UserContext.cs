@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace MindSpace.Application.Users
+namespace MindSpace.Application.UserContext
 {
     public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
     {

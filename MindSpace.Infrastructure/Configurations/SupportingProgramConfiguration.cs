@@ -1,15 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MindSpace.Domain.Entities;
-using MindSpace.Domain.Entities.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MindSpace.Infrastructure.Configurations
 {
+
     public class SupportingProgramConfiguration : IEntityTypeConfiguration<SupportingProgram>
     {
         public void Configure(EntityTypeBuilder<SupportingProgram> builder)
@@ -48,6 +44,7 @@ namespace MindSpace.Infrastructure.Configurations
                 .WithMany(m => m.SupportingPrograms)
                 .HasForeignKey(sp => sp.SchoolId)
                 .OnDelete(DeleteBehavior.ClientCascade);
+
         }
     }
 }

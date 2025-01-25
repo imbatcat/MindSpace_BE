@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MindSpace.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddSupportingPrograms : Migration
+    public partial class AddData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -74,6 +74,7 @@ namespace MindSpace.Infrastructure.Migrations
                     Address_PostalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     JoinDate = table.Column<DateOnly>(type: "date", nullable: false, defaultValueSql: "getdate()"),
+                    SchoolManagerId = table.Column<int>(type: "int", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
@@ -95,6 +96,38 @@ namespace MindSpace.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Specifications", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TestCategory",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TestCategory", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TestQuestion",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    QuestionFormat = table.Column<int>(type: "int", nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TestQuestion", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -207,15 +240,46 @@ namespace MindSpace.Infrastructure.Migrations
                 name: "SchoolManager",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    SchoolId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Manager", x => x.Id);
+                    table.PrimaryKey("PK_SchoolManager", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Manager_AspNetUsers_Id",
+                        name: "FK_SchoolManager_AspNetUsers_Id",
                         column: x => x.Id,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SchoolManager_Schools_SchoolId",
+                        column: x => x.SchoolId,
+                        principalTable: "Schools",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Students",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    SchoolId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Students_AspNetUsers_Id",
+                        column: x => x.Id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Students_Schools_SchoolId",
+                        column: x => x.SchoolId,
+                        principalTable: "Schools",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -247,6 +311,38 @@ namespace MindSpace.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Test",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    QuestionCount = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false, defaultValue: 0m),
+                    TestStatus = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "Enabled"),
+                    TestCategoryId = table.Column<int>(type: "int", nullable: false),
+                    ManagerId = table.Column<int>(type: "int", nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Test", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Test_AspNetUsers_ManagerId",
+                        column: x => x.ManagerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Test_TestCategory_TestCategoryId",
+                        column: x => x.TestCategoryId,
+                        principalTable: "TestCategory",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SupportingPrograms",
                 columns: table => new
                 {
@@ -271,20 +367,73 @@ namespace MindSpace.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_SupportingPrograms", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SupportingPrograms_Manager_ManagerId",
-                        column: x => x.ManagerId,
-                        principalTable: "SchoolManager",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_SupportingPrograms_Psychologists_PsychologistId",
                         column: x => x.PsychologistId,
                         principalTable: "Psychologists",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SupportingPrograms_SchoolManager_ManagerId",
+                        column: x => x.ManagerId,
+                        principalTable: "SchoolManager",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_SupportingPrograms_Schools_SchoolId",
                         column: x => x.SchoolId,
                         principalTable: "Schools",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TestResponse",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TotalScore = table.Column<int>(type: "int", nullable: false),
+                    StudentId = table.Column<int>(type: "int", nullable: false),
+                    TestId = table.Column<int>(type: "int", nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TestResponse", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TestResponse_AspNetUsers_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TestResponse_Test_TestId",
+                        column: x => x.TestId,
+                        principalTable: "Test",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TestTestQuestion",
+                columns: table => new
+                {
+                    TestId = table.Column<int>(type: "int", nullable: false),
+                    TestQuestionId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TestTestQuestion", x => new { x.TestId, x.TestQuestionId });
+                    table.ForeignKey(
+                        name: "FK_TestTestQuestion_TestQuestion_TestQuestionId",
+                        column: x => x.TestQuestionId,
+                        principalTable: "TestQuestion",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TestTestQuestion_Test_TestId",
+                        column: x => x.TestId,
+                        principalTable: "Test",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -346,6 +495,13 @@ namespace MindSpace.Infrastructure.Migrations
                 column: "SpecificationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SchoolManager_SchoolId",
+                table: "SchoolManager",
+                column: "SchoolId",
+                unique: true,
+                filter: "[SchoolId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Schools_ContactEmail",
                 table: "Schools",
                 column: "ContactEmail",
@@ -356,6 +512,11 @@ namespace MindSpace.Infrastructure.Migrations
                 table: "Schools",
                 column: "PhoneNumber",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Students_SchoolId",
+                table: "Students",
+                column: "SchoolId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SupportingPrograms_ManagerId",
@@ -371,6 +532,37 @@ namespace MindSpace.Infrastructure.Migrations
                 name: "IX_SupportingPrograms_SchoolId",
                 table: "SupportingPrograms",
                 column: "SchoolId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Test_ManagerId",
+                table: "Test",
+                column: "ManagerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Test_TestCategoryId",
+                table: "Test",
+                column: "TestCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Test_Title",
+                table: "Test",
+                column: "Title",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestResponse_StudentId",
+                table: "TestResponse",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestResponse_TestId",
+                table: "TestResponse",
+                column: "TestId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestTestQuestion_TestQuestionId",
+                table: "TestTestQuestion",
+                column: "TestQuestionId");
         }
 
         /// <inheritdoc />
@@ -392,16 +584,34 @@ namespace MindSpace.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Students");
+
+            migrationBuilder.DropTable(
                 name: "SupportingPrograms");
+
+            migrationBuilder.DropTable(
+                name: "TestResponse");
+
+            migrationBuilder.DropTable(
+                name: "TestTestQuestion");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Psychologists");
+
+            migrationBuilder.DropTable(
                 name: "SchoolManager");
 
             migrationBuilder.DropTable(
-                name: "Psychologists");
+                name: "TestQuestion");
+
+            migrationBuilder.DropTable(
+                name: "Test");
+
+            migrationBuilder.DropTable(
+                name: "Specifications");
 
             migrationBuilder.DropTable(
                 name: "Schools");
@@ -410,7 +620,7 @@ namespace MindSpace.Infrastructure.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Specifications");
+                name: "TestCategory");
         }
     }
 }

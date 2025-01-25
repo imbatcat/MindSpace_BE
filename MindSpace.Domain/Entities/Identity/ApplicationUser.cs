@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using MindSpace.Domain.Entities.Constants;
-using MindSpace.Domain.Entities.MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Tests;
 
 namespace MindSpace.Domain.Entities.Identity
@@ -14,14 +13,14 @@ namespace MindSpace.Domain.Entities.Identity
         public DateTime? UpdatedAt { get; set; }
         public UserStatus Status { get; set; }
 
-        //Navigation props
+        // 1 Student - M Tests
         public virtual IEnumerable<TestResponse>? TestResponses { get; set; } = [];
-
         public virtual IEnumerable<Test> Tests { get; set; } = [];
 
         // 1 Psychologist - 1 User
         public virtual Psychologist Psychologist { get; set; }
 
+        // 1 Student - 1 User
         public virtual Student Student { get; set; }
 
         // 1 SchoolManager - 1 User

@@ -1,11 +1,4 @@
-﻿using MindSpace.Domain.Entities.MindSpace.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MindSpace.Domain.Entities.Identity
+﻿namespace MindSpace.Domain.Entities.Identity
 {
     public class Student : ApplicationUser
     {

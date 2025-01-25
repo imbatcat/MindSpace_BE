@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MindSpace.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Infrastructure.Configurations
 {
@@ -13,6 +8,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<School> builder)
         {
+
             // Indexing
             builder.HasIndex(s => s.ContactEmail).IsUnique();
             builder.HasIndex(s => s.PhoneNumber).IsUnique();
