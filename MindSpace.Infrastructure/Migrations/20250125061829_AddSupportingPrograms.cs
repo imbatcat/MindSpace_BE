@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MindSpace.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddData : Migration
+    public partial class AddSupportingPrograms : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -56,6 +56,30 @@ namespace MindSpace.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Schools",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SchoolName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ContactEmail = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    Address_City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Address_Street = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Address_Ward = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Address_Province = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Address_PostalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    JoinDate = table.Column<DateOnly>(type: "date", nullable: false, defaultValueSql: "getdate()"),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Schools", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -180,6 +204,23 @@ namespace MindSpace.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Manager",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Manager", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Manager_AspNetUsers_Id",
+                        column: x => x.Id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Psychologists",
                 columns: table => new
                 {
@@ -202,6 +243,47 @@ namespace MindSpace.Infrastructure.Migrations
                         name: "FK_Psychologists_Specifications_SpecificationId",
                         column: x => x.SpecificationId,
                         principalTable: "Specifications",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SupportingPrograms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ThumbnailUrl = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    PdffileUrl = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    MaxQuantity = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    Address_City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Address_Street = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Address_Ward = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Address_Province = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Address_PostalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    StartDateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ManagerId = table.Column<int>(type: "int", nullable: false),
+                    PsychologistId = table.Column<int>(type: "int", nullable: false),
+                    SchoolId = table.Column<int>(type: "int", nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SupportingPrograms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SupportingPrograms_Manager_ManagerId",
+                        column: x => x.ManagerId,
+                        principalTable: "Manager",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SupportingPrograms_Psychologists_PsychologistId",
+                        column: x => x.PsychologistId,
+                        principalTable: "Psychologists",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SupportingPrograms_Schools_SchoolId",
+                        column: x => x.SchoolId,
+                        principalTable: "Schools",
                         principalColumn: "Id");
                 });
 
@@ -262,6 +344,33 @@ namespace MindSpace.Infrastructure.Migrations
                 name: "IX_Psychologists_SpecificationId",
                 table: "Psychologists",
                 column: "SpecificationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Schools_ContactEmail",
+                table: "Schools",
+                column: "ContactEmail",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Schools_PhoneNumber",
+                table: "Schools",
+                column: "PhoneNumber",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SupportingPrograms_ManagerId",
+                table: "SupportingPrograms",
+                column: "ManagerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SupportingPrograms_PsychologistId",
+                table: "SupportingPrograms",
+                column: "PsychologistId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SupportingPrograms_SchoolId",
+                table: "SupportingPrograms",
+                column: "SchoolId");
         }
 
         /// <inheritdoc />
@@ -283,10 +392,19 @@ namespace MindSpace.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Psychologists");
+                name: "SupportingPrograms");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Manager");
+
+            migrationBuilder.DropTable(
+                name: "Psychologists");
+
+            migrationBuilder.DropTable(
+                name: "Schools");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

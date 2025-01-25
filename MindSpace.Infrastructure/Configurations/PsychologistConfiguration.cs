@@ -14,7 +14,7 @@ namespace MindSpace.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Psychologist> builder)
         {
             // Create TPT for Psychologist
-            builder.ToTable("Psychologists");
+            builder.ToTable("Psychologists").HasBaseType<ApplicationUser>();
 
             // Fields
             builder.Property(p => p.Bio)
@@ -28,7 +28,6 @@ namespace MindSpace.Infrastructure.Configurations
 
             builder.Property(p => p.ComissionRate)
                 .HasColumnType("decimal(5, 2)");
-
 
             // 1 Specification - 1 User
             builder.HasOne(p => p.User)

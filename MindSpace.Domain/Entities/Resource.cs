@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MindSpace.Domain.Entities
 {
-    internal class Resource
+    public class Resource
     {
     }
 }

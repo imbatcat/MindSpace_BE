@@ -10,11 +10,11 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
-            //Indexing
+            // Indexing
             builder.HasIndex(u => u.PhoneNumber).IsUnique();
             builder.HasIndex(u => u.Email).IsUnique();
 
-            //Properties
+            // Properties
             builder.Property(u => u.CreatedAt).ValueGeneratedOnAdd().HasDefaultValueSql("getdate()");
             builder.Property(u => u.UpdatedAt).ValueGeneratedOnAddOrUpdate().HasDefaultValueSql("getdate()");
             builder.Property(u => u.Status)

@@ -21,5 +21,9 @@ namespace MindSpace.Domain.Entities.Identity
 
         // 1 Psychologist - 1 User 
         public virtual ApplicationUser User { get; set; }
+
+
+        // 1 Psychologist - M SupportingProgram
+        public virtual ICollection<SupportingProgram> SupportingPrograms { get; set; } = new HashSet<SupportingProgram>();
     }
 }

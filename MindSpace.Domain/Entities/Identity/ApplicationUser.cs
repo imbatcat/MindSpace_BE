@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using MindSpace.Domain.Entities.Constants;
+using System.Collections;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MindSpace.Domain.Entities.Identity
@@ -13,8 +14,10 @@ namespace MindSpace.Domain.Entities.Identity
         public DateTime? UpdatedAt { get; set; }
         public UserStatus Status { get; set; }
 
-
         // 1 Psychologist - 1 User 
         public virtual Psychologist Psychologist { get; set; }
+
+        // 1 Manager - 1 User
+        public virtual Manager Manager { get; set; }
     }
 }
