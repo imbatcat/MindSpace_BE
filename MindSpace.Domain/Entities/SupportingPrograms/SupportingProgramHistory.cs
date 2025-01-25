@@ -1,6 +1,6 @@
 ﻿using MindSpace.Domain.Entities.Identity;
 
-namespace MindSpace.Domain.Entities
+namespace MindSpace.Domain.Entities.SupportingPrograms
 {
     public class SupportingProgramHistory : BaseEntity
     {

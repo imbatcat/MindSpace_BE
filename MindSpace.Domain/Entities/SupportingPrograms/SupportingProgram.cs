@@ -1,7 +1,7 @@
 ﻿using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.Owned;
 
-namespace MindSpace.Domain.Entities
+namespace MindSpace.Domain.Entities.SupportingPrograms
 {
     public class SupportingProgram : BaseEntity
     {

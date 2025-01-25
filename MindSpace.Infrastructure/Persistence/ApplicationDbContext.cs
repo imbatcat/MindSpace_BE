@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.Infrastructure.Persistence
 {
