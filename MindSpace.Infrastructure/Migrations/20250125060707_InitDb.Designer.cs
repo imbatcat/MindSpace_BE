@@ -12,7 +12,7 @@ using MindSpace.Infrastructure.Persistence;
 namespace MindSpace.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250125054145_InitDb")]
+    [Migration("20250125060707_InitDb")]
     partial class InitDb
     {
         /// <inheritdoc />
@@ -178,8 +178,8 @@ namespace MindSpace.Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<DateOnly?>("DateOfBirth")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -287,9 +287,9 @@ namespace MindSpace.Infrastructure.Migrations
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateOnly>("JoinDate")
+                    b.Property<DateTime>("JoinDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("date")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("PhoneNumber")
@@ -721,6 +721,46 @@ namespace MindSpace.Infrastructure.Migrations
                         .WithMany("SupportingPrograms")
                         .HasForeignKey("PsychologistId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.OwnsOne("MindSpace.Domain.Entities.Owned.Address", "Address", b1 =>
+                        {
+                            b1.Property<int>("SupportingProgramId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("City")
+                                .HasMaxLength(50)
+                                .IsUnicode(true)
+                                .HasColumnType("nvarchar(50)");
+
+                            b1.Property<string>("PostalCode")
+                                .HasMaxLength(10)
+                                .HasColumnType("nvarchar(10)");
+
+                            b1.Property<string>("Province")
+                                .HasMaxLength(50)
+                                .IsUnicode(true)
+                                .HasColumnType("nvarchar(50)");
+
+                            b1.Property<string>("Street")
+                                .HasMaxLength(100)
+                                .IsUnicode(true)
+                                .HasColumnType("nvarchar(100)");
+
+                            b1.Property<string>("Ward")
+                                .HasMaxLength(50)
+                                .IsUnicode(true)
+                                .HasColumnType("nvarchar(50)");
+
+                            b1.HasKey("SupportingProgramId");
+
+                            b1.ToTable("SupportingProgram");
+
+                            b1.WithOwner()
+                                .HasForeignKey("SupportingProgramId");
+                        });
+
+                    b.Navigation("Address")
                         .IsRequired();
 
                     b.Navigation("Manager");

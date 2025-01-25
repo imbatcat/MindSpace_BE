@@ -9,7 +9,7 @@ namespace MindSpace.Domain.Entities.Identity
     {
         public string? FullName { get; set; }
         public string? ImageUrl { get; set; }
-        public DateOnly? DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public UserStatus Status { get; set; }
