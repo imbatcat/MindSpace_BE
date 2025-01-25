@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace MindSpace.Infrastructure.Configurations
 {
-    internal class ManagerConfiguration : IEntityTypeConfiguration<Manager>
+    internal class ManagerConfiguration : IEntityTypeConfiguration<SchoolManager>
     {
-        public void Configure(EntityTypeBuilder<Manager> builder)
+        public void Configure(EntityTypeBuilder<SchoolManager> builder)
         {
-            builder.ToTable("Manager").HasBaseType<ApplicationUser>();
+            builder.ToTable("SchoolManager").HasBaseType<ApplicationUser>();
 
-            // 1 Manager - 1 User 
+            // 1 SchoolManager - 1 User 
             builder.HasOne(m => m.User)
                 .WithOne(u => u.Manager)
-                .HasForeignKey<Manager>(u => u.Id);
+                .HasForeignKey<SchoolManager>(u => u.Id);
         }
     }
 }

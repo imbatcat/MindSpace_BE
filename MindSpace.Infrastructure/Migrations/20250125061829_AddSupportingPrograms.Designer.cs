@@ -404,11 +404,11 @@ namespace MindSpace.Infrastructure.Migrations
                     b.ToTable("SupportingPrograms");
                 });
 
-            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.Manager", b =>
+            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.SchoolManager", b =>
                 {
                     b.HasBaseType("MindSpace.Domain.Entities.Identity.ApplicationUser");
 
-                    b.ToTable("Manager", (string)null);
+                    b.ToTable("SchoolManager", (string)null);
                 });
 
             modelBuilder.Entity("MindSpace.Domain.Entities.Identity.Psychologist", b =>
@@ -534,7 +534,7 @@ namespace MindSpace.Infrastructure.Migrations
 
             modelBuilder.Entity("MindSpace.Domain.Entities.SupportingProgram", b =>
                 {
-                    b.HasOne("MindSpace.Domain.Entities.Identity.Manager", "Manager")
+                    b.HasOne("MindSpace.Domain.Entities.Identity.SchoolManager", "SchoolManager")
                         .WithMany("SupportingPrograms")
                         .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.ClientCascade)
@@ -592,18 +592,18 @@ namespace MindSpace.Infrastructure.Migrations
                     b.Navigation("Address")
                         .IsRequired();
 
-                    b.Navigation("Manager");
+                    b.Navigation("SchoolManager");
 
                     b.Navigation("Psychologist");
 
                     b.Navigation("School");
                 });
 
-            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.Manager", b =>
+            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.SchoolManager", b =>
                 {
                     b.HasOne("MindSpace.Domain.Entities.Identity.ApplicationUser", "User")
-                        .WithOne("Manager")
-                        .HasForeignKey("MindSpace.Domain.Entities.Identity.Manager", "Id")
+                        .WithOne("SchoolManager")
+                        .HasForeignKey("MindSpace.Domain.Entities.Identity.SchoolManager", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -630,7 +630,7 @@ namespace MindSpace.Infrastructure.Migrations
 
             modelBuilder.Entity("MindSpace.Domain.Entities.Identity.ApplicationUser", b =>
                 {
-                    b.Navigation("Manager")
+                    b.Navigation("SchoolManager")
                         .IsRequired();
 
                     b.Navigation("Psychologist")
@@ -647,7 +647,7 @@ namespace MindSpace.Infrastructure.Migrations
                     b.Navigation("Psychologists");
                 });
 
-            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.Manager", b =>
+            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.SchoolManager", b =>
                 {
                     b.Navigation("SupportingPrograms");
                 });

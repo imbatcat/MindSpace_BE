@@ -204,7 +204,7 @@ namespace MindSpace.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Manager",
+                name: "SchoolManager",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -273,7 +273,7 @@ namespace MindSpace.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_SupportingPrograms_Manager_ManagerId",
                         column: x => x.ManagerId,
-                        principalTable: "Manager",
+                        principalTable: "SchoolManager",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_SupportingPrograms_Psychologists_PsychologistId",
@@ -398,7 +398,7 @@ namespace MindSpace.Infrastructure.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Manager");
+                name: "SchoolManager");
 
             migrationBuilder.DropTable(
                 name: "Psychologists");

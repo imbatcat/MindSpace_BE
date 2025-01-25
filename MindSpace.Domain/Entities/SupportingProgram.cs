@@ -17,9 +17,9 @@ namespace MindSpace.Domain.Entities
         public DateTime StartDateAt { get; set; }
 
 
-        // 1 Manager - M SupportingProgram
+        // 1 SchoolManager - M SupportingProgram
         public int ManagerId { get; set; }
-        public virtual Manager Manager { get; set; }
+        public virtual SchoolManager SchoolManager { get; set; }
 
 
         // 1 Psychologist - M SupportingProgram

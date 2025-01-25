@@ -17,9 +17,9 @@ namespace MindSpace.Domain.Entities
         public string? Description { get; set; }
         public DateOnly JoinDate { get; set; }
 
-        //// 1 School Manager - 1 School
+        //// 1 School SchoolManager - 1 School
         //public int SchoolManagerId { get; set; }
-        //public virtual Manager SchoolManager { get; set; }
+        //public virtual SchoolManager SchoolManager { get; set; }
 
         // 1 School - 1 SupportingPrograms
         public virtual ICollection<SupportingProgram> SupportingPrograms { get; set; } = new HashSet<SupportingProgram>();

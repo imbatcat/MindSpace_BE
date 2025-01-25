@@ -78,7 +78,7 @@ namespace MindSpace.Infrastructure.Seeders
                     NormalizedUserName = "SCHOOLMANAGER1",
                     Email = "schoolmanager1@example.com",
                     NormalizedEmail = "SCHOOLMANAGER1@EXAMPLE.COM",
-                    FullName = "School Manager One",
+                    FullName = "School SchoolManager One",
                     Status = UserStatus.Enabled,
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow

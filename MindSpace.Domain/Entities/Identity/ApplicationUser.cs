@@ -17,7 +17,7 @@ namespace MindSpace.Domain.Entities.Identity
         // 1 Psychologist - 1 User 
         public virtual Psychologist Psychologist { get; set; }
 
-        // 1 Manager - 1 User
-        public virtual Manager Manager { get; set; }
+        // 1 SchoolManager - 1 User
+        public virtual SchoolManager Manager { get; set; }
     }
 }

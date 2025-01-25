@@ -31,8 +31,8 @@ namespace MindSpace.Infrastructure.Configurations
                 address.Property(a => a.PostalCode).HasMaxLength(10);
             });
 
-            // 1 Manager - M SupportingProgram
-            builder.HasOne(sp => sp.Manager)
+            // 1 SchoolManager - M SupportingProgram
+            builder.HasOne(sp => sp.SchoolManager)
                 .WithMany(m => m.SupportingPrograms)
                 .HasForeignKey(sp => sp.ManagerId)
                 .OnDelete(DeleteBehavior.ClientCascade);
