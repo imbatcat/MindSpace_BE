@@ -175,8 +175,8 @@ namespace MindSpace.Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<DateOnly?>("DateOfBirth")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -284,9 +284,9 @@ namespace MindSpace.Infrastructure.Migrations
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateOnly>("JoinDate")
+                    b.Property<DateTime>("JoinDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("date")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("PhoneNumber")
@@ -743,6 +743,7 @@ namespace MindSpace.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
+<<<<<<< HEAD
                     b.HasOne("MindSpace.Domain.Entities.School", "School")
                         .WithMany("SupportingPrograms")
                         .HasForeignKey("SchoolId")
@@ -750,6 +751,9 @@ namespace MindSpace.Infrastructure.Migrations
                         .IsRequired();
 
                     b.OwnsOne("MindSpace.Domain.Entities.Address", "Address", b1 =>
+=======
+                    b.OwnsOne("MindSpace.Domain.Entities.Owned.Address", "Address", b1 =>
+>>>>>>> 37255f149271ebc5dd941b85c4a221131b1f85fc
                         {
                             b1.Property<int>("SupportingProgramId")
                                 .HasColumnType("int");
@@ -780,7 +784,11 @@ namespace MindSpace.Infrastructure.Migrations
 
                             b1.HasKey("SupportingProgramId");
 
+<<<<<<< HEAD
                             b1.ToTable("SupportingPrograms");
+=======
+                            b1.ToTable("SupportingProgram");
+>>>>>>> 37255f149271ebc5dd941b85c4a221131b1f85fc
 
                             b1.WithOwner()
                                 .HasForeignKey("SupportingProgramId");
@@ -788,6 +796,11 @@ namespace MindSpace.Infrastructure.Migrations
 
                     b.Navigation("Address")
                         .IsRequired();
+<<<<<<< HEAD
+=======
+
+                    b.Navigation("Manager");
+>>>>>>> 37255f149271ebc5dd941b85c4a221131b1f85fc
 
                     b.Navigation("Psychologist");
 
