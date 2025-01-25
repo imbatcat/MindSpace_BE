@@ -236,7 +236,7 @@ namespace MindSpace.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
@@ -269,6 +269,64 @@ namespace MindSpace.Infrastructure.Migrations
                     b.HasIndex("Student_SchoolId");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.UseTptMappingStrategy();
+                });
+
+            modelBuilder.Entity("MindSpace.Domain.Entities.Specification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreateAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<DateTime>("UpdateAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Specifications");
+                });
+
+            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.Psychologist", b =>
+                {
+                    b.HasBaseType("MindSpace.Domain.Entities.Identity.ApplicationUser");
+
+                    b.Property<double>("AverageRating")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Bio")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<decimal>("ComissionRate")
+                        .HasColumnType("decimal(5, 2)");
+
+                    b.Property<decimal>("SessionPrice")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("SpecificationId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("SpecificationId");
+
+                    b.ToTable("Psychologists", (string)null);
                 });
 
             modelBuilder.Entity("MindSpace.Domain.Entities.MindSpace.Domain.Entities.School", b =>
@@ -669,40 +727,63 @@ namespace MindSpace.Infrastructure.Migrations
                     b.Navigation("Test");
 
                     b.Navigation("TestQuestion");
-                });
+                    modelBuilder.Entity("MindSpace.Domain.Entities.Identity.Psychologist", b =>
+                        {
+                            b.HasOne("MindSpace.Domain.Entities.Identity.ApplicationUser", "User")
+                                .WithOne("Psychologist")
+                                .HasForeignKey("MindSpace.Domain.Entities.Identity.Psychologist", "Id")
+                                .OnDelete(DeleteBehavior.ClientCascade)
+                                .IsRequired();
 
-            modelBuilder.Entity("MindSpace.Domain.Entities.Identity.ApplicationUser", b =>
-                {
-                    b.Navigation("TestResponses");
+                            b.HasOne("MindSpace.Domain.Entities.Specification", "Specification")
+                                .WithMany("Psychologists")
+                                .HasForeignKey("SpecificationId")
+                                .IsRequired();
 
-                    b.Navigation("Tests");
-                });
+                            b.Navigation("Specification");
 
-            modelBuilder.Entity("MindSpace.Domain.Entities.MindSpace.Domain.Entities.School", b =>
-                {
-                    b.Navigation("SchoolManager")
-                        .IsRequired();
+                            b.Navigation("User");
+                        });
 
-                    b.Navigation("Students");
-                });
+                    modelBuilder.Entity("MindSpace.Domain.Entities.Identity.ApplicationUser", b =>
+                        {
+                            b.Navigation("TestResponses");
 
-            modelBuilder.Entity("MindSpace.Domain.Entities.Tests.Test", b =>
-                {
-                    b.Navigation("TestResponses");
+                            b.Navigation("Tests");
+                        });
 
-                    b.Navigation("TestTestQuestions");
-                });
+                    modelBuilder.Entity("MindSpace.Domain.Entities.MindSpace.Domain.Entities.School", b =>
+                        {
+                            b.Navigation("SchoolManager")
+                                .IsRequired();
 
-            modelBuilder.Entity("MindSpace.Domain.Entities.Tests.TestCategory", b =>
-                {
-                    b.Navigation("Tests");
-                });
+                            b.Navigation("Students");
+                        });
 
-            modelBuilder.Entity("MindSpace.Domain.Entities.Tests.TestQuestion", b =>
-                {
-                    b.Navigation("TestTestQuestions");
-                });
+                    modelBuilder.Entity("MindSpace.Domain.Entities.Tests.Test", b =>
+                        {
+                            b.Navigation("TestResponses");
+
+                            b.Navigation("TestTestQuestions");
+                        });
+
+                    modelBuilder.Entity("MindSpace.Domain.Entities.Tests.TestCategory", b =>
+                        {
+                            b.Navigation("Tests");
+                        });
+
+                    modelBuilder.Entity("MindSpace.Domain.Entities.Tests.TestQuestion", b =>
+                        {
+                            b.Navigation("TestTestQuestions");
+                            b.Navigation("Psychologist")
+                                .IsRequired();
+                        });
+
+                    modelBuilder.Entity("MindSpace.Domain.Entities.Specification", b =>
+                        {
+                            b.Navigation("Psychologists");
+                        });
 #pragma warning restore 612, 618
-        }
+                }
     }
-}
+    }

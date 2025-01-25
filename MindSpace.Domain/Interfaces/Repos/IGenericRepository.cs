@@ -1,4 +1,4 @@
-﻿namespace MindSpace.Domain.InterfaceRepos;
+﻿namespace MindSpace.Domain.Interfaces.Repos;
 
 using Entities;
 

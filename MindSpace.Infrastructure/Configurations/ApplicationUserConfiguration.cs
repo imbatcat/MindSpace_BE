@@ -14,8 +14,8 @@ namespace MindSpace.Infrastructure.Configurations
             builder.HasIndex(u => u.Email).IsUnique();
 
             //Properties
-            builder.Property(u => u.CreatedAt).HasDefaultValueSql("getdate()");
-            builder.Property(u => u.UpdatedAt).HasDefaultValueSql("getdate()");
+            builder.Property(u => u.CreatedAt).ValueGeneratedOnAdd().HasDefaultValueSql("getdate()");
+            builder.Property(u => u.UpdatedAt).ValueGeneratedOnAddOrUpdate().HasDefaultValueSql("getdate()");
             builder.Property(u => u.Status)
                 .HasConversion(
                     v => v.ToString(),

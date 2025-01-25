@@ -16,10 +16,14 @@ namespace MindSpace.Domain.Entities.Identity
 
         //Navigation props
         public virtual IEnumerable<TestResponse>? TestResponses { get; set; } = [];
+
         public int? Student_SchoolId { get; set; }
         public virtual School Student_School { get; set; }
         public int? Manager_SchoolId { get; set; }
         public virtual School Manager_School { get; set; }
         public virtual IEnumerable<Test> Tests { get; set; } = [];
+
+        // 1 Psychologist - 1 User
+        public virtual Psychologist Psychologist { get; set; }
     }
 }

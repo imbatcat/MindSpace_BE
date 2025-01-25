@@ -1,15 +1,15 @@
 ﻿namespace MindSpace.Infrastructure.Repositories;
 
 using Domain.Entities;
-using Domain.InterfaceRepos;
 using Microsoft.Extensions.Logging;
+using MindSpace.Domain.Interfaces.Repos;
 using MindSpace.Infrastructure.Persistence;
 using System.Collections.Concurrent;
 
 public class UnitOfWork : IUnitOfWork
 {
     // ===================================
-    // === Fields & Props
+    // === Fields & Prop
     // ===================================
 
     private readonly ApplicationDbContext _dbContext;

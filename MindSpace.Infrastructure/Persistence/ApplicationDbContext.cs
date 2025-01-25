@@ -7,6 +7,17 @@ namespace MindSpace.Infrastructure.Persistence
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
     {
+        // ========================
+        // === Dbsets
+        // ========================
+
+        private DbSet<Specification> Specifications { get; set; }
+        private DbSet<Psychologist> Psychologists { get; set; }
+
+        // ========================
+        // === Methods
+        // ========================
+
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
