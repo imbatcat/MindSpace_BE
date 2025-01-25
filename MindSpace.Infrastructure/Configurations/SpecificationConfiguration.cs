@@ -4,7 +4,7 @@ using MindSpace.Domain.Entities;
 
 namespace MindSpace.Infrastructure.Configurations
 {
-    public class SpecificationConfiguration : IEntityTypeConfiguration<Specification>
+    internal class SpecificationConfiguration : IEntityTypeConfiguration<Specification>
     {
         public void Configure(EntityTypeBuilder<Specification> builder)
         {

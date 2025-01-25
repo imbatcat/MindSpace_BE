@@ -1,4 +1,6 @@
-﻿namespace MindSpace.Domain.Entities.Identity
+﻿using MindSpace.Domain.Entities.SupportingPrograms;
+
+namespace MindSpace.Domain.Entities.Identity
 {
     public class Psychologist : ApplicationUser
     {

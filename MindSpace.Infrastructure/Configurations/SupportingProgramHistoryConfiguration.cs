@@ -1,15 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MindSpace.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.Infrastructure.Configurations
 {
-    public class SupportingProgramHistoryConfiguration : IEntityTypeConfiguration<SupportingProgramHistory>
+    internal class SupportingProgramHistoryConfiguration : IEntityTypeConfiguration<SupportingProgramHistory>
     {
         public void Configure(EntityTypeBuilder<SupportingProgramHistory> builder)
         {

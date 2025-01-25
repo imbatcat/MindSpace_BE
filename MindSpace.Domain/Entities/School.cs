@@ -1,5 +1,6 @@
 ﻿using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.Owned;
+using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.Domain.Entities
 {
