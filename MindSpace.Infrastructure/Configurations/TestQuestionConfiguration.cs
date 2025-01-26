@@ -10,7 +10,7 @@ namespace MindSpace.Infrastructure.Configurations
         {
             builder.ToTable("TestQuestions");
 
-            builder.Property(tq => tq.Description).IsUnicode().HasMaxLength(500);
+            builder.Property(tq => tq.Description).IsUnicode().HasMaxLength(100);
         }
     }
 }

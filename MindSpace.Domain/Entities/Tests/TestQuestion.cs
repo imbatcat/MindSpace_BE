@@ -10,8 +10,5 @@ namespace MindSpace.Domain.Entities.Tests
 
         //Relationships
         public virtual ICollection<TestTestQuestion> TestTestQuestions { get; set; } = new HashSet<TestTestQuestion>();
-
-        // 1 question - M options
-        public virtual ICollection<QuestionOption> QuestionOptions { get; set; } = new HashSet<QuestionOption>();
     }
 }

@@ -20,7 +20,7 @@ namespace MindSpace.Domain.Entities.Appointments
 
         // 1 PsychologistSchedule - 1 Appointment
         public int PsychologistScheduleId { get; set; }
-        public PsychologistSchedule PsychologistSchedule { get; set; }
+        public required PsychologistSchedule PsychologistSchedule { get; set; }
 
         // 1 Specification - M Appointments
         public int SpecificationId { get; set; }

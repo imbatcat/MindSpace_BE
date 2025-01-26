@@ -12,8 +12,5 @@ namespace MindSpace.Domain.Entities.Tests
 
         public int TestId { get; set; }
         public virtual Test Test { get; set; }
-
-        // 1 Test Response - M Test Response Items
-        public virtual ICollection<TestResponseItem> TestResponseItems { get; set; } = new HashSet<TestResponseItem>();
     }
 }
