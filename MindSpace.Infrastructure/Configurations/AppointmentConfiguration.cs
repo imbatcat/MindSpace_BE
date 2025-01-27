@@ -19,23 +19,24 @@ namespace MindSpace.Infrastructure.Configurations
             // 1 Student - M Appointments
             builder.HasOne(a => a.Student)
                    .WithMany(s => s.Appointments)
-                   .HasForeignKey(a => a.StudentId);
+                   .HasForeignKey(a => a.StudentId)
+                   .OnDelete(DeleteBehavior.ClientCascade);
 
             // 1 Psychologist - M Appointments
             builder.HasOne(a => a.Psychologist)
                    .WithMany(p => p.Appointments)
-                   .HasForeignKey(a => a.PsychologistId);
+                   .HasForeignKey(a => a.PsychologistId)
+                   .OnDelete(DeleteBehavior.ClientCascade);
 
             // 1 PsychologistSchedule - 1 Appointment
             builder.HasOne(a => a.PsychologistSchedule)
-                   .WithOne(ps => ps.Appointment)      
-                   .HasForeignKey<Appointment>(a => a.PsychologistScheduleId); 
+                   .WithOne(ps => ps.Appointment)
+                   .HasForeignKey<Appointment>(a => a.PsychologistScheduleId);
 
-
-            // 1 Specification - M Appointments
-            builder.HasOne(a => a.Specification)
+            // 1 Specialization - M Appointments
+            builder.HasOne(a => a.Specialization)
                    .WithMany(s => s.Appointments)
-                   .HasForeignKey(a => a.SpecificationId);
+                   .HasForeignKey(a => a.SpecializationId);
 
             builder.Property(a => a.MeetURL).HasMaxLength(255);
 

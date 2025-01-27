@@ -12,9 +12,9 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
         public string ThumbnailUrl { get; set; }
 
 
-        // 1 SchoolManager - M Resources
-        public int SchoolManagerId { get; set; }
-        public SchoolManager SchoolManager { get; set; }
+        // 1 Manager - M Resources
+        public int ManagerId { get; set; }
+        public Manager Manager { get; set; }
 
 
         // 1 Resource - M ResourceSection
