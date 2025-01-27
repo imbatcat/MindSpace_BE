@@ -9,8 +9,6 @@ namespace MindSpace.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<TestQuestion> builder)
         {
             builder.ToTable("TestQuestions");
-
-            builder.Property(tq => tq.Description).IsUnicode().HasMaxLength(500);
         }
     }
 }

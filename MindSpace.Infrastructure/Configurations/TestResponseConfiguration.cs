@@ -13,6 +13,11 @@ namespace MindSpace.Infrastructure.Configurations
             //Properties
             builder.Property(tr => tr.TotalScore).IsRequired();
 
+            builder.Property(tr => tr.TestScoreRankResult)
+                .IsUnicode()
+                .IsRequired()
+                .HasMaxLength(500);
+
             //Relationships
             builder
                 .HasOne(tr => tr.Student)
