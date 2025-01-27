@@ -25,7 +25,11 @@ namespace MindSpace.Domain.Entities.Tests
         // Discriminator
         public string? Discriminator { get; set; }
 
+        public virtual ICollection<TestQuestionOption> TestQuestionOptions { get; set; } = new HashSet<TestQuestionOption>();
+
         // 1 Option - M Test Response Items (1 options being chose M times)
         public virtual ICollection<TestResponseItem> TestResponseItems { get; set; } = new HashSet<TestResponseItem>();
+
+    }
     }
 }

@@ -6,6 +6,7 @@ namespace MindSpace.Domain.Entities.Tests
     {
         public int TotalScore { get; set; }
 
+        public string TestScoreRankResult { get; set; }
         //Relationships
         public int StudentId { get; set; }
         public virtual Student Student { get; set; }
