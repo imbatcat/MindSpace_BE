@@ -13,7 +13,7 @@ namespace MindSpace.Infrastructure.Persistence
         // ========================
 
         private DbSet<Psychologist> Psychologists { get; set; }
-        private DbSet<SchoolManager> SchoolManagers { get; set; }
+        private DbSet<Manager> Managers { get; set; }
         private DbSet<Student> Students { get; set; }
         private DbSet<Resource> Resources { get; set; }
         private DbSet<Feedback> Feedbacks { get; set; }
@@ -21,7 +21,7 @@ namespace MindSpace.Infrastructure.Persistence
         private DbSet<SupportingProgram> SupportingPrograms { get; set; }
         private DbSet<SupportingProgramHistory> SupportingProgramHistories { get; set; }
         private DbSet<School> Schools { get; set; }
-        private DbSet<Specification> Specifications { get; set; }
+        private DbSet<Specialization> Specializations { get; set; }
 
 
         // ========================

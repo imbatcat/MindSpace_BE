@@ -11,9 +11,9 @@ namespace MindSpace.Domain.Entities.Identity
         public decimal ComissionRate { get; set; }
 
 
-        // 1 Specification - M Psychologists
-        public int SpecificationId { get; set; }
-        public virtual Specification Specification { get; set; }
+        // 1 Specialization - M Psychologists
+        public int SpecializationId { get; set; }
+        public virtual Specialization Specialization { get; set; }
 
 
         // 1 Psychologist - 1 User 

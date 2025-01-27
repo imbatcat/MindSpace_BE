@@ -20,8 +20,8 @@ namespace MindSpace.Domain.Entities
 
 
         // 1 School - 1 School Manager
-        public int SchoolManagerId { get; set; }
-        public virtual SchoolManager SchoolManager { get; set; }
+        public int ManagerId { get; set; }
+        public virtual Manager Manager { get; set; }
 
 
         // 1 School - M SupportingPrograms

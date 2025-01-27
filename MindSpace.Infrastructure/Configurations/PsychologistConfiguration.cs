@@ -24,16 +24,15 @@ namespace MindSpace.Infrastructure.Configurations
             builder.Property(p => p.ComissionRate)
                 .HasColumnType("decimal(5, 2)");
 
-            // 1 Specification - 1 User
+            // 1 Specialization - 1 User
             builder.HasOne(p => p.User)
                 .WithOne(u => u.Psychologist)
-                .HasForeignKey<Psychologist>(p => p.Id)
-                .OnDelete(DeleteBehavior.ClientCascade);
+                .HasForeignKey<Psychologist>(p => p.Id);
 
-            // 1 Specification - M Psychologists
-            builder.HasOne(p => p.Specification)
+            // 1 Specialization - M Psychologists
+            builder.HasOne(p => p.Specialization)
                 .WithMany(s => s.Psychologists)
-                .HasForeignKey(p => p.SpecificationId)
+                .HasForeignKey(p => p.SpecializationId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }

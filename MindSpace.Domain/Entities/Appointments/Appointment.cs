@@ -22,9 +22,9 @@ namespace MindSpace.Domain.Entities.Appointments
         public int PsychologistScheduleId { get; set; }
         public PsychologistSchedule PsychologistSchedule { get; set; }
 
-        // 1 Specification - M Appointments
-        public int SpecificationId { get; set; }
-        public Specification Specification { get; set; }
+        // 1 Specialization - M Appointments
+        public int SpecializationId { get; set; }
+        public Specialization Specialization { get; set; }
 
         // 1 Appointment - M Payments
         public virtual ICollection<Payment> Payments { get; set; } = new HashSet<Payment>();

@@ -25,8 +25,7 @@ namespace MindSpace.Infrastructure.Configurations
             // 1 Resource - M ResourceSection
             builder.HasOne(rs => rs.Resource)
                 .WithMany(r => r.ResourceSections)
-                .HasForeignKey(rs => rs.ResourceId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(rs => rs.ResourceId);
         }
     }
 }

@@ -74,11 +74,11 @@ namespace MindSpace.Infrastructure.Seeders
                 },
                 new ApplicationUser
                 {
-                    UserName = "schoolmanager1",
-                    NormalizedUserName = "SCHOOLMANAGER1",
-                    Email = "schoolmanager1@example.com",
-                    NormalizedEmail = "SCHOOLMANAGER1@EXAMPLE.COM",
-                    FullName = "School SchoolManager One",
+                    UserName = "Manager1",
+                    NormalizedUserName = "Manager1",
+                    Email = "Manager1@example.com",
+                    NormalizedEmail = "Manager1@EXAMPLE.COM",
+                    FullName = "School Manager One",
                     Status = UserStatus.Enabled,
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow
@@ -109,8 +109,8 @@ namespace MindSpace.Infrastructure.Seeders
                 new ApplicationRole(UserRoles.Psychologist) {
                     NormalizedName = UserRoles.Psychologist.ToUpper()
                 },
-                new ApplicationRole(UserRoles.SchoolManager) {
-                    NormalizedName = UserRoles.SchoolManager.ToUpper()
+                new ApplicationRole(UserRoles.Manager) {
+                    NormalizedName = UserRoles.Manager.ToUpper()
                 },
                 new ApplicationRole(UserRoles.Parent) {
                     NormalizedName = UserRoles.Parent.ToUpper()
@@ -130,7 +130,7 @@ namespace MindSpace.Infrastructure.Seeders
                 new IdentityUserRole<int> { UserId = users["student1"], RoleId = roles[UserRoles.Student] },
                 new IdentityUserRole<int> { UserId = users["admin1"], RoleId = roles[UserRoles.Admin] },
                 new IdentityUserRole<int> { UserId = users["psychologist1"], RoleId = roles[UserRoles.Psychologist] },
-                new IdentityUserRole<int> { UserId = users["schoolmanager1"], RoleId = roles[UserRoles.SchoolManager] },
+                new IdentityUserRole<int> { UserId = users["Manager1"], RoleId = roles[UserRoles.Manager] },
                 new IdentityUserRole<int> { UserId = users["parent1"], RoleId = roles[UserRoles.Parent] }
             };
         }

@@ -19,6 +19,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Services\" />
-	  <Folder Include="Specifications\" />
+	  <Folder Include="Specializations\" />
 	</ItemGroup>
 </Project>

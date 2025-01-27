@@ -35,11 +35,10 @@ namespace MindSpace.Infrastructure.Configurations
             builder.Property(r => r.ThumbnailUrl)
                 .HasMaxLength(500);
 
-            // 1 SchoolManager - M Resources
-            builder.HasOne(r => r.SchoolManager)
+            // 1 Manager - M Resources
+            builder.HasOne(r => r.Manager)
                 .WithMany(sm => sm.Resources)
-                .HasForeignKey(r => r.SchoolManagerId)
-                .OnDelete(DeleteBehavior.ClientCascade);
+                .HasForeignKey(r => r.ManagerId);
         }
     }
 }

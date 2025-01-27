@@ -13,10 +13,12 @@ namespace MindSpace.Domain.Entities.Identity
 
         // 1 Manager - 1 School
         public int SchoolId { get; set; }
-
         public virtual School School { get; set; }
 
         // 1 Manager - M SupportingPrograms
         public virtual ICollection<SupportingProgram> SupportingPrograms { get; set; } = new HashSet<SupportingProgram>();
+
+        // 1 Manager - M Resources
+        public virtual ICollection<Resource> Resources { get; set; } = new HashSet<Resource>();
     }
 }

@@ -19,8 +19,7 @@ namespace MindSpace.Infrastructure.Configurations
             // 1 TestQuestion - M QuestionOptions
             builder.HasOne(qo => qo.TestQuestion)
                 .WithMany(tq => tq.QuestionOptions)
-                .HasForeignKey(qo => qo.TestQuestionId)
-                .OnDelete(DeleteBehavior.ClientCascade);
+                .HasForeignKey(qo => qo.TestQuestionId);
 
             builder.Property(qo => qo.OptionText).IsUnicode().HasMaxLength(500);
             builder.Property(qo => qo.FixedType)

@@ -4,22 +4,22 @@ using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Infrastructure.Configurations
 {
-    internal class ManagerConfiguration : IEntityTypeConfiguration<SchoolManager>
+    internal class ManagerConfiguration : IEntityTypeConfiguration<Manager>
     {
-        public void Configure(EntityTypeBuilder<SchoolManager> builder)
+        public void Configure(EntityTypeBuilder<Manager> builder)
         {
-            builder.ToTable("SchoolManager").HasBaseType<ApplicationUser>();
+            builder.ToTable("Manager").HasBaseType<ApplicationUser>();
 
-            // 1 SchoolManager - 1 User 
+            // 1 Manager - 1 User 
             builder.HasOne(m => m.User)
                 .WithOne(u => u.Manager)
-                .HasForeignKey<SchoolManager>(u => u.Id);
+                .HasForeignKey<Manager>(u => u.Id);
 
             // 1 School Manager - 1 School
             builder
                .HasOne(m => m.School)
-               .WithOne(sc => sc.SchoolManager)
-               .HasForeignKey<SchoolManager>(m => m.SchoolId);
+               .WithOne(sc => sc.Manager)
+               .HasForeignKey<Manager>(m => m.SchoolId);
         }
     }
 }
