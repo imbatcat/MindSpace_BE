@@ -11,7 +11,6 @@ namespace MindSpace.API.Extensions
         {
             builder.Services.AddControllers();
 
-            new JsonFormatter();
             builder.Services.AddSwaggerGen(c =>
                     {
                         //add bearer authentication to swagger 
