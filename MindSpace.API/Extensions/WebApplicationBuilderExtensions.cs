@@ -1,4 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
+using Serilog;
 using Serilog.Formatting.Compact;
 
 namespace MindSpace.API.Extensions
@@ -37,10 +38,10 @@ namespace MindSpace.API.Extensions
             //tell swagger to support minimal apis, which the Identity apis are.
             builder.Services.AddEndpointsApiExplorer();
 
-            //builder.Host.UseSerilog((context, configuration) =>
-            //{
-            //    configuration.ReadFrom.Configuration(context.Configuration);
-            //});
+            builder.Host.UseSerilog((context, configuration) =>
+            {
+                configuration.ReadFrom.Configuration(context.Configuration);
+            });
         }
     }
 }
