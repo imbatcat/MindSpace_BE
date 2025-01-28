@@ -1,6 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Formatting.Compact;
+using Serilog.Formatting.Json;
 
 namespace MindSpace.API.Extensions
 {
