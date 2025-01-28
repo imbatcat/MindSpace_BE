@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 
 namespace MindSpace.Domain.Entities.Tests
 {
+    // Store history answer of student for each question
     public class TestResponseItem : BaseEntity
     {
         // 1 Test Response - M Test Response Items
         public int TestResponseId { get; set; }
         public TestResponse TestResponse { get; set; }
+        
+        // Question Content
+        public string QuestionTitle { get; set; }
 
-        // 1 Test Response Item - 1 Selected Question Option
-        public int? SelectedOptionId { get; set; }
-        public QuestionOption?  SelectedOption { get; set; }
+        // Field to mark if the question is a text question
+        public bool IsTextArea { get; set; }
+        public int Score { get; set; }
 
-        // Nullable score and text for special answers
-        public int? Score { get; set; }
+        // Field text to store text answer
         public int? AnswerText { get; set; }
 
     }
