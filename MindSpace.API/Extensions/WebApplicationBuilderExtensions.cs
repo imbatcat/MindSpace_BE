@@ -1,4 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
+using Serilog.Formatting.Compact;
 
 namespace MindSpace.API.Extensions
 {

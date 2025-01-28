@@ -11,7 +11,7 @@ namespace MindSpace.Infrastructure.Configurations
             builder.ToTable("TestQuestionOptions");
 
             //Indexing
-            builder.HasKey(tqo => new { tqo.TestId, tqo.TestQuestionId }); // Composite primary key
+            builder.HasKey(tqo => new { tqo.TestId, tqo.TestQuestionId, tqo.QuestionOptionId }); // Composite primary key
 
             //Relationships
             builder
@@ -30,7 +30,7 @@ namespace MindSpace.Infrastructure.Configurations
                 .HasOne(tqo => tqo.QuestionOption)
                 .WithMany(tq => tq.TestQuestionOptions)
                 .HasForeignKey(tqo => tqo.QuestionOptionId)
-                .IsRequired();
+                .IsRequired(false);
         }
     }
 }

@@ -3,6 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Ignore Log folders
+MindSpace.API/Logs
 # Add migrations folder to gitignore
 MindSpace.Infrastructure/Migrations
 # Ignore appsetttings.json
