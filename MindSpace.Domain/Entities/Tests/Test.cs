@@ -16,7 +16,6 @@ namespace MindSpace.Domain.Entities.Tests
         public virtual TestCategory TestCategory { get; set; }
         public virtual ICollection<TestQuestionOption> TestTestQuestions { get; set; } = new HashSet<TestQuestionOption>();
         public virtual ICollection<TestResponse> TestResponses { get; set; } = new HashSet<TestResponse>();
-        public virtual ICollection<TestScoreRank> TestScoreRanks { get; set; } = new HashSet<TestScoreRank>();
         public int ManagerId { get; set; }
         public virtual Manager Manager { get; set; }
     }

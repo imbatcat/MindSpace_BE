@@ -18,18 +18,22 @@ namespace MindSpace.Infrastructure.Configurations
             // 1 Test Response - M Test Response Items
             builder.HasOne(tri => tri.TestResponse)
                 .WithMany(tr => tr.TestResponseItems)
-                .HasForeignKey(tri => tri.TestResponseId)
-                .OnDelete(DeleteBehavior.ClientCascade);
+                .HasForeignKey(tri => tri.TestResponseId);
 
-            // 1 Question Options - M Test Response Item
-            // 1 Test Response Item - 0/1 Question Option
-            builder.HasOne(tri => tri.SelectedOption)
-                .WithMany(qo => qo.TestResponseItems)
-                .HasForeignKey(tri => tri.SelectedOptionId)
-                .OnDelete(DeleteBehavior.ClientCascade);
+            // Question Title
+            builder.Property(tri => tri.QuestionTitle).IsUnicode().HasMaxLength(500);
 
-            builder.Property(tq => tq.AnswerText).IsUnicode().HasMaxLength(500);
+            // Answer Text
+            builder.Property(tri => tri.AnswerText).IsUnicode().HasMaxLength(500);
 
+            // Score must be >= 0 and <= 999
+            builder.Property(tri => tri.Score)
+                .IsRequired()
+                .HasDefaultValue(0)
+                .HasAnnotation("Range", new[] { "0", "999" });
+
+            builder.Property(tri => tri.IsTextArea)
+                .HasColumnType("bit");
         }
     }
 }

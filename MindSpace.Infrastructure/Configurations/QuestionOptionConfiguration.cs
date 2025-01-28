@@ -21,11 +21,17 @@ namespace MindSpace.Infrastructure.Configurations
                 .WithMany(tq => tq.QuestionOptions)
                 .HasForeignKey(qo => qo.TestQuestionId);
 
+            // Option Text
             builder.Property(qo => qo.OptionText).IsUnicode().HasMaxLength(500);
-            builder.Property(qo => qo.FixedType)
-                .HasConversion(
-                    s => s.ToString(),
-                    s => Enum.Parse<FixedType>(s));
+
+            // Score must be >= 0 and <= 999
+            builder.Property(qo => qo.Score)
+                .IsRequired()
+                .HasDefaultValue(0)
+                .HasAnnotation("Range", new[] { "0", "999" });
+
+            builder.Property(qo => qo.IsTextArea)
+                .HasColumnType("bit");
         }
     }
 }

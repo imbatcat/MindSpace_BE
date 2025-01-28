@@ -16,12 +16,6 @@ namespace MindSpace.Infrastructure.Configurations
         {
             builder.ToTable("Payments");
 
-            // 1 user (student) - M payments
-            builder.HasOne(p => p.User)
-                .WithMany(s => s.Payments)
-                .HasForeignKey(a => a.UserId)
-                .OnDelete(DeleteBehavior.ClientCascade);
-
             // 1 appointment - M payments
             builder.HasOne(p => p.Appointment)
                 .WithMany(a => a.Payments)

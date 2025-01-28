@@ -12,5 +12,8 @@ namespace MindSpace.Domain.Entities
 
         // 1 Specialization - M Appointments
         public virtual ICollection<Appointments.Appointment> Appointments { get; set; } = new HashSet<Appointments.Appointment>();
+
+        // 1 Specialization - M Test Score Ranks
+        public virtual ICollection<Tests.TestScoreRank> TestScoreRanks { get; set; } = new HashSet<Tests.TestScoreRank>();
     }
 }
