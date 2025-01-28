@@ -1,6 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Formatting.Compact;
+using Serilog.Formatting.Json;
 
 namespace MindSpace.API.Extensions
 {
@@ -10,6 +11,7 @@ namespace MindSpace.API.Extensions
         {
             builder.Services.AddControllers();
 
+            new JsonFormatter();
             builder.Services.AddSwaggerGen(c =>
                     {
                         //add bearer authentication to swagger 
