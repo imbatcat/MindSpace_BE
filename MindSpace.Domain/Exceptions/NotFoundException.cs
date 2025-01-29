@@ -1,6 +1,23 @@
 ﻿namespace MindSpace.Domain.Exceptions
 {
-    public class NotFoundException(string resourceType, string resourceIdentifier) : Exception($"{resourceType} with id: {resourceIdentifier} does not exists")
+    public class NotFoundException : Exception
     {
+        // ==================================
+        // === Props & Fields
+        // ==================================
+
+        public string ResourceType { get; private set; }
+        public string ResourceIdentifier { get; private set; }
+
+        // ==================================
+        // === Constructor
+        // ==================================
+
+        public NotFoundException(string resourceType, string resourceIdentifier)
+            : base($"{resourceType} with id: {resourceIdentifier} does not exists")
+        {
+            ResourceIdentifier = resourceIdentifier;
+            ResourceType = resourceType;
+        }
     }
 }

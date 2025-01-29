@@ -33,7 +33,6 @@ namespace MindSpace.Infrastructure.Persistence
 
         public async Task SeedAllAsync()
         {
-            await _dataSeeder.SeedAsync();
             await new JsonDataSeeder<TestQuestion>(_fileReader, _dbContext).AddRelativeFilePath(AppCts.Locations.RelativeFilePath.QuestionSeeder).SeedAsync();
             await new JsonDataSeeder<School>(_fileReader, _dbContext).AddRelativeFilePath(AppCts.Locations.RelativeFilePath.SchoolSeeder).SeedAsync();
             await new JsonDataSeeder<Test>(_fileReader, _dbContext).AddRelativeFilePath(AppCts.Locations.RelativeFilePath.Test).SeedAsync();
