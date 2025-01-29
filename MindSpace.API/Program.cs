@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MindSpace.API.Extensions;
+using MindSpace.API.Middlewares;
 using MindSpace.Application.Extensions;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Infrastructure.Extensions;
@@ -14,6 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddPresentation();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplications();
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
+builder.Services.AddScoped<TimeLoggingMiddleware>();
 
 // ====================================
 // === Build the application
@@ -25,7 +28,9 @@ var app = builder.Build();
 // === Use Middlewares
 // ====================================
 
-// Configure the HTTP request pipeline.
+app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseMiddleware<TimeLoggingMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -34,7 +39,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//Adds identity api endpoints
+// Adds identity api endpoints
 app.MapGroup("api/identity")
     .WithTags("Identity")
     .MapIdentityApi<ApplicationUser>();
@@ -52,11 +57,9 @@ var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 var applicationSeeder = scope.ServiceProvider.GetRequiredService<ApplicationDbContextSeeder>();
 var applicationDbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-
 try
 {
     await applicationDbContext.Database.MigrateAsync();
-
     await applicationSeeder.SeedAllAsync();
 }
 catch (Exception ex)
