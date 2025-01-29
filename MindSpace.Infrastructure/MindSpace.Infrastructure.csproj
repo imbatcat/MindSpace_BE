@@ -22,8 +22,4 @@
 			<Private>True</Private>
 		</ProjectReference>
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Seeders\FakeData\" />
-	</ItemGroup>
 </Project>

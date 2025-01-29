@@ -14,8 +14,14 @@ namespace MindSpace.Application.Commons.Constants
 
             public static class RelativeFilePath
             {
-                public static string RestaurantSeeder = Path.Combine("Seeders", "FakeData", "RestaurantSeedData.json");
-                public static string DishSeeder = Path.Combine("Seeders", "FakeData", "DishSeedData.json");
+                private static string PathToFakeDataFolder = Path.Combine("Seeders", "FakeData"); 
+
+                public static string QuestionSeeder = Path.Combine(PathToFakeDataFolder, "Question.json");
+                public static string SchoolSeeder = Path.Combine(PathToFakeDataFolder, "School.json");
+                public static string Test = Path.Combine(PathToFakeDataFolder, "Test.json");
+                public static string TestCategory = Path.Combine(PathToFakeDataFolder, "TestCategory.json");
+                public static string TestQuestionOption = Path.Combine(PathToFakeDataFolder, "TestQuestionOption.json");
+                public static string TestResponse = Path.Combine(PathToFakeDataFolder, "TestResponse.json");
             }
         }
     }

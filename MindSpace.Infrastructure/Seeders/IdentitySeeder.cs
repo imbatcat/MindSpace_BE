@@ -1,36 +1,42 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using MindSpace.Application.Commons.Utilities;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Infrastructure.Persistence;
+using System.Runtime.CompilerServices;
 
 namespace MindSpace.Infrastructure.Seeders
 {
-    internal class IdentitySeeder(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager) : IDataSeeder
+    internal class IdentitySeeder(
+        ILogger<IdentitySeeder>logger,
+        ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager) : IDataSeeder
     {
         public async Task SeedAsync()
         {
             if (await dbContext.Database.CanConnectAsync())
             {
-                if (!dbContext.Roles.Any())
+                try
                 {
-                    var roles = GetRoles();
-                    dbContext.Roles.AddRange(roles);
-                    await dbContext.SaveChangesAsync();
-                }
-                if (!dbContext.Users.Any())
-                {
-                    var users = GetUsers();
-                    foreach (var user in users)
+                    IEnumerable<ApplicationUser> users = null;
+                    if (!dbContext.Roles.Any())
                     {
-                        await userManager.CreateAsync(user, "Password1!");
+                        var roles = GetRoles();
+                        dbContext.Roles.AddRange(roles);
+                        await dbContext.SaveChangesAsync();
                     }
-                }
-                if (!dbContext.UserRoles.Any())
+                    if (!dbContext.Users.Any())
+                    {
+                        users = GetUsers();
+                        foreach (var user in users)
+                        {
+                            await userManager.CreateAsync(user, "Password1!");
+                        }
+                    }
+                    if (users is not not null && !dbContext.UserRoles.Any()) await GetUserRoles(users);
+                } catch (Exception ex)
                 {
-                    var userRoles = GetUserRoles();
-                    dbContext.UserRoles.AddRange(userRoles);
-                    await dbContext.SaveChangesAsync();
+                    logger.LogError("{ex}", ex.Message); 
                 }
             }
         }
@@ -39,7 +45,7 @@ namespace MindSpace.Infrastructure.Seeders
         {
             List<ApplicationUser> users = new List<ApplicationUser>
             {
-                new ApplicationUser
+                new Student
                 {
                     UserName = "student1",
                     NormalizedUserName = "STUDENT1",
@@ -48,10 +54,58 @@ namespace MindSpace.Infrastructure.Seeders
                     FullName = "Student One",
                     Status = UserStatus.Enabled,
                     CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
+                    UpdatedAt = DateTime.UtcNow,
+                    SchoolId = 1
                 },
-                new ApplicationUser
+                new Student
                 {
+                    UserName = "student2",
+                    NormalizedUserName = "STUDENT2",
+                    Email = "student2@example.com",
+                    NormalizedEmail = "STUDENT2@EXAMPLE.COM",
+                    FullName = "Student Two",
+                    Status = UserStatus.Enabled,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
+                    SchoolId = 2
+                },
+                new Student
+                {
+                    UserName = "student3",
+                    NormalizedUserName = "STUDENT3",
+                    Email = "student3@example.com",
+                    NormalizedEmail = "STUDENT3@EXAMPLE.COM",
+                    FullName = "Student Three",
+                    Status = UserStatus.Enabled,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
+                    SchoolId = 3
+                },
+                new Student
+                {
+                    UserName = "student4",
+                    NormalizedUserName = "STUDENT4",
+                    Email = "student4@example.com",
+                    NormalizedEmail = "STUDENT4@EXAMPLE.COM",
+                    FullName = "Student Four",
+                    Status = UserStatus.Enabled,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
+                    SchoolId = 4
+                },
+                new Student
+                {
+                    UserName = "student5",
+                    NormalizedUserName = "STUDENT5",
+                    Email = "student5@example.com",
+                    NormalizedEmail = "STUDENT5@EXAMPLE.COM",
+                    FullName = "Student Five",
+                    Status = UserStatus.Enabled,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
+                    SchoolId = 5
+                },
+                new ApplicationUser {
                     UserName = "admin1",
                     NormalizedUserName = "ADMIN1",
                     Email = "admin1@example.com",
@@ -61,7 +115,7 @@ namespace MindSpace.Infrastructure.Seeders
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow
                 },
-                new ApplicationUser
+                new Psychologist
                 {
                     UserName = "psychologist1",
                     NormalizedUserName = "PSYCHOLOGIST1",
@@ -72,7 +126,29 @@ namespace MindSpace.Infrastructure.Seeders
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow
                 },
-                new ApplicationUser
+                new Psychologist
+                {
+                    UserName = "psychologist2",
+                    NormalizedUserName = "PSYCHOLOGIST2",
+                    Email = "psychologist2@example.com",
+                    NormalizedEmail = "PSYCHOLOGIST2@EXAMPLE.COM",
+                    FullName = "Psychologist Two",
+                    Status = UserStatus.Enabled,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                },
+                new Psychologist
+                {
+                    UserName = "psychologist3",
+                    NormalizedUserName = "PSYCHOLOGIST3",
+                    Email = "psychologist3@example.com",
+                    NormalizedEmail = "PSYCHOLOGIST3@EXAMPLE.COM",
+                    FullName = "Psychologist Three",
+                    Status = UserStatus.Enabled,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                },
+                new Manager
                 {
                     UserName = "Manager1",
                     NormalizedUserName = "Manager1",
@@ -81,7 +157,20 @@ namespace MindSpace.Infrastructure.Seeders
                     FullName = "School Manager One",
                     Status = UserStatus.Enabled,
                     CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
+                    UpdatedAt = DateTime.UtcNow,
+                    SchoolId = 1
+                },
+                new Manager
+                {
+                    UserName = "Manager2",
+                    NormalizedUserName = "Manager2",
+                    Email = "Manager2@example.com",
+                    NormalizedEmail = "Manager2@EXAMPLE.COM",
+                    FullName = "School Manager Two",
+                    Status = UserStatus.Enabled,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
+                    SchoolId = 2
                 },
                 new ApplicationUser
                 {
@@ -90,6 +179,14 @@ namespace MindSpace.Infrastructure.Seeders
                     Email = "parent1@example.com",
                     NormalizedEmail = "PARENT1@EXAMPLE.COM",
                     FullName = "Parent One",
+                },
+                new ApplicationUser
+                {
+                    UserName = "parent2",
+                    NormalizedUserName = "PARENT2",
+                    Email = "parent2@example.com",
+                    NormalizedEmail = "PARENT2@EXAMPLE.COM",
+                    FullName = "Parent Two",
                 }
             };
 
@@ -120,19 +217,33 @@ namespace MindSpace.Infrastructure.Seeders
             return roles;
         }
 
-        private IEnumerable<IdentityUserRole<int>> GetUserRoles()
+        private async Task GetUserRoles(IEnumerable<ApplicationUser> users)
         {
-            var users = dbContext.Users.ToDictionary(u => u.UserName, u => u.Id);
-            var roles = dbContext.Roles.ToDictionary(r => r.Name, r => r.Id);
-
-            return new List<IdentityUserRole<int>>
+            foreach (var user in users)
             {
-                new IdentityUserRole<int> { UserId = users["student1"], RoleId = roles[UserRoles.Student] },
-                new IdentityUserRole<int> { UserId = users["admin1"], RoleId = roles[UserRoles.Admin] },
-                new IdentityUserRole<int> { UserId = users["psychologist1"], RoleId = roles[UserRoles.Psychologist] },
-                new IdentityUserRole<int> { UserId = users["Manager1"], RoleId = roles[UserRoles.Manager] },
-                new IdentityUserRole<int> { UserId = users["parent1"], RoleId = roles[UserRoles.Parent] }
-            };
+                switch (user.FullName.ToLower())
+                {
+                    case "student":
+                        await userManager.AddToRoleAsync(user, UserRoles.Student);
+                        break;
+
+                    case "parent":
+                        await userManager.AddToRoleAsync(user, UserRoles.Parent);
+                        break;
+
+                    case "admin":
+                        await userManager.AddToRoleAsync(user, UserRoles.Admin);
+                        break;
+
+                    case "psychologist":
+                        await userManager.AddToRoleAsync(user, UserRoles.Psychologist);
+                        break;
+
+                    case "manager":
+                        await userManager.AddToRoleAsync(user, UserRoles.Manager);
+                        break;
+                }
+            }
         }
     }
 }

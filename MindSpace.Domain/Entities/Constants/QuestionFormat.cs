@@ -8,7 +8,7 @@ namespace MindSpace.Domain.Entities.Constants
         MultipleChoice,
         [EnumMember(Value = "Text")]
         Text,
-        [EnumMember(Value = "Dropdown")]
-        Dropdown
+        //[EnumMember(Value = "Dropdown")]
+        //Dropdown
     }
 }

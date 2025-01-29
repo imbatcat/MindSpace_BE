@@ -1,4 +1,8 @@
+using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.Commons.Utilities;
+using MindSpace.Domain.Entities;
+using MindSpace.Domain.Entities.Tests;
+using MindSpace.Infrastructure.Seeders;
 
 namespace MindSpace.Infrastructure.Persistence
 {
@@ -30,8 +34,12 @@ namespace MindSpace.Infrastructure.Persistence
         public async Task SeedAllAsync()
         {
             await _dataSeeder.SeedAsync();
-            //await new JsonDataSeeder<Restaurant>(_fileReader, _dbContext).AddRelativeFilePath(AppCts.Locations.RelativeFilePath.RestaurantSeeder).SeedAsync();
-            //await new JsonDataSeeder<Dish>(_fileReader, _dbContext).AddRelativeFilePath(AppCts.Locations.RelativeFilePath.DishSeeder).SeedAsync();
+            await new JsonDataSeeder<TestQuestion>(_fileReader, _dbContext).AddRelativeFilePath(AppCts.Locations.RelativeFilePath.QuestionSeeder).SeedAsync();
+            await new JsonDataSeeder<School>(_fileReader, _dbContext).AddRelativeFilePath(AppCts.Locations.RelativeFilePath.SchoolSeeder).SeedAsync();
+            await new JsonDataSeeder<Test>(_fileReader, _dbContext).AddRelativeFilePath(AppCts.Locations.RelativeFilePath.Test).SeedAsync();
+            await new JsonDataSeeder<TestCategory>(_fileReader, _dbContext).AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestCategory).SeedAsync();
+            await new JsonDataSeeder<TestQuestionOption>(_fileReader, _dbContext).AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestQuestionOption).SeedAsync();
+            await new JsonDataSeeder<TestResponse>(_fileReader, _dbContext).AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestResponse).SeedAsync();
         }
     }
 }

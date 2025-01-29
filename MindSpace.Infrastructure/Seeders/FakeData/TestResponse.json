@@ -1,0 +1,47 @@
+﻿[
+  {
+    "Id": 1,
+    "TotalScore": 85,
+    "TestScoreRankResult": "Xuất sắc",
+    "StudentId": 1,
+    "TestId": 1,
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "Id": 2,
+    "TotalScore": 72,
+    "TestScoreRankResult": "Khá",
+    "StudentId": 2,
+    "TestId": 1,
+    "CreateAt": "2024-01-02T09:30:00Z",
+    "UpdateAt": "2024-01-29T10:05:00Z"
+  },
+  {
+    "Id": 3,
+    "TotalScore": 90,
+    "TestScoreRankResult": "Xuất sắc",
+    "StudentId": 3,
+    "TestId": 2,
+    "CreateAt": "2024-01-03T10:15:00Z",
+    "UpdateAt": "2024-01-29T10:10:00Z"
+  },
+  {
+    "Id": 4,
+    "TotalScore": 65,
+    "TestScoreRankResult": "Trung bình",
+    "StudentId": 4,
+    "TestId": 2,
+    "CreateAt": "2024-01-04T11:00:00Z",
+    "UpdateAt": "2024-01-29T10:15:00Z"
+  },
+  {
+    "Id": 5,
+    "TotalScore": 78,
+    "TestScoreRankResult": "Khá",
+    "StudentId": 5,
+    "TestId": 1,
+    "CreateAt": "2024-01-05T12:30:00Z",
+    "UpdateAt": "2024-01-29T10:20:00Z"
+  }
+]
