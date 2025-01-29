@@ -1,0 +1,34 @@
+﻿[
+  {
+    "Id": 1,
+    "SchoolName": "Trường THPT 1",
+    "ContactEmail": "lienhe@thpt1.edu.vn",
+    "PhoneNumber": "02812345678",
+    "Address_City": "TP.HCM",
+    "Address_Street": "123 Đường Trần Hưng Đạo",
+    "Address_Ward": "Phường Nguyễn Cư Trinh",
+    "Address_Province": "Hồ Chí Minh",
+    "Address_PostalCode": "700000",
+    "Description": "Trường trung học phổ thông công lập.",
+    "JoinDate": "2020-08-15T00:00:00Z",
+    "ManagerId": 10,
+    "CreateAt": "2020-08-15T10:00:00Z",
+    "UpdateAt": "2024-01-29T12:00:00Z"
+  },
+  {
+    "Id": 2,
+    "SchoolName": "Trường THPT 2",
+    "ContactEmail": "info@thpt2.edu.vn",
+    "PhoneNumber": "02456789101",
+    "Address_City": "Hà Nội",
+    "Address_Street": "456 Đường Nguyễn Văn Cừ",
+    "Address_Ward": "Phường Bồ Đề",
+    "Address_Province": "Hà Nội",
+    "Address_PostalCode": "100000",
+    "Description": "Trường trung học phổ thông tư thục.",
+    "JoinDate": "2019-09-10T00:00:00Z",
+    "ManagerId": 11,
+    "CreateAt": "2019-09-10T09:30:00Z",
+    "UpdateAt": "2024-01-29T12:05:00Z"
+  }
+]
