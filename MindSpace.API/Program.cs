@@ -15,8 +15,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddPresentation();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplications();
-builder.Services.AddScoped<ErrorHandlingMiddleware>();
-builder.Services.AddScoped<TimeLoggingMiddleware>();
 
 // ====================================
 // === Build the application
