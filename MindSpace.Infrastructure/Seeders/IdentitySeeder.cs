@@ -9,9 +9,23 @@ using System.Runtime.CompilerServices;
 namespace MindSpace.Infrastructure.Seeders
 {
     internal class IdentitySeeder(
-        ILogger<IdentitySeeder>logger,
+        ILogger<IdentitySeeder> logger,
         ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager) : IDataSeeder
     {
+        // =====================================
+        // === Props & Fields
+        // =====================================
+
+        private const string FAKE_PASSWORD = "pass123";
+
+        // =====================================
+        // === Methods
+        // =====================================
+
+        /// <summary>
+        /// Seeding File 
+        /// </summary>
+        /// <returns></returns>
         public async Task SeedAsync()
         {
             if (await dbContext.Database.CanConnectAsync())
@@ -30,17 +44,22 @@ namespace MindSpace.Infrastructure.Seeders
                         users = GetUsers();
                         foreach (var user in users)
                         {
-                            await userManager.CreateAsync(user, "Password1!");
+                            await userManager.CreateAsync(user, FAKE_PASSWORD);
                         }
                     }
                     if (users is not not null && !dbContext.UserRoles.Any()) await GetUserRoles(users);
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
-                    logger.LogError("{ex}", ex.Message); 
+                    logger.LogError("{ex}", ex.Message);
                 }
             }
         }
 
+        /// <summary>
+        /// Get list of Users
+        /// </summary>
+        /// <returns></returns>
         private IEnumerable<ApplicationUser> GetUsers()
         {
             List<ApplicationUser> users = new List<ApplicationUser>
