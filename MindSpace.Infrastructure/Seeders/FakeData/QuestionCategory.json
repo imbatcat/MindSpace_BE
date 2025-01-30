@@ -1,0 +1,20 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Frequency",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "Id": 2,
+    "Name": "Likert",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "Id": 3,
+    "Name": "Agreement",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  }
+]

@@ -4,105 +4,120 @@
     "Title": "Tôi cảm thấy có quá nhiều việc phải làm",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-01T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:00:00Z"
+    "UpdateAt": "2024-01-29T10:00:00Z",
+    "QuestionCategoryId": 1
   },
   {
     "Id": 2,
     "Title": "Tôi thường dễ cáu kỉnh và khó chịu",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-02T09:30:00Z",
-    "UpdateAt": "2024-01-29T10:05:00Z"
+    "UpdateAt": "2024-01-29T10:05:00Z",
+    "QuestionCategoryId": 1
   },
   {
     "Id": 3,
     "Title": "Tôi thường xuyên rơi vào các tình huống xung đột",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-03T10:15:00Z",
-    "UpdateAt": "2024-01-29T10:10:00Z"
+    "UpdateAt": "2024-01-29T10:10:00Z",
+    "QuestionCategoryId": 1
   },
   {
     "Id": 4,
     "Title": "Tôi thường có đủ thời gian để hoàn thành công việc của mình",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-04T11:00:00Z",
-    "UpdateAt": "2024-01-29T10:15:00Z"
+    "UpdateAt": "2024-01-29T10:15:00Z",
+    "QuestionCategoryId": 1
   },
   {
     "Id": 5,
     "Title": "Tôi cảm thấy căng thẳng hoặc khó chịu về thể chất do stress",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-05T12:30:00Z",
-    "UpdateAt": "2024-01-29T10:20:00Z"
+    "UpdateAt": "2024-01-29T10:20:00Z",
+    "QuestionCategoryId": 1
   },
   {
     "Id": 6,
     "Title": "Tôi duy trì giao tiếp bằng mắt thoải mái khi nói chuyện với mọi người",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-06T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:30:00Z"
+    "UpdateAt": "2024-01-29T10:30:00Z",
+    "QuestionCategoryId": 3
   },
   {
     "Id": 7,
     "Title": "Tôi lắng nghe chăm chú khi trò chuyện với người khác",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-07T09:30:00Z",
-    "UpdateAt": "2024-01-29T10:35:00Z"
+    "UpdateAt": "2024-01-29T10:35:00Z",
+    "QuestionCategoryId": 3
   },
   {
     "Id": 8,
     "Title": "Tôi có thể diễn đạt suy nghĩ của mình một cách dễ dàng",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-08T10:15:00Z",
-    "UpdateAt": "2024-01-29T10:40:00Z"
-  },
+    "UpdateAt": "2024-01-29T10:40:00Z",
+    "QuestionCategoryId": 3
+  },  
   {
     "Id": 9,
     "Title": "Tôi có thể bắt đầu cuộc trò chuyện với những người quen mới",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-09T11:00:00Z",
-    "UpdateAt": "2024-01-29T10:45:00Z"
+    "UpdateAt": "2024-01-29T10:45:00Z",
+    "QuestionCategoryId": 3
   },
   {
     "Id": 10,
     "Title": "Tôi có thể thỏa hiệp với người khác",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-10T12:30:00Z",
-    "UpdateAt": "2024-01-29T10:50:00Z"
+    "UpdateAt": "2024-01-29T10:50:00Z",
+    "QuestionCategoryId": 3
   },
   {
     "Id": 11,
     "Title": "Khi con tôi ăn vạ, tôi thường đáp ứng điều chúng muốn",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-11T13:00:00Z",
-    "UpdateAt": "2024-01-29T10:55:00Z"
+    "UpdateAt": "2024-01-29T10:55:00Z",
+    "QuestionCategoryId": 1
   },
   {
     "Id": 12,
     "Title": "Tôi không cho phép con tôi ngắt lời khi tôi đang nói",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-12T14:00:00Z",
-    "UpdateAt": "2024-01-29T11:00:00Z"
+    "UpdateAt": "2024-01-29T11:00:00Z",
+    "QuestionCategoryId": 3
   },
   {
     "Id": 13,
     "Title": "Con tôi không nhận được mọi thứ chúng yêu cầu",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-13T15:00:00Z",
-    "UpdateAt": "2024-01-29T11:05:00Z"
+    "UpdateAt": "2024-01-29T11:05:00Z",
+    "QuestionCategoryId": 3
   },
   {
     "Id": 14,
     "Title": "Tôi cảm thấy tự tin khi đặt ra các quy tắc cho con mình",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-14T16:00:00Z",
-    "UpdateAt": "2024-01-29T11:10:00Z"
+    "UpdateAt": "2024-01-29T11:10:00Z",
+    "QuestionCategoryId": 3
   },
   {
     "Id": 15,
     "Title": "Trẻ em chỉ nên được khen ngợi khi chúng cố gắng hết sức",
     "QuestionFormat": "Multiple Choice",
     "CreateAt": "2024-01-15T17:00:00Z",
-    "UpdateAt": "2024-01-29T11:15:00Z"
+    "UpdateAt": "2024-01-29T11:15:00Z",
+    "QuestionCategoryId": 3
   },
   {
     "Id": 16,
