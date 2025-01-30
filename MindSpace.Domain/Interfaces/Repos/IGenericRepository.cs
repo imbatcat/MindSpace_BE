@@ -7,8 +7,8 @@ public interface IGenericRepository<T> where T : BaseEntity
     // public Task<IEnumerable<T>> GetAllAsync();
     // public Task<T> GetAsync();
 
-    public int? Insert(T entity);
-    public int? Update(T entityToUpdate);
-    public int? Delete(T entityToDelete);
-    public int? Delete(object id);
+    public T Insert(T entity);
+    public T Update(T entityToUpdate);
+    public T Delete(T entityToDelete);
+    public T Delete(object id);
 }

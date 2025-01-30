@@ -35,14 +35,14 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     /// <param name="entity"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
-    public int? Insert(T entity)
+    public T Insert(T entity)
     {
         try
         {
             if (entity == null) throw new ArgumentNullException($"[{nameof(T)}] Insert {entity} failed.");
-            _dbContext.Set<T>().Add(entity);
+            var addedEntity = _dbContext.Set<T>().Add(entity).Entity;
 
-            return entity.Id;
+            return addedEntity;
         }
         catch (ArgumentNullException ex)
         {
@@ -56,15 +56,15 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     /// </summary>
     /// <param name="entityToUpdate"></param>
     /// <returns></returns>
-    public int? Update(T entityToUpdate)
+    public T Update(T entityToUpdate)
     {
         try
         {
             if (entityToUpdate == null) throw new ArgumentNullException($"[{nameof(T)}] Update {entityToUpdate} failed.");
 
-            _dbContext.Set<T>().Update(entityToUpdate);
+            var updatedEntity = _dbContext.Set<T>().Update(entityToUpdate).Entity;
             _dbContext.Entry(entityToUpdate).State = EntityState.Modified;
-            return entityToUpdate.Id;
+            return updatedEntity;
         }
         catch (ArgumentNullException ex)
         {
@@ -78,7 +78,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     /// </summary>
     /// <param name="entityToDelete"></param>
     /// <returns></returns>
-    public int? Delete(T entityToDelete)
+    public T Delete(T entityToDelete)
     {
         try
         {
@@ -88,8 +88,8 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
             {
                 _dbContext.Set<T>().Attach(entityToDelete);
             }
-            _dbContext.Set<T>().Remove(entityToDelete);
-            return entityToDelete.Id;
+            var deletedEntity = _dbContext.Set<T>().Remove(entityToDelete).Entity;
+            return deletedEntity;
         }
         catch (ArgumentNullException ex)
         {
@@ -105,7 +105,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     /// <param name="id"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public int? Delete(object id)
+    public T Delete(object id)
     {
         try
         {
