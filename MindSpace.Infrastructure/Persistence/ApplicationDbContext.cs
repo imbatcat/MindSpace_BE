@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MindSpace.Domain.Entities;
+using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.SupportingPrograms;
+using MindSpace.Domain.Entities.Tests;
+using MindSpace.Infrastructure.Configurations;
 
 namespace MindSpace.Infrastructure.Persistence
 {
@@ -12,16 +15,39 @@ namespace MindSpace.Infrastructure.Persistence
         // === Dbsets
         // ========================
 
+        // Accounts
         private DbSet<Psychologist> Psychologists { get; set; }
         private DbSet<Manager> Managers { get; set; }
         private DbSet<Student> Students { get; set; }
+
+        // Resources and Supporting Programs
         private DbSet<Resource> Resources { get; set; }
         private DbSet<Feedback> Feedbacks { get; set; }
         private DbSet<ResourceSection> ResourceSections { get; set; }
         private DbSet<SupportingProgram> SupportingPrograms { get; set; }
         private DbSet<SupportingProgramHistory> SupportingProgramHistories { get; set; }
+
+        // Schools
         private DbSet<School> Schools { get; set; }
         private DbSet<Specialization> Specializations { get; set; }
+
+        // Appointments
+        private DbSet<PsychologistSchedule> PsychologistSchedules { get; set; }
+        private DbSet<Appointment> Appointments { get; set; }
+        private DbSet<Payment> Payments { get; set; }
+
+        // Tests
+        private DbSet<TestCategory> TestCategories { get; set; }
+        private DbSet<Test> Tests { get; set; }
+        private DbSet<TestQuestionOption> TestQuestionOptions { get; set; }
+        private DbSet<TestQuestion> TestQuestions { get; set; }
+        private DbSet<TestScoreRank> TestScoreRanks { get; set; }
+        private DbSet<QuestionCategory> QuestionCategories { get; set; }
+        private DbSet<QuestionOption> QuestionOptions { get; set; }
+        private DbSet<TestResponse> TestResponses { get; set; }
+        private DbSet<TestResponseItem> TestResponseItems { get; set; }
+
+        
 
 
         // ========================
