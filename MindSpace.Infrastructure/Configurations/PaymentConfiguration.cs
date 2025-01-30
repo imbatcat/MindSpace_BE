@@ -24,6 +24,9 @@ namespace MindSpace.Infrastructure.Configurations
 
             builder.Property(p => p.AccountNo).HasMaxLength(50);
 
+            builder.Property(p => p.Amount)
+                .HasColumnType("decimal(18, 2)");
+
             builder.Property(p => p.TransactionCode).HasMaxLength(50);
 
             builder.Property(p => p.Provider).HasMaxLength(50);

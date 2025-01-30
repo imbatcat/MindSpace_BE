@@ -14,6 +14,7 @@ namespace MindSpace.Domain.Entities.Appointments
         public int AppointmentId { get; set; }
         public Appointment Appointment { get; set; }
         public string AccountNo { get; set; }
+        public decimal Amount { get; set; }
         public string TransactionCode { get; set; }
         public string Provider { get; set; } // bank name
         public PaymentMethod PaymentMethod { get; set; }
