@@ -21,7 +21,7 @@ namespace MindSpace.Domain.Entities.Tests
         public int Score { get; set; }
 
         // Field text to store text answer
-        public int? AnswerText { get; set; }
+        public string? AnswerText { get; set; }
 
     }
 }
