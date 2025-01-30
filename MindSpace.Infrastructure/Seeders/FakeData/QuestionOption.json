@@ -83,7 +83,7 @@
     "Id": 11,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 2,
+    "QuestionCategoryId": 3,
     "OptionText": "Hoàn toàn phản đối",
     "Score": 0
   },
@@ -91,7 +91,7 @@
     "Id": 12,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 2,
+    "QuestionCategoryId": 3,
     "OptionText": "Không khuyến khích",
     "Score": 1
   },
@@ -99,7 +99,7 @@
     "Id": 13,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 2,
+    "QuestionCategoryId": 3,
     "OptionText": "Trung lập",
     "Score": 2
   },
@@ -107,7 +107,7 @@
     "Id": 14,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 2,
+    "QuestionCategoryId": 3,
     "OptionText": "Khá đồng ý",
     "Score": 3
   },
@@ -115,7 +115,7 @@
     "Id": 15,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 2,
+    "QuestionCategoryId": 3,
     "OptionText": "Hoàn toàn đồng ý",
     "Score": 4
   } ] 
