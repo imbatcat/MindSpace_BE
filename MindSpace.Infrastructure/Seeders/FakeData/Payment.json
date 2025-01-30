@@ -1,0 +1,44 @@
+[
+  {
+    "Id": 1,
+    "CreateAt": "2025-02-02T08:00:00",
+    "UpdateAt": "2025-02-02T08:00:00",
+    "AppointmentId": 1,
+    "AccountNo": "6123456712",
+    "TransactionCode": "12412",
+    "Provider": "BIDV",
+    "PaymentMethod": "MOMO",
+    "PaymentDescription": "This is an example, real data for this field will get rawly from payment gateway, for example, TransactionCode_12412_Amount_50000_Transactiontime_20250202T080200_Bank_BIDV",
+    "Status": "Success",
+    "PaymentType": "Purchase",
+    "Amount": 50000.00
+  },
+  {
+    "Id": 2,
+    "CreateAt": "2025-02-03T08:00:00",
+    "UpdateAt": "2025-02-03T08:00:00",
+    "AppointmentId": 1,
+    "AccountNo": "175752391113",
+    "TransactionCode": "32416",
+    "Provider": "TPBank",
+    "PaymentMethod": "VNPAY",
+    "PaymentDescription": "TransactionCode_32416_Amount_30000_Transactiontime_20250203T080000_Bank_TPBank",
+    "Status": "Success",
+    "PaymentType": "Purchase",
+    "Amount": 30000.00
+  },
+  {
+    "Id": 3,
+    "CreateAt": "2025-02-04T08:00:00",
+    "UpdateAt": "2025-02-04T08:00:00",
+    "AppointmentId": 1,
+    "AccountNo": "0923487234",
+    "TransactionCode": "562336",
+    "Provider": "MBBank",
+    "PaymentMethod": "VNPAY",
+    "PaymentDescription": "TransactionCode_562336_Amount_45000_Transactiontime_20250204T080000_Bank_MBBank",
+    "Status": "Success",
+    "PaymentType": "Purchase",
+    "Amount": 45000.00
+  }
+]

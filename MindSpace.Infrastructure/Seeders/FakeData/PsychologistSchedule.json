@@ -1,0 +1,92 @@
+[
+  {
+    "Id": 1,
+    "CreateAt": "2024-02-01T08:00:00",
+    "UpdateAt": "2024-02-01T08:00:00",
+    "PsychologistId": 7,
+    "StartTime": "09:00:00",
+    "EndTime": "09:30:00",
+    "Date": "2025-02-10",
+    "Status": "Booked"
+  },
+  {
+    "Id": 2,
+    "CreateAt": "2024-02-01T08:00:00",
+    "UpdateAt": "2024-02-01T08:00:00",
+    "PsychologistId": 7,
+    "StartTime": "13:30:00",
+    "EndTime": "14:00:00",
+    "Date": "2025-02-11",
+    "Status": "Free"
+  },
+  {
+    "Id": 3,
+    "CreateAt": "2024-02-01T08:00:00",
+    "UpdateAt": "2024-02-01T08:00:00",
+    "PsychologistId": 7,
+    "StartTime": "15:00:00",
+    "EndTime": "15:30:00",
+    "Date": "2025-02-12",
+    "Status": "Free"
+  },
+  {
+    "Id": 4,
+    "CreateAt": "2024-02-01T08:00:00",
+    "UpdateAt": "2024-02-01T08:00:00",
+    "PsychologistId": 8,
+    "StartTime": "08:30:00",
+    "EndTime": "09:00:00",
+    "Date": "2025-02-10",
+    "Status": "Booked"
+  },
+  {
+    "Id": 5,
+    "CreateAt": "2024-02-01T08:00:00",
+    "UpdateAt": "2024-02-01T08:00:00",
+    "PsychologistId": 8,
+    "StartTime": "19:30:00",
+    "EndTime": "20:00:00",
+    "Date": "2025-02-11",
+    "Status": "Free"
+  },
+  {
+    "Id": 6,
+    "CreateAt": "2024-02-01T08:00:00",
+    "UpdateAt": "2024-02-01T08:00:00",
+    "PsychologistId": 8,
+    "StartTime": "20:30:00",
+    "EndTime": "21:00:00",
+    "Date": "2025-02-12",
+    "Status": "Free"
+  },
+  {
+    "Id": 7,
+    "CreateAt": "2024-02-01T08:00:00",
+    "UpdateAt": "2024-02-01T08:00:00",
+    "PsychologistId": 9,
+    "StartTime": "10:30:00",
+    "EndTime": "11:00:00",
+    "Date": "2025-02-10",
+    "Status": "Free"
+  },
+  {
+    "Id": 8,
+    "CreateAt": "2024-02-01T08:00:00",
+    "UpdateAt": "2024-02-01T08:00:00",
+    "PsychologistId": 9,
+    "StartTime": "15:30:00",
+    "EndTime": "16:00:00",
+    "Date": "2025-02-11",
+    "Status": "Booked"
+  },
+  {
+    "Id": 9,
+    "CreateAt": "2024-02-01T08:00:00",
+    "UpdateAt": "2024-02-01T08:00:00",
+    "PsychologistId": 9,
+    "StartTime": "16:30:00",
+    "EndTime": "17:00:00",
+    "Date": "2025-02-12",
+    "Status": "Free"
+  }
+]
