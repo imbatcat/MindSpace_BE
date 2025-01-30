@@ -1,0 +1,83 @@
+﻿[
+  {
+    "Id": 1,
+    "SpecializationId": 1,
+    "MinScore": 0,
+    "MaxScore": 4,
+    "Result": "Lo âu tối thiểu",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "Id": 2,
+    "SpecializationId": 1,
+    "MinScore": 5,
+    "MaxScore": 9,
+    "Result": "Lo âu nhẹ",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "Id": 3,
+    "SpecializationId": 1,
+    "MinScore": 10,
+    "MaxScore": 14,
+    "Result": "Lo âu trung bình",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "Id": 4,
+    "SpecializationId": 1,
+    "MinScore": 15,
+    "MaxScore": 9999,
+    "Result": "Lo âu nghiêm trọng",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "Id": 5,
+    "SpecializationId": 2,
+    "MinScore": 20,
+    "MaxScore": 34,
+    "Result": "Không trầm cảm",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "Id": 6,
+    "SpecializationId": 2,
+    "MinScore": 35,
+    "MaxScore": 49,
+    "Result": "Có ít dấu hiệu trầm cảm nhẹ",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "Id": 7,
+    "SpecializationId": 2,
+    "MinScore": 50,
+    "MaxScore": 70,
+    "Result": "Có một vài dấu hiệu trầm cảm",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "Id": 8,
+    "SpecializationId": 2,
+    "MinScore": 71,
+    "MaxScore": 85,
+    "Result": "Có khá nhiều dấu hiệu trầm cảm",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "Id": 9,
+    "SpecializationId": 2,
+    "MinScore": 86,
+    "MaxScore": 100,
+    "Result": "Rất nhiều biểu hiện trầm cảm",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  }
+]
