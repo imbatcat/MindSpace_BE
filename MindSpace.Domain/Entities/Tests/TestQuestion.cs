@@ -12,5 +12,9 @@ namespace MindSpace.Domain.Entities.Tests
 
         // 1 question - M options
         public virtual ICollection<QuestionOption> QuestionOptions { get; set; } = new HashSet<QuestionOption>();
+
+        // 1 Question Category - M Questions
+        public int? QuestionCategoryId { get; set; }
+        public QuestionCategory? QuestionCategory { get; set; }
     }
 }

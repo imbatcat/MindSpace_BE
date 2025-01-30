@@ -10,11 +10,15 @@ namespace MindSpace.Domain.Entities.Tests
     public class QuestionOption : BaseEntity
     {
         // 1 Test Question - M Options
-        public int TestQuestionId { get; set; }
-        public TestQuestion TestQuestion { get; set; }
+        public int? TestQuestionId { get; set; }
+        public TestQuestion? TestQuestion { get; set; }
+
+        // 1 Question Category - M Options
+        public int? QuestionCategoryId { get; set; }
+        public QuestionCategory? QuestionCategory { get; set; }
 
         // Is Text Area
-        public bool IsTextArea { get; set; }
+        //public bool? IsTextArea { get; set; }
 
         // Option Displayed Text
         public string OptionText { get; set; }

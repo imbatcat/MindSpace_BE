@@ -19,7 +19,8 @@ namespace MindSpace.Infrastructure.Configurations
             // 1 TestQuestion - M QuestionOptions
             builder.HasOne(qo => qo.TestQuestion)
                 .WithMany(tq => tq.QuestionOptions)
-                .HasForeignKey(qo => qo.TestQuestionId);
+                .HasForeignKey(qo => qo.TestQuestionId)
+                .IsRequired(false);
 
             // Option Text
             builder.Property(qo => qo.OptionText).IsUnicode().HasMaxLength(500);
@@ -30,8 +31,15 @@ namespace MindSpace.Infrastructure.Configurations
                 .HasDefaultValue(0)
                 .HasAnnotation("Range", new[] { "0", "999" });
 
-            builder.Property(qo => qo.IsTextArea)
-                .HasColumnType("bit");
+            //builder.Property(qo => qo.IsTextArea)
+            //    .HasColumnType("bit");
+
+            // 1 QuestionCategory - M QuestionOptions
+            builder
+                .HasOne(qo => qo.QuestionCategory)
+                .WithMany(qc => qc.QuestionOptions)
+                .HasForeignKey(qo => qo.QuestionCategoryId)
+                .IsRequired(false);
         }
     }
 }

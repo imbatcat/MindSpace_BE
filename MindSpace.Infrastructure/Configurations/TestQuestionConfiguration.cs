@@ -9,6 +9,13 @@ namespace MindSpace.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<TestQuestion> builder)
         {
             builder.ToTable("TestQuestions");
+
+            // 1 QuestionCategory - M TestQuestions
+            builder
+                .HasOne(tq => tq.QuestionCategory)
+                .WithMany()
+                .HasForeignKey(qo => qo.QuestionCategoryId)
+                .IsRequired(false);
         }
     }
 }
