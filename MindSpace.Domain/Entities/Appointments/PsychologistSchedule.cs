@@ -1,10 +1,5 @@
 ﻿using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Domain.Entities.Appointments
 {
@@ -15,7 +10,7 @@ namespace MindSpace.Domain.Entities.Appointments
         public Psychologist Psychologist { get; set; }
 
         // 1 PsychologistSchedule - 1 Appointment
-        public virtual Appointment? Appointment {get; set; }
+        public virtual Appointment? Appointment { get; set; }
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
         public DateOnly Date { get; set; }
