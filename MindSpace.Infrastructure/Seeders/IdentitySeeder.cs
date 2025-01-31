@@ -4,7 +4,6 @@ using MindSpace.Application.Commons.Utilities.Seeding;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Infrastructure.Persistence;
-using System.Runtime.CompilerServices;
 
 namespace MindSpace.Infrastructure.Seeders
 {

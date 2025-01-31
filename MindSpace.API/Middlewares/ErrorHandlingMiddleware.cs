@@ -1,5 +1,4 @@
-﻿using MindSpace.Domain.Entities;
-using MindSpace.Domain.Exceptions;
+﻿using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.API.Middlewares
 {

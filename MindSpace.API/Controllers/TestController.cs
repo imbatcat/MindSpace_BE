@@ -1,7 +1,9 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MindSpace.Application.Specifications.SupportingPrograms;
 using MindSpace.Domain.Entities.Constants;
+using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.API.Controllers
 {
@@ -13,9 +15,9 @@ namespace MindSpace.API.Controllers
     {
         private static readonly List<Item> items = new()
         {
-        new Item(1, "Apple", false),
-        new Item(2, "Banana", true),
-        new Item(3, "Orange", false)
+            new Item(1, "Apple", false),
+            new Item(2, "Banana", true),
+            new Item(3, "Orange", false)
         };
 
         // GET /api/items - Get all items
@@ -47,6 +49,17 @@ namespace MindSpace.API.Controllers
         {
             items.Add(item);
             return CreatedAtAction(nameof(GetItemById), new { id = item.Id }, item);
+        }
+
+        // ==================================
+        // Testing Purpose
+        // ==================================
+        public async Task<ActionResult<IReadOnlyList<SupportingProgram>>> GetSupportingPrograms(
+            [FromRoute] SupportingProgramParams supporitngProgramParams)
+        {
+            var spec = new SupportingProgramSpecification(supporitngProgramParams);
+            //var sps = _unitOfWork.Repository<T>().GetAllAsync(spec);
+            return Ok("TESTING PURPOSE");
         }
     }
 

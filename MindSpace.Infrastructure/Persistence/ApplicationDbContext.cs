@@ -5,7 +5,6 @@ using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Entities.Tests;
-using MindSpace.Infrastructure.Configurations;
 
 namespace MindSpace.Infrastructure.Persistence
 {
@@ -47,7 +46,7 @@ namespace MindSpace.Infrastructure.Persistence
         private DbSet<TestResponse> TestResponses { get; set; }
         private DbSet<TestResponseItem> TestResponseItems { get; set; }
 
-        
+
 
 
         // ========================
