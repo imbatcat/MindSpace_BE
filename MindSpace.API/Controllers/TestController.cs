@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MindSpace.Application.Specifications;
+using MindSpace.Application.Specifications.SupportingPrograms;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.SupportingPrograms;
 
@@ -54,12 +54,12 @@ namespace MindSpace.API.Controllers
         // ==================================
         // Testing Purpose
         // ==================================
-        public async Task<ActionResult<IReadOnlyList<SupportingProgram>> GetSupportingPrograms(
-            [FromRoute] int? minQuantity,
-            [FromRoute] int? maxQuantity
-            )
+        public async Task<ActionResult<IReadOnlyList<SupportingProgram>>> GetSupportingPrograms(
+            [FromRoute] SupportingProgramParams supporitngProgramParams)
         {
-            var spec = new SupportingProgramSpecification(minQuantity, maxQuantity);
+            var spec = new SupportingProgramSpecification(supporitngProgramParams);
+            //var sps = _unitOfWork.Repository<T>().GetAllAsync(spec);
+            return Ok("TESTING PURPOSE");
         }
     }
 

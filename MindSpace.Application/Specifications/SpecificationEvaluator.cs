@@ -16,11 +16,24 @@ namespace MindSpace.Application.Specifications
         /// <param name="query"></param>
         /// <param name="spec"></param>
         /// <returns></returns>
-        public static IQueryable<T> GetQuery(IQueryable<T> query, ISpecification<T> spec)
+        public static IQueryable<T> GetQuery(IQueryable<T> query, ISpecificationEntity<T> spec)
         {
+            // WHERE x.Brand = "Hitachi"
             if (spec.Criteria != null)
             {
-                query = query.Where(spec.Criteria); // x => x.Brand == brand
+                query = query.Where(spec.Criteria);
+            }
+
+            // ORDER BY x.Brand ASC
+            if (spec.OrderBy != null)
+            {
+                query = query.OrderBy(spec.OrderBy);
+            }
+
+            // ORDER BY x.Brand DESC
+            if (spec.OrderByDesc != null)
+            {
+                query = query.OrderByDescending(spec.OrderByDesc);
             }
 
             return query;

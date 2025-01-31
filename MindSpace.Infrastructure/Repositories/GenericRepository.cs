@@ -136,7 +136,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     /// </summary>
     /// <param name="spec"></param>
     /// <returns></returns>
-    private IQueryable<T> ApplySpecification(ISpecification<T> spec)
+    private IQueryable<T> ApplySpecification(ISpecificationEntity<T> spec)
     {
         // convert collection into iqueryable, enable deferred execution
         IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
@@ -149,7 +149,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     /// </summary>
     /// <param name="spec"></param>
     /// <returns></returns>
-    public async Task<IReadOnlyList<T>> GetAllAsync(ISpecification<T> spec)
+    public async Task<IReadOnlyList<T>> GetAllAsync(ISpecificationEntity<T> spec)
     {
         return await ApplySpecification(spec).ToListAsync();
     }
@@ -160,7 +160,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     /// <param name="spec"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public async Task<T?> GetEntityWithSpec(ISpecification<T> spec)
+    public async Task<T?> GetEntityWithSpec(ISpecificationEntity<T> spec)
     {
         return await ApplySpecification(spec).FirstOrDefaultAsync();
     }

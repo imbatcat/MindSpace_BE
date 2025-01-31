@@ -3,19 +3,20 @@ using System.Linq.Expressions;
 
 namespace MindSpace.Application.Specifications
 {
-    public class BaseSpecification<T> : ISpecification<T>
+    public class BaseSpecification<T> : ISpecificationEntity<T>
     {
         // =====================================
         // === Fields & Props
         // =====================================
+        public Expression<Func<T, bool>>? Criteria { get; private set; }
 
-        private readonly Expression<Func<T, bool>> _criteria;
+        public Expression<Func<T, object>>? OrderBy { get; private set; }
+
+        public Expression<Func<T, object>>? OrderByDesc { get; private set; }
 
         // =====================================
         // === Constructors
         // =====================================
-
-        protected BaseSpecification() : this(null) { }
 
         /// <summary>
         /// Passing the query expression to build up the query
@@ -24,13 +25,25 @@ namespace MindSpace.Application.Specifications
         public BaseSpecification(
             Expression<Func<T, bool>>? criteria)
         {
-            this._criteria = criteria;
+            Criteria = criteria;
         }
 
-        // =====================================
-        // === Methods
-        // =====================================
-        public Expression<Func<T, bool>>? Criteria => _criteria;
+        /// <summary>
+        /// Add Expression Order By fields Ascending
+        /// </summary>
+        /// <param name="orderByExpression"></param>
+        protected void AddOrderBy(Expression<Func<T, object>> orderByExpression)
+        {
+            OrderBy = orderByExpression;
+        }
 
+        /// <summary>
+        /// Add Expression Order By Fields Descending
+        /// </summary>
+        /// <param name="orderByDescExpression"></param>
+        protected void AddOrderByDescending(Expression<Func<T, object>> orderByDescExpression)
+        {
+            OrderByDesc = orderByDescExpression;
+        }
     }
 }
