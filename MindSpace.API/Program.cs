@@ -80,4 +80,5 @@ catch (Exception ex)
 {
     logger.LogError(ex, "Error happens during migrations!");
 }
+
 app.Run();

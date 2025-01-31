@@ -52,10 +52,12 @@ namespace MindSpace.API.Controllers
         }
 
         // ==================================
-        // Testing Purpose
+        // === Testing Purpose
         // ==================================
+
+        [HttpGet("/testing")]
         public async Task<ActionResult<IReadOnlyList<SupportingProgram>>> GetSupportingPrograms(
-            [FromRoute] SupportingProgramParams supporitngProgramParams)
+            [FromQuery] SupportingProgramParams supporitngProgramParams)
         {
             var spec = new SupportingProgramSpecification(supporitngProgramParams);
             //var sps = _unitOfWork.Repository<T>().GetAllAsync(spec);
