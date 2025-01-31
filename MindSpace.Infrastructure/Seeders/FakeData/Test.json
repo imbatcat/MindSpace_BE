@@ -1,35 +1,32 @@
 ﻿[
   {
-    "Id": 1,
     "Title": "Bài Kiểm Tra Trắc Nghiệm Đánh Giá Mức Độ Lo Âu",
     "Description": "Lorem ipsum",
     "QuestionCount": 5,
     "Price": 0,
-    "TestStatus": "Active",
+    "TestStatus": "Enabled",
     "TestCategoryId": 1,
     "ManagerId": 10,
     "CreateAt": "2023-10-01T08:00:00",
     "UpdateAt": "2023-10-05T14:30:00"
   },
   {
-    "Id": 2,
     "Title": "Bài Kiểm Tra Đánh Giá Mức Độ Căng Thẳng",
     "Description": "Lorem ipsum",
     "QuestionCount": 5,
     "Price": 100000.00,
-    "TestStatus": "Inactive",
+    "TestStatus": "Disabled",
     "TestCategoryId": 3,
     "ManagerId": 10,
     "CreateAt": "2023-08-10T10:30:00",
     "UpdateAt": "2023-08-25T11:20:00"
   },
   {
-    "Id": 3,
     "Title": "Bài Kiểm Tra Đánh Giá Cách Dạy Con Của Cha Mẹ",
     "Description": "Lorem ipsum",
     "QuestionCount": 5,
     "Price": 0,
-    "TestStatus": "Active",
+    "TestStatus": "Enabled",
     "TestCategoryId": 2,
     "ManagerId": 11,
     "CreateAt": "2023-09-15T09:15:00",
@@ -37,12 +34,11 @@
   },
 
   {
-    "Id": 4,
     "Title": "Bài Kiểm Tra Định Kỳ Khảo Sát Tâm Lí Của Học Sinh",
     "Description": "Lorem ipsum",
     "QuestionCount": 5,
     "Price": 0,
-    "TestStatus": "Inactive",
+    "TestStatus": "Disabled",
     "TestCategoryId": 3,
     "ManagerId": 10,
     "CreateAt": "2023-08-10T10:30:00",

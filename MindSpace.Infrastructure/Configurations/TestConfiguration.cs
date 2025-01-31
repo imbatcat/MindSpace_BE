@@ -9,7 +9,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Test> builder)
         {
-            builder.ToTable("Tests");
+            builder.ToTable("Tests", schema: "dbo");
 
             //Indexing
             builder.HasIndex(t => t.Title).IsUnique();

@@ -1,6 +1,5 @@
 ﻿[
   {
-    "Id": 1,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 1,
@@ -8,7 +7,6 @@
     "Score": 0
   },
   {
-    "Id": 2,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 1,
@@ -16,7 +14,6 @@
     "Score": 1
   },
   {
-    "Id": 3,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 1,
@@ -24,7 +21,6 @@
     "Score": 2
   },
   {
-    "Id": 4,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 1,
@@ -32,7 +28,6 @@
     "Score": 3
   },
   {
-    "Id": 5,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 1,
@@ -40,7 +35,6 @@
     "Score": 4
   },
   {
-    "Id": 6,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 2,
@@ -48,7 +42,6 @@
     "Score": 0
   },
   {
-    "Id": 7,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 2,
@@ -56,7 +49,6 @@
     "Score": 1
   },
   {
-    "Id": 8,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 2,
@@ -64,7 +56,6 @@
     "Score": 2
   },
   {
-    "Id": 9,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 2,
@@ -72,7 +63,6 @@
     "Score": 3
   },
   {
-    "Id": 10,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 2,
@@ -80,7 +70,6 @@
     "Score": 4
   },
   {
-    "Id": 11,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 3,
@@ -88,7 +77,6 @@
     "Score": 0
   },
   {
-    "Id": 12,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 3,
@@ -96,7 +84,6 @@
     "Score": 1
   },
   {
-    "Id": 13,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 3,
@@ -104,7 +91,6 @@
     "Score": 2
   },
   {
-    "Id": 14,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 3,
@@ -112,10 +98,10 @@
     "Score": 3
   },
   {
-    "Id": 15,
     "CreateAt": "2024-02-02T08:00:00",
     "UpdateAt": "2024-02-02T08:00:00",
     "QuestionCategoryId": 3,
     "OptionText": "Hoàn toàn đồng ý",
     "Score": 4
-  } ] 
+  }
+]

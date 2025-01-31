@@ -1,8 +1,7 @@
 [
   {
-    "Id": 1,
-    "CreateAt": "2025-02-02T08:00:00",
-    "UpdateAt": "2025-02-02T08:00:00",
+    "CreateAt": "2025-02-02T08:00:00Z",
+    "UpdateAt": "2025-02-02T08:00:00Z",
     "StudentId": 1,
     "PsychologistId": 7,
     "PsychologistScheduleId": 1,
@@ -11,9 +10,8 @@
     "Status": "Paid"
   },
   {
-    "Id": 2,
-    "CreateAt": "2025-02-03T08:00:00",
-    "UpdateAt": "2025-02-03T08:00:00",
+    "CreateAt": "2025-02-03T08:00:00Z",
+    "UpdateAt": "2025-02-03T08:00:00Z",
     "StudentId": 2,
     "PsychologistId": 8,
     "PsychologistScheduleId": 4,
@@ -22,9 +20,8 @@
     "Status": "Paid"
   },
   {
-    "Id": 3,
-    "CreateAt": "2025-02-04T08:00:00",
-    "UpdateAt": "2025-02-04T08:00:00",
+    "CreateAt": "2025-02-04T08:00:00Z",
+    "UpdateAt": "2025-02-04T08:00:00Z",
     "StudentId": 3,
     "PsychologistId": 9,
     "PsychologistScheduleId": 8,

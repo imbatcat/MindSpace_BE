@@ -1,4 +1,4 @@
-﻿namespace MindSpace.Application.Commons.Utilities
+﻿namespace MindSpace.Application.Commons.Utilities.Seeding
 {
     public interface IDataSeeder
     {

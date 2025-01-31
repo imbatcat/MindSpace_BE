@@ -9,7 +9,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Payment> builder)
         {
-            builder.ToTable("Payments");
+            builder.ToTable("Payments", schema: "dbo");
 
             // 1 appointment - M payments
             builder.HasOne(p => p.Appointment)

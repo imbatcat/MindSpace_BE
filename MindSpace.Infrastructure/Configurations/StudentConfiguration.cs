@@ -9,7 +9,7 @@ namespace MindSpace.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Student> builder)
         {
             //TPT mapping
-            builder.ToTable("Students").HasBaseType<ApplicationUser>();
+            builder.ToTable("Students", schema: "dbo").HasBaseType<ApplicationUser>();
 
             //Properties
             builder

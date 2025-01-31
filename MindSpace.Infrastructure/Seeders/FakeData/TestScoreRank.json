@@ -1,6 +1,5 @@
 ﻿[
   {
-    "Id": 1,
     "SpecializationId": 1,
     "MinScore": 0,
     "MaxScore": 4,
@@ -9,7 +8,6 @@
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Id": 2,
     "SpecializationId": 1,
     "MinScore": 5,
     "MaxScore": 9,
@@ -18,7 +16,6 @@
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Id": 3,
     "SpecializationId": 1,
     "MinScore": 10,
     "MaxScore": 14,
@@ -27,7 +24,6 @@
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Id": 4,
     "SpecializationId": 1,
     "MinScore": 15,
     "MaxScore": 9999,
@@ -36,7 +32,6 @@
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Id": 5,
     "SpecializationId": 2,
     "MinScore": 20,
     "MaxScore": 34,
@@ -45,7 +40,6 @@
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Id": 6,
     "SpecializationId": 2,
     "MinScore": 35,
     "MaxScore": 49,
@@ -54,7 +48,6 @@
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Id": 7,
     "SpecializationId": 2,
     "MinScore": 50,
     "MaxScore": 70,
@@ -63,7 +56,6 @@
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Id": 8,
     "SpecializationId": 2,
     "MinScore": 71,
     "MaxScore": 85,
@@ -72,7 +64,6 @@
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Id": 9,
     "SpecializationId": 2,
     "MinScore": 86,
     "MaxScore": 100,

@@ -1,6 +1,5 @@
 ﻿[
   {
-    "Id": 1,
     "TestResponseId": 1,
     "QuestionTitle": "Tôi cảm thấy có quá nhiều việc phải làm",
     "IsTextArea": false,
@@ -10,7 +9,6 @@
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Id": 2,
     "TestResponseId": 1,
     "QuestionTitle": "Tôi thường dễ cáu kỉnh và khó chịu",
     "IsTextArea": false,
@@ -20,7 +18,6 @@
     "UpdateAt": "2024-01-29T10:05:00Z"
   },
   {
-    "Id": 3,
     "TestResponseId": 1,
     "QuestionTitle": "Tôi thường xuyên rơi vào các tình huống xung đột",
     "IsTextArea": false,
@@ -30,7 +27,6 @@
     "UpdateAt": "2024-01-29T10:10:00Z"
   },
   {
-    "Id": 4,
     "TestResponseId": 2,
     "QuestionTitle": "Tôi cảm thấy căng thẳng hoặc khó chịu về thể chất do stress",
     "IsTextArea": false,
@@ -40,7 +36,6 @@
     "UpdateAt": "2024-01-29T10:20:00Z"
   },
   {
-    "Id": 5,
     "TestResponseId": 2,
     "QuestionTitle": "Tôi duy trì giao tiếp bằng mắt thoải mái khi nói chuyện với mọi người",
     "IsTextArea": false,
@@ -50,7 +45,6 @@
     "UpdateAt": "2024-01-29T10:30:00Z"
   },
   {
-    "Id": 6,
     "TestResponseId": 3,
     "QuestionTitle": "Tôi có thể diễn đạt suy nghĩ của mình một cách dễ dàng",
     "IsTextArea": false,
@@ -60,7 +54,6 @@
     "UpdateAt": "2024-01-29T10:40:00Z"
   },
   {
-    "Id": 7,
     "TestResponseId": 3,
     "QuestionTitle": "Tôi có thể bắt đầu cuộc trò chuyện với những người quen mới",
     "IsTextArea": false,
@@ -70,7 +63,6 @@
     "UpdateAt": "2024-01-29T10:45:00Z"
   },
   {
-    "Id": 8,
     "TestResponseId": 4,
     "QuestionTitle": "Tôi cảm thấy tự tin khi đặt ra các quy tắc cho con mình",
     "IsTextArea": false,
@@ -80,7 +72,6 @@
     "UpdateAt": "2024-01-29T11:10:00Z"
   },
   {
-    "Id": 9,
     "TestResponseId": 4,
     "QuestionTitle": "Trẻ em chỉ nên được khen ngợi khi chúng cố gắng hết sức",
     "IsTextArea": false,
@@ -90,7 +81,6 @@
     "UpdateAt": "2024-01-29T11:15:00Z"
   },
   {
-    "Id": 10,
     "TestResponseId": 5,
     "QuestionTitle": "Tôi không cho phép con tôi ngắt lời khi tôi đang nói",
     "IsTextArea": false,
@@ -100,7 +90,6 @@
     "UpdateAt": "2024-01-29T11:00:00Z"
   },
   {
-    "Id": 11,
     "TestResponseId": 5,
     "QuestionTitle": "Con tôi không nhận được mọi thứ chúng yêu cầu",
     "IsTextArea": false,

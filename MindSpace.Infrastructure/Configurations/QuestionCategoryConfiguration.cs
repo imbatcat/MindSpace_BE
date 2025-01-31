@@ -8,7 +8,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<QuestionCategory> builder)
         {
-            builder.ToTable("QuestionCategories");
+            builder.ToTable("QuestionCategories", schema: "dbo");
             // Properties
             builder.Property(qc => qc.Title).IsRequired().HasMaxLength(100).IsUnicode();
         }

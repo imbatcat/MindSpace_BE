@@ -8,7 +8,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<TestResponseItem> builder)
         {
-            builder.ToTable("TestResponseItems");
+            builder.ToTable("TestResponseItems", schema: "dbo");
 
             // 1 Test Response - M Test Response Items
             builder.HasOne(tri => tri.TestResponse)

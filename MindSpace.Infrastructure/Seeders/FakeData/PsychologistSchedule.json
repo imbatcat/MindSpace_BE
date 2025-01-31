@@ -1,6 +1,5 @@
 [
   {
-    "Id": 1,
     "CreateAt": "2024-02-01T08:00:00",
     "UpdateAt": "2024-02-01T08:00:00",
     "PsychologistId": 7,
@@ -10,7 +9,6 @@
     "Status": "Booked"
   },
   {
-    "Id": 2,
     "CreateAt": "2024-02-01T08:00:00",
     "UpdateAt": "2024-02-01T08:00:00",
     "PsychologistId": 7,
@@ -20,7 +18,6 @@
     "Status": "Free"
   },
   {
-    "Id": 3,
     "CreateAt": "2024-02-01T08:00:00",
     "UpdateAt": "2024-02-01T08:00:00",
     "PsychologistId": 7,
@@ -30,7 +27,6 @@
     "Status": "Free"
   },
   {
-    "Id": 4,
     "CreateAt": "2024-02-01T08:00:00",
     "UpdateAt": "2024-02-01T08:00:00",
     "PsychologistId": 8,
@@ -40,7 +36,6 @@
     "Status": "Booked"
   },
   {
-    "Id": 5,
     "CreateAt": "2024-02-01T08:00:00",
     "UpdateAt": "2024-02-01T08:00:00",
     "PsychologistId": 8,
@@ -50,7 +45,6 @@
     "Status": "Free"
   },
   {
-    "Id": 6,
     "CreateAt": "2024-02-01T08:00:00",
     "UpdateAt": "2024-02-01T08:00:00",
     "PsychologistId": 8,
@@ -60,7 +54,6 @@
     "Status": "Free"
   },
   {
-    "Id": 7,
     "CreateAt": "2024-02-01T08:00:00",
     "UpdateAt": "2024-02-01T08:00:00",
     "PsychologistId": 9,
@@ -70,7 +63,6 @@
     "Status": "Free"
   },
   {
-    "Id": 8,
     "CreateAt": "2024-02-01T08:00:00",
     "UpdateAt": "2024-02-01T08:00:00",
     "PsychologistId": 9,
@@ -80,7 +72,6 @@
     "Status": "Booked"
   },
   {
-    "Id": 9,
     "CreateAt": "2024-02-01T08:00:00",
     "UpdateAt": "2024-02-01T08:00:00",
     "PsychologistId": 9,

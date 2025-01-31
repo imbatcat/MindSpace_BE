@@ -10,7 +10,7 @@ namespace MindSpace.Infrastructure.Configurations
 
         public void Configure(EntityTypeBuilder<PsychologistSchedule> builder)
         {
-            builder.ToTable("PsychologistSchedules");
+            builder.ToTable("PsychologistSchedules", schema: "dbo");
 
             // 1 Psychologist - M PsychologistSchedules
             builder.HasOne(ps => ps.Psychologist)
@@ -29,8 +29,8 @@ namespace MindSpace.Infrastructure.Configurations
             builder.Property(ps => ps.Status)
                 .HasConversion(
                     s => s.ToString(),
-                    s => Enum.Parse<PsycholigistScheduleStatus>(s))
-                .HasDefaultValue(PsycholigistScheduleStatus.Free);
+                    s => Enum.Parse<PsychologistScheduleStatus>(s))
+                .HasDefaultValue(PsychologistScheduleStatus.Free);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace MindSpace.Domain.Entities.Constants
 {
-    public enum PsycholigistScheduleStatus
+    public enum PsychologistScheduleStatus
     {
         [EnumMember(Value = "Free")]
         Free,

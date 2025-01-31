@@ -1,6 +1,5 @@
 ﻿[
   {
-    "Id": 1,
     "SchoolName": "Trường THPT 1",
     "ContactEmail": "lienhe@thpt1.edu.vn",
     "PhoneNumber": "02812345678",
@@ -16,7 +15,6 @@
     "UpdateAt": "2024-01-29T12:00:00Z"
   },
   {
-    "Id": 2,
     "SchoolName": "Trường THPT 2",
     "ContactEmail": "info@thpt2.edu.vn",
     "PhoneNumber": "02456789101",

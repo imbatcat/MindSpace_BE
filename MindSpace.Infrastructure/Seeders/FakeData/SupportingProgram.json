@@ -1,6 +1,5 @@
 ﻿[
   {
-    "Id": 1,
     "ThumbnailUrl": "https://example.com/thumbnail1.jpg",
     "PdffileUrl": "https://example.com/program1.pdf",
     "MaxQuantity": 50,
@@ -12,12 +11,11 @@
       "Country": "Việt Nam"
     },
     "StartDateAt": "2024-03-01T09:00:00Z",
-    "ManagerId": 1,
-    "PsychologistId": 6,
+    "ManagerId": 10,
+    "PsychologistId": 7,
     "SchoolId": 1
   },
   {
-    "Id": 2,
     "ThumbnailUrl": "https://example.com/thumbnail2.jpg",
     "PdffileUrl": "https://example.com/program2.pdf",
     "MaxQuantity": 30,
@@ -29,12 +27,11 @@
       "Country": "Việt Nam"
     },
     "StartDateAt": "2024-03-15T10:00:00Z",
-    "ManagerId": 2,
+    "ManagerId": 11,
     "PsychologistId": 7,
     "SchoolId": 2
   },
   {
-    "Id": 3,
     "ThumbnailUrl": "https://example.com/thumbnail3.jpg",
     "PdffileUrl": "https://example.com/program3.pdf",
     "MaxQuantity": 40,
@@ -46,12 +43,11 @@
       "Country": "Việt Nam"
     },
     "StartDateAt": "2024-04-01T08:30:00Z",
-    "ManagerId": 3,
+    "ManagerId": 10,
     "PsychologistId": 8,
     "SchoolId": 1
   },
   {
-    "Id": 4,
     "ThumbnailUrl": "https://example.com/thumbnail4.jpg",
     "PdffileUrl": "https://example.com/program4.pdf",
     "MaxQuantity": 60,
@@ -68,7 +64,6 @@
     "SchoolId": 2
   },
   {
-    "Id": 5,
     "ThumbnailUrl": "https://example.com/thumbnail5.jpg",
     "PdffileUrl": "https://example.com/program5.pdf",
     "MaxQuantity": 25,

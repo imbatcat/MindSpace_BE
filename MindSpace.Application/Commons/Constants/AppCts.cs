@@ -4,7 +4,6 @@ namespace MindSpace.Application.Commons.Constants
 {
     public static class AppCts
     {
-
         /// <summary>
         /// All file path
         /// </summary>
@@ -14,9 +13,10 @@ namespace MindSpace.Application.Commons.Constants
 
             public static class RelativeFilePath
             {
-                private static string PathToFakeDataFolder = Path.Combine("Seeders", "FakeData");
+                private static string PathToFakeDataFolder = Path.Combine(AbsoluteProjectPath, "Seeders", "FakeData");
 
                 public static string QuestionSeeder = Path.Combine(PathToFakeDataFolder, "Question.json");
+                public static string Specialization = Path.Combine(PathToFakeDataFolder, "Specialization.json");
                 public static string SchoolSeeder = Path.Combine(PathToFakeDataFolder, "School.json");
                 public static string Test = Path.Combine(PathToFakeDataFolder, "Test.json");
                 public static string TestCategory = Path.Combine(PathToFakeDataFolder, "TestCategory.json");
@@ -30,8 +30,11 @@ namespace MindSpace.Application.Commons.Constants
                 public static string TestResponseItemSeeder = Path.Combine(PathToFakeDataFolder, "TestResponseItem.json");
                 public static string TestScoreRankSeeder = Path.Combine(PathToFakeDataFolder, "TestScoreRank.json");
 
-                public static string SpecializationSeeder = Path.Combine(PathToFakeDataFolder, "Specialization.json");
-                public static string SupportingProgramSeeder = Path.Combine(PathToFakeDataFolder, "SupportingProgramSpecification.json");
+                public static string SupportingProgramSeeder = Path.Combine(PathToFakeDataFolder, "SupportingProgram.json");
+                public static string QuestionCategorySeeder = Path.Combine(PathToFakeDataFolder, "QuestionCategory.json");
+                //public static string FeedbackSeeder = Path.Combine(PathToFakeDataFolder, "Feedback.json");
+                //public static string ResourceSeeder = Path.Combine(PathToFakeDataFolder, "Resource.json");
+                //public static string ResourceSectionSeeder = Path.Combine(PathToFakeDataFolder, "ResourceSection.json");
             }
         }
     }

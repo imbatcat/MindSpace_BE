@@ -8,7 +8,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<TestCategory> builder)
         {
-            builder.ToTable("TestCategories");
+            builder.ToTable("TestCategories", schema: "dbo");
             //Properties
             builder.Property(tc => tc.Name).IsRequired().HasMaxLength(100);
         }

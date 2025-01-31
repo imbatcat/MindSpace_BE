@@ -1,6 +1,5 @@
 ﻿[
   {
-    "Id": 1,
     "TotalScore": 85,
     "TestScoreRankResult": "Có khá nhiều dấu hiệu trầm cảm",
     "StudentId": 1,
@@ -9,7 +8,6 @@
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Id": 2,
     "TotalScore": 72,
     "TestScoreRankResult": "Có khá nhiều dấu hiệu trầm cảm",
     "StudentId": 2,
@@ -18,7 +16,6 @@
     "UpdateAt": "2024-01-29T10:05:00Z"
   },
   {
-    "Id": 3,
     "TotalScore": 90,
     "TestScoreRankResult": "Rất nhiều biểu hiện trầm cảm",
     "StudentId": 3,
@@ -27,7 +24,6 @@
     "UpdateAt": "2024-01-29T10:10:00Z"
   },
   {
-    "Id": 4,
     "TotalScore": 65,
     "TestScoreRankResult": "Có một vài dấu hiệu trầm cảm",
     "StudentId": 4,
@@ -36,7 +32,6 @@
     "UpdateAt": "2024-01-29T10:15:00Z"
   },
   {
-    "Id": 5,
     "TotalScore": 78,
     "TestScoreRankResult": "Có khá nhiều dấu hiệu trầm cảm",
     "StudentId": 5,
