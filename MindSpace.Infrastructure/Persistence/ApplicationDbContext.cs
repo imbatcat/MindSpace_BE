@@ -11,7 +11,7 @@ namespace MindSpace.Infrastructure.Persistence
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
     {
         // ========================
-        // === Dbsets
+        // === DBSet
         // ========================
 
         // Accounts
@@ -45,8 +45,6 @@ namespace MindSpace.Infrastructure.Persistence
         private DbSet<QuestionOption> QuestionOptions { get; set; }
         private DbSet<TestResponse> TestResponses { get; set; }
         private DbSet<TestResponseItem> TestResponseItems { get; set; }
-
-
 
 
         // ========================

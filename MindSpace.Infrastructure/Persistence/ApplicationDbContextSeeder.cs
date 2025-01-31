@@ -104,21 +104,21 @@ namespace MindSpace.Infrastructure.Persistence
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.SupportingProgramSeeder)
                 .SeedAsync();
 
-            //await new JsonDataSeeder<SupportingProgramHistory>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<SupportingProgramHistory>>(), _dbContext)
-            //    .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.SupportingProgramHistorySeeder)
-            //    .SeedAsync();
+            await new JsonDataSeeder<SupportingProgramHistory>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<SupportingProgramHistory>>(), _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.SupportingProgramHistorySeeder)
+                .SeedAsync();
 
-            //await new JsonDataSeeder<Feedback>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<Feedback>>(), _dbContext)
-            //    .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.FeedbackSeeder)
-            //    .SeedAsync();
+            await new JsonDataSeeder<Feedback>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<Feedback>>(), _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.FeedbackSeeder)
+                .SeedAsync();
 
-            //await new JsonDataSeeder<Resource>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<Resource>>(), _dbContext)
-            //    .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.ResourceSeeder)
-            //    .SeedAsync();
+            await new JsonDataSeeder<Resource>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<Resource>>(), _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.ResourceSeeder)
+                .SeedAsync();
 
-            //await new JsonDataSeeder<ResourceSection>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<ResourceSection>>(), _dbContext)
-            //    .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.ResourceSectionSeeder)
-            //    .SeedAsync();
+            await new JsonDataSeeder<ResourceSection>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<ResourceSection>>(), _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.ResourceSectionsSeeder)
+                .SeedAsync();
 
             await new JsonDataSeeder<QuestionCategory>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<QuestionCategory>>(), _dbContext)
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.QuestionCategorySeeder)

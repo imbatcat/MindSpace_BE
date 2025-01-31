@@ -1,0 +1,34 @@
+[
+  {
+    "ResourceType": "Blog",
+    "ArticleUrl": "https://example.com/articles/mental-health-basics",
+    "Title": "Mental Health Basics",
+    "Introduction": "An introduction to mental health and its importance in daily life.",
+    "ThumbnailUrl": "https://example.com/images/mental-health.jpg",
+    "ManagerId": 10
+  },
+  {
+    "ResourceType": "Blog",
+    "ArticleUrl": "https://example.com/articles/stress-management",
+    "Title": "Stress Management Techniques",
+    "Introduction": "Effective techniques to manage stress and improve well-being.",
+    "ThumbnailUrl": "https://example.com/images/stress-management.jpg",
+    "ManagerId": 10
+  },
+  {
+    "ResourceType": "Article",
+    "ArticleUrl": "https://example.com/articles/anxiety-guide",
+    "Title": "Understanding Anxiety",
+    "Introduction": "A comprehensive guide on anxiety, its causes, and coping mechanisms.",
+    "ThumbnailUrl": "https://example.com/images/anxiety.jpg",
+    "ManagerId": 11
+  },
+  {
+    "ResourceType": "File",
+    "ArticleUrl": "https://example.com/articles/mindfulness-practices",
+    "Title": "Mindfulness Practices for a Calm Mind",
+    "Introduction": "How mindfulness can improve your mental state and reduce stress.",
+    "ThumbnailUrl": "https://example.com/images/mindfulness.jpg",
+    "ManagerId": 11
+  }
+]
