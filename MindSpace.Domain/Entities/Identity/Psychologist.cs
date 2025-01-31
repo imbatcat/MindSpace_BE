@@ -25,7 +25,7 @@ namespace MindSpace.Domain.Entities.Identity
 
 
         // 1 Psychologist - M Feedbacks
-        public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
+        public virtual ICollection<Feedback> Feedbacks { get; set; } = new HashSet<Feedback>();
 
         // 1 Psychologist - M PsychologistSchedules
         public virtual ICollection<PsychologistSchedule> PsychologistSchedules { get; set; } = new HashSet<PsychologistSchedule>();

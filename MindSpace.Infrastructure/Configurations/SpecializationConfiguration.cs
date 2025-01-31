@@ -8,6 +8,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Specialization> builder)
         {
+            builder.ToTable("Specializations", schema: "dbo");
             // Properties
             builder.Property(p => p.Name).IsRequired().HasMaxLength(64).IsUnicode();
         }

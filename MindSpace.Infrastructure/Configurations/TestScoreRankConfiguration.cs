@@ -13,7 +13,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<TestScoreRank> builder)
         {
-            builder.ToTable("TestScoreRanks", t =>
+            builder.ToTable("TestScoreRanks", schema: "dbo", t =>
             {
                 t.HasCheckConstraint("CK_TestScore_ScoreOrder", "[MaxScore] >= [MinScore]");
             });

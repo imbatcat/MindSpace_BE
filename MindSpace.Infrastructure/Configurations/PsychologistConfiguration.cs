@@ -9,7 +9,7 @@ namespace MindSpace.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Psychologist> builder)
         {
             // Create TPT for Psychologist
-            builder.ToTable("Psychologists").HasBaseType<ApplicationUser>();
+            builder.ToTable("Psychologists", schema: "dbo").HasBaseType<ApplicationUser>();
 
             // Fields
             builder.Property(p => p.Bio)

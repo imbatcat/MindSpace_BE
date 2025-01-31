@@ -10,7 +10,7 @@ namespace MindSpace.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Resource> builder)
         {
             // Table Name
-            builder.ToTable("Resources");
+            builder.ToTable("Resources", schema: "dbo");
 
             // Properties
             builder.Property(r => r.ResourceType)

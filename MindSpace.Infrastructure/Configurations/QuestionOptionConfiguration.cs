@@ -14,7 +14,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<QuestionOption> builder)
         {
-            builder.ToTable("QuestionOptions");
+            builder.ToTable("QuestionOptions", schema: "dbo");
 
             // 1 TestQuestion - M QuestionOptions
             builder.HasOne(qo => qo.TestQuestion)

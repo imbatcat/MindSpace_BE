@@ -11,7 +11,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<SupportingProgram> builder)
         {
-            builder.ToTable("SupportingPrograms");
+            builder.ToTable("SupportingPrograms", schema: "dbo");
 
             // Fields
             builder.Property(sp => sp.ThumbnailUrl).IsRequired()

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MindSpace.Application.Commons.Utilities;
+using MindSpace.Application.Commons.Utilities.Seeding;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Infrastructure.Persistence;
 using MindSpace.Infrastructure.Seeders;
@@ -24,10 +25,12 @@ namespace MindSpace.Infrastructure.Extensions
 
                 // Seeders
                 services.AddScoped<IFileReader, FileReader>();
-                services.AddScoped<IDataSeeder, IdentitySeeder>();
+                services.AddScoped<IIdentitySeeder, IdentitySeeder>();
+                services.AddScoped<IEntityOrderProvider, EntityOrderProvider>();
+                services.AddScoped<IDataCleaner, DatabaseCleaner>();
                 services.AddScoped<ApplicationDbContextSeeder>();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

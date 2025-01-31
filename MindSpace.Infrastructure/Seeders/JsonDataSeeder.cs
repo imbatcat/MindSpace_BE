@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Castle.Core.Logging;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.Commons.Utilities;
+using MindSpace.Application.Commons.Utilities.Seeding;
 using MindSpace.Infrastructure.Persistence;
 using Newtonsoft.Json;
 
@@ -13,6 +16,7 @@ namespace MindSpace.Infrastructure.Seeders
         // =====================================
 
         private readonly IFileReader _fileReader;
+        private readonly ILogger<JsonDataSeeder<T>> _logger;
         private string _absoluteFilePathJson = default!;
         private readonly ApplicationDbContext _dbContext;
 
@@ -20,9 +24,10 @@ namespace MindSpace.Infrastructure.Seeders
         // === Constructors
         // =====================================
 
-        public JsonDataSeeder(IFileReader fileReader, ApplicationDbContext dbContext)
+        public JsonDataSeeder(IFileReader fileReader, ILogger<JsonDataSeeder<T>> logger, ApplicationDbContext dbContext)
         {
             _fileReader = fileReader;
+            _logger = logger;
             _dbContext = dbContext;
         }
 
@@ -63,7 +68,7 @@ namespace MindSpace.Infrastructure.Seeders
             }
             catch (Exception ex)
             {
-                throw new Exception($"Failed to deserialize JSON");
+                throw new Exception($"Failed to deserialize JSON file {_absoluteFilePathJson}, with exception {ex.Message}");
             }
         }
 

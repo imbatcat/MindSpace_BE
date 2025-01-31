@@ -14,7 +14,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Appointment> builder)
         {
-            builder.ToTable("Appointments");
+            builder.ToTable("Appointments", schema: "dbo");
 
             // 1 Student - M Appointments
             builder.HasOne(a => a.Student)

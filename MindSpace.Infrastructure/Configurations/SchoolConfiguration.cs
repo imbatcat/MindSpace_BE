@@ -8,7 +8,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<School> builder)
         {
-            builder.ToTable("Schools");
+            builder.ToTable("Schools", schema: "dbo");
 
             // Indexing
             builder.HasIndex(s => s.ContactEmail).IsUnique();
@@ -20,6 +20,8 @@ namespace MindSpace.Infrastructure.Configurations
             builder.Property(s => s.PhoneNumber).IsRequired().HasMaxLength(11);
             builder.Property(s => s.Description).IsUnicode().HasMaxLength(100);
             builder.Property(s => s.JoinDate).IsRequired().HasDefaultValueSql("getdate()").ValueGeneratedOnAdd();
+
+            builder.Property(s => s.ManagerId).IsRequired(false);
 
             // 1 School - Owns 1 Address
             builder.OwnsOne(s => s.Address, address =>

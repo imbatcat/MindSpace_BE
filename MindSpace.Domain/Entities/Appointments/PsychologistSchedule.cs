@@ -19,6 +19,6 @@ namespace MindSpace.Domain.Entities.Appointments
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
         public DateOnly Date { get; set; }
-        public PsycholigistScheduleStatus Status { get; set; }
+        public PsychologistScheduleStatus Status { get; set; }
     }
 }

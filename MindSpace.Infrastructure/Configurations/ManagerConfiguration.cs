@@ -8,7 +8,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Manager> builder)
         {
-            builder.ToTable("Manager").HasBaseType<ApplicationUser>();
+            builder.ToTable("Manager", schema: "dbo").HasBaseType<ApplicationUser>();
 
             // 1 Manager - 1 User 
             builder.HasOne(m => m.User)

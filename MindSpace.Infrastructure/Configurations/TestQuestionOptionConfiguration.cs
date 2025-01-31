@@ -8,7 +8,7 @@ namespace MindSpace.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<TestQuestionOption> builder)
         {
-            builder.ToTable("TestQuestionOptions");
+            builder.ToTable("TestQuestionOptions", schema: "dbo");
 
             //Indexing
             builder.HasKey(tqo => new { tqo.TestId, tqo.TestQuestionId, tqo.QuestionOptionId }); // Composite primary key

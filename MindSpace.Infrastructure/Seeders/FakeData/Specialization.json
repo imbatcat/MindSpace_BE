@@ -1,0 +1,77 @@
+[
+  {
+    "Name": "Tâm lý học Lâm sàng",
+    "CreatedAt": "2024-01-03T10:15:00Z",
+    "UpdatedAt": "2024-01-29T10:10:00Z"
+  },
+  {
+    "Name": "Tâm lý học Nhận thức",
+    "CreatedAt": "2024-01-04T11:20:00Z",
+    "UpdatedAt": "2024-01-30T09:45:00Z"
+  },
+  {
+    "Name": "Tâm lý học Thần kinh",
+    "CreatedAt": "2024-01-05T12:30:00Z",
+    "UpdatedAt": "2024-01-31T08:55:00Z"
+  },
+  {
+    "Name": "Tâm lý học Giáo dục",
+    "CreatedAt": "2024-01-06T13:40:00Z",
+    "UpdatedAt": "2024-02-01T14:05:00Z"
+  },
+  {
+    "Name": "Tâm lý học Phát triển",
+    "CreatedAt": "2024-01-07T14:50:00Z",
+    "UpdatedAt": "2024-02-02T15:15:00Z"
+  },
+  {
+    "Name": "Tâm lý học Pháp y",
+    "CreatedAt": "2024-01-08T16:00:00Z",
+    "UpdatedAt": "2024-02-03T16:30:00Z"
+  },
+  {
+    "Name": "Tâm lý học Sức khỏe",
+    "CreatedAt": "2024-01-09T17:10:00Z",
+    "UpdatedAt": "2024-02-04T17:45:00Z"
+  },
+  {
+    "Name": "Tâm lý học Thể thao",
+    "CreatedAt": "2024-01-10T18:20:00Z",
+    "UpdatedAt": "2024-02-05T18:55:00Z"
+  },
+  {
+    "Name": "Tâm lý học Công nghiệp - Tổ chức",
+    "CreatedAt": "2024-01-11T19:30:00Z",
+    "UpdatedAt": "2024-02-06T19:05:00Z"
+  },
+  {
+    "Name": "Tâm lý học Xã hội",
+    "CreatedAt": "2024-01-12T20:40:00Z",
+    "UpdatedAt": "2024-02-07T20:15:00Z"
+  },
+  {
+    "Name": "Tâm lý học Tư vấn",
+    "CreatedAt": "2024-01-13T21:50:00Z",
+    "UpdatedAt": "2024-02-08T21:25:00Z"
+  },
+  {
+    "Name": "Tâm lý học Thực nghiệm",
+    "CreatedAt": "2024-01-14T22:00:00Z",
+    "UpdatedAt": "2024-02-09T22:35:00Z"
+  },
+  {
+    "Name": "Tâm lý học Tích cực",
+    "CreatedAt": "2024-01-15T23:10:00Z",
+    "UpdatedAt": "2024-02-10T23:45:00Z"
+  },
+  {
+    "Name": "Tâm lý học Phục hồi",
+    "CreatedAt": "2024-01-16T00:20:00Z",
+    "UpdatedAt": "2024-02-11T00:55:00Z"
+  },
+  {
+    "Name": "Tâm lý học Trường học",
+    "CreatedAt": "2024-01-17T01:30:00Z",
+    "UpdatedAt": "2024-02-12T01:05:00Z"
+  }
+]

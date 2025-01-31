@@ -14,7 +14,7 @@ namespace MindSpace.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Feedback> builder)
         {
             // Table Name
-            builder.ToTable("Feedbacks");
+            builder.ToTable("Feedbacks", schema: "dbo");
 
             // Properties
             builder.Property(f => f.FeedbackContent)
