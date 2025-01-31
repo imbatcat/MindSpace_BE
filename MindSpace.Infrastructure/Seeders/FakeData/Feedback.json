@@ -1,0 +1,26 @@
+[
+  {
+    "Rating": 4.5,
+    "FeedbackContent": "The psychologist was very helpful and understanding.",
+    "PsychologistId": 7,
+    "StudentId": 1
+  },
+  {
+    "Rating": 5.0,
+    "FeedbackContent": "Great experience! I feel much better after the session.",
+    "PsychologistId": 8,
+    "StudentId": 2
+  },
+  {
+    "Rating": 3.8,
+    "FeedbackContent": "The session was good, but I expected more guidan`e.",
+    "PsychologistId": 9,
+    "StudentId": 3
+  },
+  {
+    "Rating": 4.2,
+    "FeedbackContent": "Helpful advice and a comfortable environment.",
+    "PsychologistId": 7,
+    "StudentId": 3
+  }
+]

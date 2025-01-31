@@ -1,0 +1,30 @@
+﻿[
+  {
+    "Bio": "Chuyên gia tâm lý với 10 năm kinh nghiệm tư vấn học sinh.",
+    "AverageRating": 4.8,
+    "SessionPrice": 500000,
+    "ComissionRate": 0.1,
+    "SpecializationId": 1
+  },
+  {
+    "Bio": "Chuyên gia tâm lý chuyên trị liệu cho trẻ em và thanh thiếu niên.",
+    "AverageRating": 4.7,
+    "SessionPrice": 600000,
+    "ComissionRate": 0.15,
+    "SpecializationId": 2
+  },
+  {
+    "Bio": "Tư vấn viên tâm lý cho các cặp đôi và hôn nhân.",
+    "AverageRating": 4.9,
+    "SessionPrice": 700000,
+    "ComissionRate": 0.12,
+    "SpecializationId": 3
+  },
+  {
+    "Bio": "Chuyên gia trị liệu hành vi và tâm lý học cho người trưởng thành.",
+    "AverageRating": 4.6,
+    "SessionPrice": 550000,
+    "ComissionRate": 0.1,
+    "SpecializationId": 4
+  }
+]

@@ -2,7 +2,6 @@
 {
     public class ResourceSection : BaseEntity
     {
-
         public string Heading { get; set; }
         public string HtmlContent { get; set; }
 

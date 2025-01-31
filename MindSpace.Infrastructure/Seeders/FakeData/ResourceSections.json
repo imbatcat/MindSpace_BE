@@ -1,0 +1,22 @@
+[
+  {
+    "Heading": "Introduction to Mental Health",
+    "HtmlContent": "<p>Mental health is essential for overall well-being. In this section, we explore the fundamentals of mental health.</p>",
+    "ResourceId": 1
+  },
+  {
+    "Heading": "Managing Stress Effectively",
+    "HtmlContent": "<p>Discover techniques and strategies to manage daily stress and improve your mental resilience.</p>",
+    "ResourceId": 2
+  },
+  {
+    "Heading": "Understanding Anxiety",
+    "HtmlContent": "<p>Anxiety affects millions worldwide. This section covers its causes, symptoms, and ways to cope.</p>",
+    "ResourceId": 2
+  },
+  {
+    "Heading": "The Power of Mindfulness",
+    "HtmlContent": "<p>Mindfulness can transform your mental state. Learn how to incorporate mindfulness practices into your daily routine.</p>",
+    "ResourceId": 4
+  }
+]

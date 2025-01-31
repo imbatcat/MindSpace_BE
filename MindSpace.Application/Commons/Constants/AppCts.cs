@@ -32,9 +32,10 @@ namespace MindSpace.Application.Commons.Constants
 
                 public static string SupportingProgramSeeder = Path.Combine(PathToFakeDataFolder, "SupportingProgram.json");
                 public static string QuestionCategorySeeder = Path.Combine(PathToFakeDataFolder, "QuestionCategory.json");
-                //public static string FeedbackSeeder = Path.Combine(PathToFakeDataFolder, "Feedback.json");
-                //public static string ResourceSeeder = Path.Combine(PathToFakeDataFolder, "Resource.json");
-                //public static string ResourceSectionSeeder = Path.Combine(PathToFakeDataFolder, "ResourceSection.json");
+                public static string FeedbackSeeder = Path.Combine(PathToFakeDataFolder, "Feedback.json");
+                public static string SupportingProgramHistorySeeder = Path.Combine(PathToFakeDataFolder, "SupportingProgramHistory.json");
+                public static string ResourceSeeder = Path.Combine(PathToFakeDataFolder, "Resource.json");
+                public static string ResourceSectionsSeeder = Path.Combine(PathToFakeDataFolder, "ResourceSections.json");
             }
         }
     }
