@@ -29,13 +29,13 @@ namespace MindSpace.Infrastructure.Configurations
                 address.Property(a => a.PostalCode).HasMaxLength(10);
             });
 
-            // 1 Manager - M SupportingProgram
+            // 1 Manager - M SupportingProgramSpecification
             builder.HasOne(sp => sp.Manager)
                 .WithMany(m => m.SupportingPrograms)
                 .HasForeignKey(sp => sp.ManagerId)
                 .OnDelete(DeleteBehavior.ClientCascade);
 
-            // 1 Psychologist - M SupportingProgram
+            // 1 Psychologist - M SupportingProgramSpecification
             builder.HasOne(sp => sp.Psychologist)
                 .WithMany(m => m.SupportingPrograms)
                 .HasForeignKey(sp => sp.PsychologistId)

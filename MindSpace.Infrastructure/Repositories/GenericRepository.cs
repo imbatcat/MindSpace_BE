@@ -3,8 +3,12 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Specifications;
 using MindSpace.Domain.Interfaces.Repos;
+using MindSpace.Domain.Interfaces.Specifications;
 using Persistence;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {
@@ -26,7 +30,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     }
 
     // ===========================
-    // === Methods
+    // === INSERT, UPDATE, DELETE
     // ===========================
 
     /// <summary>
@@ -120,5 +124,44 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         }
 
         return null;
+    }
+
+    // ===================================
+    // === GET queries with Specification
+    // ===================================
+
+
+    /// <summary>
+    /// Apply the spec into the query
+    /// </summary>
+    /// <param name="spec"></param>
+    /// <returns></returns>
+    private IQueryable<T> ApplySpecification(ISpecification<T> spec)
+    {
+        // convert collection into iqueryable, enable deferred execution
+        IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
+
+        return SpecificationEvaluator<T>.GetQuery(query, spec);
+    }
+
+    /// <summary>
+    /// Get the list based on spec
+    /// </summary>
+    /// <param name="spec"></param>
+    /// <returns></returns>
+    public async Task<IReadOnlyList<T>> GetAllAsync(ISpecification<T> spec)
+    {
+        return await ApplySpecification(spec).ToListAsync();
+    }
+
+    /// <summary>
+    /// Get the individual item based on spec
+    /// </summary>
+    /// <param name="spec"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public async Task<T?> GetEntityWithSpec(ISpecification<T> spec)
+    {
+        return await ApplySpecification(spec).FirstOrDefaultAsync();
     }
 }

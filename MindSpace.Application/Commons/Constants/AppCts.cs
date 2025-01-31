@@ -31,7 +31,7 @@ namespace MindSpace.Application.Commons.Constants
                 public static string TestScoreRankSeeder = Path.Combine(PathToFakeDataFolder, "TestScoreRank.json");
 
                 public static string SpecializationSeeder = Path.Combine(PathToFakeDataFolder, "Specialization.json");
-                public static string SupportingProgramSeeder = Path.Combine(PathToFakeDataFolder, "SupportingProgram.json");
+                public static string SupportingProgramSeeder = Path.Combine(PathToFakeDataFolder, "SupportingProgramSpecification.json");
             }
         }
     }
