@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MindSpace.Domain.Entities.Tests
+﻿namespace MindSpace.Domain.Entities.Tests
 {
     public class QuestionCategory : BaseEntity
     {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MindSpace.Domain.Entities.Tests
+﻿namespace MindSpace.Domain.Entities.Tests
 {
     // Store history answer of student for each question
     public class TestResponseItem : BaseEntity
@@ -12,7 +6,7 @@ namespace MindSpace.Domain.Entities.Tests
         // 1 Test Response - M Test Response Items
         public int TestResponseId { get; set; }
         public TestResponse TestResponse { get; set; }
-        
+
         // Question Content
         public string QuestionTitle { get; set; }
 

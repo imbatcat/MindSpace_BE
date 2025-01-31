@@ -28,7 +28,7 @@ namespace MindSpace.Infrastructure.Seeders
 
         // =====================================
         // === Methods
-        // =====================================git ad
+        // =====================================
 
         /// <summary>
         /// Add file before parse to json object

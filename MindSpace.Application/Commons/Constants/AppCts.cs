@@ -29,6 +29,9 @@ namespace MindSpace.Application.Commons.Constants
                 public static string QuestionOptionSeeder = Path.Combine(PathToFakeDataFolder, "QuestionOption.json");
                 public static string TestResponseItemSeeder = Path.Combine(PathToFakeDataFolder, "TestResponseItem.json");
                 public static string TestScoreRankSeeder = Path.Combine(PathToFakeDataFolder, "TestScoreRank.json");
+
+                public static string SpecializationSeeder = Path.Combine(PathToFakeDataFolder, "Specialization.json");
+                public static string SupportingProgramSeeder = Path.Combine(PathToFakeDataFolder, "SupportingProgram.json");
             }
         }
     }

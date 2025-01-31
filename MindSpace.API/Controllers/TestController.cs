@@ -13,9 +13,9 @@ namespace MindSpace.API.Controllers
     {
         private static readonly List<Item> items = new()
         {
-        new Item(1, "Apple", false),
-        new Item(2, "Banana", true),
-        new Item(3, "Orange", false)
+            new Item(1, "Apple", false),
+            new Item(2, "Banana", true),
+            new Item(3, "Orange", false)
         };
 
         // GET /api/items - Get all items

@@ -1,11 +1,4 @@
-﻿using MindSpace.Domain.Entities.Constants;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MindSpace.Domain.Entities.Tests
+﻿namespace MindSpace.Domain.Entities.Tests
 {
     public class QuestionOption : BaseEntity
     {
@@ -25,7 +18,7 @@ namespace MindSpace.Domain.Entities.Tests
 
         // Option Score value
         public int Score { get; set; }
-        
+
         public virtual ICollection<TestQuestionOption> TestQuestionOptions { get; set; } = new HashSet<TestQuestionOption>();
 
     }

@@ -1,0 +1,87 @@
+﻿[
+  {
+    "Id": 1,
+    "ThumbnailUrl": "https://example.com/thumbnail1.jpg",
+    "PdffileUrl": "https://example.com/program1.pdf",
+    "MaxQuantity": 50,
+    "Address": {
+      "Street": "123 Đường Lê Lợi",
+      "City": "Hà Nội",
+      "State": "Hà Nội",
+      "PostalCode": "100000",
+      "Country": "Việt Nam"
+    },
+    "StartDateAt": "2024-03-01T09:00:00Z",
+    "ManagerId": 1,
+    "PsychologistId": 6,
+    "SchoolId": 1
+  },
+  {
+    "Id": 2,
+    "ThumbnailUrl": "https://example.com/thumbnail2.jpg",
+    "PdffileUrl": "https://example.com/program2.pdf",
+    "MaxQuantity": 30,
+    "Address": {
+      "Street": "456 Đường Nguyễn Huệ",
+      "City": "TP. Hồ Chí Minh",
+      "State": "TP. Hồ Chí Minh",
+      "PostalCode": "700000",
+      "Country": "Việt Nam"
+    },
+    "StartDateAt": "2024-03-15T10:00:00Z",
+    "ManagerId": 2,
+    "PsychologistId": 7,
+    "SchoolId": 2
+  },
+  {
+    "Id": 3,
+    "ThumbnailUrl": "https://example.com/thumbnail3.jpg",
+    "PdffileUrl": "https://example.com/program3.pdf",
+    "MaxQuantity": 40,
+    "Address": {
+      "Street": "789 Đường Trần Hưng Đạo",
+      "City": "Đà Nẵng",
+      "State": "Đà Nẵng",
+      "PostalCode": "550000",
+      "Country": "Việt Nam"
+    },
+    "StartDateAt": "2024-04-01T08:30:00Z",
+    "ManagerId": 3,
+    "PsychologistId": 8,
+    "SchoolId": 1
+  },
+  {
+    "Id": 4,
+    "ThumbnailUrl": "https://example.com/thumbnail4.jpg",
+    "PdffileUrl": "https://example.com/program4.pdf",
+    "MaxQuantity": 60,
+    "Address": {
+      "Street": "101 Đường Hai Bà Trưng",
+      "City": "Hải Phòng",
+      "State": "Hải Phòng",
+      "PostalCode": "180000",
+      "Country": "Việt Nam"
+    },
+    "StartDateAt": "2024-04-15T11:00:00Z",
+    "ManagerId": 9,
+    "PsychologistId": 9,
+    "SchoolId": 2
+  },
+  {
+    "Id": 5,
+    "ThumbnailUrl": "https://example.com/thumbnail5.jpg",
+    "PdffileUrl": "https://example.com/program5.pdf",
+    "MaxQuantity": 25,
+    "Address": {
+      "Street": "202 Đường Lê Duẩn",
+      "City": "Cần Thơ",
+      "State": "Cần Thơ",
+      "PostalCode": "900000",
+      "Country": "Việt Nam"
+    },
+    "StartDateAt": "2024-05-01T14:00:00Z",
+    "ManagerId": 10,
+    "PsychologistId": 7,
+    "SchoolId": 1
+  }
+]
