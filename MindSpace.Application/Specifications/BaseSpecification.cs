@@ -69,5 +69,13 @@ namespace MindSpace.Application.Specifications
             Take = take;
             IsPagingEnabled = true;
         }
+
+        /// <summary>
+        /// Apply Distinct to the query
+        /// </summary>
+        protected void ApplyDistinct()
+        {
+            IsDistinct = true;
+        }
     }
 }
