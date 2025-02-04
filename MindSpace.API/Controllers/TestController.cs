@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MindSpace.Application.Specifications.SupportingPrograms;
+using MindSpace.Application.Features.SupportingPrograms.Specs;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.SupportingPrograms;
 
@@ -57,7 +57,7 @@ namespace MindSpace.API.Controllers
 
         [HttpGet("/testing")]
         public async Task<ActionResult<IReadOnlyList<SupportingProgram>>> GetSupportingPrograms(
-            [FromQuery] SupportingProgramParams supporitngProgramParams)
+            [FromQuery] SupportingProgramSpecParams supporitngProgramParams)
         {
             var spec = new SupportingProgramSpecification(supporitngProgramParams);
             //var sps = _unitOfWork.Repository<T>().GetAllAsync(spec);

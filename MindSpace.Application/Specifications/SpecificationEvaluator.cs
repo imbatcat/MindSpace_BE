@@ -36,6 +36,18 @@ namespace MindSpace.Application.Specifications
                 query = query.OrderByDescending(spec.OrderByDesc);
             }
 
+            // DISTINCT
+            if (spec.IsDistinct)
+            {
+                query = query.Distinct();
+            }
+
+            // Paging with SKIP, TAKE
+            if (spec.IsPagingEnabled)
+            {
+                query = query.Skip(spec.Skip).Take(spec.Take);
+            }
+
             return query;
         }
     }

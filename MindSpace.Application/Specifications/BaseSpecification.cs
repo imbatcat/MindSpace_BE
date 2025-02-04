@@ -14,6 +14,14 @@ namespace MindSpace.Application.Specifications
 
         public Expression<Func<T, object>>? OrderByDesc { get; private set; }
 
+        public int Skip { get; private set; }
+
+        public int Take { get; private set; }
+
+        public bool IsPagingEnabled { get; private set; }
+
+        public bool IsDistinct { get; private set; }
+
         // =====================================
         // === Constructors
         // =====================================
@@ -27,6 +35,10 @@ namespace MindSpace.Application.Specifications
         {
             Criteria = criteria;
         }
+
+        // =====================================
+        // === Methods
+        // =====================================
 
         /// <summary>
         /// Add Expression Order By fields Ascending
@@ -44,6 +56,26 @@ namespace MindSpace.Application.Specifications
         protected void AddOrderByDescending(Expression<Func<T, object>> orderByDescExpression)
         {
             OrderByDesc = orderByDescExpression;
+        }
+
+        /// <summary>
+        /// Apply Paging
+        /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        protected void ApplyPaging(int skip, int take)
+        {
+            Skip = skip;
+            Take = take;
+            IsPagingEnabled = true;
+        }
+
+        /// <summary>
+        /// Apply Distinct to the query
+        /// </summary>
+        protected void ApplyDistinct()
+        {
+            IsDistinct = true;
         }
     }
 }
