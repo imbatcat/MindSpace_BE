@@ -12,16 +12,20 @@ namespace MindSpace.Application.Extensions
             // Application assembly
             var applicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
 
-            // Services
+            // CQRS MediaR
             services.AddMediatR(mtr => mtr.RegisterServicesFromAssembly(applicationAssembly));
 
+            // Add AutoMapper
             services.AddAutoMapper(applicationAssembly);
 
+            // Add Fluent Validation
             services.AddValidatorsFromAssembly(applicationAssembly)
                 .AddFluentValidationAutoValidation();
 
+            // Add User Context
             services.AddScoped<IUserContext, UserContext.UserContext>();
 
+            // Add HttpContextAccessor
             services.AddHttpContextAccessor();
         }
     }
