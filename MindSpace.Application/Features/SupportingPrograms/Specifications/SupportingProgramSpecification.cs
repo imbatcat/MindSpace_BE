@@ -1,4 +1,5 @@
-﻿using MindSpace.Domain.Entities.SupportingPrograms;
+﻿using MindSpace.Application.Specifications;
+using MindSpace.Domain.Entities.SupportingPrograms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MindSpace.Application.Specifications.SupportingPrograms
+namespace MindSpace.Application.Features.SupportingPrograms.Specs
 {
     public class SupportingProgramSpecification : BaseSpecification<SupportingProgram>
     {
@@ -14,7 +15,7 @@ namespace MindSpace.Application.Specifications.SupportingPrograms
         /// Filter Supporting Program with params
         /// </summary>
         /// <param name="spParams"></param>
-        public SupportingProgramSpecification(SupportingProgramParams spParams)
+        public SupportingProgramSpecification(SupportingProgramSpecParams spParams)
             : base(x =>
                 (!spParams.MinQuantity.HasValue || x.MaxQuantity >= spParams.MinQuantity) &&
                 (!spParams.MaxQuantity.HasValue || x.MaxQuantity <= spParams.MaxQuantity))

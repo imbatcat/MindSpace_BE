@@ -18,4 +18,10 @@
 		  <Private>True</Private>
 		</ProjectReference>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Features\SupportingPrograms\Commands\" />
+	  <Folder Include="Features\SupportingPrograms\Validators\" />
+	  <Folder Include="Features\SupportingPrograms\Queries\" />
+	</ItemGroup>
 </Project>

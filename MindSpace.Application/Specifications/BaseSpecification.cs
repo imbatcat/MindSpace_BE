@@ -14,6 +14,10 @@ namespace MindSpace.Application.Specifications
 
         public Expression<Func<T, object>>? OrderByDesc { get; private set; }
 
+        public int? Skip => throw new NotImplementedException();
+
+        public int? Take => throw new NotImplementedException();
+
         // =====================================
         // === Constructors
         // =====================================
@@ -27,6 +31,10 @@ namespace MindSpace.Application.Specifications
         {
             Criteria = criteria;
         }
+
+        // =====================================
+        // === Methods
+        // =====================================
 
         /// <summary>
         /// Add Expression Order By fields Ascending
