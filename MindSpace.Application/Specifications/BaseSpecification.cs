@@ -18,6 +18,8 @@ namespace MindSpace.Application.Specifications
 
         public int? Take => throw new NotImplementedException();
 
+        public bool IsPagingEnabled { get; private set; }
+
         // =====================================
         // === Constructors
         // =====================================

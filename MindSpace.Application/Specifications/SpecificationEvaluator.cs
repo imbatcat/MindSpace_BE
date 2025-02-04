@@ -36,6 +36,8 @@ namespace MindSpace.Application.Specifications
                 query = query.OrderByDescending(spec.OrderByDesc);
             }
 
+            if (spec.I)
+
             return query;
         }
     }
