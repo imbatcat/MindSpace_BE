@@ -21,6 +21,8 @@ namespace MindSpace.Application.Features.SupportingPrograms.Specs
                 (!spParams.MaxQuantity.HasValue || x.MaxQuantity <= spParams.MaxQuantity))
         {
 
+            ApplyPaging(spParams.PageSize * (spParams.PageIndex - 1), spParams.PageSize);
+
             if (!string.IsNullOrEmpty(spParams.Sort))
             {
                 switch (spParams.Sort)
