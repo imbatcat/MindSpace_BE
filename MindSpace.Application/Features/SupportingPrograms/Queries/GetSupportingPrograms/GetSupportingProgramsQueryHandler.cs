@@ -1,13 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Features.SupportingPrograms.Specs;
+using MindSpace.Application.Features.SupportingPrograms.Specifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Interfaces.Repos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms
 {
@@ -26,7 +21,8 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
 
         public async Task<IReadOnlyList<SupportingProgram>> Handle(GetSupportingProgramsQuery request, CancellationToken cancellationToken)
         {
-            var spec = new SupportingProgramSpecification(request.specParams);
+            _logger.LogInformation("Get list of Supporting Programs with Spec: {@Spec}", request.SpecParams);
+            var spec = new SupportingProgramSpecification(request.SpecParams);
             var items = await _unitOfWork.Repository<SupportingProgram>().GetAllWithSpecAsync(spec);
             return items;
         }

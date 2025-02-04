@@ -8,11 +8,11 @@ public interface IGenericRepository<T> where T : BaseEntity
     // GET
     Task<IReadOnlyList<T>> GetAllAsync();
     Task<T?> GetByIdAsync(int id);
-    Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecificationEntity<T> spec);
-    Task<T?> GetEntityWithSpec(ISpecificationEntity<T> spec);
+    Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T> spec);
+    Task<T?> GetEntityWithSpec(ISpecification<T> spec);
 
     // COUNT
-    Task<int> CountAsync(ISpecificationEntity<T> spec);
+    Task<int> CountAsync(ISpecification<T> spec);
 
     // INSERT, DELETE, UPDATE
     public T Insert(T entity);

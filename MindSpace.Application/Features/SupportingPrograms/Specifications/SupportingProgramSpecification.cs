@@ -1,36 +1,48 @@
 ﻿using MindSpace.Application.Specifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MindSpace.Application.Features.SupportingPrograms.Specs
+namespace MindSpace.Application.Features.SupportingPrograms.Specifications
 {
     public class SupportingProgramSpecification : BaseSpecification<SupportingProgram>
     {
+        // =====================================
+        // === Constructors
+        // =====================================
+
         /// <summary>
-        /// Filter Supporting Program with params
+        /// Using short circuit
+        /// if FALSE || TRUE, then consider the TRUE
+        /// if TRUE || ..., then first one always TRUE, which maesn don't have value of MinQuantity and MaxQuantity
+        /// 
+        /// Constructor for Pagination and Query
         /// </summary>
-        /// <param name="spParams"></param>
-        public SupportingProgramSpecification(SupportingProgramSpecParams spParams)
+        /// <param name="specParams"></param>
+        public SupportingProgramSpecification(SupportingProgramSpecParams specParams)
             : base(x =>
-                (!spParams.MinQuantity.HasValue || x.MaxQuantity >= spParams.MinQuantity) &&
-                (!spParams.MaxQuantity.HasValue || x.MaxQuantity <= spParams.MaxQuantity))
+                (!specParams.MinQuantity.HasValue || x.MaxQuantity >= specParams.MinQuantity) &&
+                (!specParams.MaxQuantity.HasValue || x.MaxQuantity <= specParams.MaxQuantity) &&
+                (!specParams.ManagerId.HasValue || x.ManagerId.Equals(specParams.ManagerId)) &&
+                (!specParams.SchoolId.HasValue || x.SchoolId.Equals(specParams.SchoolId)) &&
+                (!specParams.PsychologistId.HasValue || x.ManagerId.Equals(specParams.PsychologistId)) &&
+                (!specParams.StartDateAt.HasValue || x.StartDateAt.Equals(specParams.StartDateAt)))
         {
 
-            ApplyPaging(spParams.PageSize * (spParams.PageIndex - 1), spParams.PageSize);
+            // Add Paging
+            AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
 
-            if (!string.IsNullOrEmpty(spParams.Sort))
+            // Add Sorting
+            if (!string.IsNullOrEmpty(specParams.Sort))
             {
-                switch (spParams.Sort)
+                switch (specParams.Sort)
                 {
-                    case "managerIdAsc":
-                        AddOrderBy(x => x.ManagerId.ToString()); break;
-                    case "managerIdDesc":
-                        AddOrderBy(x => x.ManagerId.ToString()); break;
+                    case "maxQuantityAsc":
+                        AddOrderBy(x => x.MaxQuantity.ToString()); break;
+                    case "maxQuantityDesc":
+                        AddOrderByDescending(x => x.MaxQuantity.ToString()); break;
+                    case "startDateAsc":
+                        AddOrderBy(x => x.StartDateAt); break;
+                    case "startDateDesc":
+                        AddOrderByDescending(x => x.StartDateAt); break;
                     default:
                         AddOrderBy(x => x.Id.ToString()); break;
                 }
