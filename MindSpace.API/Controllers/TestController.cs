@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MindSpace.Application.Features.SupportingPrograms.Specs;
+using MindSpace.Application.Features.SupportingPrograms.Specifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.SupportingPrograms;
 

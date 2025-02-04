@@ -1,44 +1,43 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace MindSpace.Infrastructure.Configurations;
+
+using Domain.Entities.Constants;
+using Domain.Entities.SupportingPrograms;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MindSpace.Domain.Entities.Constants;
-using MindSpace.Domain.Entities.SupportingPrograms;
 
-namespace MindSpace.Infrastructure.Configurations
+internal class ResourceConfiguration : IEntityTypeConfiguration<Resource>
 {
-    internal class ResourceConfiguration : IEntityTypeConfiguration<Resource>
+    public void Configure(EntityTypeBuilder<Resource> builder)
     {
-        public void Configure(EntityTypeBuilder<Resource> builder)
-        {
-            // Table Name
-            builder.ToTable("Resources", schema: "dbo");
+        // Table Name
+        builder.ToTable("Resources", "dbo");
 
-            // Properties
-            builder.Property(r => r.ResourceType)
+        // Properties
+        builder.Property(r => r.ResourceType)
             .IsRequired()
             .HasConversion(
-                v => v.ToString(),
-                v => (ResourceType)Enum.Parse(typeof(ResourceType), v.ToString()));
+            convertToProviderExpression: v => v.ToString(),
+            convertFromProviderExpression: v => (ResourceType)Enum.Parse(typeof(ResourceType), v.ToString()));
 
-            builder.Property(r => r.ArticleUrl)
-                .HasMaxLength(500)
-                .IsRequired();
+        builder.Property(r => r.ArticleUrl)
+            .HasMaxLength(500)
+            .IsRequired();
 
-            builder.Property(r => r.Title)
-                .HasMaxLength(200)
-                .IsUnicode(true)
-                .IsRequired();
+        builder.Property(r => r.Title)
+            .HasMaxLength(200)
+            .IsUnicode()
+            .IsRequired();
 
-            builder.Property(r => r.Introduction)
-                .IsUnicode(true)
-                .HasMaxLength(1000);
+        builder.Property(r => r.Introduction)
+            .IsUnicode()
+            .HasMaxLength(1000);
 
-            builder.Property(r => r.ThumbnailUrl)
-                .HasMaxLength(500);
+        builder.Property(r => r.ThumbnailUrl)
+            .HasMaxLength(500);
 
-            // 1 Manager - M Resources
-            builder.HasOne(r => r.Manager)
-                .WithMany(sm => sm.Resources)
-                .HasForeignKey(r => r.ManagerId);
-        }
+        // 1 Manager - M Resources
+        builder.HasOne(r => r.Manager)
+            .WithMany(sm => sm.Resources)
+            .HasForeignKey(r => r.ManagerId);
     }
 }

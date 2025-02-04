@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace MindSpace.Application.Specifications
 {
-    public class BaseSpecification<T> : ISpecificationEntity<T>
+    public class BaseSpecification<T> : ISpecification<T>
     {
         // =====================================
         // === Fields & Props
@@ -63,7 +63,7 @@ namespace MindSpace.Application.Specifications
         /// </summary>
         /// <param name="skip"></param>
         /// <param name="take"></param>
-        protected void ApplyPaging(int skip, int take)
+        protected void AddPaging(int skip, int take)
         {
             Skip = skip;
             Take = take;
@@ -73,7 +73,7 @@ namespace MindSpace.Application.Specifications
         /// <summary>
         /// Apply Distinct to the query
         /// </summary>
-        protected void ApplyDistinct()
+        protected void AddDistinct()
         {
             IsDistinct = true;
         }
@@ -83,7 +83,7 @@ namespace MindSpace.Application.Specifications
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        protected IQueryable<T> ApplyCriteria(IQueryable<T> query)
+        protected IQueryable<T> AddCriteria(IQueryable<T> query)
         {
             if (Criteria != null)
             {

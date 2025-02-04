@@ -1,14 +1,12 @@
 ﻿namespace MindSpace.Infrastructure.Repositories;
 
+using Application.Specifications;
 using Domain.Entities;
+using Domain.Interfaces.Repos;
+using Domain.Interfaces.Specifications;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Specifications;
-using MindSpace.Domain.Interfaces.Repos;
-using MindSpace.Domain.Interfaces.Specifications;
 using Persistence;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {
@@ -17,6 +15,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     // ===========================
 
     private readonly ApplicationDbContext _dbContext;
+
     private readonly ILogger _logger;
 
     // ===========================
@@ -34,7 +33,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     // ===========================
 
     /// <summary>
-    /// Insert a new record of a entity
+    ///     Insert a new record of a entity
     /// </summary>
     /// <param name="entity"></param>
     /// <returns></returns>
@@ -56,7 +55,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     }
 
     /// <summary>
-    /// Update Entity
+    ///     Update Entity
     /// </summary>
     /// <param name="entityToUpdate"></param>
     /// <returns></returns>
@@ -78,7 +77,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     }
 
     /// <summary>
-    /// Delete an entity
+    ///     Delete an entity
     /// </summary>
     /// <param name="entityToDelete"></param>
     /// <returns></returns>
@@ -88,10 +87,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         {
             if (entityToDelete == null) throw new ArgumentNullException($"[{nameof(T)}] Delete {entityToDelete} not exists.");
 
-            if (_dbContext.Set<T>().Entry(entityToDelete).State == EntityState.Detached)
-            {
-                _dbContext.Set<T>().Attach(entityToDelete);
-            }
+            if (_dbContext.Set<T>().Entry(entityToDelete).State == EntityState.Detached) _dbContext.Set<T>().Attach(entityToDelete);
             var deletedEntity = _dbContext.Set<T>().Remove(entityToDelete).Entity;
             return deletedEntity;
         }
@@ -104,7 +100,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     }
 
     /// <summary>
-    /// Delete an object base on id 
+    ///     Delete an object base on id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -115,7 +111,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         {
             if (id == null) throw new ArgumentNullException($"[{nameof(T)}] Delete {id} failed.");
 
-            T? entityToDelete = _dbContext.Set<T>().Find(id);
+            var entityToDelete = _dbContext.Set<T>().Find(id);
             return Delete(entityToDelete);
         }
         catch (ArgumentNullException ex)
@@ -130,69 +126,55 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     // === GET queries with Specification
     // ===================================
 
-
     /// <summary>
-    /// Apply the spec into the query
+    ///     Get the list based on spec
     /// </summary>
     /// <param name="spec"></param>
     /// <returns></returns>
-    private IQueryable<T> ApplySpecification(ISpecificationEntity<T> spec)
-    {
-        // convert collection into iqueryable, enable deferred execution
-        IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
-
-        return SpecificationEvaluator<T>.GetQuery(query, spec);
-    }
+    public async Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T> spec) => await ApplySpecification(spec).ToListAsync();
 
     /// <summary>
-    /// Get the list based on spec
-    /// </summary>
-    /// <param name="spec"></param>
-    /// <returns></returns>
-    public async Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecificationEntity<T> spec)
-    {
-        return await ApplySpecification(spec).ToListAsync();
-    }
-
-    /// <summary>
-    /// Get the individual item based on spec
+    ///     Get the individual item based on spec
     /// </summary>
     /// <param name="spec"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public async Task<T?> GetEntityWithSpec(ISpecificationEntity<T> spec)
-    {
-        return await ApplySpecification(spec).FirstOrDefaultAsync();
-    }
+    public async Task<T?> GetEntityWithSpec(ISpecification<T> spec) => await ApplySpecification(spec).FirstOrDefaultAsync();
 
     /// <summary>
-    /// Get all records of the entity
+    ///     Get all records of the entity
     /// </summary>
     /// <returns></returns>
-    public async Task<IReadOnlyList<T>> GetAllAsync()
-    {
-        return await _dbContext.Set<T>().ToListAsync();
-    }
+    public async Task<IReadOnlyList<T>> GetAllAsync() => await _dbContext.Set<T>().ToListAsync();
 
     /// <summary>
-    /// Get entity by id
+    ///     Get entity by id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public async Task<T?> GetByIdAsync(int id)
-    {
-        return await _dbContext.Set<T>().FirstOrDefaultAsync();
-    }
+    public async Task<T?> GetByIdAsync(int id) => await _dbContext.Set<T>().FirstOrDefaultAsync();
 
     /// <summary>
-    /// Count number of records with filter
+    ///     Count number of records with filter
     /// </summary>
     /// <param name="spec"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public async Task<int> CountAsync(ISpecificationEntity<T> spec)
+    public async Task<int> CountAsync(ISpecification<T> spec)
     {
         var query = _dbContext.Set<T>().AsQueryable();
-        return await SpecificationEvaluator<T>.GetCountQuery(query, spec).CountAsync();
+        return await SpecificationQueryBuilder<T>.BuildCountQuery(query, spec).CountAsync();
+    }
+
+    /// <summary>
+    ///     Apply the spec into the query
+    /// </summary>
+    /// <param name="spec"></param>
+    /// <returns></returns>
+    private IQueryable<T> ApplySpecification(ISpecification<T> spec)
+    {
+        // Create base query under the set<T> enable deferred execution
+        IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
+        return SpecificationQueryBuilder<T>.BuildQuery(query, spec);
     }
 }

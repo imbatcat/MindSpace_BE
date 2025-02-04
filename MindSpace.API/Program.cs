@@ -6,7 +6,6 @@ using MindSpace.Application.Extensions;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Infrastructure.Extensions;
 using MindSpace.Infrastructure.Persistence;
-using MindSpace.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 

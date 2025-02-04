@@ -1,29 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace MindSpace.Infrastructure.Configurations;
+
+using Domain.Entities.Constants;
+using Domain.Entities.Tests;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MindSpace.Domain.Entities.Constants;
-using MindSpace.Domain.Entities.Tests;
 
-namespace MindSpace.Infrastructure.Configurations
+internal class TestQuestionConfiguration : IEntityTypeConfiguration<TestQuestion>
 {
-    internal class TestQuestionConfiguration : IEntityTypeConfiguration<TestQuestion>
+    public void Configure(EntityTypeBuilder<TestQuestion> builder)
     {
-        public void Configure(EntityTypeBuilder<TestQuestion> builder)
-        {
-            builder.ToTable("TestQuestions", schema: "dbo");
+        builder.ToTable("TestQuestions", "dbo");
 
-            // 1 QuestionCategory - M TestQuestions
-            builder
-                .HasOne(tq => tq.QuestionCategory)
-                .WithMany()
-                .HasForeignKey(qo => qo.QuestionCategoryId)
-                .IsRequired(false);
+        // 1 QuestionCategory - M TestQuestions
+        builder
+            .HasOne(tq => tq.QuestionCategory)
+            .WithMany()
+            .HasForeignKey(qo => qo.QuestionCategoryId)
+            .IsRequired(false);
 
-            builder.Property(a => a.QuestionFormat)
-                .IsRequired()
-                .HasConversion(
-                    s => s.ToString(),
-                    s => Enum.Parse<QuestionFormats>(s))
-                .HasDefaultValue(QuestionFormats.MultipleChoice);
-        }
+        builder.Property(a => a.QuestionFormat)
+            .IsRequired()
+            .HasConversion(
+            convertToProviderExpression: s => s.ToString(),
+            convertFromProviderExpression: s => Enum.Parse<QuestionFormats>(s))
+            .HasDefaultValue(QuestionFormats.MultipleChoice);
     }
 }

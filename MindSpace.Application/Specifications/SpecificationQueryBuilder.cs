@@ -1,15 +1,9 @@
 ﻿using MindSpace.Domain.Entities;
 using MindSpace.Domain.Interfaces.Specifications;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MindSpace.Application.Specifications
 {
-    public class SpecificationEvaluator<T> where T : BaseEntity
+    public class SpecificationQueryBuilder<T> where T : BaseEntity
     {
         /// <summary>
         /// Attach the Expression into IQueryable
@@ -17,7 +11,7 @@ namespace MindSpace.Application.Specifications
         /// <param name="query"></param>
         /// <param name="spec"></param>
         /// <returns></returns>
-        public static IQueryable<T> GetQuery(IQueryable<T> query, ISpecificationEntity<T> spec)
+        public static IQueryable<T> BuildQuery(IQueryable<T> query, ISpecification<T> spec)
         {
             // WHERE x.Brand = "Hitachi"
             if (spec.Criteria != null)
@@ -58,7 +52,7 @@ namespace MindSpace.Application.Specifications
         /// <param name="query"></param>
         /// <param name="spec"></param>
         /// <returns></returns>
-        public static IQueryable<T> GetCountQuery(IQueryable<T> query, ISpecificationEntity<T> spec)
+        public static IQueryable<T> BuildCountQuery(IQueryable<T> query, ISpecification<T> spec)
         {
             // WHERE x.Brand = "Hitachi"
             if (spec.Criteria != null)
@@ -67,6 +61,7 @@ namespace MindSpace.Application.Specifications
             }
 
             // DISTINCT
+            // - Distinct can affect performance, recommend not using
             if (spec.IsDistinct != null)
             {
                 query = query.Distinct();

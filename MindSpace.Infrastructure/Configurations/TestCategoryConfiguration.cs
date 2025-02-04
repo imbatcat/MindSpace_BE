@@ -1,16 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MindSpace.Domain.Entities.Tests;
+﻿namespace MindSpace.Infrastructure.Configurations;
 
-namespace MindSpace.Infrastructure.Configurations
+using Domain.Entities.Tests;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+internal class TestCategoryConfiguration : IEntityTypeConfiguration<TestCategory>
 {
-    internal class TestCategoryConfiguration : IEntityTypeConfiguration<TestCategory>
+    public void Configure(EntityTypeBuilder<TestCategory> builder)
     {
-        public void Configure(EntityTypeBuilder<TestCategory> builder)
-        {
-            builder.ToTable("TestCategories", schema: "dbo");
-            //Properties
-            builder.Property(tc => tc.Name).IsRequired().HasMaxLength(100);
-        }
+        builder.ToTable("TestCategories", "dbo");
+        //Properties
+        builder.Property(tc => tc.Name).IsRequired().HasMaxLength(100);
     }
 }

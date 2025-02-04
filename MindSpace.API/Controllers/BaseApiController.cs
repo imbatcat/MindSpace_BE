@@ -1,10 +1,6 @@
 ﻿using Asp.Versioning;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.Helpers.Requests;
-using MindSpace.Domain.Entities;
-using MindSpace.Domain.Interfaces.Repos;
-using MindSpace.Domain.Interfaces.Specifications;
 
 namespace MindSpace.API.Controllers
 {
@@ -13,5 +9,10 @@ namespace MindSpace.API.Controllers
     [Route("api/v{version:apiVersion}/[controller]")]
     public class BaseApiController : ControllerBase
     {
+        protected ActionResult PaginationOkResult<T>(IReadOnlyList<T> items, int count, int pageIndex, int pageSize)
+        {
+            var pagination = new Pagination<T>(pageIndex, pageSize, count, items);
+            return Ok(pagination);
+        }
     }
 }

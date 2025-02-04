@@ -1,9 +1,8 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MindSpace.API.Helpers.Requests;
+using MindSpace.Application.Features.SupportingPrograms.Queries.GetCountSupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
-using MindSpace.Application.Features.SupportingPrograms.Specs;
+using MindSpace.Application.Features.SupportingPrograms.Specifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.API.Controllers
@@ -34,7 +33,14 @@ namespace MindSpace.API.Controllers
             [FromQuery] SupportingProgramSpecParams specParams)
         {
             var supportPrograms = await _mediator.Send(new GetSupportingProgramsQuery(specParams));
-            return Ok(supportPrograms);
+            var count = await _mediator.Send(new GetCountSupportingProgramsQuery(specParams));
+
+            return PaginationOkResult<SupportingProgram>(
+                supportPrograms,
+                count,
+                specParams.PageIndex,
+                specParams.PageSize
+            );
         }
 
         // ====================================

@@ -1,9 +1,9 @@
 ﻿namespace MindSpace.Infrastructure.Repositories;
 
 using Domain.Entities;
+using Domain.Interfaces.Repos;
 using Microsoft.Extensions.Logging;
-using MindSpace.Domain.Interfaces.Repos;
-using MindSpace.Infrastructure.Persistence;
+using Persistence;
 using System.Collections.Concurrent;
 
 public class UnitOfWork : IUnitOfWork
@@ -13,7 +13,9 @@ public class UnitOfWork : IUnitOfWork
     // ===================================
 
     private readonly ApplicationDbContext _dbContext;
+
     private readonly ILoggerFactory _loggerFactory;
+
     private ConcurrentDictionary<string, object> _repos;
 
     // ===================================
@@ -30,7 +32,7 @@ public class UnitOfWork : IUnitOfWork
     // ===================================
 
     /// <summary>
-    /// Dispose object
+    ///     Dispose object
     /// </summary>
     public void Dispose()
     {
@@ -39,40 +41,35 @@ public class UnitOfWork : IUnitOfWork
     }
 
     /// <summary>
-    /// Save change async
+    ///     Save change async
     /// </summary>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public async Task<int> CompleteAsync()
-    {
-        return await _dbContext.SaveChangesAsync();
-    }
+    public async Task<int> CompleteAsync() => await _dbContext.SaveChangesAsync();
 
     /// <summary>
-    /// For example type = "Customer", then 1 GenericRepository of type Customer is created or acccesed if it's created
+    ///     For example type = "Customer", then 1 GenericRepository of type Customer is created or acccesed if it's created
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
     public IGenericRepository<T> Repository<T>() where T : BaseEntity
     {
-        if (_repos == null)
-        {
-            _repos = new ConcurrentDictionary<string, object>();
-        }
+        if (_repos == null) _repos = new ConcurrentDictionary<string, object>();
 
         var typeEntityName = typeof(T).Name;
 
         // Using reflection to create an instanceof GenericRepository with type T
         // Passing db context for each repository
-        var repoInstanceTypeT = _repos.GetOrAdd(typeEntityName, _ =>
+        var repoInstanceTypeT = _repos.GetOrAdd(typeEntityName,
+        valueFactory: _ =>
         {
             var repoType = typeof(GenericRepository<T>);
             var repoLogger = _loggerFactory.CreateLogger<GenericRepository<T>>();
 
             var repoInstance = Activator.CreateInstance(
-                repoType,
-                _dbContext,
-                repoLogger);
+            repoType,
+            _dbContext,
+            repoLogger);
 
             return repoInstance;
         });

@@ -1,37 +1,36 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace MindSpace.Infrastructure.Configurations;
+
+using Domain.Entities.SupportingPrograms;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MindSpace.Domain.Entities.SupportingPrograms;
 
-namespace MindSpace.Infrastructure.Configurations
+internal class FeedbackConfiguration : IEntityTypeConfiguration<Feedback>
 {
-    internal class FeedbackConfiguration : IEntityTypeConfiguration<Feedback>
+    public void Configure(EntityTypeBuilder<Feedback> builder)
     {
-        public void Configure(EntityTypeBuilder<Feedback> builder)
-        {
-            // Table Name
-            builder.ToTable("Feedbacks", schema: "dbo");
+        // Table Name
+        builder.ToTable("Feedbacks", "dbo");
 
-            // Properties
-            builder.Property(f => f.FeedbackContent)
-                .IsRequired()
-                .HasMaxLength(200)
-                .IsUnicode(true);
+        // Properties
+        builder.Property(f => f.FeedbackContent)
+            .IsRequired()
+            .HasMaxLength(200)
+            .IsUnicode();
 
-            builder.Property(f => f.Rating)
-                .IsRequired()
-                .HasPrecision(2, 1);
+        builder.Property(f => f.Rating)
+            .IsRequired()
+            .HasPrecision(2, 1);
 
-            // 1 Student - M Feedbacks
-            builder.HasOne(f => f.Student)
-                .WithMany(s => s.Feedbacks)
-                .HasForeignKey(f => f.StudentId)
-                .OnDelete(DeleteBehavior.ClientCascade);
+        // 1 Student - M Feedbacks
+        builder.HasOne(f => f.Student)
+            .WithMany(s => s.Feedbacks)
+            .HasForeignKey(f => f.StudentId)
+            .OnDelete(DeleteBehavior.ClientCascade);
 
-            // 1 Psychologist - M Feedbacks
-            builder.HasOne(f => f.Psychologist)
-                .WithMany(p => p.Feedbacks)
-                .HasForeignKey(f => f.PsychologistId)
-                .OnDelete(DeleteBehavior.ClientCascade);
-        }
+        // 1 Psychologist - M Feedbacks
+        builder.HasOne(f => f.Psychologist)
+            .WithMany(p => p.Feedbacks)
+            .HasForeignKey(f => f.PsychologistId)
+            .OnDelete(DeleteBehavior.ClientCascade);
     }
 }
