@@ -4,7 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 using MindSpace.Application.Commons.Utilities;
 using MindSpace.Application.Commons.Utilities.Seeding;
 using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Interfaces.Repos;
 using MindSpace.Infrastructure.Persistence;
+using MindSpace.Infrastructure.Repositories;
 using MindSpace.Infrastructure.Seeders;
 
 namespace MindSpace.Infrastructure.Extensions
@@ -31,6 +33,9 @@ namespace MindSpace.Infrastructure.Extensions
                 services.AddScoped<IEntityOrderProvider, EntityOrderProvider>();
                 services.AddScoped<IDataCleaner, DatabaseCleaner>();
                 services.AddScoped<ApplicationDbContextSeeder>();
+
+                // Add Unit Of Work
+                services.AddScoped<IUnitOfWork, UnitOfWork>();
             }
             catch (Exception)
             {

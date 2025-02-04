@@ -66,8 +66,8 @@ public class UnitOfWork : IUnitOfWork
         // Passing db context for each repository
         var repoInstanceTypeT = _repos.GetOrAdd(typeEntityName, _ =>
         {
-            var repoLogger = _loggerFactory.CreateLogger(typeEntityName);
             var repoType = typeof(GenericRepository<T>);
+            var repoLogger = _loggerFactory.CreateLogger<GenericRepository<T>>();
 
             var repoInstance = Activator.CreateInstance(
                 repoType,

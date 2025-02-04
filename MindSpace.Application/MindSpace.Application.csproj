@@ -21,7 +21,7 @@
 
 	<ItemGroup>
 	  <Folder Include="Features\SupportingPrograms\Commands\" />
+	  <Folder Include="Features\SupportingPrograms\Queries\CountSupportingPrograms\" />
 	  <Folder Include="Features\SupportingPrograms\Validators\" />
-	  <Folder Include="Features\SupportingPrograms\Queries\" />
 	</ItemGroup>
 </Project>
