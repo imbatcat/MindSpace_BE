@@ -12,7 +12,7 @@ public interface IGenericRepository<T> where T : BaseEntity
     Task<T?> GetEntityWithSpec(ISpecificationEntity<T> spec);
 
     // COUNT
-    Task<int> CountAsync();
+    Task<int> CountAsync(ISpecificationEntity<T> spec);
 
     // INSERT, DELETE, UPDATE
     public T Insert(T entity);

@@ -77,5 +77,19 @@ namespace MindSpace.Application.Specifications
         {
             IsDistinct = true;
         }
+
+        /// <summary>
+        /// Apply an extra criteria
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        protected IQueryable<T> ApplyCriteria(IQueryable<T> query)
+        {
+            if (Criteria != null)
+            {
+                query = query.Where(Criteria);
+            }
+            return query;
+        }
     }
 }

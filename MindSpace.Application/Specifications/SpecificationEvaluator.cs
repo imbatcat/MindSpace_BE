@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MindSpace.Application.Specifications
 {
@@ -46,6 +47,29 @@ namespace MindSpace.Application.Specifications
             if (spec.IsPagingEnabled)
             {
                 query = query.Skip(spec.Skip).Take(spec.Take);
+            }
+
+            return query;
+        }
+
+        /// <summary>
+        /// Get Count Entities Query
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="spec"></param>
+        /// <returns></returns>
+        public static IQueryable<T> GetCountQuery(IQueryable<T> query, ISpecificationEntity<T> spec)
+        {
+            // WHERE x.Brand = "Hitachi"
+            if (spec.Criteria != null)
+            {
+                query = query.Where(spec.Criteria);
+            }
+
+            // DISTINCT
+            if (spec.IsDistinct != null)
+            {
+                query = query.Distinct();
             }
 
             return query;

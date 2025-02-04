@@ -15,15 +15,17 @@ namespace MindSpace.Infrastructure.Extensions
         {
             try
             {
+                // Add SqlServer and ConnectionString
                 var connectionString = configuration.GetConnectionString("MindSpaceDb");
-                services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString).EnableSensitiveDataLogging());
+                services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString).EnableSensitiveDataLogging());
 
                 // Add Identity services (authentication with tokens and cookies) with role supports, using ApplicationDbContext as the data store for Identity
                 services.AddIdentityApiEndpoints<ApplicationUser>()
                     .AddRoles<ApplicationRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-                // Seeders
+                // Add Seeders
                 services.AddScoped<IFileReader, FileReader>();
                 services.AddScoped<IIdentitySeeder, IdentitySeeder>();
                 services.AddScoped<IEntityOrderProvider, EntityOrderProvider>();

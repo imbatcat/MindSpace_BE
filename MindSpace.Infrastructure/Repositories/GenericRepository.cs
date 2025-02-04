@@ -149,7 +149,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     /// </summary>
     /// <param name="spec"></param>
     /// <returns></returns>
-    public async Task<IReadOnlyList<T>> GetAllAsync(ISpecificationEntity<T> spec)
+    public async Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecificationEntity<T> spec)
     {
         return await ApplySpecification(spec).ToListAsync();
     }
@@ -163,5 +163,36 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     public async Task<T?> GetEntityWithSpec(ISpecificationEntity<T> spec)
     {
         return await ApplySpecification(spec).FirstOrDefaultAsync();
+    }
+
+    /// <summary>
+    /// Get all records of the entity
+    /// </summary>
+    /// <returns></returns>
+    public async Task<IReadOnlyList<T>> GetAllAsync()
+    {
+        return await _dbContext.Set<T>().ToListAsync();
+    }
+
+    /// <summary>
+    /// Get entity by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public async Task<T?> GetByIdAsync(int id)
+    {
+        return await _dbContext.Set<T>().FirstOrDefaultAsync();
+    }
+
+    /// <summary>
+    /// Count number of records with filter
+    /// </summary>
+    /// <param name="spec"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public async Task<int> CountAsync(ISpecificationEntity<T> spec)
+    {
+        var query = _dbContext.Set<T>().AsQueryable();
+        return await SpecificationEvaluator<T>.GetCountQuery(query, spec).CountAsync();
     }
 }
