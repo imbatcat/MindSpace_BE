@@ -46,6 +46,10 @@ namespace MindSpace.Infrastructure.Persistence
 
         public async Task SeedAllAsync()
         {
+            await new JsonDataSeeder<QuestionCategory>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<QuestionCategory>>(), _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.QuestionCategorySeeder)
+                .SeedAsync();
+
             await new JsonDataSeeder<TestQuestion>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestQuestion>>(), _dbContext)
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.QuestionSeeder)
                 .SeedAsync();
@@ -118,10 +122,6 @@ namespace MindSpace.Infrastructure.Persistence
 
             await new JsonDataSeeder<ResourceSection>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<ResourceSection>>(), _dbContext)
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.ResourceSectionsSeeder)
-                .SeedAsync();
-
-            await new JsonDataSeeder<QuestionCategory>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<QuestionCategory>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.QuestionCategorySeeder)
                 .SeedAsync();
         }
     }

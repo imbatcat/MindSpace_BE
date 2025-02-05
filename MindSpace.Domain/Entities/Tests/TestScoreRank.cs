@@ -3,7 +3,7 @@
     public class TestScoreRank : BaseEntity
     {
         // 1 Specilization - M Test Score Ranks
-        public int SpecilizationId { get; set; }
+        public int SpecializationId { get; set; }
         public Specialization Specialization { get; set; }
 
         // Min Score and Max Score of a rank
