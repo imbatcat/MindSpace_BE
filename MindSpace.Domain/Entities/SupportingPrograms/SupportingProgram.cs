@@ -1,5 +1,6 @@
 ﻿using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.Owned;
+using System.Text.Json.Serialization;
 
 namespace MindSpace.Domain.Entities.SupportingPrograms
 {
@@ -15,16 +16,19 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
 
         // 1 Manager - M SupportingProgram
         public int ManagerId { get; set; }
+        [JsonIgnore]
         public virtual Manager Manager { get; set; }
 
 
         // 1 Psychologist - M SupportingProgram
         public int PsychologistId { get; set; }
+        [JsonIgnore]
         public virtual Psychologist Psychologist { get; set; }
 
 
         // 1 School - M Supporting Program
         public int SchoolId { get; set; }
+        [JsonIgnore]
         public virtual School School { get; set; }
 
 

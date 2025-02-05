@@ -20,7 +20,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Features\SupportingPrograms\Commands\" />
 	  <Folder Include="Features\SupportingPrograms\Profiles\" />
 	  <Folder Include="Features\SupportingPrograms\Validators\" />
 	</ItemGroup>
