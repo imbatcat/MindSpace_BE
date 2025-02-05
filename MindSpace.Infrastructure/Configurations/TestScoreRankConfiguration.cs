@@ -13,7 +13,7 @@ public class TestScoreRankConfiguration : IEntityTypeConfiguration<TestScoreRank
         // 1 Test - M TestScoreRank
         builder.HasOne(ts => ts.Specialization)
             .WithMany(s => s.TestScoreRanks)
-            .HasForeignKey(ts => ts.SpecilizationId);
+            .HasForeignKey(ts => ts.SpecializationId);
 
         // Scores must be >= 0 and <= 999
         builder.Property(ts => ts.MinScore)

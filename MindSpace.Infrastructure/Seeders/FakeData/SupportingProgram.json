@@ -59,9 +59,9 @@
       "Country": "Việt Nam"
     },
     "StartDateAt": "2024-04-15T11:00:00Z",
-    "ManagerId": 9,
+    "ManagerId": 10,
     "PsychologistId": 9,
-    "SchoolId": 2
+    "SchoolId": 1 
   },
   {
     "ThumbnailUrl": "https://example.com/thumbnail5.jpg",
