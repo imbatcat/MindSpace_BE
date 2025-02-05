@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetCountSupportingPrograms;
+using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Specifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
@@ -30,6 +31,11 @@ namespace MindSpace.API.Controllers
         // === GET
         // ====================================
 
+        /// <summary>
+        /// Get Supporting Programs By Params and Support Pagination
+        /// </summary>
+        /// <param name="specParams"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<SupportingProgram>>> GetSupportingPrograms(
             [FromQuery] SupportingProgramSpecParams specParams)
@@ -43,6 +49,19 @@ namespace MindSpace.API.Controllers
                 specParams.PageIndex,
                 specParams.PageSize
             );
+        }
+
+        /// <summary>
+        /// Get Supporting Program By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<IReadOnlyList<SupportingProgram>>> GetSupportingProgramById(
+            [FromQuery] int id)
+        {
+            var supportProgram = await _mediator.Send(new GetSupportingProgramByIdQuery(id));
+            return Ok(supportProgram);
         }
 
         // ====================================
