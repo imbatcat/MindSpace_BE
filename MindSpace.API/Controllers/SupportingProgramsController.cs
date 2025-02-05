@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetCountSupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
@@ -7,6 +8,7 @@ using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.API.Controllers
 {
+    [Authorize]
     public class SupportingProgramsController : BaseApiController
     {
         // ====================================

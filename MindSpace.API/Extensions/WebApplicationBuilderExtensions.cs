@@ -1,7 +1,12 @@
 ﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MindSpace.API.Middlewares;
+using Restaurants.Applications.Ultilities.Identity.Authentication;
 using Serilog;
+using System.Text;
 
 namespace MindSpace.API.Extensions
 {
@@ -10,14 +15,42 @@ namespace MindSpace.API.Extensions
         public static void AddPresentation(this WebApplicationBuilder builder)
         {
             builder.Services.AddControllers();
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtAccessTokenSettings:Secret"]!)),
+                    ValidIssuer = builder.Configuration["JwtAccessTokenSettings:Issuer"],
+                    ValidAudience = builder.Configuration["JwtAccessTokenSettings:Audience"],
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
 
+            builder.Services.AddAuthorization(options =>
+            {
+                var requireAuthPolicy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+                options.DefaultPolicy = requireAuthPolicy;
+            });
             builder.Services.AddSwaggerGen(c =>
                     {
-                        //add bearer authentication to swagger 
-                        c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
+                        c.SwaggerDoc("v1", new OpenApiInfo
                         {
-                            Type = SecuritySchemeType.Http,
-                            Scheme = "Bearer"
+                            Title = "jwtToken_Auth",
+                            Version = "v1"
+                        });
+                        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                        {
+                            Name = "Authorization",
+                            Type = SecuritySchemeType.ApiKey,
+                            Scheme = "Bearer",
+                            BearerFormat = "JWT",
+                            In = ParameterLocation.Header,
+                            Description = "JWT here"
                         });
 
                         //tells swagger that all requests will received a bearer token if theres one - this does not mean the request must have a token
@@ -43,6 +76,9 @@ namespace MindSpace.API.Extensions
             // Add Custom middlewares
             builder.Services.AddScoped<ErrorHandlingMiddleware>();
             builder.Services.AddScoped<TimeLoggingMiddleware>();
+
+            builder.Services.AddSingleton<IdTokenProvider>();
+            builder.Services.AddSingleton<AccessTokenProvider>();
 
             // Add Log
             builder.Host.UseSerilog((context, configuration) =>
