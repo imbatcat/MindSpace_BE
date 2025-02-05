@@ -25,7 +25,6 @@ public class IdentitySeeder(
                 {
                     var roles = IdentityData.GetRoles();
                     dbContext.Roles.AddRange(roles);
-                    dbContext.Roles.AddRange(roles);
                     await dbContext.SaveChangesAsync();
                 }
                 if (!dbContext.Users.Any())
@@ -44,7 +43,10 @@ public class IdentitySeeder(
     private async Task GetUserRoles(IEnumerable<ApplicationUser> users)
     {
         foreach (var user in users)
-            switch (user.FullName.ToLower())
+        {
+            //student one -> student
+            var strippedUserRole = user.FullName.ToLower().Split(' ')[0];
+            switch (strippedUserRole)
             {
                 case "student":
                     await userManager.AddToRoleAsync(user, UserRoles.Student);
@@ -66,5 +68,6 @@ public class IdentitySeeder(
                     await userManager.AddToRoleAsync(user, UserRoles.Manager);
                     break;
             }
+        }
     }
 }
