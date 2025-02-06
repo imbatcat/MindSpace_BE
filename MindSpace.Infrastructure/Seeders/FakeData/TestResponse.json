@@ -1,42 +1,34 @@
 ﻿[
   {
-    "TotalScore": 85,
-    "TestScoreRankResult": "Có khá nhiều dấu hiệu trầm cảm",
+    "TotalScore": 12,
+    "TestScoreRankResult": "Lo âu trung bình",
     "StudentId": 1,
-    "TestId": 1,
+    "TestPublicationId": 1,
     "CreateAt": "2024-01-01T08:00:00Z",
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "TotalScore": 72,
-    "TestScoreRankResult": "Có khá nhiều dấu hiệu trầm cảm",
-    "StudentId": 2,
-    "TestId": 1,
-    "CreateAt": "2024-01-02T09:30:00Z",
-    "UpdateAt": "2024-01-29T10:05:00Z"
+    "TotalScore": 11,
+    "TestScoreRankResult": "Trầm cảm trung bình",
+    "StudentId": 1,
+    "TestPublicationId": 2,
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "TotalScore": 90,
-    "TestScoreRankResult": "Rất nhiều biểu hiện trầm cảm",
-    "StudentId": 3,
-    "TestId": 2,
-    "CreateAt": "2024-01-03T10:15:00Z",
-    "UpdateAt": "2024-01-29T10:10:00Z"
+    "TotalScore": 15,
+    "TestScoreRankResult": "Mức độ kỷ luật tích cực trung bình",
+    "StudentId": 1,
+    "TestPublicationId": 3,
+    "CreateAt": "2024-05-22T10:00:00Z",
+    "UpdateAt": "2024-05-22T10:00:00Z"
   },
   {
-    "TotalScore": 65,
-    "TestScoreRankResult": "Có một vài dấu hiệu trầm cảm",
-    "StudentId": 4,
-    "TestId": 2,
-    "CreateAt": "2024-01-04T11:00:00Z",
-    "UpdateAt": "2024-01-29T10:15:00Z"
-  },
-  {
-    "TotalScore": 78,
-    "TestScoreRankResult": "Có khá nhiều dấu hiệu trầm cảm",
-    "StudentId": 5,
-    "TestId": 1,
-    "CreateAt": "2024-01-05T12:30:00Z",
-    "UpdateAt": "2024-01-29T10:20:00Z"
+    "TotalScore": null,
+    "TestScoreRankResult": null,
+    "StudentId": 1,
+    "TestPublicationId": 4,
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
   }
 ]

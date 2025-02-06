@@ -1,0 +1,86 @@
+﻿[
+  {
+    "CreateAt": "2024-02-02T08:00:00",
+    "UpdateAt": "2024-02-02T08:00:00",
+    "PsychologyTestId": 1,
+    "DisplayedText": "Không hề",
+    "Score": 0
+  },
+  {
+    "CreateAt": "2024-02-02T08:00:00",
+    "UpdateAt": "2024-02-02T08:00:00",
+    "PsychologyTestId": 1,
+    "DisplayedText": "Vài ngày",
+    "Score": 1
+  },
+  {
+    "CreateAt": "2024-02-02T08:00:00",
+    "UpdateAt": "2024-02-02T08:00:00",
+    "PsychologyTestId": 1,
+    "DisplayedText": "Hơn một nửa số ngày",
+    "Score": 2
+  },
+  {
+    "CreateAt": "2024-02-02T08:00:00",
+    "UpdateAt": "2024-02-02T08:00:00",
+    "PsychologyTestId": 1,
+    "DisplayedText": "Gần như mỗi ngày",
+    "Score": 3
+  },
+  {
+    "CreateAt": "2024-02-02T08:00:00",
+    "UpdateAt": "2024-02-02T08:00:00",
+    "PsychologyTestId": 2,
+    "DisplayedText": "Không hề",
+    "Score": 0
+  },
+  {
+    "CreateAt": "2024-02-02T08:00:00",
+    "UpdateAt": "2024-02-02T08:00:00",
+    "PsychologyTestId": 2,
+    "DisplayedText": "Vài ngày",
+    "Score": 1
+  },
+  {
+    "CreateAt": "2024-02-02T08:00:00",
+    "UpdateAt": "2024-02-02T08:00:00",
+    "PsychologyTestId": 2,
+    "DisplayedText": "Hơn một nửa số ngày",
+    "Score": 2
+  },
+  {
+    "CreateAt": "2024-02-02T08:00:00",
+    "UpdateAt": "2024-02-02T08:00:00",
+    "PsychologyTestId": 2,
+    "DisplayedText": "Gần như mỗi ngày",
+    "Score": 3
+  },
+  {
+    "CreateAt": "2024-02-02T08:00:00",
+    "UpdateAt": "2024-02-02T08:00:00",
+    "PsychologyTestId": 3,
+    "DisplayedText": "Không bao giờ",
+    "Score": 0
+  },
+  {
+    "CreateAt": "2024-02-02T08:00:00",
+    "UpdateAt": "2024-02-02T08:00:00",
+    "PsychologyTestId": 3,
+    "DisplayedText": "1-3 lần trong tuần",
+    "Score": 1
+  },
+  {
+    "CreateAt": "2024-02-02T08:00:00",
+    "UpdateAt": "2024-02-02T08:00:00",
+    "PsychologyTestId": 3,
+    "DisplayedText": "4-6 lần trong tuần",
+    "Score": 2
+  },
+  {
+    "CreateAt": "2024-02-02T08:00:00",
+    "UpdateAt": "2024-02-02T08:00:00",
+    "PsychologyTestId": 3,
+    "DisplayedText": "7 lần trở lên trong tuần",
+    "Score": 3
+  }
+]

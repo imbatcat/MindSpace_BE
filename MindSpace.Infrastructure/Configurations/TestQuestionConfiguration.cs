@@ -1,6 +1,5 @@
 ﻿namespace MindSpace.Infrastructure.Configurations;
 
-using Domain.Entities.Constants;
 using Domain.Entities.Tests;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,18 +10,20 @@ internal class TestQuestionConfiguration : IEntityTypeConfiguration<TestQuestion
     {
         builder.ToTable("TestQuestions", "dbo");
 
-        // 1 QuestionCategory - M TestQuestions
-        builder
-            .HasOne(tq => tq.QuestionCategory)
-            .WithMany()
-            .HasForeignKey(qo => qo.QuestionCategoryId)
-            .IsRequired(false);
+        //Indexing
+        builder.HasKey(tq => new { tq.TestId, tq.QuestionId }); // Composite primary key
 
-        builder.Property(a => a.QuestionFormat)
-            .IsRequired()
-            .HasConversion(
-            convertToProviderExpression: s => s.ToString(),
-            convertFromProviderExpression: s => Enum.Parse<QuestionFormats>(s))
-            .HasDefaultValue(QuestionFormats.MultipleChoice);
+        //Relationships
+        builder
+            .HasOne(tq => tq.Test)
+            .WithMany(t => t.TestQuestions)
+            .HasForeignKey(tq => tq.TestId)
+            .IsRequired();
+
+        builder
+            .HasOne(tq => tq.Question)
+            .WithMany(q => q.TestQuestions)
+            .HasForeignKey(tq => tq.QuestionId)
+            .IsRequired();
     }
 }

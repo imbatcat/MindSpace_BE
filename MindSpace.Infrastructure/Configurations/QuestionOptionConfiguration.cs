@@ -4,35 +4,19 @@ using Domain.Entities.Tests;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public class QuestionOptionConfiguration : IEntityTypeConfiguration<QuestionOption>
+internal class QuestionOptionConfiguration : IEntityTypeConfiguration<QuestionOption>
 {
     public void Configure(EntityTypeBuilder<QuestionOption> builder)
     {
         builder.ToTable("QuestionOptions", "dbo");
 
-        // 1 TestQuestion - M QuestionOptions
-        builder.HasOne(qo => qo.TestQuestion)
-            .WithMany(tq => tq.QuestionOptions)
-            .HasForeignKey(qo => qo.TestQuestionId)
+        // 1 Question - M QuestionOptions
+        builder.HasOne(qo => qo.Question)
+            .WithMany(q => q.QuestionOptions)
+            .HasForeignKey(qo => qo.QuestionId)
             .IsRequired(false);
 
-        // Option Text
-        builder.Property(qo => qo.OptionText).IsUnicode().HasMaxLength(500);
-
-        // Score must be >= 0 and <= 999
-        builder.Property(qo => qo.Score)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasAnnotation("Range", new[] { "0", "999" });
-
-        //builder.Property(qo => qo.IsTextArea)
-        //    .HasColumnType("bit");
-
-        // 1 QuestionCategory - M QuestionOptions
-        builder
-            .HasOne(qo => qo.QuestionCategory)
-            .WithMany(qc => qc.QuestionOptions)
-            .HasForeignKey(qo => qo.QuestionCategoryId)
-            .IsRequired(false);
+        // Displayed Text
+        builder.Property(qo => qo.DisplayedText).IsUnicode().HasMaxLength(500);
     }
 }

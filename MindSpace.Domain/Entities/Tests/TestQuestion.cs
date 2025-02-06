@@ -1,20 +1,12 @@
-﻿using MindSpace.Domain.Entities.Constants;
-
-namespace MindSpace.Domain.Entities.Tests
+﻿namespace MindSpace.Domain.Entities.Tests
 {
-    public class TestQuestion : BaseEntity
+    public class TestQuestion
     {
-        public string Title { get; set; }
-        public QuestionFormats QuestionFormat { get; set; }
-
         //Relationships
-        public virtual ICollection<TestQuestionOption> TestTestQuestions { get; set; } = new HashSet<TestQuestionOption>();
+        public int TestId { get; set; }
+        public virtual Test Test { get; set; }
 
-        // 1 question - M options
-        public virtual ICollection<QuestionOption> QuestionOptions { get; set; } = new HashSet<QuestionOption>();
-
-        // 1 Question Category - M Questions
-        public int? QuestionCategoryId { get; set; }
-        public QuestionCategory? QuestionCategory { get; set; }
+        public int QuestionId { get; set; }
+        public virtual Question Question { get; set; }
     }
 }

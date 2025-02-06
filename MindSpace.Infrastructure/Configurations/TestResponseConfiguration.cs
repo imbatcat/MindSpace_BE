@@ -11,11 +11,11 @@ internal class TestResponseConfiguration : IEntityTypeConfiguration<TestResponse
         builder.ToTable("TestResponses", "dbo");
 
         //Properties
-        builder.Property(tr => tr.TotalScore).IsRequired();
+        builder.Property(tr => tr.TotalScore).IsRequired(false);
 
         builder.Property(tr => tr.TestScoreRankResult)
             .IsUnicode()
-            .IsRequired()
+            .IsRequired(false)
             .HasMaxLength(500);
 
         //Relationships
@@ -25,8 +25,8 @@ internal class TestResponseConfiguration : IEntityTypeConfiguration<TestResponse
             .HasForeignKey(tr => tr.StudentId);
 
         builder
-            .HasOne(tr => tr.Test)
-            .WithMany(t => t.TestResponses)
-            .HasForeignKey(tr => tr.TestId);
+            .HasOne(tr => tr.TestPublication)
+            .WithMany(tp => tp.TestResponses)
+            .HasForeignKey(tr => tr.TestPublicationId);
     }
 }
