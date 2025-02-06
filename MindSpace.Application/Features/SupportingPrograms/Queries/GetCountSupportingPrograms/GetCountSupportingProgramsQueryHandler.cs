@@ -8,14 +8,27 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetCountSupp
 {
     public class GetCountSupportingProgramsQueryHandler : IRequestHandler<GetCountSupportingProgramsQuery, int>
     {
+
+        // ================================
+        // === Fields & Props
+        // ================================
+
         private readonly ILogger<GetCountSupportingProgramsQueryHandler> _logger;
         private readonly IUnitOfWork _unitOfWork;
+
+        // ================================
+        // === Constructors
+        // ================================
 
         public GetCountSupportingProgramsQueryHandler(ILogger<GetCountSupportingProgramsQueryHandler> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
         }
+
+        // ================================
+        // === Methods
+        // ================================
 
         public Task<int> Handle(GetCountSupportingProgramsQuery request, CancellationToken cancellationToken)
         {

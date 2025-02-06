@@ -14,15 +14,25 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
 {
     public class GetSupportingProgramByIdQueryHandler : IRequestHandler<GetSupportingProgramByIdQuery, SupportingProgram>
     {
+        // ================================
+        // === Fields & Props
+        // ================================
+
         private readonly ILogger<GetSupportingProgramByIdQueryHandler> _logger;
         private readonly IUnitOfWork _unitOfWork;
 
+        // ================================
+        // === Constructors
+        // ================================
         public GetSupportingProgramByIdQueryHandler(ILogger<GetSupportingProgramByIdQueryHandler> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
         }
 
+        // ================================
+        // === Methods
+        // ================================
         public async Task<SupportingProgram> Handle(GetSupportingProgramByIdQuery request, CancellationToken cancellationToken)
         {
             var supportingProgram = await _unitOfWork.Repository<SupportingProgram>().GetByIdAsync(request.Id)
