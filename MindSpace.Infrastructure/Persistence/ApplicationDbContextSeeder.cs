@@ -46,16 +46,9 @@ namespace MindSpace.Infrastructure.Persistence
 
         public async Task SeedAllAsync()
         {
-            await new JsonDataSeeder<QuestionCategory>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<QuestionCategory>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.QuestionCategorySeeder)
-                .SeedAsync();
-
-            await new JsonDataSeeder<TestQuestion>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestQuestion>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.QuestionSeeder)
-                .SeedAsync();
 
             await new JsonDataSeeder<Specialization>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<Specialization>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.Specialization)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.SpecializationSeeder)
                 .SeedAsync();
 
             await new JsonDataSeeder<School>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<School>>(), _dbContext)
@@ -63,21 +56,40 @@ namespace MindSpace.Infrastructure.Persistence
                 .SeedAsync();
 
             await new JsonDataSeeder<TestCategory>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestCategory>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestCategory)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestCategorySeeder)
                 .SeedAsync();
 
             await _identitySeeder.SeedAsync();
 
-            await new JsonDataSeeder<Test>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<Test>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.Test)
+            await new JsonDataSeeder<Test>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<Test>>(),
+                _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestSeeder)
                 .SeedAsync();
-
+            await new JsonDataSeeder<TestScoreRank>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestScoreRank>>(), _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestScoreRankSeeder)
+                .SeedAsync();
+            await new JsonDataSeeder<Question>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<Question>>(), _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.QuestionSeeder)
+                .SeedAsync();
+            await new JsonDataSeeder<PsychologyTestOption>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<PsychologyTestOption>>(), _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.PsychologyTestOptionSeeder)
+                .SeedAsync();
+            await new JsonDataSeeder<QuestionOption>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<QuestionOption>>(), _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.QuestionOptionSeeder)
+                .SeedAsync();
+            await new JsonDataSeeder<TestQuestion>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestQuestion>>(), _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestQuestionSeeder)
+                .SeedAsync();
+            
+            await new JsonDataSeeder<TestPublication>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestPublication>>(), _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestPublicationSeeder)
+                .SeedAsync();
             await new JsonDataSeeder<TestResponse>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestResponse>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestResponse)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestResponseSeeder)
                 .SeedAsync();
 
-            await new JsonDataSeeder<TestQuestionOption>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestQuestionOption>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestQuestionOption)
+            await new JsonDataSeeder<TestResponseItem>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestResponseItem>>(), _dbContext)
+                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestResponseItemSeeder)
                 .SeedAsync();
 
             await new JsonDataSeeder<PsychologistSchedule>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<PsychologistSchedule>>(), _dbContext)
@@ -92,17 +104,8 @@ namespace MindSpace.Infrastructure.Persistence
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.PaymentSeeder)
                 .SeedAsync();
 
-            await new JsonDataSeeder<QuestionOption>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<QuestionOption>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.QuestionOptionSeeder)
-                .SeedAsync();
 
-            await new JsonDataSeeder<TestResponseItem>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestResponseItem>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestResponseItemSeeder)
-                .SeedAsync();
 
-            await new JsonDataSeeder<TestScoreRank>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestScoreRank>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestScoreRankSeeder)
-                .SeedAsync();
 
             await new JsonDataSeeder<SupportingProgram>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<SupportingProgram>>(), _dbContext)
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.SupportingProgramSeeder)

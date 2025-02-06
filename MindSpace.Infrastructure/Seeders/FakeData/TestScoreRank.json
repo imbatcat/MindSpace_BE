@@ -1,74 +1,98 @@
 ﻿[
   {
-    "SpecializationId": 1,
+    "TestId": 1,
+    "MinScore": 0,
+    "MaxScore": 5,
+    "Result": "Lo âu tối thiểu",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "TestId": 1,
+    "MinScore": 6,
+    "MaxScore": 10,
+    "Result": "Lo âu nhẹ",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "TestId": 1,
+    "MinScore": 11,
+    "MaxScore": 15,
+    "Result": "Lo âu trung bình",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "TestId": 1,
+    "MinScore": 16,
+    "MaxScore": 21,
+    "Result": "Lo âu nặng",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "TestId": 2,
     "MinScore": 0,
     "MaxScore": 4,
-    "Result": "Lo âu tối thiểu",
-    "CreateAt": "2024-01-01T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:00:00Z"
+    "Result": "Trầm cảm tối thiểu",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
   },
   {
-    "SpecializationId": 1,
+    "TestId": 2,
     "MinScore": 5,
     "MaxScore": 9,
-    "Result": "Lo âu nhẹ",
-    "CreateAt": "2024-01-01T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:00:00Z"
+    "Result": "Trầm cảm nhẹ",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
   },
   {
-    "SpecializationId": 1,
+    "TestId": 2,
     "MinScore": 10,
     "MaxScore": 14,
-    "Result": "Lo âu trung bình",
-    "CreateAt": "2024-01-01T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:00:00Z"
+    "Result": "Trầm cảm trung bình",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
   },
   {
-    "SpecializationId": 1,
+    "TestId": 2,
     "MinScore": 15,
-    "MaxScore": 9999,
-    "Result": "Lo âu nghiêm trọng",
-    "CreateAt": "2024-01-01T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:00:00Z"
+    "MaxScore": 19,
+    "Result": "Trầm cảm nặng",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
   },
   {
-    "SpecializationId": 2,
+    "TestId": 2,
     "MinScore": 20,
-    "MaxScore": 34,
-    "Result": "Không trầm cảm",
-    "CreateAt": "2024-01-01T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:00:00Z"
+    "MaxScore": 27,
+    "Result": "Trầm cảm rất nặng",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
   },
   {
-    "SpecializationId": 2,
-    "MinScore": 35,
-    "MaxScore": 49,
-    "Result": "Có ít dấu hiệu trầm cảm nhẹ",
-    "CreateAt": "2024-01-01T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:00:00Z"
+    "TestId": 3,
+    "MinScore": 0,
+    "MaxScore": 10,
+    "Result": "Mức độ kỷ luật tích cực thấp",
+    "CreateAt": "2024-05-20T10:00:00Z",
+    "UpdateAt": "2024-05-20T10:00:00Z"
   },
   {
-    "SpecializationId": 2,
-    "MinScore": 50,
-    "MaxScore": 70,
-    "Result": "Có một vài dấu hiệu trầm cảm",
-    "CreateAt": "2024-01-01T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:00:00Z"
+    "TestId": 3,
+    "MinScore": 11,
+    "MaxScore": 20,
+    "Result": "Mức độ kỷ luật tích cực trung bình",
+    "CreateAt": "2024-05-20T10:00:00Z",
+    "UpdateAt": "2024-05-20T10:00:00Z"
   },
   {
-    "SpecializationId": 2,
-    "MinScore": 71,
-    "MaxScore": 85,
-    "Result": "Có khá nhiều dấu hiệu trầm cảm",
-    "CreateAt": "2024-01-01T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:00:00Z"
-  },
-  {
-    "SpecializationId": 2,
-    "MinScore": 86,
-    "MaxScore": 100,
-    "Result": "Rất nhiều biểu hiện trầm cảm",
-    "CreateAt": "2024-01-01T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:00:00Z"
+    "TestId": 3,
+    "MinScore": 21,
+    "MaxScore": 30,
+    "Result": "Mức độ kỷ luật tích cực cao",
+    "CreateAt": "2024-05-20T10:00:00Z",
+    "UpdateAt": "2024-05-20T10:00:00Z"
   }
 ]

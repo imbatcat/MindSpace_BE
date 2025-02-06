@@ -1,101 +1,234 @@
 ﻿[
   {
     "TestResponseId": 1,
-    "QuestionTitle": "Tôi cảm thấy có quá nhiều việc phải làm",
-    "IsTextArea": false,
-    "Score": 30,
-    "AnswerText": null,
+    "QuestionContent": "Bạn cảm thấy căng thẳng, lo lắng hoặc bất an",
+    "Score": 2,
+    "AnswerText": "Hơn một nửa số ngày",
     "CreateAt": "2024-01-01T08:00:00Z",
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
     "TestResponseId": 1,
-    "QuestionTitle": "Tôi thường dễ cáu kỉnh và khó chịu",
-    "IsTextArea": false,
-    "Score": 20,
-    "AnswerText": null,
-    "CreateAt": "2024-01-02T09:30:00Z",
-    "UpdateAt": "2024-01-29T10:05:00Z"
+    "QuestionContent": "Không thể ngưng hoặc kiểm soát lo lắng",
+    "Score": 1,
+    "AnswerText": "Vài ngày",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
     "TestResponseId": 1,
-    "QuestionTitle": "Tôi thường xuyên rơi vào các tình huống xung đột",
-    "IsTextArea": false,
-    "Score": 35,
-    "AnswerText": null,
-    "CreateAt": "2024-01-03T10:15:00Z",
-    "UpdateAt": "2024-01-29T10:10:00Z"
+    "QuestionContent": "Lo lắng quá mức về nhiều thứ",
+    "Score": 3,
+    "AnswerText": "Gần như mỗi ngày",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "TestResponseId": 1,
+    "QuestionContent": "Khó thư giãn",
+    "Score": 0,
+    "AnswerText": "Không hề",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "TestResponseId": 1,
+    "QuestionContent": "Bứt rứt đến mức khó ngồi yên",
+    "Score": 2,
+    "AnswerText": "Hơn một nửa số ngày",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "TestResponseId": 1,
+    "QuestionContent": "Trở nên dễ bực bội hoặc cáu kỉnh",
+    "Score": 1,
+    "AnswerText": "Vài ngày",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "TestResponseId": 1,
+    "QuestionContent": "Cảm thấy lo lắng như thể điều gì khủng khiếp có thể xảy ra",
+    "Score": 3,
+    "AnswerText": "Gần như mỗi ngày",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
     "TestResponseId": 2,
-    "QuestionTitle": "Tôi cảm thấy căng thẳng hoặc khó chịu về thể chất do stress",
-    "IsTextArea": false,
-    "Score": 37,
-    "AnswerText": null,
-    "CreateAt": "2024-01-05T12:30:00Z",
-    "UpdateAt": "2024-01-29T10:20:00Z"
+    "QuestionContent": "Ít quan tâm hoặc niềm vui khi làm việc",
+    "Score": 2,
+    "AnswerText": "Hơn một nửa số ngày",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
     "TestResponseId": 2,
-    "QuestionTitle": "Tôi duy trì giao tiếp bằng mắt thoải mái khi nói chuyện với mọi người",
-    "IsTextArea": false,
-    "Score": 35,
-    "AnswerText": null,
-    "CreateAt": "2024-01-06T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:30:00Z"
+    "QuestionContent": "Cảm thấy chán nản, chán chường, hoặc tuyệt vọng",
+    "Score": 3,
+    "AnswerText": "Gần như mỗi ngày",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "TestResponseId": 2,
+    "QuestionContent": "Khó ngủ hoặc duy trì giấc ngủ, hoặc ngủ quá nhiều",
+    "Score": 1,
+    "AnswerText": "Vài ngày",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "TestResponseId": 2,
+    "QuestionContent": "Cảm thấy mệt mỏi hoặc có ít năng lượng",
+    "Score": 2,
+    "AnswerText": "Hơn một nửa số ngày",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "TestResponseId": 2,
+    "QuestionContent": "Kém ăn hoặc ăn quá nhiều",
+    "Score": 0,
+    "AnswerText": "Không hề",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "TestResponseId": 2,
+    "QuestionContent": "Cảm thấy tồi tệ về bản thân - hoặc rằng bạn là một kẻ thất bại hoặc đã khiến bản thân hoặc gia đình thất vọng",
+    "Score": 3,
+    "AnswerText": "Gần như mỗi ngày",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "TestResponseId": 2,
+    "QuestionContent": "Khó tập trung vào mọi thứ, chẳng hạn như đọc báo hoặc xem tivi",
+    "Score": 1,
+    "AnswerText": "Vài ngày",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "TestResponseId": 2,
+    "QuestionContent": "Di chuyển hoặc nói chậm đến mức người khác có thể nhận thấy? Hoặc ngược lại - bồn chồn hoặc bồn chồn đến mức bạn đã di chuyển xung quanh nhiều hơn bình thường",
+    "Score": 2,
+    "AnswerText": "Hơn một nửa số ngày",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "TestResponseId": 2,
+    "QuestionContent": "Suy nghĩ rằng tốt hơn hết là bạn nên chết hoặc làm tổn thương bản thân theo một cách nào đó",
+    "Score": 0,
+    "AnswerText": "Không hề",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
     "TestResponseId": 3,
-    "QuestionTitle": "Tôi có thể diễn đạt suy nghĩ của mình một cách dễ dàng",
-    "IsTextArea": false,
-    "Score": 45,
-    "AnswerText": null,
-    "CreateAt": "2024-01-08T10:15:00Z",
-    "UpdateAt": "2024-01-29T10:40:00Z"
+    "QuestionContent": "Trong tuần vừa qua, bạn đã bao nhiêu lần sử dụng lời khen hoặc phần thưởng để khuyến khích con bạn làm điều gì đó tốt?",
+    "Score": 2,
+    "AnswerText": "4-6 lần trong tuần",
+    "CreateAt": "2024-05-22T10:00:00Z",
+    "UpdateAt": "2024-05-22T10:00:00Z"
   },
   {
     "TestResponseId": 3,
-    "QuestionTitle": "Tôi có thể bắt đầu cuộc trò chuyện với những người quen mới",
-    "IsTextArea": false,
-    "Score": 40,
-    "AnswerText": null,
-    "CreateAt": "2024-01-09T11:00:00Z",
-    "UpdateAt": "2024-01-29T10:45:00Z"
+    "QuestionContent": "Trong tuần vừa qua, bạn đã bao nhiêu lần giải thích cho con bạn lý do tại sao một hành vi nào đó là không được phép?",
+    "Score": 3,
+    "AnswerText": "7 lần trở lên trong tuần",
+    "CreateAt": "2024-05-22T10:00:00Z",
+    "UpdateAt": "2024-05-22T10:00:00Z"
+  },
+  {
+    "TestResponseId": 3,
+    "QuestionContent": "Trong tuần vừa qua, bạn có lắng nghe và tôn trọng ý kiến của con bạn không?",
+    "Score": 2,
+    "AnswerText": "4-6 lần trong tuần",
+    "CreateAt": "2024-05-22T10:00:00Z",
+    "UpdateAt": "2024-05-22T10:00:00Z"
+  },
+  {
+    "TestResponseId": 3,
+    "QuestionContent": "Trong tuần vừa qua, bạn có tạo không gian để con bạn tự do khám phá không?",
+    "Score": 1,
+    "AnswerText": "1-3 lần trong tuần",
+    "CreateAt": "2024-05-22T10:00:00Z",
+    "UpdateAt": "2024-05-22T10:00:00Z"
+  },
+  {
+    "TestResponseId": 3,
+    "QuestionContent": "Trong tuần vừa qua, bạn đã bao nhiêu lần cùng con tham gia vào các hoạt động vui chơi, giải trí hoặc học tập chung?",
+    "Score": 3,
+    "AnswerText": "7 lần trở lên trong tuần",
+    "CreateAt": "2024-05-22T10:00:00Z",
+    "UpdateAt": "2024-05-22T10:00:00Z"
+  },
+  {
+    "TestResponseId": 3,
+    "QuestionContent": "Trong tuần vừa qua, bạn đã bao nhiêu lần dạy con bạn cách giải quyết vấn đề một cách tích cực?",
+    "Score": 2,
+    "AnswerText": "4-6 lần trong tuần",
+    "CreateAt": "2024-05-22T10:00:00Z",
+    "UpdateAt": "2024-05-22T10:00:00Z"
+  },
+  {
+    "TestResponseId": 3,
+    "QuestionContent": "Trong tuần vừa qua, bạn có nhiều lần khuyến khích con nhận lỗi và khắc phục lỗi không?",
+    "Score": 1,
+    "AnswerText": "1-3 lần trong tuần",
+    "CreateAt": "2024-05-22T10:00:00Z",
+    "UpdateAt": "2024-05-22T10:00:00Z"
+  },
+  {
+    "TestResponseId": 3,
+    "QuestionContent": "Trong tuần vừa qua, bạn có cảm thấy mình kiểm soát được việc kỷ luật con cái?",
+    "Score": 3,
+    "AnswerText": "7 lần trở lên trong tuần",
+    "CreateAt": "2024-05-22T10:00:00Z",
+    "UpdateAt": "2024-05-22T10:00:00Z"
   },
   {
     "TestResponseId": 4,
-    "QuestionTitle": "Tôi cảm thấy tự tin khi đặt ra các quy tắc cho con mình",
-    "IsTextArea": false,
-    "Score": 30,
-    "AnswerText": null,
-    "CreateAt": "2024-01-14T16:00:00Z",
-    "UpdateAt": "2024-01-29T11:10:00Z"
+    "QuestionContent": "Bạn cảm thấy thế nào về cuộc sống hiện tại của mình?",
+    "Score": null,
+    "AnswerText": "Bình thường",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
   },
   {
     "TestResponseId": 4,
-    "QuestionTitle": "Trẻ em chỉ nên được khen ngợi khi chúng cố gắng hết sức",
-    "IsTextArea": false,
-    "Score": 35,
-    "AnswerText": null,
-    "CreateAt": "2024-01-15T17:00:00Z",
-    "UpdateAt": "2024-01-29T11:15:00Z"
+    "QuestionContent": "Bạn có thường xuyên cảm thấy lo lắng hoặc căng thẳng không?",
+    "Score": null,
+    "AnswerText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
   },
   {
-    "TestResponseId": 5,
-    "QuestionTitle": "Tôi không cho phép con tôi ngắt lời khi tôi đang nói",
-    "IsTextArea": false,
-    "Score": 40,
-    "AnswerText": null,
-    "CreateAt": "2024-01-12T14:00:00Z",
-    "UpdateAt": "2024-01-29T11:00:00Z"
+    "TestResponseId": 4,
+    "QuestionContent": "Bạn có gặp khó khăn trong việc tập trung vào việc học không?",
+    "Score": null,
+    "AnswerText": "Không",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
   },
   {
-    "TestResponseId": 5,
-    "QuestionTitle": "Con tôi không nhận được mọi thứ chúng yêu cầu",
-    "IsTextArea": false,
-    "Score": 38,
-    "AnswerText": null,
-    "CreateAt": "2024-01-13T15:00:00Z",
-    "UpdateAt": "2024-01-29T11:05:00Z"
+    "TestResponseId": 4,
+    "QuestionContent": "Bạn có cảm thấy mình hòa đồng với bạn bè và mọi người xung quanh không?",
+    "Score": null,
+    "AnswerText": "Bình thường",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "TestResponseId": 4,
+    "QuestionContent": "Bạn có hài lòng với các mối quan hệ của mình (gia đình, bạn bè, thầy cô) không?",
+    "Score": null,
+    "AnswerText": "Bình thường",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
   }
 ]

@@ -1,107 +1,86 @@
 ﻿[
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 1,
-    "OptionText": "Hoàn toàn không",
-    "Score": 0
+    "QuestionId": 25,
+    "DisplayedText": "Tốt",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 1,
-    "OptionText": "Hiếm khi",
-    "Score": 1
+    "QuestionId": 25,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 1,
-    "OptionText": "Thỉnh thoảng",
-    "Score": 2
+    "QuestionId": 25,
+    "DisplayedText": "Không tốt",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 1,
-    "OptionText": "Thường xuyên",
-    "Score": 3
+    "QuestionId": 26,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 1,
-    "OptionText": "Luôn luôn",
-    "Score": 4
+    "QuestionId": 26,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 2,
-    "OptionText": "Hoàn toàn ghét",
-    "Score": 0
+    "QuestionId": 26,
+    "DisplayedText": "Hiểm khi",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 2,
-    "OptionText": "Ghét",
-    "Score": 1
+    "QuestionId": 27,
+    "DisplayedText": "Có",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 2,
-    "OptionText": "Bình thường",
-    "Score": 2
+    "QuestionId": 27,
+    "DisplayedText": "Không",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 2,
-    "OptionText": "Thích",
-    "Score": 3
+    "QuestionId": 28,
+    "DisplayedText": "Có",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 2,
-    "OptionText": "Rất thích",
-    "Score": 4
+    "QuestionId": 28,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 3,
-    "OptionText": "Hoàn toàn phản đối",
-    "Score": 0
+    "QuestionId": 28,
+    "DisplayedText": "Không",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 3,
-    "OptionText": "Không khuyến khích",
-    "Score": 1
+    "QuestionId": 29,
+    "DisplayedText": "Hài lòng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 3,
-    "OptionText": "Trung lập",
-    "Score": 2
+    "QuestionId": 29,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 3,
-    "OptionText": "Khá đồng ý",
-    "Score": 3
-  },
-  {
-    "CreateAt": "2024-02-02T08:00:00",
-    "UpdateAt": "2024-02-02T08:00:00",
-    "QuestionCategoryId": 3,
-    "OptionText": "Hoàn toàn đồng ý",
-    "Score": 4
+    "QuestionId": 29,
+    "DisplayedText": "Không hài lòng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   }
 ]

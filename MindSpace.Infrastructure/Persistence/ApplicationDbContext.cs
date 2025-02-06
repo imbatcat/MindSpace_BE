@@ -38,11 +38,12 @@ namespace MindSpace.Infrastructure.Persistence
         // Tests
         private DbSet<TestCategory> TestCategories { get; set; }
         private DbSet<Test> Tests { get; set; }
-        private DbSet<TestQuestionOption> TestQuestionOptions { get; set; }
-        private DbSet<TestQuestion> TestQuestions { get; set; }
-        private DbSet<TestScoreRank> TestScoreRanks { get; set; }
-        private DbSet<QuestionCategory> QuestionCategories { get; set; }
+        private DbSet<Question> Questions { get; set; }
+        private DbSet<PsychologyTestOption> PsychologyTestOptions { get; set; }
         private DbSet<QuestionOption> QuestionOptions { get; set; }
+        private DbSet<TestScoreRank> TestScoreRanks { get; set; }
+        private DbSet<TestQuestion> TestQuestions { get; set; }
+        private DbSet<TestPublication> TestPublications { get; set; }
         private DbSet<TestResponse> TestResponses { get; set; }
         private DbSet<TestResponseItem> TestResponseItems { get; set; }
 

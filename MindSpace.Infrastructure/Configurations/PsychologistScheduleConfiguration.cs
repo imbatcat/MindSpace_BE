@@ -5,7 +5,7 @@ using Domain.Entities.Constants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public class PsychologistScheduleConfiguration : IEntityTypeConfiguration<PsychologistSchedule>
+internal class PsychologistScheduleConfiguration : IEntityTypeConfiguration<PsychologistSchedule>
 {
     public void Configure(EntityTypeBuilder<PsychologistSchedule> builder)
     {

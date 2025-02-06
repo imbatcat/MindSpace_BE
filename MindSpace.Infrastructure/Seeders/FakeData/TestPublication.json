@@ -1,0 +1,42 @@
+﻿[
+  {
+    "TestId": 1,
+    "ManagerId": 10,
+    "Title": null,
+    "StartDate": null,
+    "EndDate": null,
+    "TestPublicationStatus": "Enabled",
+    "CreateAt": "2023-10-01T08:00:00",
+    "UpdateAt": "2023-10-05T14:30:00"
+  },
+  {
+    "TestId": 2,
+    "ManagerId": 10,
+    "Title": null,
+    "StartDate": null,
+    "TestPublicationStatus": "Enabled",
+    "EndDate": null,
+    "CreateAt": "2023-10-01T08:00:00",
+    "UpdateAt": "2023-10-05T14:30:00"
+  },
+  {
+    "TestId": 3,
+    "ManagerId": 11,
+    "Title": null,
+    "StartDate": null,
+    "EndDate": null,
+    "TestPublicationStatus": "Enabled",
+    "CreateAt": "2023-10-01T08:00:00",
+    "UpdateAt": "2023-10-05T14:30:00"
+  },
+  {
+    "TestId": 4,
+    "ManagerId": 10,
+    "Title": "Bài kiểm tra tâm lý định kỳ học kỳ 1/2024",
+    "StartDate": "2024-02-01",
+    "EndDate": "2024-05-01",
+    "TestPublicationStatus": "Enabled",
+    "CreateAt": "2023-10-01T08:00:00",
+    "UpdateAt": "2023-10-05T14:30:00"
+  }
+]

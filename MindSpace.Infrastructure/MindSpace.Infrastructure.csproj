@@ -40,7 +40,7 @@
         <None Update="Seeders\FakeData\Question.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="Seeders\FakeData\QuestionCategory.json">
+        <None Update="Seeders\FakeData\TestPublication.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Update="Seeders\FakeData\QuestionOption.json">
@@ -70,7 +70,7 @@
         <None Update="Seeders\FakeData\TestCategory.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="Seeders\FakeData\TestQuestionOption.json">
+        <None Update="Seeders\FakeData\TestQuestion.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Update="Seeders\FakeData\TestResponse.json">
@@ -82,6 +82,9 @@
         <None Update="Seeders\FakeData\TestScoreRank.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+		<None Update="Seeders\FakeData\PsychologyTestOption.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
     </ItemGroup>
 
     <ProjectExtensions>
