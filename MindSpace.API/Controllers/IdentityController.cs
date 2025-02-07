@@ -1,18 +1,27 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.Features.Authentication.Commands.LoginUser;
-using MindSpace.Application.Features.Authentication.Commands.RegisterUser;
+using MindSpace.Application.Features.Authentication.Commands.RefreshUserAccessToken;
+using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterManager;
+using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterParent;
+using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist;
+using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterStudent;
+using MindSpace.Application.Features.Authentication.Queries.GetAllAccounts;
+using MindSpace.Domain.Entities.Constants;
+using MindSpace.Domain.Entities.Identity;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace MindSpace.API.Controllers
 {
-    [ApiController]
-    [Route("api/identities")]
-    public class IdentityController(IMediator mediator) : ControllerBase
+    public class IdentityController(
+        IMediator mediator,
+        UserManager<ApplicationUser> userManager) : BaseApiController
     {
         [HttpPost("register")]
         [AllowAnonymous]
-        public async Task<ActionResult> Register([FromBody] RegisterUserCommand command)
+        public async Task<ActionResult> Register([FromBody] RegisterParentCommand command)
         {
             await mediator.Send(command);
             return NoContent();
@@ -26,44 +35,69 @@ namespace MindSpace.API.Controllers
             return Ok(response);
         }
 
-        //[HttpPost("refresh")]
-        //[AllowAnonymous]
-        //public async Task<ActionResult> Refresh([FromBody] LoginRequest loginRequest)
-        //{
-            //var userManager = sp.GetRequiredService<UserManager<User>>();
-            //var userStore = sp.GetRequiredService<IUserStore<User>>();
-            //var passwordStore = sp.GetRequiredService<PasswordHasher<User>>();
-            //var tokenProvider = sp.GetRequiredService<IdTokenProvider>();
+        [HttpPost("refresh")]
+        [AllowAnonymous]
+        public async Task<ActionResult> Refresh()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+            if (string.IsNullOrEmpty(refreshToken))
+            {
+                return Unauthorized("Refresh token is required");
+            }
 
-            //var signInManager = sp.GetRequiredService<SignInManager<User>>();
-            //var user = await userManager.FindByEmailAsync(loginRequest.Email);
-            ////TODO: Add !user.EmailVerified)
-            //if (user is null)
-            //{
-            //    return BadRequest("User was not found");
-            //}
+            var handler = new JwtSecurityTokenHandler();
+            var jwtToken = handler.ReadJwtToken(refreshToken);
 
-            //var passwordVerificationResult = passwordStore.VerifyHashedPassword(user, user.PasswordHash!, loginRequest.Password);
+            if (jwtToken.ValidTo < DateTime.UtcNow.AddSeconds(3))
+            {
+                return Unauthorized("Invalid or expired refresh token");
+            }
 
-            //if (passwordVerificationResult.HasFlag(PasswordVerificationResult.Failed))
-            //{
-            //    return BadRequest("Incorrect password");
-            //}
+            var user = await userManager.FindByIdAsync(jwtToken.Subject);
+            if (user == null || user.RefreshToken == null || !user.RefreshToken.Equals(refreshToken))
+            {
+                return Unauthorized("Invalid refresh token");
+            }
 
-            ////TODO: maybe add 'remember me' option
-            //var result = await signInManager.PasswordSignInAsync(
-            //    user,
-            //    loginRequest.Password,
-            //    isPersistent: false,
-            //    lockoutOnFailure: false);
+            var newTokens = await mediator.Send(new RefreshUserAccessTokenCommand(user));
+            return Ok(newTokens);
+        }
 
-            //if (!result.Succeeded) //result may not succeed due to invalid 2FA code, not just incorrect password.
-            //{
-            //    return Unauthorized("Your authentication attempt failed, please try again with valid credentials");
-            //}
-            //string token = tokenProvider.CreateToken(user);
+        [HttpGet("accounts")]
+        [Authorize(Roles = UserRoles.Admin)]
+        public async Task<IActionResult> GetAllAccounts([FromQuery] GetAllAccountQuery query)
+        {
+            await mediator.Send(query);
 
-            //return Ok(token);
-        //}
+            return Ok("All managers have been added");
+        }
+
+        // Admin registers account for School Manager
+        [HttpPost("register-for/manager")]
+        [Authorize(Roles = UserRoles.Admin)]
+        public async Task<IActionResult> RegisterSchoolManager([FromForm] RegisterSchoolManagerCommand command)
+        {
+            await mediator.Send(command);
+
+            return Ok("All managers have been added");
+        }
+
+        // Admin registers account for Psychologist
+        [HttpPost("register-for/psychologist")]
+        [Authorize(Roles = UserRoles.Admin)]
+        public async Task<IActionResult> RegisterPsychologist([FromBody] RegisterPsychologistCommand command)
+        {
+            await mediator.Send(command);
+            return Ok("All psychologists have been added");
+        }
+
+        // School Manager registers account for students
+        [HttpPost("register-for/student")]
+        [Authorize(Roles = UserRoles.Manager)]
+        public async Task<IActionResult> RegisterStudent([FromBody] RegisterStudentsCommand command)
+        {
+            await mediator.Send(command);
+            return Ok("Student registered successfully");
+        }
     }
 }

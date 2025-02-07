@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using MindSpace.Domain.Entities.Identity;
 using System.Security.Claims;
 using System.Text;
 
-namespace Restaurants.Applications.Ultilities.Identity.Authentication
+namespace MindSpace.Application.Features.Authentication.Services
 {
     public class AccessTokenProvider(IConfiguration configuration)
     {
@@ -20,11 +19,10 @@ namespace Restaurants.Applications.Ultilities.Identity.Authentication
 
             var tokenDescriptior = new SecurityTokenDescriptor
             {
-
                 Subject = new ClaimsIdentity(
                     [
                         new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                        new Claim(ClaimTypes.Role, role)
+                        new Claim(ClaimTypes.Role, role),
                     ]),
                 Expires = DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("JwtAccessTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,

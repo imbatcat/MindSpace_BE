@@ -40,5 +40,10 @@ namespace MindSpace.Application.Commons.Constants
                 public static string ResourceSectionsSeeder = Path.Combine(PathToFakeDataFolder, "ResourceSections.json");
             }
         }
+
+        /// <summary>
+        /// Default password for all registered users 
+        /// </summary>
+        public static string DefaultPassword = "Password1!";
     }
 }

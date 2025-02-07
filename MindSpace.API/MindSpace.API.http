@@ -1,7 +1,7 @@
 ﻿@MindSpace.API_HostAddress = https://localhost:7096
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0MDAwIiwiaXNzIjoicmVzdGF1cmFudHMiLCJleHAiOjE3NDA4OTE4MDUsInN1YiI6IjEiLCJlbWFpbCI6InN0dWRlbnQxQGV4YW1wbGUuY29tIiwiaWF0IjoxNzM4NzMxODA1LCJuYmYiOjE3Mzg3MzE4MDV9.WpZ6mMPSDyQVBhHnKqBc1BzPN58z6zW4EBphAguhncU
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3NTAzL2FwaS8iLCJpc3MiOiJyZXN0YXVyYW50cyIsImV4cCI6MTczODkzNzI4Nywic3ViIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlN0dWRlbnQiLCJpYXQiOjE3Mzg5MzcyMjcsIm5iZiI6MTczODkzNzIyN30.e-qr-WLYcPb2PGVbvLNpIEShlnMTn0wLvNtf72btOcM
 
- 
+@refreshToken = eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpc3MiOiJyZXN0YXVyYW50cyIsImV4cCI6MTczODg2MzM2NSwiaWF0IjoxNzM4ODYzMjQ1LCJuYmYiOjE3Mzg4NjMyNDV9.
  
 POST {{MindSpace.API_HostAddress}}/api/identity/register 
 Content-Type: application/json
@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ###
-POST {{MindSpace.API_HostAddress}}/api/identities/login
+POST {{MindSpace.API_HostAddress}}/api/v1/Identity/login
 Content-Type: application/json
 
 {
@@ -20,9 +20,6 @@ Content-Type: application/json
   "password": "Password1!"
 }
 
-###
-GET {{MindSpace.API_HostAddress}}/api/test
-Authorization: Bearer {{token}}
 ###
 
 @id=1
@@ -33,5 +30,30 @@ Authorization: Bearer {{token}}
 
 GET {{MindSpace.API_HostAddress}}/api/v1/Test
 Authorization: Bearer {{token}}
+
+###
+
+GET {{MindSpace.API_HostAddress}}/api/v1/Test/{{id}}
+Authorization: Bearer {{token}}
+
+###
+
+GET {{MindSpace.API_HostAddress}}/api/v1/Identity/test-refresh-token
+Authorization: Bearer {{token}}
+
+###
+
+POST {{MindSpace.API_HostAddress}}/api/v1/Identity/test-refresh-token
+Authorization: Bearer {{token}}
+
+###
+
+GET {{MindSpace.API_HostAddress}}/api/v1/Test
+Authorization: Bearer {{token}}
+
+###
+
+POST {{MindSpace.API_HostAddress}}/api/v1/Identity/refresh
+Authorization: Bearer {{refreshToken}}
 
 ###

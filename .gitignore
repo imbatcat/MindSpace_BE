@@ -408,3 +408,4 @@ FodyWeavers.xsd
 *.sln.iml
 /MindSpace.API/appsettings.Development.json
 /MindSpace.API/appsettings.json
+MindSpace.API/Properties/launchSettings.json

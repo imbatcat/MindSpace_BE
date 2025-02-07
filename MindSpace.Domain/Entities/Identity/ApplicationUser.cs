@@ -11,6 +11,7 @@ namespace MindSpace.Domain.Entities.Identity
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public UserStatus Status { get; set; }
+        public string? RefreshToken { get; set; }
 
         //Navigation props
 

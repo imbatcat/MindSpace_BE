@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using MindSpace.Domain.Entities.Identity;
 using System.Security.Claims;
 using System.Text;
 
-namespace Restaurants.Applications.Ultilities.Identity.Authentication
+namespace MindSpace.Application.Features.Authentication.Services
 {
-    public sealed class IdTokenProvider(IConfiguration configuration) 
+    public sealed class IdTokenProvider(IConfiguration configuration)
     {
         public string CreateToken(ApplicationUser user)
         {
