@@ -22,6 +22,10 @@ namespace MindSpace.Application.Specifications
 
         public bool IsDistinct { get; private set; }
 
+        public List<Expression<Func<T, object>>> Includes { get; } = new();
+
+        public List<string> IncludeStrings { get; } = new();
+
         // =====================================
         // === Constructors
         // =====================================
@@ -90,6 +94,24 @@ namespace MindSpace.Application.Specifications
                 query = query.Where(Criteria);
             }
             return query;
+        }
+
+        /// <summary>
+        /// Support Include 1 level only
+        /// </summary>
+        /// <param name="includeExpression"></param>
+        protected void AddInclude(Expression<Func<T, object>> includeExpression)
+        {
+            Includes.Add(includeExpression);
+        }
+
+        /// <summary>
+        /// Support Nested n level
+        /// </summary>
+        /// <param name="includeName"></param>
+        protected void AddInclude(string includeName)
+        {
+            IncludeStrings.Add(includeName);
         }
     }
 }
