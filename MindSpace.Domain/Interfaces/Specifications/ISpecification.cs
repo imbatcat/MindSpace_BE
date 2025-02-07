@@ -11,5 +11,8 @@ namespace MindSpace.Domain.Interfaces.Specifications
         public int Take { get; } // FETCH NEXT 10 ROWS ONLY
         public bool IsPagingEnabled { get; }
         public bool IsDistinct { get; }
+
+        List<Expression<Func<T, object>>> Includes { get; }// LEFT JOIN
+        List<string> IncludeStrings { get; } // Orders.Include("OrderDetails.Person")
     }
 }
