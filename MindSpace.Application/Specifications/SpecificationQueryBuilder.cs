@@ -3,7 +3,7 @@ using MindSpace.Domain.Interfaces.Specifications;
 
 namespace MindSpace.Application.Specifications
 {
-    public class SpecificationQueryBuilder<T> where T : BaseEntity
+    public class SpecificationQueryBuilder<T>
     {
         /// <summary>
         /// Attach the Expression into IQueryable
