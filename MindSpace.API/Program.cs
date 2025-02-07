@@ -39,9 +39,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Adds identity api endpoints
-app.MapGroup("api/identity")
-    .WithTags("Identity")
-    .MapIdentityApi<ApplicationUser>();
+app.MapGroup("api/identities")
+    .WithTags("Identities");
 
 app.UseAuthorization();
 

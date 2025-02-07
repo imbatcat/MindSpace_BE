@@ -8,18 +8,14 @@ internal class DatabaseCleaner : IDataCleaner
 {
     private readonly ApplicationDbContext _dbContext;
 
-    private readonly IEntityOrderProvider _entityOrderProvider;
-
     private readonly ILogger<DatabaseCleaner> _logger;
 
     public DatabaseCleaner(
         ApplicationDbContext dbContext,
-        ILogger<DatabaseCleaner> logger,
-        IEntityOrderProvider entityOrderProvider)
+        ILogger<DatabaseCleaner> logger)
     {
         _dbContext = dbContext;
         _logger = logger;
-        _entityOrderProvider = entityOrderProvider;
     }
 
     public void ClearData()
@@ -36,4 +32,3 @@ internal class DatabaseCleaner : IDataCleaner
         }
     }
 }
-

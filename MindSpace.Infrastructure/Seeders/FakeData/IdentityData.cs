@@ -129,8 +129,8 @@ internal static class IdentityData
             },
             new Manager
             {
-                UserName = "Manager1",
-                NormalizedUserName = "Manager1",
+                UserName = "manager1",
+                NormalizedUserName = "MANAGER1",
                 Email = "Manager1@example.com",
                 NormalizedEmail = "Manager1@EXAMPLE.COM",
                 FullName = "Manager One",
@@ -141,8 +141,8 @@ internal static class IdentityData
             },
             new Manager
             {
-                UserName = "Manager2",
-                NormalizedUserName = "Manager2",
+                UserName = "manager2",
+                NormalizedUserName = "MANAGER2",
                 Email = "Manager2@example.com",
                 NormalizedEmail = "Manager2@EXAMPLE.COM",
                 FullName = "Manager Two",
