@@ -8,7 +8,6 @@ using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.Reg
 using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterParent;
 using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist;
 using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterStudent;
-using MindSpace.Application.Features.Authentication.Queries.GetAllAccounts;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using System.IdentityModel.Tokens.Jwt;
@@ -61,15 +60,6 @@ namespace MindSpace.API.Controllers
 
             var newTokens = await mediator.Send(new RefreshUserAccessTokenCommand(user));
             return Ok(newTokens);
-        }
-
-        [HttpGet("accounts")]
-        [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> GetAllAccounts([FromQuery] GetAllAccountQuery query)
-        {
-            await mediator.Send(query);
-
-            return Ok("All managers have been added");
         }
 
         // Admin registers account for School Manager
