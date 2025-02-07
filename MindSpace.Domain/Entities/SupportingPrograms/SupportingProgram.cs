@@ -14,10 +14,10 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
         public DateTime StartDateAt { get; set; }
 
 
-        // 1 Manager - M SupportingProgram
+        // 1 SchoolManager - M SupportingProgram
         public int ManagerId { get; set; }
         [JsonIgnore]
-        public virtual Manager Manager { get; set; }
+        public virtual SchoolManager SchoolManager { get; set; }
 
 
         // 1 Psychologist - M SupportingProgram
@@ -33,6 +33,6 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
 
 
         // M Students - M Supporting Program
-        public ICollection<SupportingProgramHistory> SupportingProgramHistory { get; set; } = new HashSet<SupportingProgramHistory>();
+        public virtual ICollection<SupportingProgramHistory> SupportingProgramHistory { get; set; } = new HashSet<SupportingProgramHistory>();
     }
 }

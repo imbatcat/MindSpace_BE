@@ -24,8 +24,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Features\Authentication\Profiles\" />
-	  <Folder Include="Features\SupportingPrograms\Profiles\" />
-	  <Folder Include="Features\SupportingPrograms\Validators\" />
+		<Folder Include="Features\SupportingProgramHistories\Profiles\" />
+		<Folder Include="Features\SupportingPrograms\Commands\CreateSupportingProgram\" />
+		<Folder Include="Features\SupportingPrograms\Profiles\" />
+	  	<Folder Include="Features\Authentication\Profiles\" />
+	  	<Folder Include="Features\SupportingPrograms\Profiles\" />
 	</ItemGroup>
 </Project>

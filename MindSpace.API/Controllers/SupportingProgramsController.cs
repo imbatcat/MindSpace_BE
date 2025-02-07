@@ -9,7 +9,7 @@ using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class SupportingProgramsController : BaseApiController
     {
         // ====================================

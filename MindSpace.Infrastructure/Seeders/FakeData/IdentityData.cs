@@ -127,25 +127,25 @@ internal static class IdentityData
                 DateOfBirth = new DateTime(1985, 3, 3),
                 SpecializationId = 3
             },
-            new Manager
+            new SchoolManager
             {
                 UserName = "manager1",
                 NormalizedUserName = "MANAGER1",
                 Email = "Manager1@example.com",
                 NormalizedEmail = "Manager1@EXAMPLE.COM",
-                FullName = "Manager One",
+                FullName = "SchoolManager One",
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 SchoolId = 1
             },
-            new Manager
+            new SchoolManager
             {
                 UserName = "manager2",
                 NormalizedUserName = "MANAGER2",
                 Email = "Manager2@example.com",
                 NormalizedEmail = "Manager2@EXAMPLE.COM",
-                FullName = "Manager Two",
+                FullName = "SchoolManager Two",
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
@@ -188,9 +188,9 @@ internal static class IdentityData
             {
                 NormalizedName = UserRoles.Psychologist.ToUpper()
             },
-            new(UserRoles.Manager)
+            new(UserRoles.SchoolManager)
             {
-                NormalizedName = UserRoles.Manager.ToUpper()
+                NormalizedName = UserRoles.SchoolManager.ToUpper()
             },
             new(UserRoles.Parent)
             {

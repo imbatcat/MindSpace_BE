@@ -21,7 +21,7 @@ namespace MindSpace.Domain.Entities.Identity
         // 1 Student - 1 User
         public virtual Student Student { get; set; }
 
-        // 1 Manager - 1 User
-        public virtual Manager Manager { get; set; }
+        // 1 SchoolManager - 1 User
+        public virtual SchoolManager SchoolManager { get; set; }
     }
 }

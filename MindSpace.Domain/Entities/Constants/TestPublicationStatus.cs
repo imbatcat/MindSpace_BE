@@ -11,3 +11,4 @@ namespace MindSpace.Domain.Entities.Constants
         Disabled
     }
 }
+

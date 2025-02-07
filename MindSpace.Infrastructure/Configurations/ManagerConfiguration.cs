@@ -4,21 +4,21 @@ using Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-internal class ManagerConfiguration : IEntityTypeConfiguration<Manager>
+internal class ManagerConfiguration : IEntityTypeConfiguration<SchoolManager>
 {
-    public void Configure(EntityTypeBuilder<Manager> builder)
+    public void Configure(EntityTypeBuilder<SchoolManager> builder)
     {
-        builder.ToTable("Manager", "dbo").HasBaseType<ApplicationUser>();
+        builder.ToTable("SchoolManager", "dbo").HasBaseType<ApplicationUser>();
 
-        // 1 Manager - 1 User 
+        // 1 SchoolManager - 1 User 
         builder.HasOne(m => m.User)
-            .WithOne(u => u.Manager)
-            .HasForeignKey<Manager>(u => u.Id);
+            .WithOne(u => u.SchoolManager)
+            .HasForeignKey<SchoolManager>(u => u.Id);
 
-        // 1 School Manager - 1 School
+        // 1 School SchoolManager - 1 School
         builder
             .HasOne(m => m.School)
-            .WithOne(sc => sc.Manager)
-            .HasForeignKey<Manager>(m => m.SchoolId);
+            .WithOne(sc => sc.SchoolManager)
+            .HasForeignKey<SchoolManager>(m => m.SchoolId);
     }
 }

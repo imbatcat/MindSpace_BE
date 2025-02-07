@@ -35,8 +35,8 @@ internal class ResourceConfiguration : IEntityTypeConfiguration<Resource>
         builder.Property(r => r.ThumbnailUrl)
             .HasMaxLength(500);
 
-        // 1 Manager - M Resources
-        builder.HasOne(r => r.Manager)
+        // 1 SchoolManager - M Resources
+        builder.HasOne(r => r.SchoolManager)
             .WithMany(sm => sm.Resources)
             .HasForeignKey(r => r.ManagerId);
     }

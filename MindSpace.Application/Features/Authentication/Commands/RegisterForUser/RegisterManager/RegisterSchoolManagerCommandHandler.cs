@@ -45,7 +45,7 @@ namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser
                             UserName = worksheet.Cells[row, 1].Text,
                             Email = worksheet.Cells[row, 2].Text,
                             Password = worksheet.Cells[row, 3].Text,
-                            Role = UserRoles.Manager
+                            Role = UserRoles.SchoolManager
                         };
 
                         managers.Add(userDTO);

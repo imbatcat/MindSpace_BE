@@ -57,3 +57,11 @@ POST {{MindSpace.API_HostAddress}}/api/v1/Identity/refresh
 Authorization: Bearer {{refreshToken}}
 
 ###
+
+GET {{MindSpace.API_HostAddress}}/api/v1/supportingprogramhistories
+
+###
+
+GET {{MindSpace.API_HostAddress}}/api/v1/supportingprograms
+
+###

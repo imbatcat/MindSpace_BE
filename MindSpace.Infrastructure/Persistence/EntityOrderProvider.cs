@@ -18,7 +18,7 @@ internal class EntityOrderProvider : IEntityOrderProvider
         typeof(TestResponse).FullName!,
 
         typeof(Psychologist).FullName!,
-        typeof(Manager).FullName!,
+        typeof(SchoolManager).FullName!,
         typeof(Student).FullName!,
 
         typeof(ApplicationUser).FullName!,

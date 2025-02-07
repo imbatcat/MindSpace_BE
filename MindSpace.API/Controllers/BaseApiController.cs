@@ -7,7 +7,7 @@ namespace MindSpace.API.Controllers
     [ApiVersion(1)]
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public class BaseApiController : ControllerBase
+    public abstract class BaseApiController : ControllerBase
     {
         protected ActionResult PaginationOkResult<T>(IReadOnlyList<T> items, int count, int pageIndex, int pageSize)
         {

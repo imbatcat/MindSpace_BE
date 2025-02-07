@@ -83,7 +83,7 @@ namespace MindSpace.API.Controllers
 
         // School Manager registers account for students
         [HttpPost("register-for/student")]
-        [Authorize(Roles = UserRoles.Manager)]
+        [Authorize(Roles = UserRoles.SchoolManager)]
         public async Task<IActionResult> RegisterStudent([FromBody] RegisterStudentsCommand command)
         {
             await mediator.Send(command);
