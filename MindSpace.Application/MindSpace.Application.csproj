@@ -13,16 +13,17 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.1" />
 		<PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.3.1" />
 		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.3.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\MindSpace.Domain\MindSpace.Domain.csproj">
-		  <Private>True</Private>
+			<Private>True</Private>
 		</ProjectReference>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Features\SupportingPrograms\Profiles\" />
-	  <Folder Include="Features\SupportingPrograms\Validators\" />
+		<Folder Include="Features\SupportingPrograms\Profiles\" />
+		<Folder Include="Features\SupportingPrograms\Validators\" />
 	</ItemGroup>
 </Project>

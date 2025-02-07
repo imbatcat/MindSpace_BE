@@ -1,9 +1,9 @@
-﻿using MindSpace.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
 using MindSpace.Domain.Interfaces.Specifications;
 
 namespace MindSpace.Application.Specifications
 {
-    public class SpecificationQueryBuilder<T>
+    public class SpecificationQueryBuilder<T> where T : class
     {
         /// <summary>
         /// Attach the Expression into IQueryable
@@ -41,6 +41,18 @@ namespace MindSpace.Application.Specifications
             if (spec.IsPagingEnabled)
             {
                 query = query.Skip(spec.Skip).Take(spec.Take);
+            }
+
+            // Include
+            if (spec.Includes.Count > 0)
+            {
+                query = spec.Includes.Aggregate(query, (curr, include) => curr.Include(include));
+            }
+
+            // Include and ThenInclude
+            if (spec.IncludeStrings.Count > 0)
+            {
+                query = spec.IncludeStrings.Aggregate(query, (curr, include) => curr.Include(include));
             }
 
             return query;

@@ -5,12 +5,7 @@ using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Interfaces.Services;
 using MindSpace.Domain.Interfaces.Specifications;
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MindSpace.Infrastructure.Services
 {
