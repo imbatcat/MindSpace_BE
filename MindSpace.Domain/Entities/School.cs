@@ -19,9 +19,9 @@ namespace MindSpace.Domain.Entities
         public virtual ICollection<Student> Students { get; set; } = new HashSet<Student>();
 
 
-        // 1 School - 1 School Manager
+        // 1 School - 1 School SchoolManager
         public int? ManagerId { get; set; }
-        public virtual Manager Manager { get; set; }
+        public virtual SchoolManager SchoolManager { get; set; }
 
 
         // 1 School - M SupportingPrograms

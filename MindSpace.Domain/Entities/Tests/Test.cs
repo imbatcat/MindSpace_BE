@@ -19,7 +19,7 @@ namespace MindSpace.Domain.Entities.Tests
         public int TestCategoryId { get; set; }
         public TestCategory TestCategory { get; set; }
 
-        // 1 Author (Admin/Manager) - M Tests
+        // 1 Author (Admin/SchoolManager) - M Tests
         public int AuthorId { get; set; }
         public ApplicationUser Author { get; set; }
 

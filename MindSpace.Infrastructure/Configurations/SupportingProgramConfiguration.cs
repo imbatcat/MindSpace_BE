@@ -28,8 +28,8 @@ internal class SupportingProgramConfiguration : IEntityTypeConfiguration<Support
             address.Property(a => a.PostalCode).HasMaxLength(10);
         });
 
-        // 1 Manager - M SupportingProgramSpecification
-        builder.HasOne(sp => sp.Manager)
+        // 1 SchoolManager - M SupportingProgramSpecification
+        builder.HasOne(sp => sp.SchoolManager)
             .WithMany(m => m.SupportingPrograms)
             .HasForeignKey(sp => sp.ManagerId)
             .OnDelete(DeleteBehavior.ClientCascade);

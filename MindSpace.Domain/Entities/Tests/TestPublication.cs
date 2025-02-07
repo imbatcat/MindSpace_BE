@@ -14,9 +14,9 @@ namespace MindSpace.Domain.Entities.Tests
         public int TestId { get; set; }
         public Test Test { get; set; }
 
-        // 1 manager - M test publications
+        // 1 SchoolManager - M test publications
         public int ManagerId { get; set; }
-        public Manager Manager { get; set; }
+        public SchoolManager SchoolManager { get; set; }
 
         public string? Title { get; set; }
 

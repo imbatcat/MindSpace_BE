@@ -33,7 +33,7 @@ namespace MindSpace.Infrastructure.Configurations
             .HasDefaultValue(TestPublicationStatus.Enabled); // set defaults to 'Enabled'
 
             builder
-                .HasOne(tp => tp.Manager)
+                .HasOne(tp => tp.SchoolManager)
                 .WithMany(m => m.TestPublications)
                 .HasForeignKey(t => t.ManagerId)
                 .OnDelete(DeleteBehavior.NoAction);

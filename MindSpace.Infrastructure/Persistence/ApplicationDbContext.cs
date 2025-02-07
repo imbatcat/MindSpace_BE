@@ -16,7 +16,7 @@ namespace MindSpace.Infrastructure.Persistence
 
         // Accounts
         private DbSet<Psychologist> Psychologists { get; set; }
-        private DbSet<Manager> Managers { get; set; }
+        private DbSet<SchoolManager> Managers { get; set; }
         private DbSet<Student> Students { get; set; }
 
         // Resources and Supporting Programs
