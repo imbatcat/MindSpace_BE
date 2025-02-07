@@ -1,113 +1,147 @@
 ﻿[
   {
-    "Title": "Tôi cảm thấy có quá nhiều việc phải làm",
-    "QuestionFormats": "Multiple Choice",
+    "Content": "Bạn cảm thấy căng thẳng, lo lắng hoặc bất an",
     "CreateAt": "2024-01-01T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:00:00Z",
-    "QuestionCategoryId": 1
+    "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Title": "Tôi thường dễ cáu kỉnh và khó chịu",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-02T09:30:00Z",
-    "UpdateAt": "2024-01-29T10:05:00Z",
-    "QuestionCategoryId": 1
+    "Content": "Không thể ngưng hoặc kiểm soát lo lắng",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Title": "Tôi thường xuyên rơi vào các tình huống xung đột",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-03T10:15:00Z",
-    "UpdateAt": "2024-01-29T10:10:00Z",
-    "QuestionCategoryId": 1
+    "Content": "Lo lắng quá mức về nhiều thứ",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Title": "Tôi thường có đủ thời gian để hoàn thành công việc của mình",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-04T11:00:00Z",
-    "UpdateAt": "2024-01-29T10:15:00Z",
-    "QuestionCategoryId": 1
+    "Content": "Khó thư giãn",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Title": "Tôi cảm thấy căng thẳng hoặc khó chịu về thể chất do stress",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-05T12:30:00Z",
-    "UpdateAt": "2024-01-29T10:20:00Z",
-    "QuestionCategoryId": 1
+    "Content": "Bứt rứt đến mức khó ngồi yên",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Title": "Tôi duy trì giao tiếp bằng mắt thoải mái khi nói chuyện với mọi người",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-06T08:00:00Z",
-    "UpdateAt": "2024-01-29T10:30:00Z",
-    "QuestionCategoryId": 3
+    "Content": "Trở nên dễ bực bội hoặc cáu kỉnh",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Title": "Tôi lắng nghe chăm chú khi trò chuyện với người khác",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-07T09:30:00Z",
-    "UpdateAt": "2024-01-29T10:35:00Z",
-    "QuestionCategoryId": 3
+    "Content": "Cảm thấy lo lắng như thể điều gì khủng khiếp có thể xảy ra",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "Title": "Tôi có thể diễn đạt suy nghĩ của mình một cách dễ dàng",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-08T10:15:00Z",
-    "UpdateAt": "2024-01-29T10:40:00Z",
-    "QuestionCategoryId": 3
+    "Content": "Ít quan tâm hoặc niềm vui khi làm việc",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "Title": "Tôi có thể bắt đầu cuộc trò chuyện với những người quen mới",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-09T11:00:00Z",
-    "UpdateAt": "2024-01-29T10:45:00Z",
-    "QuestionCategoryId": 3
+    "Content": "Cảm thấy chán nản, chán chường, hoặc tuyệt vọng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "Title": "Tôi có thể thỏa hiệp với người khác",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-10T12:30:00Z",
-    "UpdateAt": "2024-01-29T10:50:00Z",
-    "QuestionCategoryId": 3
+    "Content": "Khó ngủ hoặc duy trì giấc ngủ, hoặc ngủ quá nhiều",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "Title": "Khi con tôi ăn vạ, tôi thường đáp ứng điều chúng muốn",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-11T13:00:00Z",
-    "UpdateAt": "2024-01-29T10:55:00Z",
-    "QuestionCategoryId": 1
+    "Content": "Cảm thấy mệt mỏi hoặc có ít năng lượng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "Title": "Tôi không cho phép con tôi ngắt lời khi tôi đang nói",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-12T14:00:00Z",
-    "UpdateAt": "2024-01-29T11:00:00Z",
-    "QuestionCategoryId": 3
+    "Content": "Kém ăn hoặc ăn quá nhiều",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "Title": "Con tôi không nhận được mọi thứ chúng yêu cầu",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-13T15:00:00Z",
-    "UpdateAt": "2024-01-29T11:05:00Z",
-    "QuestionCategoryId": 3
+    "Content": "Cảm thấy tồi tệ về bản thân - hoặc rằng bạn là một kẻ thất bại hoặc đã khiến bản thân hoặc gia đình thất vọng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "Title": "Tôi cảm thấy tự tin khi đặt ra các quy tắc cho con mình",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-14T16:00:00Z",
-    "UpdateAt": "2024-01-29T11:10:00Z",
-    "QuestionCategoryId": 3
+    "Content": "Khó tập trung vào mọi thứ, chẳng hạn như đọc báo hoặc xem tivi",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "Title": "Trẻ em chỉ nên được khen ngợi khi chúng cố gắng hết sức",
-    "QuestionFormats": "Multiple Choice",
-    "CreateAt": "2024-01-15T17:00:00Z",
-    "UpdateAt": "2024-01-29T11:15:00Z",
-    "QuestionCategoryId": 3
+    "Content": "Di chuyển hoặc nói chậm đến mức người khác có thể nhận thấy? Hoặc ngược lại - bồn chồn hoặc bồn chồn đến mức bạn đã di chuyển xung quanh nhiều hơn bình thường",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "Title": "Hôm nay bạn thế nào?",
-    "QuestionFormats": "Text",
-    "CreateAt": "2024-01-15T17:00:00Z",
-    "UpdateAt": "2024-01-29T11:15:00Z"
+    "Content": "Suy nghĩ rằng tốt hơn hết là bạn nên chết hoặc làm tổn thương bản thân theo một cách nào đó",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "Content": "Trong tuần vừa qua, bạn đã bao nhiêu lần sử dụng lời khen hoặc phần thưởng để khuyến khích con bạn làm điều gì đó tốt?",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "Content": "Trong tuần vừa qua, bạn đã bao nhiêu lần giải thích cho con bạn lý do tại sao một hành vi nào đó là không được phép?",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "Content": "Trong tuần vừa qua, bạn có lắng nghe và tôn trọng ý kiến của con bạn không?",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "Content": "Trong tuần vừa qua, bạn có tạo không gian để con bạn tự do khám phá không?",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "Content": "Trong tuần vừa qua, bạn đã bao nhiêu lần cùng con tham gia vào các hoạt động vui chơi, giải trí hoặc học tập chung?",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "Content": "Trong tuần vừa qua, bạn đã bao nhiêu lần dạy con bạn cách giải quyết vấn đề một cách tích cực?",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "Content": "Trong tuần vừa qua, bạn có nhiều lẩn khuyến khích con nhận lỗi và khắc phục lỗi không?",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "Content": "Trong tuần vừa qua, bạn có cảm thấy mình kiểm soát được việc kỷ luật con cái?",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "Content": "Bạn cảm thấy thế nào về cuộc sống hiện tại của mình?",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "Content": "Bạn có thường xuyên cảm thấy lo lắng hoặc căng thẳng không?",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "Content": "Bạn có gặp khó khăn trong việc tập trung vào việc học không?",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "Content": "Bạn có cảm thấy mình hòa đồng với bạn bè và mọi người xung quanh không?",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "Content": "Bạn có hài lòng với các mối quan hệ của mình (gia đình, bạn bè, thầy cô) không?",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
   }
 ]

@@ -8,8 +8,16 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
 {
     public class GetSupportingProgramsQueryHandler : IRequestHandler<GetSupportingProgramsQuery, IReadOnlyList<SupportingProgram>>
     {
+        // ================================
+        // === Fields & Props
+        // ================================
+
         private readonly ILogger<GetSupportingProgramsQueryHandler> _logger;
         private readonly IUnitOfWork _unitOfWork;
+
+        // ================================
+        // === Constructors
+        // ================================
 
         public GetSupportingProgramsQueryHandler(
             ILogger<GetSupportingProgramsQueryHandler> logger,
@@ -18,6 +26,10 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
             _unitOfWork = unitOfWork;
             _logger = logger;
         }
+
+        // ================================
+        // === Methods
+        // ================================
 
         public async Task<IReadOnlyList<SupportingProgram>> Handle(GetSupportingProgramsQuery request, CancellationToken cancellationToken)
         {

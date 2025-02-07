@@ -8,14 +8,11 @@
         public TestResponse TestResponse { get; set; }
 
         // Question Content
-        public string QuestionTitle { get; set; }
+        public string QuestionContent { get; set; }
+        public int? Score { get; set; }
 
-        // Field to mark if the question is a text question
-        public bool IsTextArea { get; set; }
-        public int Score { get; set; }
-
-        // Field text to store text answer
-        public string? AnswerText { get; set; }
+        // Field text to store displayed text of the answer
+        public string AnswerText { get; set; }
 
     }
 }

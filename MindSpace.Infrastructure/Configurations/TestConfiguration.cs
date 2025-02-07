@@ -15,8 +15,14 @@ internal class TestConfiguration : IEntityTypeConfiguration<Test>
         builder.HasIndex(t => t.Title).IsUnique();
 
         //Properties
-        builder.Property(t => t.Title).IsUnicode().IsRequired().HasMaxLength(100);
-        builder.Property(t => t.Description).IsUnicode().HasMaxLength(100);
+        builder.Property(t => t.Title).IsUnicode().IsRequired().HasMaxLength(150);
+        builder.Property(t => t.TestCode).IsRequired(false).HasMaxLength(20);
+        builder.Property(t => t.TargetUser)
+            .HasConversion(
+            convertToProviderExpression: v => v.ToString(),
+            convertFromProviderExpression: v => (TargetUser)Enum.Parse(typeof(TargetUser), v))
+            .HasDefaultValue(TargetUser.Everyone);
+        builder.Property(t => t.Description).IsUnicode().HasMaxLength(500);
         builder.Property(t => t.QuestionCount).HasDefaultValue(0);
         builder.Property(t => t.Price)
             .HasPrecision(10, 2)
@@ -33,9 +39,13 @@ internal class TestConfiguration : IEntityTypeConfiguration<Test>
             .WithMany(tc => tc.Tests)
             .HasForeignKey(t => t.TestCategoryId);
         builder
-            .HasOne(t => t.Manager)
-            .WithMany(m => m.Tests)
-            .HasForeignKey(t => t.ManagerId)
+            .HasOne(t => t.Specialization)
+            .WithMany(s => s.Tests)
+            .HasForeignKey(t => t.SpecializationId);
+        builder
+            .HasOne(t => t.Author)
+            .WithMany()
+            .HasForeignKey(t => t.AuthorId)
             .OnDelete(DeleteBehavior.NoAction);
     }
 }

@@ -7,15 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Bogus" Version="35.6.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.1"/>
+        <PackageReference Include="Bogus" Version="35.6.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
     <ItemGroup>
@@ -40,7 +40,7 @@
         <None Update="Seeders\FakeData\Question.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="Seeders\FakeData\QuestionCategory.json">
+        <None Update="Seeders\FakeData\TestPublication.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Update="Seeders\FakeData\QuestionOption.json">
@@ -70,7 +70,7 @@
         <None Update="Seeders\FakeData\TestCategory.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="Seeders\FakeData\TestQuestionOption.json">
+        <None Update="Seeders\FakeData\TestQuestion.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Update="Seeders\FakeData\TestResponse.json">
@@ -82,11 +82,14 @@
         <None Update="Seeders\FakeData\TestScoreRank.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+		<None Update="Seeders\FakeData\PsychologyTestOption.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
     </ItemGroup>
 
     <ProjectExtensions>
         <VisualStudio>
-            <UserProperties/>
+            <UserProperties />
         </VisualStudio>
     </ProjectExtensions>
 </Project>

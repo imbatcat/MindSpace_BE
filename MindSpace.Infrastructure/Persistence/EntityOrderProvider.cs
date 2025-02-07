@@ -24,12 +24,12 @@ internal class EntityOrderProvider : IEntityOrderProvider
         typeof(ApplicationUser).FullName!,
         typeof(ApplicationRole).FullName!,
 
-        typeof(TestQuestionOption).FullName!,
+        typeof(TestQuestion).FullName!,
         typeof(Test).FullName!,
 
         typeof(ResourceSection).FullName!,
         typeof(Resource).FullName!,
-        typeof(TestQuestion).FullName!,
+        typeof(Question).FullName!,
         typeof(QuestionOption).FullName!,
         typeof(TestScoreRank).FullName!,
 
@@ -39,6 +39,7 @@ internal class EntityOrderProvider : IEntityOrderProvider
         typeof(Appointment).FullName!,
         typeof(Payment).FullName!,
         typeof(PsychologistSchedule).FullName!,
-        typeof(QuestionCategory).FullName!
+        typeof(TestPublication).FullName!,
+        typeof(PsychologyTestOption).FullName!
     };
 }
