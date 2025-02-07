@@ -23,5 +23,6 @@ internal class ApplicationUserConfiguration : IEntityTypeConfiguration<Applicati
             .HasDefaultValue(UserStatus.Enabled);
         builder.Property(u => u.ImageUrl).HasMaxLength(-1);
         builder.Property(u => u.FullName).HasMaxLength(256).IsUnicode();
+        builder.Property(u => u.RefreshToken).HasMaxLength(500);
     }
 }

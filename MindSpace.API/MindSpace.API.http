@@ -1,6 +1,8 @@
 ﻿@MindSpace.API_HostAddress = https://localhost:7096
-@token = CfDJ8IGx6C_J58VGnHAzo-b4N4qBazIceSgQ5zHl0HmOgbs5EmxteoBzjLL0lxYEKNT7DkWMKS3DI6zNhocl9wz4X9oKQ7O1qHAUzn7flv9CYMXjqXlXFUS2bv3swdHyjmQeoP4dbJlh8fO_3FNMCt8z4ouGOLxxPc_g4XY5IJkO-QPB6Os1sPtgXNSahPIaE8Xpd_oyR7IGnBpUuOGQ_j73taaZsLVGpo7Bdxs5VWM9kUO9TSeBHM32oG1bPJBgkK3IrofMiJxNl2p211vSCioYNC6qSGwJsUyWAIRICSgSvBbThtLgEqZ4lkQBBAnkEulMYxSpoRtb-J4jXiEwdyG18OGDdX4gjRDRI6XcGVVsJwc84eP7vHqY7CeKS3o7xAD0nJdX869g7fFpP_i8sLFXv7CS0AGaft8nSX7r2RxjejOjCHAu7taW6B3mqoLl75wwDR-A0mqScY6tPnuXqrl4JfZKXb-baqaVCvyF43XaY66X4PfOE3szjCMKE9bV2l-KaRqTo5qh0JgIzhFQF8-q7DNKXL4fwu-yfDG_kqPT5QVmPGeQrouKFjFGmn7mepLOxn2QAaxIHeN2kLAbgYi0y8yZDSEMUM8ucMYilevUVZ344eCn7SyaTGy1vJv7BVuMsBlTJ7SIOCquvija7vrTF7prKZKRmDmZSPGEkDVdUfLbvUNuegbaFgpMs2M4_TTsxSYRl3rTM4ODnX412967Nh4NyC4j2FHXAuNXGQW-Sk9xQ1YAjE-Tr7XNLyv7CLMLzQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3NTAzL2FwaS8iLCJpc3MiOiJyZXN0YXVyYW50cyIsImV4cCI6MTczODkzNzI4Nywic3ViIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlN0dWRlbnQiLCJpYXQiOjE3Mzg5MzcyMjcsIm5iZiI6MTczODkzNzIyN30.e-qr-WLYcPb2PGVbvLNpIEShlnMTn0wLvNtf72btOcM
 
+@refreshToken = eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpc3MiOiJyZXN0YXVyYW50cyIsImV4cCI6MTczODg2MzM2NSwiaWF0IjoxNzM4ODYzMjQ1LCJuYmYiOjE3Mzg4NjMyNDV9.
+ 
 POST {{MindSpace.API_HostAddress}}/api/identity/register 
 Content-Type: application/json
 
@@ -10,21 +12,56 @@ Content-Type: application/json
 }
 
 ###
-POST {{MindSpace.API_HostAddress}}/api/identity/login
+POST {{MindSpace.API_HostAddress}}/api/v1/Identity/login
 Content-Type: application/json
 
 {
-  "email": "student1",
+  "email": "student1@example.com",
   "password": "Password1!"
 }
 
-###
-GET {{MindSpace.API_HostAddress}}/api/test
-Authorization: Bearer {{token}}
 ###
 
 @id=1
 GET {{MindSpace.API_HostAddress}}/api/test/{{id}}
 Authorization: Bearer {{token}}
+
+###
+
+GET {{MindSpace.API_HostAddress}}/api/v1/Test
+Authorization: Bearer {{token}}
+
+###
+
+GET {{MindSpace.API_HostAddress}}/api/v1/Test/{{id}}
+Authorization: Bearer {{token}}
+
+###
+
+GET {{MindSpace.API_HostAddress}}/api/v1/Identity/test-refresh-token
+Authorization: Bearer {{token}}
+
+###
+
+POST {{MindSpace.API_HostAddress}}/api/v1/Identity/test-refresh-token
+Authorization: Bearer {{token}}
+
+###
+
+GET {{MindSpace.API_HostAddress}}/api/v1/Test
+Authorization: Bearer {{token}}
+
+###
+
+POST {{MindSpace.API_HostAddress}}/api/v1/Identity/refresh
+Authorization: Bearer {{refreshToken}}
+
+###
+
+GET {{MindSpace.API_HostAddress}}/api/v1/supportingprogramhistories
+
+###
+
+GET {{MindSpace.API_HostAddress}}/api/v1/supportingprograms
 
 ###
