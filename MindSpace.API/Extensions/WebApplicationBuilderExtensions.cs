@@ -2,6 +2,7 @@
 using Microsoft.OpenApi.Models;
 using MindSpace.API.Middlewares;
 using Serilog;
+using System.Text.Json.Serialization;
 
 namespace MindSpace.API.Extensions
 {
@@ -9,7 +10,9 @@ namespace MindSpace.API.Extensions
     {
         public static void AddPresentation(this WebApplicationBuilder builder)
         {
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
+            );
 
             builder.Services.AddSwaggerGen(c =>
                     {
