@@ -13,7 +13,7 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
 
 
         // 1 SchoolManager - M Resources
-        public int ManagerId { get; set; }
+        public int SchoolManagerId { get; set; }
         public SchoolManager SchoolManager { get; set; }
 
 

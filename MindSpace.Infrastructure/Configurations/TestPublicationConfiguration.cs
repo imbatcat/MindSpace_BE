@@ -30,7 +30,7 @@ namespace MindSpace.Infrastructure.Configurations
             builder
                 .HasOne(tp => tp.SchoolManager)
                 .WithMany(m => m.TestPublications)
-                .HasForeignKey(t => t.ManagerId)
+                .HasForeignKey(t => t.SchoolManagerId)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }
