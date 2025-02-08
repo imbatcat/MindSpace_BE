@@ -3,7 +3,8 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
 using MindSpace.Application.Features.SupportingPrograms.Specifications;
-using MindSpace.Domain.Interfaces.Services;
+using MindSpace.Domain.Entities.SupportingPrograms;
+using MindSpace.Domain.Interfaces.Repos;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms
 {
@@ -14,7 +15,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
         // ================================s
 
         private readonly ILogger<GetSupportingProgramQueryHandler> _logger;
-        private readonly ISupportingProgramService _supportingProgramService;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         // ================================
@@ -23,10 +24,10 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
 
         public GetSupportingProgramQueryHandler(
             ILogger<GetSupportingProgramQueryHandler> logger,
-            ISupportingProgramService supportingProgramService,
+            IUnitOfWork unitOfWork,
             IMapper mapper)
         {
-            _supportingProgramService = supportingProgramService;
+            _unitOfWork = unitOfWork;
             _logger = logger;
             _mapper = mapper;
         }
@@ -38,11 +39,19 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
         public async Task<PagedResultDTO<SupportingProgramDTO>> Handle(GetSupportingProgramsQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Get list of Supporting Programs with Spec: {@Spec}", request.SpecParams);
+
             var spec = new SupportingProgramSpecification(request.SpecParams);
-            var items = await _supportingProgramService.GetAllSupportingProgramAsync(spec);
-            var itemsDto = _mapper.Map<IReadOnlyList<SupportingProgramDTO>>(items);
-            var count = await _supportingProgramService.CountSupportingProgramAsync(spec);
-            return new PagedResultDTO<SupportingProgramDTO>(count, itemsDto);
+
+            // Use Projection
+            var listDto = await _unitOfWork
+                .Repository<SupportingProgram>()
+                .GetAllWithSpecProjectedAsync<SupportingProgramDTO>(spec, _mapper.ConfigurationProvider);
+
+            var count = await _unitOfWork
+                .Repository<SupportingProgram>()
+                .CountAsync(spec);
+
+            return new PagedResultDTO<SupportingProgramDTO>(count, listDto);
         }
     }
 }

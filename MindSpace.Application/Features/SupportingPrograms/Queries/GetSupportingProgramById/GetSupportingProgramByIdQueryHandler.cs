@@ -2,10 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
-using MindSpace.Domain.Entities.SupportingPrograms;
-using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
-using MindSpace.Domain.Interfaces.Services;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById
 {
@@ -16,7 +13,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
         // ================================
 
         private readonly ILogger<GetSupportingProgramByIdQueryHandler> _logger;
-        private readonly ISupportingProgramService _supportingProgramService;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         // ================================
@@ -24,12 +21,12 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
         // ================================
         public GetSupportingProgramByIdQueryHandler(
             ILogger<GetSupportingProgramByIdQueryHandler> logger,
-            ISupportingProgramService supportingProgramService,
+            IUnitOfWork unitOfWork,
             IMapper mapper)
         {
             _logger = logger;
-            _supportingProgramService = supportingProgramService;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         // ================================
@@ -38,12 +35,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
         public async Task<SupportingProgramDTO> Handle(GetSupportingProgramByIdQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Get Supporting Program By Id: {@Id}", request.Id);
-            var supportingProgram = await _supportingProgramService.GetSupportingProgramByIdAsync(request.Id)
-                ?? throw new NotFoundException(nameof(SupportingProgram), request.Id.ToString());
-
-            var supportingProgramDto = _mapper.Map<SupportingProgramDTO>(supportingProgram);
-
-            return supportingProgramDto;
+            return null;
         }
     }
 }

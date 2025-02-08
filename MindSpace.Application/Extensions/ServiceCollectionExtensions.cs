@@ -1,10 +1,8 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using MindSpace.Application.Services;
 using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Application.UserContext;
-using MindSpace.Domain.Interfaces.Services;
 
 namespace MindSpace.Application.Extensions
 {
@@ -34,9 +32,6 @@ namespace MindSpace.Application.Extensions
 
             // Add HttpContextAccessor
             services.AddHttpContextAccessor();
-
-            // Add Services
-            services.AddScoped<ISupportingProgramService, SupportingProgramService>();
         }
     }
 }

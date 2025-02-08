@@ -1,6 +1,8 @@
 ﻿namespace MindSpace.Infrastructure.Repositories;
 
 using Application.Specifications;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Domain.Entities;
 using Domain.Interfaces.Repos;
 using Domain.Interfaces.Specifications;
@@ -126,55 +128,38 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     // === GET queries with Specification
     // ===================================
 
-    /// <summary>
-    ///     Get the list based on spec
-    /// </summary>
-    /// <param name="spec"></param>
-    /// <returns></returns>
-    public async Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T> spec) => await ApplySpecification(spec).ToListAsync();
+    public async Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T> spec)
+        => await ApplySpecification(spec).ToListAsync();
 
-    /// <summary>
-    ///     Get the individual item based on spec
-    /// </summary>
-    /// <param name="spec"></param>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public async Task<T?> GetEntityWithSpec(ISpecification<T> spec) => await ApplySpecification(spec).FirstOrDefaultAsync();
+    public async Task<T?> GetBySpecAsync(ISpecification<T> spec)
+        => await ApplySpecification(spec).FirstOrDefaultAsync();
 
-    /// <summary>
-    ///     Get all records of the entity
-    /// </summary>
-    /// <returns></returns>
-    public async Task<IReadOnlyList<T>> GetAllAsync() => await _dbContext.Set<T>().ToListAsync();
-
-    /// <summary>
-    ///     Get entity by id
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public async Task<T?> GetByIdAsync(int id) => await _dbContext.Set<T>().FindAsync(id);
-
-    /// <summary>
-    ///     Count number of records with filter
-    /// </summary>
-    /// <param name="spec"></param>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
     public async Task<int> CountAsync(ISpecification<T> spec)
     {
         var query = _dbContext.Set<T>().AsQueryable();
         return await SpecificationQueryBuilder<T>.BuildCountQuery(query, spec).CountAsync();
     }
 
-    /// <summary>
-    ///     Apply the spec into the query
-    /// </summary>
-    /// <param name="spec"></param>
-    /// <returns></returns>
     private IQueryable<T> ApplySpecification(ISpecification<T> spec)
     {
-        // Create base query under the set<T> enable deferred execution
         IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
         return SpecificationQueryBuilder<T>.BuildQuery(query, spec);
+    }
+
+    // ===========================================
+    // === GET queries Projection with AutoMapper
+    // ===========================================
+    public async Task<TDto?> GetBySpecProjectedAsync<TDto>(ISpecification<T> spec, IConfigurationProvider mapperConfig)
+    {
+        return await ApplySpecification(spec)
+            .ProjectTo<TDto>(mapperConfig)
+            .FirstOrDefaultAsync();
+    }
+
+    public async Task<IReadOnlyList<TDto>> GetAllWithSpecProjectedAsync<TDto>(ISpecification<T> spec, IConfigurationProvider mapperConfig)
+    {
+        return await ApplySpecification(spec)
+            .ProjectTo<TDto>(mapperConfig)
+            .ToListAsync();
     }
 }

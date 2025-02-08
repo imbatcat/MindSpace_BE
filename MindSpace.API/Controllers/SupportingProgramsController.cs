@@ -4,7 +4,6 @@ using MindSpace.Application.DTOs;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Specifications;
-using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.API.Controllers
 {
@@ -37,7 +36,7 @@ namespace MindSpace.API.Controllers
         /// <param name="specParams"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<SupportingProgram>>> GetSupportingPrograms(
+        public async Task<ActionResult<IReadOnlyList<SupportingProgramDTO>>> GetSupportingPrograms(
             [FromQuery] SupportingProgramSpecParams specParams)
         {
             var pagedResultDTO = await _mediator.Send(new GetSupportingProgramsQuery(specParams));

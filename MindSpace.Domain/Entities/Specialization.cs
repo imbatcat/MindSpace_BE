@@ -8,7 +8,6 @@ namespace MindSpace.Domain.Entities
     {
         public string Name { get; set; }
 
-
         // 1 Specialization - M Psychologists
         public virtual ICollection<Psychologist> Psychologists { get; set; } = new HashSet<Psychologist>();
 

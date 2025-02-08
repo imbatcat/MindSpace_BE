@@ -13,6 +13,6 @@
         public string? PostalCode { get; set; }
         public DateTime StartDateAt { get; set; }
 
-        //public ICollection<Student> Students { get; set; } = new List<Student>();
+        public ICollection<StudentDTO> Students { get; set; } = new List<StudentDTO>();
     }
 }

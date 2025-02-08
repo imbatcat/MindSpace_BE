@@ -33,6 +33,6 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
 
 
         // M Students - M Supporting Program
-        public virtual ICollection<SupportingProgramHistory> SupportingProgramHistory { get; set; } = new HashSet<SupportingProgramHistory>();
+        public virtual ICollection<SupportingProgramHistory> SupportingProgramHistories { get; set; } = new HashSet<SupportingProgramHistory>();
     }
 }

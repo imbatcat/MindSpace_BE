@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using MindSpace.Application.DTOs;
-using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById
 {
