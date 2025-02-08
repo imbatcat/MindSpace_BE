@@ -5,13 +5,13 @@ using MindSpace.Domain.Entities.Identity;
 using System.Security.Claims;
 using System.Text;
 
-namespace MindSpace.Application.Features.Authentication.Services
+namespace MindSpace.Application.Services.AuthenticationServices
 {
-    public sealed class IdTokenProvider(IConfiguration configuration)
+    public class AccessTokenProvider(IConfiguration configuration)
     {
-        public string CreateToken(ApplicationUser user)
+        public string CreateToken(ApplicationUser user, string role)
         {
-            var jwtSettings = configuration.GetSection("JwtIDTokenSettings");
+            var jwtSettings = configuration.GetSection("JwtAccessTokenSettings");
             string secretKey = jwtSettings["Secret"]!;
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
 
@@ -22,9 +22,9 @@ namespace MindSpace.Application.Features.Authentication.Services
                 Subject = new ClaimsIdentity(
                     [
                         new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                        new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                        new Claim(ClaimTypes.Role, role),
                     ]),
-                Expires = DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("JwtIDTokenSettings:ExpirationInMinutes")),
+                Expires = DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("JwtAccessTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
                 Issuer = jwtSettings["Issuer"]!,
                 Audience = jwtSettings["Audience"]

@@ -15,7 +15,7 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
 
 
         // 1 SchoolManager - M SupportingProgram
-        public int ManagerId { get; set; }
+        public int SchoolManagerId { get; set; }
         [JsonIgnore]
         public virtual SchoolManager SchoolManager { get; set; }
 

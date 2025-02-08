@@ -21,9 +21,9 @@ namespace MindSpace.Application.Features.SupportingPrograms.Specifications
             : base(x =>
                 (!specParams.MinQuantity.HasValue || x.MaxQuantity >= specParams.MinQuantity) &&
                 (!specParams.MaxQuantity.HasValue || x.MaxQuantity <= specParams.MaxQuantity) &&
-                (!specParams.ManagerId.HasValue || x.ManagerId.Equals(specParams.ManagerId)) &&
+                (!specParams.SchoolManagerId.HasValue || x.SchoolManagerId.Equals(specParams.SchoolManagerId)) &&
                 (!specParams.SchoolId.HasValue || x.SchoolId.Equals(specParams.SchoolId)) &&
-                (!specParams.PsychologistId.HasValue || x.ManagerId.Equals(specParams.PsychologistId)) &&
+                (!specParams.PsychologistId.HasValue || x.SchoolManagerId.Equals(specParams.PsychologistId)) &&
                 (!specParams.StartDateAt.HasValue || x.StartDateAt.Equals(specParams.StartDateAt)))
         {
 

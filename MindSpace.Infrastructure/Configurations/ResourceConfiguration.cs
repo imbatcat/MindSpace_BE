@@ -38,6 +38,6 @@ internal class ResourceConfiguration : IEntityTypeConfiguration<Resource>
         // 1 SchoolManager - M Resources
         builder.HasOne(r => r.SchoolManager)
             .WithMany(sm => sm.Resources)
-            .HasForeignKey(r => r.ManagerId);
+            .HasForeignKey(r => r.SchoolManagerId);
     }
 }

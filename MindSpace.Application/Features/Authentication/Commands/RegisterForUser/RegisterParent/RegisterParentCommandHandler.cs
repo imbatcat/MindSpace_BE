@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MindSpace.Application.Features.Authentication.Services;
+using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Domain.Entities.Constants;
 
 namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterParent

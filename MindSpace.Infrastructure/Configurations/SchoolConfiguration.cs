@@ -21,7 +21,7 @@ internal class SchoolConfiguration : IEntityTypeConfiguration<School>
         builder.Property(s => s.Description).IsUnicode().HasMaxLength(100);
         builder.Property(s => s.JoinDate).IsRequired().HasDefaultValueSql("getdate()").ValueGeneratedOnAdd();
 
-        builder.Property(s => s.ManagerId).IsRequired(false);
+        builder.Property(s => s.SchoolManagerId).IsRequired(false);
 
         // 1 School - Owns 1 Address
         builder.OwnsOne(navigationExpression: s => s.Address,

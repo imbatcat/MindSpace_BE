@@ -1,7 +1,7 @@
 ﻿[
   {
     "TestId": 1,
-    "ManagerId": 10,
+    "SchoolManagerId": 10,
     "Title": null,
     "StartDate": null,
     "EndDate": null,
@@ -11,7 +11,7 @@
   },
   {
     "TestId": 2,
-    "ManagerId": 10,
+    "SchoolManagerId": 10,
     "Title": null,
     "StartDate": null,
     "TestPublicationStatus": "Enabled",
@@ -21,7 +21,7 @@
   },
   {
     "TestId": 3,
-    "ManagerId": 11,
+    "SchoolManagerId": 11,
     "Title": null,
     "StartDate": null,
     "EndDate": null,
@@ -31,7 +31,7 @@
   },
   {
     "TestId": 4,
-    "ManagerId": 10,
+    "SchoolManagerId": 10,
     "Title": "Bài kiểm tra tâm lý định kỳ học kỳ 1/2024",
     "StartDate": "2024-02-01",
     "EndDate": "2024-05-01",

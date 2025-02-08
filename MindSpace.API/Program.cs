@@ -3,7 +3,6 @@ using MindSpace.API.Extensions;
 using MindSpace.API.Middlewares;
 using MindSpace.Application.Commons.Utilities.Seeding;
 using MindSpace.Application.Extensions;
-using MindSpace.Domain.Entities.Identity;
 using MindSpace.Infrastructure.Extensions;
 using MindSpace.Infrastructure.Persistence;
 

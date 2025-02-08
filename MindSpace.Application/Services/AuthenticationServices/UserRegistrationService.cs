@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
 
-namespace MindSpace.Application.Features.Authentication.Services
+namespace MindSpace.Application.Services.AuthenticationServices
 {
     public class UserRegistrationService
     {

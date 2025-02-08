@@ -1,11 +1,5 @@
 ﻿using MindSpace.Application.Specifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.SupportingProgramHistories.Specifications
 {

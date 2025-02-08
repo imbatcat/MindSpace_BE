@@ -7,13 +7,13 @@ namespace MindSpace.Domain.Entities.Tests
         public int? TotalScore { get; set; }
 
         public string? TestScoreRankResult { get; set; }
-        
+
         //Relationships
 
         // 1 Student - M Test Responses
         public int StudentId { get; set; }
         public virtual Student Student { get; set; }
-        
+
         // 1 Test Publication - M Test Responses
 
         public int TestPublicationId { get; set; }

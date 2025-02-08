@@ -5,7 +5,7 @@
     "Title": "Mental Health Basics",
     "Introduction": "An introduction to mental health and its importance in daily life.",
     "ThumbnailUrl": "https://example.com/images/mental-health.jpg",
-    "ManagerId": 10
+    "SchoolManagerId": 10
   },
   {
     "ResourceType": "Blog",
@@ -13,7 +13,7 @@
     "Title": "Stress Management Techniques",
     "Introduction": "Effective techniques to manage stress and improve well-being.",
     "ThumbnailUrl": "https://example.com/images/stress-management.jpg",
-    "ManagerId": 10
+    "SchoolManagerId": 10
   },
   {
     "ResourceType": "Article",
@@ -21,7 +21,7 @@
     "Title": "Understanding Anxiety",
     "Introduction": "A comprehensive guide on anxiety, its causes, and coping mechanisms.",
     "ThumbnailUrl": "https://example.com/images/anxiety.jpg",
-    "ManagerId": 11
+    "SchoolManagerId": 11
   },
   {
     "ResourceType": "File",
@@ -29,6 +29,6 @@
     "Title": "Mindfulness Practices for a Calm Mind",
     "Introduction": "How mindfulness can improve your mental state and reduce stress.",
     "ThumbnailUrl": "https://example.com/images/mindfulness.jpg",
-    "ManagerId": 11
+    "SchoolManagerId": 11
   }
 ]

@@ -1,10 +1,5 @@
 ﻿using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Domain.Entities.Tests
 {
@@ -15,7 +10,7 @@ namespace MindSpace.Domain.Entities.Tests
         public Test Test { get; set; }
 
         // 1 SchoolManager - M test publications
-        public int ManagerId { get; set; }
+        public int SchoolManagerId { get; set; }
         public SchoolManager SchoolManager { get; set; }
 
         public string? Title { get; set; }

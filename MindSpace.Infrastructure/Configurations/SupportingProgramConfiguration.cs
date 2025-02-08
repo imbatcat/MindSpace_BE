@@ -31,7 +31,7 @@ internal class SupportingProgramConfiguration : IEntityTypeConfiguration<Support
         // 1 SchoolManager - M SupportingProgramSpecification
         builder.HasOne(sp => sp.SchoolManager)
             .WithMany(m => m.SupportingPrograms)
-            .HasForeignKey(sp => sp.ManagerId)
+            .HasForeignKey(sp => sp.SchoolManagerId)
             .OnDelete(DeleteBehavior.ClientCascade);
 
         // 1 Psychologist - M SupportingProgramSpecification

@@ -1,6 +1,5 @@
 ﻿using MindSpace.Application.Specifications;
 using MindSpace.Domain.Entities.Identity;
-using System.Linq.Expressions;
 
 
 namespace MindSpace.Application.Features.ApplicationUsers.Specifications

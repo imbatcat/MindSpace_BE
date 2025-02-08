@@ -1,10 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Commons.Constants;
-using MindSpace.Application.Features.Authentication.Services;
+using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Domain.Entities.Constants;
-using MindSpace.Domain.Entities.Identity;
 using OfficeOpenXml;
 
 namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterManager

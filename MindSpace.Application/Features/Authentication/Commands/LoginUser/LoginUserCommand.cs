@@ -1,10 +1,5 @@
 ﻿using MediatR;
-using MindSpace.Application.Features.Authentication.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MindSpace.Application.DTOs;
 
 namespace MindSpace.Application.Features.Authentication.Commands.LoginUser
 {

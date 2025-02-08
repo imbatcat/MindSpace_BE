@@ -2,9 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterParent;
-using MindSpace.Application.Features.Authentication.DTOs;
-using MindSpace.Application.Features.Authentication.Services;
+using MindSpace.Application.DTOs;
+using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Application.Features.Authentication.Commands.LoginUser
