@@ -10,9 +10,8 @@ namespace MindSpace.Application.Features.SupportingPrograms.Specifications
         // =====================================
 
         public SupportingProgramSpecification(int programId)
-            : base(x => x.Equals(programId))
+            : base(x => x.Id.Equals(programId))
         {
-            AddInclude("SupportingProgramHistories.Student");
         }
 
         /// <summary>

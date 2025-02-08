@@ -126,6 +126,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     // ===================================
     // === GET queries with Specification
+    // === Using with Include and .ThenInclude
     // ===================================
 
     public async Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T> spec)
@@ -148,6 +149,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     // ===========================================
     // === GET queries Projection with AutoMapper
+    // === Using with Profile and Dto
     // ===========================================
     public async Task<TDto?> GetBySpecProjectedAsync<TDto>(ISpecification<T> spec, IConfigurationProvider mapperConfig)
     {

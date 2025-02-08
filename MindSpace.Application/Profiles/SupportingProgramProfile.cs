@@ -15,7 +15,7 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.PostalCode, o => o.MapFrom(s => s.Address != null ? s.Address.PostalCode : null))
                 .ForMember(d => d.Ward, o => o.MapFrom(s => s.Address != null ? s.Address.Ward : null))
                 .ForMember(d => d.Students, o => o.MapFrom(
-                    s => s.SupportingProgramHistories.Select(h => h.Student)));
+                    s => s.SupportingProgramHistories.Select(h => h.Student))); // AutoMapper will use StudentDTO by default
         }
     }
 }
