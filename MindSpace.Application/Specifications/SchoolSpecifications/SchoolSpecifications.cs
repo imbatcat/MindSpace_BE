@@ -1,7 +1,6 @@
 ﻿using MindSpace.Domain.Entities;
-using System.Linq.Expressions;
 
-namespace MindSpace.Application.Specifications.School
+namespace MindSpace.Application.Specifications.SchoolSpecifications
 {
     public class SchoolSpecifications : BaseSpecification<School>
     {

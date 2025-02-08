@@ -1,6 +1,4 @@
-﻿using MindSpace.Application.Specifications;
-
-namespace MindSpace.Application.Specifications.SupportingProgram
+﻿namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
 {
     public class SupportingProgramSpecParams : BasePagingParams
     {
@@ -17,6 +15,7 @@ namespace MindSpace.Application.Specifications.SupportingProgram
 
         // Filter by Date Range
         public DateTime? FromDate { get; set; }
+
         public int? ToDate { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Features.SupportingProgramHistories.Specifications;
+using MindSpace.Application.Specifications.SupportingProgramHistorySpecifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Interfaces.Repos;
 

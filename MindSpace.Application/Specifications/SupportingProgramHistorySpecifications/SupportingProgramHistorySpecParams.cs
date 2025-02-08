@@ -1,6 +1,4 @@
-﻿using MindSpace.Application.Specifications;
-
-namespace MindSpace.Application.Specifications.SupportingProgramHistory
+﻿namespace MindSpace.Application.Specifications.SupportingProgramHistorySpecifications
 {
     public class SupportingProgramHistorySpecParams : BasePagingParams
     {
@@ -9,6 +7,7 @@ namespace MindSpace.Application.Specifications.SupportingProgramHistory
 
         // Filter by Date Range
         public DateTime? JoinedAtForm { get; set; }
+
         public DateTime? JoinedAtTo { get; set; }
 
         public string? Sort { get; set; }

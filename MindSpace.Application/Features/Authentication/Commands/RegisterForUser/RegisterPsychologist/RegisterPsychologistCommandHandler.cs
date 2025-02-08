@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist.Specifications;
+using MindSpace.Application.Specifications.SpecializationSpecifications;
 using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
 using MindSpace.Domain.Interfaces.Services.Authentication;
 using MindSpace.Domain.Services.Authentication;
-using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist
 {

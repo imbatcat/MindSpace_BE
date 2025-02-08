@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
-using MindSpace.Application.Features.SupportingPrograms.Specifications;
+using MindSpace.Application.Specifications.SupportingProgramSpecifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Interfaces.Repos;
 

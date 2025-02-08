@@ -1,10 +1,5 @@
 ﻿using MindSpace.Application.Specifications;
 using MindSpace.Domain.Entities.Tests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.Questions.Specifications
 {

@@ -1,8 +1,6 @@
-﻿using MindSpace.Application.Specifications;
-using MindSpace.Domain.Entities;
-using System.Linq.Expressions;
+﻿using MindSpace.Domain.Entities;
 
-namespace MindSpace.Application.Specifications.Specialization
+namespace MindSpace.Application.Specifications.SpecializationSpecifications
 {
     public class SpecializationSpecifications : BaseSpecification<Specialization>
     {

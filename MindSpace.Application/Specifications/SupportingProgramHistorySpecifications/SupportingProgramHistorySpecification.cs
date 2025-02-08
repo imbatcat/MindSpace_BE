@@ -1,7 +1,6 @@
-﻿using MindSpace.Application.Specifications;
-using MindSpace.Domain.Entities.SupportingPrograms;
+﻿using MindSpace.Domain.Entities.SupportingPrograms;
 
-namespace MindSpace.Application.Specifications.SupportingProgramHistory
+namespace MindSpace.Application.Specifications.SupportingProgramHistorySpecifications
 {
     public class SupportingProgramHistorySpecification : BaseSpecification<SupportingProgramHistory>
     {
@@ -27,9 +26,11 @@ namespace MindSpace.Application.Specifications.SupportingProgramHistory
                 case "joinedAtAsc":
                     AddOrderBy(h => h.StudentId);
                     break;
+
                 case "joinedAtDesc":
                     AddOrderByDescending(h => h.SupportingProgramId);
                     break;
+
                 default:
                     AddOrderBy(h => h.StudentId);
                     break;

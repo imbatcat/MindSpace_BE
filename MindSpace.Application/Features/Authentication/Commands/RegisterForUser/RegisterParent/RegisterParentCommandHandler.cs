@@ -1,8 +1,5 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Features.Authentication.DTOs;
-using MindSpace.Application.Services.AuthenticationServices;
-using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Interfaces.Services.Authentication;
 
@@ -20,7 +17,6 @@ namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser
                 UserName = request.Username,
                 PhoneNumber = request.PhoneNumber,
                 DateOfBirth = DateTime.Parse(request.Birthdate),
-                
             };
             await applicationUserService.InsertAsync(parent, request.Password);
         }
