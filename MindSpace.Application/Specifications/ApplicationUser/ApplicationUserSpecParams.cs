@@ -1,6 +1,6 @@
 ﻿using MindSpace.Application.Specifications;
 
-namespace MindSpace.Application.Features.ApplicationUsers.Specifications
+namespace MindSpace.Application.Specifications.ApplicationUser
 {
     public class ApplicationUserSpecParams : BasePagingParams
     {

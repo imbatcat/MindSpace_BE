@@ -2,12 +2,12 @@
 using MindSpace.Domain.Entities;
 using System.Linq.Expressions;
 
-namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist.Specifications
+namespace MindSpace.Application.Specifications.Specialization
 {
     public class SpecializationSpecifications : BaseSpecification<Specialization>
     {
-        public SpecializationSpecifications(string name) : 
-            base(x => 
+        public SpecializationSpecifications(string name) :
+            base(x =>
                 x.Name.ToLower() == name.ToLower()
             )
         {

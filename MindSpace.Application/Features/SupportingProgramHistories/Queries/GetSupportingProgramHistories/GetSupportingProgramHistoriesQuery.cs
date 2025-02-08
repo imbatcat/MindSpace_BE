@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MindSpace.Application.Features.SupportingProgramHistories.Specifications;
+using MindSpace.Application.Specifications.SupportingProgramHistory;
 using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.Application.Features.SupportingProgramHistories.Queries.GetSupportingProgramHistories

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.DTOs;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
-using MindSpace.Application.Features.SupportingPrograms.Specifications;
+using MindSpace.Application.Specifications.SupportingProgram;
 
 namespace MindSpace.API.Controllers
 {

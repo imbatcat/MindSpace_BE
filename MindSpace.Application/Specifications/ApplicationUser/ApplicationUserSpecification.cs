@@ -2,7 +2,7 @@
 using MindSpace.Domain.Entities.Identity;
 
 
-namespace MindSpace.Application.Features.ApplicationUsers.Specifications
+namespace MindSpace.Application.Specifications.ApplicationUser
 {
     public class ApplicationUserSpecification : BaseSpecification<ApplicationUser>
     {

@@ -1,7 +1,7 @@
 ﻿using MindSpace.Application.Specifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 
-namespace MindSpace.Application.Features.SupportingProgramHistories.Specifications
+namespace MindSpace.Application.Specifications.SupportingProgramHistory
 {
     public class SupportingProgramHistorySpecification : BaseSpecification<SupportingProgramHistory>
     {

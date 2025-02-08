@@ -1,6 +1,6 @@
 ﻿using MindSpace.Application.Specifications;
 
-namespace MindSpace.Application.Features.SupportingProgramHistories.Specifications
+namespace MindSpace.Application.Specifications.SupportingProgramHistory
 {
     public class SupportingProgramHistorySpecParams : BasePagingParams
     {

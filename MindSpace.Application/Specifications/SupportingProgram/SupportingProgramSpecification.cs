@@ -1,7 +1,7 @@
 ﻿using MindSpace.Application.Specifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 
-namespace MindSpace.Application.Features.SupportingPrograms.Specifications
+namespace MindSpace.Application.Specifications.SupportingProgram
 {
     public class SupportingProgramSpecification : BaseSpecification<SupportingProgram>
     {

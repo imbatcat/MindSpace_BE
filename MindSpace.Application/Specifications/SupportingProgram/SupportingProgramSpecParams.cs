@@ -1,6 +1,6 @@
 ﻿using MindSpace.Application.Specifications;
 
-namespace MindSpace.Application.Features.SupportingPrograms.Specifications
+namespace MindSpace.Application.Specifications.SupportingProgram
 {
     public class SupportingProgramSpecParams : BasePagingParams
     {
