@@ -2,13 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using MindSpace.Application.Specifications;
 using MindSpace.Domain.Entities.Identity;
-using MindSpace.Domain.Interfaces.Services;
+using MindSpace.Domain.Exceptions;
+using MindSpace.Domain.Interfaces.Services.Authentication;
 using MindSpace.Domain.Interfaces.Specifications;
-
 
 namespace MindSpace.Application.Services
 {
-    public class ApplicationUserService : IApplicationUserService<ApplicationUser>
+    public class ApplicationUserService : IApplicationUserService
     {
         // ================================
         // === Fields & Props
@@ -63,9 +63,37 @@ namespace MindSpace.Application.Services
             return SpecificationQueryBuilder<ApplicationUser>.BuildQuery(query, spec);
         }
 
-        public async Task<int> InsertAsync(ApplicationUser user, string password)
+        public Task InsertBulkAsync(IEnumerable<(ApplicationUser user, string password)> usersWithPassword)
         {
-            var createdUser = await _userManager.CreateAsync(user, password);
+            throw new NotImplementedException();
+        }
+
+        public async Task UpdateAsync(ApplicationUser user)
+        {
+            await _userManager.UpdateAsync(user);
+        }
+
+        public async Task InsertAsync(ApplicationUser user, string password)
+        {
+            // Check for duplicate email
+            var existingUserByEmail = await _userManager.FindByEmailAsync(user.Email!);
+            if (existingUserByEmail != null)
+            {
+                throw new DuplicateUserException($"A user with the email {user.Email} already exists.");
+            }
+
+            // Check for duplicate username
+            var existingUserByUsername = await _userManager.FindByNameAsync(user.UserName!);
+            if (existingUserByUsername != null)
+            {
+                throw new DuplicateUserException($"A user with the username {user.UserName} already exists.");
+            }
+
+            var result = await _userManager.CreateAsync(user, password);
+            if (!result.Succeeded)
+            {
+                throw new CreateUserFailedException(user.Email!);
+            }
         }
     }
 }

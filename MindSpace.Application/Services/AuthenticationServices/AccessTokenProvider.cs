@@ -2,7 +2,7 @@
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using MindSpace.Domain.Entities.Identity;
-using MindSpace.Domain.Services.Authentication;
+using MindSpace.Domain.Interfaces.Services.Authentication;
 using System.Security.Claims;
 using System.Text;
 

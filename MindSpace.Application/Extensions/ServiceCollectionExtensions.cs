@@ -1,8 +1,12 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
+using MindSpace.Application.Features.Authentication.Services;
+using MindSpace.Application.Services;
 using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Application.UserContext;
+using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Interfaces.Services.Authentication;
 using MindSpace.Domain.Services.Authentication;
 
 namespace MindSpace.Application.Extensions
@@ -26,7 +30,6 @@ namespace MindSpace.Application.Extensions
 
             // Add User Context
             services.AddScoped<IUserContext, UserContext.UserContext>();
-            services.AddScoped<UserRegistrationService>();
 
             // Add Token Providers
             services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();

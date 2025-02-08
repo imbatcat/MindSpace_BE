@@ -1,45 +1,42 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Features.Authentication.DTOs;
-using MindSpace.Application.Features.Authentication.Services;
+using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Domain.Entities;
-using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.Owned;
+using MindSpace.Domain.Exceptions;
+using MindSpace.Domain.Interfaces.Repos;
+using MindSpace.Domain.Interfaces.Services.Authentication;
 using MindSpace.Domain.Services.Authentication;
-using MindSpace.Application.Services.AuthenticationServices;
-using MindSpace.Domain.Entities.Constants;
-using OfficeOpenXml;
 
 namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterManager
 {
     public class RegisterSchoolManagerCommandHandler
         (ILogger<RegisterSchoolManagerCommandHandler> logger,
-        UserRegistrationService userRegistrationService,
-        IExcelReaderService excelReaderService) : IRequestHandler<RegisterSchoolManagerCommand>
+        IApplicationUserService applicationUserService,
+        IExcelReaderService excelReaderService,
+        IUnitOfWork unitOfWork) : IRequestHandler<RegisterSchoolManagerCommand>
     {
         public async Task Handle(RegisterSchoolManagerCommand request, CancellationToken cancellationToken)
         {
             var results = await excelReaderService.ReadExcelAsync(request.file);
 
-            var managers = new List<RegisterUserDTO>();
-            var schoolManagerMappings = new List<(SchoolManager Manager, School School)>();
-
             foreach (var result in results)
             {
-                SchoolManager schoolManager = new SchoolManager()
+                SchoolManager newSchoolManager = new SchoolManager()
                 {
                     Email = result["Email"],
-                    UserName = result["UserName"],
+                    UserName = result["Username"],
                 };
 
                 Address newSchoolAddress = new Address()
                 {
-                    Street = result["Street"],
-                    City = result["City"],
-                    Ward = result["Ward"],
-                    PostalCode = result["PostalCode"],
-                    Province = result["Province"]
+                    Street = result["AddressStreet"],
+                    City = result["AddressCity"],
+                    Ward = result["AddressWard"],
+                    PostalCode = result["AddressPostalCode"],
+                    Province = result["AddressProvince"]
                 };
 
                 School newSchool = new School()
@@ -54,50 +51,26 @@ namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser
                     UpdateAt = DateTime.Now,
                 };
 
-                // Store the mapping for later linking after user registration
-                schoolManagerMappings.Add((schoolManager, newSchool));
-            }
-
-            using (var stream = new MemoryStream())
-            {
-                await request.file.CopyToAsync(stream);
-                using (var package = new ExcelPackage(stream))
+                var school = unitOfWork.Repository<School>().Insert(newSchool);
+                await unitOfWork.CompleteAsync();
+                newSchoolManager.SchoolId = school.Id;
+                try
                 {
-                    var worksheet = package.Workbook.Worksheets[0];
-                    int rowCount = worksheet.Dimension.Rows;
-
-                    for (int row = 2; row <= rowCount; row++)
-                    {
-                        var userDTO = new RegisterUserDTO()
-                        {
-                            UserName = worksheet.Cells[row, 1].Text,
-                            Email = worksheet.Cells[row, 2].Text,
-                            Password = worksheet.Cells[row, 3].Text,
-                            Role = UserRoles.SchoolManager
-                        };
-
-                        managers.Add(userDTO);
-                    }
+                    await applicationUserService.InsertAsync(newSchoolManager, result["Password"]);
                 }
-
-                // Register users and get their IDs back
-                var registeredUsers = (await userRegistrationService.RegisterUserAsync(managers)).ToList();
-
-                // Now link the schools and managers using the returned user IDs
-                for (int i = 0; i < registeredUsers.Count; i++)
+                catch (DuplicateUserException ex)
                 {
-                    var (manager, school) = schoolManagerMappings[i];
-                    var userId = registeredUsers[i].Id;
-
-                    // Set up the bidirectional relationship
-                    manager.Id = userId;
-                    school.ManagerId = userId;
-                    manager.School = school;
-                    school.SchoolManager = manager;
-
-                    // Save both entities in a single transaction
-                    await userRegistrationService.SaveSchoolManagerAndSchoolAsync(manager, school, cancellationToken);
+                    logger.LogError(ex, "Duplicate user detected: {Email}", newSchoolManager.Email);
+                    // Handle duplicate user scenario
                 }
+                catch (CreateUserFailedException ex)
+                {
+                    logger.LogError(ex, "Failed to create user: {Email}", newSchoolManager.Email);
+                    // Handle user creation failure
+                }
+                school.SchoolManagerId = newSchoolManager.Id;
+                unitOfWork.Repository<School>().Update(school);
+                await unitOfWork.CompleteAsync();
             }
         }
     }

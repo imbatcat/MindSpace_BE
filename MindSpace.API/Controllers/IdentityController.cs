@@ -68,7 +68,6 @@ namespace MindSpace.API.Controllers
         public async Task<IActionResult> RegisterSchoolManager([FromForm] RegisterSchoolManagerCommand command)
         {
             await mediator.Send(command);
-
             return Ok("All managers have been added");
         }
 

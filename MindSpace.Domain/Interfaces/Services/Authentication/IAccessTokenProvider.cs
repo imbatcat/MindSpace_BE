@@ -1,6 +1,6 @@
 ﻿using MindSpace.Domain.Entities.Identity;
 
-namespace MindSpace.Domain.Services.Authentication
+namespace MindSpace.Domain.Interfaces.Services.Authentication
 {
     public interface IAccessTokenProvider
     {
