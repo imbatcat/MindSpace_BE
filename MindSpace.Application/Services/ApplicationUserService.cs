@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MindSpace.Application.Specifications;
-using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Interfaces.Services;
 using MindSpace.Domain.Interfaces.Specifications;
 
 
-namespace MindSpace.Application.Features.ApplicationUsers.Services
+namespace MindSpace.Application.Services
 {
     public class ApplicationUserService : IApplicationUserService<ApplicationUser>
     {

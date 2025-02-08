@@ -17,7 +17,7 @@ namespace MindSpace.Application.Commons.Constants
 
                 public static string SpecializationSeeder = Path.Combine(PathToFakeDataFolder, "Specialization.json");
                 public static string SchoolSeeder = Path.Combine(PathToFakeDataFolder, "School.json");
-                
+
                 public static string TestCategorySeeder = Path.Combine(PathToFakeDataFolder, "TestCategory.json");
                 public static string TestSeeder = Path.Combine(PathToFakeDataFolder, "Test.json");
                 public static string TestScoreRankSeeder = Path.Combine(PathToFakeDataFolder, "TestScoreRank.json");
@@ -31,7 +31,7 @@ namespace MindSpace.Application.Commons.Constants
 
                 public static string PsychologistScheduleSeeder = Path.Combine(PathToFakeDataFolder, "PsychologistSchedule.json");
                 public static string AppointmentSeeder = Path.Combine(PathToFakeDataFolder, "Appointment.json");
-                public static string PaymentSeeder = Path.Combine(PathToFakeDataFolder, "Payment.json");                
+                public static string PaymentSeeder = Path.Combine(PathToFakeDataFolder, "Payment.json");
 
                 public static string SupportingProgramSeeder = Path.Combine(PathToFakeDataFolder, "SupportingProgram.json");
                 public static string FeedbackSeeder = Path.Combine(PathToFakeDataFolder, "Feedback.json");

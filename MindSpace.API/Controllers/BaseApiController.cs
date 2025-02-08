@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using MindSpace.API.Helpers.Requests;
+using MindSpace.API.RequestHelpers;
 
 namespace MindSpace.API.Controllers
 {

@@ -1,6 +1,5 @@
 ﻿namespace MindSpace.Infrastructure.Configurations;
 
-using Domain.Entities.Constants;
 using Domain.Entities.Tests;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

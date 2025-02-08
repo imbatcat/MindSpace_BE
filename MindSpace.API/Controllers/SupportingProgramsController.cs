@@ -1,7 +1,6 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MindSpace.Application.Features.SupportingPrograms.Queries.GetCountSupportingPrograms;
+using MindSpace.Application.DTOs;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Specifications;
@@ -40,12 +39,11 @@ namespace MindSpace.API.Controllers
         public async Task<ActionResult<IReadOnlyList<SupportingProgram>>> GetSupportingPrograms(
             [FromQuery] SupportingProgramSpecParams specParams)
         {
-            var supportPrograms = await _mediator.Send(new GetSupportingProgramsQuery(specParams));
-            var count = await _mediator.Send(new GetCountSupportingProgramsQuery(specParams));
+            var pagedResultDTO = await _mediator.Send(new GetSupportingProgramsQuery(specParams));
 
-            return PaginationOkResult<SupportingProgram>(
-                supportPrograms,
-                count,
+            return PaginationOkResult<SupportingProgramDTO>(
+                pagedResultDTO.Data,
+                pagedResultDTO.Count,
                 specParams.PageIndex,
                 specParams.PageSize
             );

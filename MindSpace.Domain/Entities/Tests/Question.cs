@@ -1,6 +1,4 @@
-﻿using MindSpace.Domain.Entities.Constants;
-
-namespace MindSpace.Domain.Entities.Tests
+﻿namespace MindSpace.Domain.Entities.Tests
 {
     public class Question : BaseEntity
     {

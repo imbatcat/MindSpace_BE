@@ -37,7 +37,7 @@ namespace MindSpace.API.Middlewares
             {
                 _logger.LogError(ex, ex.Message);
                 await WriteToResponse(context, StatusCodes.Status401Unauthorized, ex.Message);
-            } 
+            }
             catch (NotSupportedException ex)
             {
                 _logger.LogError(ex, ex.Message);

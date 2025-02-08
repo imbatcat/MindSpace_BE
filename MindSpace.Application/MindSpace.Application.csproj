@@ -7,6 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Features\Authentication\Profiles\**" />
+	  <EmbeddedResource Remove="Features\Authentication\Profiles\**" />
+	  <None Remove="Features\Authentication\Profiles\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="13.0.1" />
 		<PackageReference Include="EPPlus" Version="7.5.3" />
 		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
@@ -24,10 +30,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Features\SupportingProgramHistories\Profiles\" />
+		<Folder Include="Features\SupportingProgramHistories\Mappings\" />
 		<Folder Include="Features\SupportingPrograms\Commands\CreateSupportingProgram\" />
-		<Folder Include="Features\SupportingPrograms\Profiles\" />
-	  	<Folder Include="Features\Authentication\Profiles\" />
-	  	<Folder Include="Features\SupportingPrograms\Profiles\" />
 	</ItemGroup>
 </Project>

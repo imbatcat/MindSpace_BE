@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.Features.SupportingProgramHistories.Queries.GetCountSupportingProgramHistories;
 using MindSpace.Application.Features.SupportingProgramHistories.Queries.GetSupportingProgramHistories;
