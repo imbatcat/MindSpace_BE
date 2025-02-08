@@ -11,7 +11,7 @@
       "Country": "Việt Nam"
     },
     "StartDateAt": "2024-03-01T09:00:00Z",
-    "ManagerId": 10,
+    "SchoolManagerId": 10,
     "PsychologistId": 7,
     "SchoolId": 1
   },
@@ -27,7 +27,7 @@
       "Country": "Việt Nam"
     },
     "StartDateAt": "2024-03-15T10:00:00Z",
-    "ManagerId": 11,
+    "SchoolManagerId": 11,
     "PsychologistId": 7,
     "SchoolId": 2
   },
@@ -43,7 +43,7 @@
       "Country": "Việt Nam"
     },
     "StartDateAt": "2024-04-01T08:30:00Z",
-    "ManagerId": 10,
+    "SchoolManagerId": 10,
     "PsychologistId": 8,
     "SchoolId": 1
   },
@@ -59,7 +59,7 @@
       "Country": "Việt Nam"
     },
     "StartDateAt": "2024-04-15T11:00:00Z",
-    "ManagerId": 10,
+    "SchoolManagerId": 10,
     "PsychologistId": 9,
     "SchoolId": 1 
   },
@@ -75,7 +75,7 @@
       "Country": "Việt Nam"
     },
     "StartDateAt": "2024-05-01T14:00:00Z",
-    "ManagerId": 10,
+    "SchoolManagerId": 10,
     "PsychologistId": 7,
     "SchoolId": 1
   }

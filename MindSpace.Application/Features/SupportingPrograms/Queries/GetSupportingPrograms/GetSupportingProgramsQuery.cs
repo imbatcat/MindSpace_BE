@@ -1,10 +1,10 @@
 ﻿using MediatR;
+using MindSpace.Application.DTOs;
 using MindSpace.Application.Features.SupportingPrograms.Specifications;
-using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms
 {
-    public class GetSupportingProgramsQuery : IRequest<IReadOnlyList<SupportingProgram>>
+    public class GetSupportingProgramsQuery : IRequest<PagedResultDTO<SupportingProgramDTO>>
     {
         public SupportingProgramSpecParams SpecParams { get; private set; }
 

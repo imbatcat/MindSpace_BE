@@ -1,15 +1,14 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MindSpace.Application.Features.SupportingPrograms.Queries.GetCountSupportingPrograms;
+using MindSpace.Application.DTOs;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Specifications;
-using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.API.Controllers
 {
     //[Authorize]
+    [Route("api/v{version:apiVersion}/supporting-programs")]
     public class SupportingProgramsController : BaseApiController
     {
         // ====================================
@@ -37,15 +36,14 @@ namespace MindSpace.API.Controllers
         /// <param name="specParams"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<SupportingProgram>>> GetSupportingPrograms(
+        public async Task<ActionResult<IReadOnlyList<SupportingProgramDTO>>> GetSupportingPrograms(
             [FromQuery] SupportingProgramSpecParams specParams)
         {
-            var supportPrograms = await _mediator.Send(new GetSupportingProgramsQuery(specParams));
-            var count = await _mediator.Send(new GetCountSupportingProgramsQuery(specParams));
+            var pagedResultDTO = await _mediator.Send(new GetSupportingProgramsQuery(specParams));
 
-            return PaginationOkResult<SupportingProgram>(
-                supportPrograms,
-                count,
+            return PaginationOkResult<SupportingProgramDTO>(
+                pagedResultDTO.Data,
+                pagedResultDTO.Count,
                 specParams.PageIndex,
                 specParams.PageSize
             );
@@ -57,8 +55,8 @@ namespace MindSpace.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<IReadOnlyList<SupportingProgram>>> GetSupportingProgramById(
-            [FromQuery] int id)
+        public async Task<ActionResult<SupportingProgramDTO>> GetSupportingProgramById(
+            [FromRoute] int id)
         {
             var supportProgram = await _mediator.Send(new GetSupportingProgramByIdQuery(id));
             return Ok(supportProgram);

@@ -11,8 +11,12 @@ namespace MindSpace.Application.Features.SupportingPrograms.Specifications
         public string? Sort { get; set; }
 
         public DateTime? StartDateAt { get; set; }
-        public int? ManagerId { get; set; }
+        public int? SchoolManagerId { get; set; }
         public int? PsychologistId { get; set; }
         public int? SchoolId { get; set; }
+
+        // Filter by Date Range
+        public DateTime? FromDate { get; set; }
+        public int? ToDate { get; set; }
     }
 }

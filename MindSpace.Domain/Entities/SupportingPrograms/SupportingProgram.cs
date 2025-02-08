@@ -15,7 +15,7 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
 
 
         // 1 SchoolManager - M SupportingProgram
-        public int ManagerId { get; set; }
+        public int SchoolManagerId { get; set; }
         [JsonIgnore]
         public virtual SchoolManager SchoolManager { get; set; }
 
@@ -33,6 +33,6 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
 
 
         // M Students - M Supporting Program
-        public virtual ICollection<SupportingProgramHistory> SupportingProgramHistory { get; set; } = new HashSet<SupportingProgramHistory>();
+        public virtual ICollection<SupportingProgramHistory> SupportingProgramHistories { get; set; } = new HashSet<SupportingProgramHistory>();
     }
 }

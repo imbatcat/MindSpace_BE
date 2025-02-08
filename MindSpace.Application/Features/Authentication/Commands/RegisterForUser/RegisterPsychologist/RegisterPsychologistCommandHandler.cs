@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
-using MindSpace.Application.Features.Authentication.Services;
+using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Domain.Entities.Constants;
 using OfficeOpenXml;
 

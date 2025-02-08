@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Features.Authentication.DTOs;
-using MindSpace.Application.Features.Authentication.Services;
+using MindSpace.Application.DTOs;
+using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Application.Features.Authentication.Commands.RefreshUserAccessToken
@@ -17,12 +17,12 @@ namespace MindSpace.Application.Features.Authentication.Commands.RefreshUserAcce
         {
             logger.LogInformation("Creating a new access token for user {username}", request.User.UserName);
             var roles = await userManager.GetRolesAsync(request.User);
-            
+
             var accessToken = accessTokenProvider.CreateToken(request.User, roles.First());
             var refreshToken = refreshTokenProvider.CreateToken(request.User);
 
             request.User.RefreshToken = refreshToken;
-            await userManager.UpdateAsync(request.User); 
+            await userManager.UpdateAsync(request.User);
 
             return new RefreshUserAccessTokenDTO()
             {

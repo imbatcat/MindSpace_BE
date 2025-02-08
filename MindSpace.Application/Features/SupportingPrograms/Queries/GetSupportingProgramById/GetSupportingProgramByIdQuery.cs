@@ -1,14 +1,9 @@
 ﻿using MediatR;
-using MindSpace.Domain.Entities.SupportingPrograms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MindSpace.Application.DTOs;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById
 {
-    public class GetSupportingProgramByIdQuery : IRequest<SupportingProgram>
+    public class GetSupportingProgramByIdQuery : IRequest<SupportingProgramDTO>
     {
         public int Id { get; private set; }
 

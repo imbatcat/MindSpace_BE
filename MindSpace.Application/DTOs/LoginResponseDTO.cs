@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace MindSpace.Application.Features.Authentication.DTOs
+namespace MindSpace.Application.DTOs
 {
     public class LoginResponseDTO
     {

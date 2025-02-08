@@ -5,9 +5,8 @@ using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Services.Authentication;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Text;
 
-namespace MindSpace.Application.Features.Authentication.Services
+namespace MindSpace.Application.Services.AuthenticationServices
 {
     public class RefreshTokenProvider(IConfiguration configuration) : IRefreshTokenProvider
     {

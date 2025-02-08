@@ -8,7 +8,7 @@ using MindSpace.Domain.Interfaces.Repos;
 using MindSpace.Domain.Interfaces.Services;
 using MindSpace.Domain.Services.Authentication;
 
-namespace MindSpace.Application.Features.Authentication.Services
+namespace MindSpace.Application.Services.AuthenticationServices
 {
     public class UserRegistrationService : IUserRegistrationService
     {

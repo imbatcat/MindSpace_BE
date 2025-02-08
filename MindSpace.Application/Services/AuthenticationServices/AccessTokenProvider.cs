@@ -6,7 +6,7 @@ using MindSpace.Domain.Services.Authentication;
 using System.Security.Claims;
 using System.Text;
 
-namespace MindSpace.Application.Features.Authentication.Services
+namespace MindSpace.Application.Services.AuthenticationServices
 {
     public class AccessTokenProvider(IConfiguration configuration) : IAccessTokenProvider
     {

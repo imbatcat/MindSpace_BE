@@ -10,7 +10,7 @@
     "Address_PostalCode": "700000",
     "Description": "Trường trung học phổ thông công lập.",
     "JoinDate": "2020-08-15T00:00:00Z",
-    "ManagerId": 10,
+    "SchoolManagerId": 10,
     "CreateAt": "2020-08-15T10:00:00Z",
     "UpdateAt": "2024-01-29T12:00:00Z"
   },
@@ -25,7 +25,7 @@
     "Address_PostalCode": "100000",
     "Description": "Trường trung học phổ thông tư thục.",
     "JoinDate": "2019-09-10T00:00:00Z",
-    "ManagerId": 11,
+    "SchoolManagerId": 11,
     "CreateAt": "2019-09-10T09:30:00Z",
     "UpdateAt": "2024-01-29T12:05:00Z"
   }

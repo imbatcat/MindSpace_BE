@@ -9,21 +9,26 @@ namespace MindSpace.Application.Features.SupportingPrograms.Specifications
         // === Constructors
         // =====================================
 
+        public SupportingProgramSpecification(int programId)
+            : base(x => x.Id.Equals(programId))
+        {
+        }
+
         /// <summary>
         /// Using short circuit
         /// if FALSE || TRUE, then consider the TRUE
         /// if TRUE || ..., then first one always TRUE, which maesn don't have value of MinQuantity and MaxQuantity
         /// 
-        /// Constructor for Pagination and Query
+        /// Constructor for General Filter and Pagination
         /// </summary>
         /// <param name="specParams"></param>
         public SupportingProgramSpecification(SupportingProgramSpecParams specParams)
             : base(x =>
                 (!specParams.MinQuantity.HasValue || x.MaxQuantity >= specParams.MinQuantity) &&
                 (!specParams.MaxQuantity.HasValue || x.MaxQuantity <= specParams.MaxQuantity) &&
-                (!specParams.ManagerId.HasValue || x.ManagerId.Equals(specParams.ManagerId)) &&
+                (!specParams.SchoolManagerId.HasValue || x.SchoolManagerId.Equals(specParams.SchoolManagerId)) &&
                 (!specParams.SchoolId.HasValue || x.SchoolId.Equals(specParams.SchoolId)) &&
-                (!specParams.PsychologistId.HasValue || x.ManagerId.Equals(specParams.PsychologistId)) &&
+                (!specParams.PsychologistId.HasValue || x.PsychologistId.Equals(specParams.PsychologistId)) &&
                 (!specParams.StartDateAt.HasValue || x.StartDateAt.Equals(specParams.StartDateAt)))
         {
 
