@@ -152,7 +152,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public async Task<T?> GetByIdAsync(int id) => await _dbContext.Set<T>().FirstOrDefaultAsync();
+    public async Task<T?> GetByIdAsync(int id) => await _dbContext.Set<T>().FindAsync(id);
 
     /// <summary>
     ///     Count number of records with filter

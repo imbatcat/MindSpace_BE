@@ -14,7 +14,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Specifications
         /// if FALSE || TRUE, then consider the TRUE
         /// if TRUE || ..., then first one always TRUE, which maesn don't have value of MinQuantity and MaxQuantity
         /// 
-        /// Constructor for Pagination and Query
+        /// Constructor for General Filter and Pagination
         /// </summary>
         /// <param name="specParams"></param>
         public SupportingProgramSpecification(SupportingProgramSpecParams specParams)
