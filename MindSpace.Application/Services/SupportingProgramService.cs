@@ -7,33 +7,28 @@ namespace MindSpace.Application.Services
 {
     public class SupportingProgramService : ISupportingProgramService
     {
+        // ================================
+        // === Fields & Props
+        // ================================
+
         private readonly IUnitOfWork _unitOfWork;
+
+        // ================================
+        // === Constructors
+        // ================================
 
         public SupportingProgramService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        /// <summary>
-        /// Count number of supporting program under the spec
-        /// </summary>
-        /// <param name="spec"></param>
-        /// <returns></returns>
+        // ================================
+        // === Methods
+        // ================================
+
         public async Task<int> CountSupportingProgramAsync(ISpecification<SupportingProgram> spec)
         {
             return await _unitOfWork.Repository<SupportingProgram>().CountAsync(spec);
-        }
-
-        public Task<SupportingProgram?> CreateSuppportingProgramAsync()
-        {
-            return null;
-        }
-
-        public async Task<SupportingProgram?> DeleteSuppportingProgramAsync(SupportingProgram sp)
-        {
-            var deletedSupportingProgram = _unitOfWork.Repository<SupportingProgram>().Delete(sp);
-            await _unitOfWork.CompleteAsync();
-            return deletedSupportingProgram;
         }
 
         public async Task<IReadOnlyList<SupportingProgram>> GetAllSupportingProgramAsync(ISpecification<SupportingProgram> spec)
@@ -41,16 +36,9 @@ namespace MindSpace.Application.Services
             return await _unitOfWork.Repository<SupportingProgram>().GetAllWithSpecAsync(spec);
         }
 
-        public Task<IReadOnlyList<SupportingProgram>> GetAllSupportingProgramFromDateRange(DateTime fromDateTime, DateTime toDateTime)
+        public async Task<SupportingProgram?> GetSupportingProgramByIdAsync(int id)
         {
-            return null;
-        }
-
-        public async Task<SupportingProgram?> UpdateSupportingProgramAsync(SupportingProgram sp)
-        {
-            var updatedSupportingProgram = _unitOfWork.Repository<SupportingProgram>().Update(sp);
-            await _unitOfWork.CompleteAsync();
-            return updatedSupportingProgram;
+            return await _unitOfWork.Repository<SupportingProgram>().GetByIdAsync(id);
         }
     }
 }

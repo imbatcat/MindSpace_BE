@@ -9,6 +9,7 @@ using MindSpace.Domain.Entities.SupportingPrograms;
 namespace MindSpace.API.Controllers
 {
     //[Authorize]
+    [Route("api/v{version:apiVersion}/supporting-programs")]
     public class SupportingProgramsController : BaseApiController
     {
         // ====================================
@@ -55,8 +56,8 @@ namespace MindSpace.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<IReadOnlyList<SupportingProgram>>> GetSupportingProgramById(
-            [FromQuery] int id)
+        public async Task<ActionResult<SupportingProgramDTO>> GetSupportingProgramById(
+            [FromRoute] int id)
         {
             var supportProgram = await _mediator.Send(new GetSupportingProgramByIdQuery(id));
             return Ok(supportProgram);

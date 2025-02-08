@@ -51,22 +51,12 @@ namespace MindSpace.Application.Services
             return await ApplySpecification(spec).FirstOrDefaultAsync();
         }
 
-        /// <summary>
-        /// Function to count based on user spec
-        /// </summary>
-        /// <param name="spec"></param>
-        /// <returns></returns>
         public async Task<int> CountAsync(ISpecification<ApplicationUser> spec)
         {
             var query = _userManager.Users.AsQueryable();
             return await SpecificationQueryBuilder<ApplicationUser>.BuildCountQuery(query, spec).CountAsync();
         }
 
-        /// <summary>
-        /// Function to apply specification into query
-        /// </summary>
-        /// <param name="spec"></param>
-        /// <returns></returns>
         private IQueryable<ApplicationUser> ApplySpecification(ISpecification<ApplicationUser> spec)
         {
             var query = _userManager.Users.AsQueryable();

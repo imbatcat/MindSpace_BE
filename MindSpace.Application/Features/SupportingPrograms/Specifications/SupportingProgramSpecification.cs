@@ -14,7 +14,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Specifications
         /// if FALSE || TRUE, then consider the TRUE
         /// if TRUE || ..., then first one always TRUE, which maesn don't have value of MinQuantity and MaxQuantity
         /// 
-        /// Constructor for Pagination and Query
+        /// Constructor for General Filter and Pagination
         /// </summary>
         /// <param name="specParams"></param>
         public SupportingProgramSpecification(SupportingProgramSpecParams specParams)
@@ -23,7 +23,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Specifications
                 (!specParams.MaxQuantity.HasValue || x.MaxQuantity <= specParams.MaxQuantity) &&
                 (!specParams.SchoolManagerId.HasValue || x.SchoolManagerId.Equals(specParams.SchoolManagerId)) &&
                 (!specParams.SchoolId.HasValue || x.SchoolId.Equals(specParams.SchoolId)) &&
-                (!specParams.PsychologistId.HasValue || x.SchoolManagerId.Equals(specParams.PsychologistId)) &&
+                (!specParams.PsychologistId.HasValue || x.PsychologistId.Equals(specParams.PsychologistId)) &&
                 (!specParams.StartDateAt.HasValue || x.StartDateAt.Equals(specParams.StartDateAt)))
         {
 
