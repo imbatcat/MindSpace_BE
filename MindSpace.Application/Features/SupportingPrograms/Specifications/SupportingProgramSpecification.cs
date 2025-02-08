@@ -9,6 +9,11 @@ namespace MindSpace.Application.Features.SupportingPrograms.Specifications
         // === Constructors
         // =====================================
 
+        public SupportingProgramSpecification(int programId)
+            : base(x => x.Id.Equals(programId))
+        {
+        }
+
         /// <summary>
         /// Using short circuit
         /// if FALSE || TRUE, then consider the TRUE

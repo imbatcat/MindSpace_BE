@@ -8,7 +8,7 @@ internal class SupportingProgramHistoryConfiguration : IEntityTypeConfiguration<
 {
     public void Configure(EntityTypeBuilder<SupportingProgramHistory> builder)
     {
-        builder.ToTable("SupportingProgramHistory", "dbo");
+        builder.ToTable("SupportingProgramHistories", "dbo");
         // M Supporting Program - M Student
         builder.HasKey(spd => new { spd.StudentId, spd.SupportingProgramId });
 
@@ -17,7 +17,7 @@ internal class SupportingProgramHistoryConfiguration : IEntityTypeConfiguration<
             .HasForeignKey(spd => spd.StudentId);
 
         builder.HasOne(spd => spd.SupportingProgram)
-            .WithMany(sp => sp.SupportingProgramHistory)
+            .WithMany(sp => sp.SupportingProgramHistories)
             .HasForeignKey(spd => spd.SupportingProgramId);
     }
 }
