@@ -52,11 +52,6 @@ namespace MindSpace.Application.Features.ApplicationUsers.Services
             return await ApplySpecification(spec).FirstOrDefaultAsync();
         }
 
-        /// <summary>
-        /// Function to count based on user spec
-        /// </summary>
-        /// <param name="spec"></param>
-        /// <returns></returns>
         public async Task<int> CountAsync(ISpecification<ApplicationUser> spec)
         {
             var query = _userManager.Users.AsQueryable();
@@ -72,6 +67,11 @@ namespace MindSpace.Application.Features.ApplicationUsers.Services
         {
             var query = _userManager.Users.AsQueryable();
             return SpecificationQueryBuilder<ApplicationUser>.BuildQuery(query, spec);
+        }
+
+        public async Task<int> InsertAsync(ApplicationUser user, string password)
+        {
+            var createdUser = await _userManager.CreateAsync(user, password);
         }
     }
 }

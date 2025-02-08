@@ -45,7 +45,6 @@ namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser
                         };
 
                         psychologists.Add(userDTO);
-                        string schoolId = worksheet.Cells[row, 4].Text;
                     }
                 }
                 await userRegistrationService.RegisterUserAsync(psychologists);

@@ -1,24 +1,35 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Features.Authentication.DTOs;
+using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
+using MindSpace.Domain.Interfaces.Repos;
+using MindSpace.Domain.Interfaces.Services;
+using MindSpace.Domain.Services.Authentication;
 
 namespace MindSpace.Application.Features.Authentication.Services
 {
-    public class UserRegistrationService
+    public class UserRegistrationService : IUserRegistrationService
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IApplicationUserService<ApplicationUser> _applicationUserService;
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly ILogger<UserRegistrationService> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
         public UserRegistrationService(
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
-            ILogger<UserRegistrationService> logger)
+            ILogger<UserRegistrationService> logger,
+            IApplicationUserService<ApplicationUser> applicationUserService,
+            IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _userStore = userStore;
             _logger = logger;
+            _applicationUserService = applicationUserService;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<ApplicationUser> RegisterUserAsync(
@@ -79,13 +90,29 @@ namespace MindSpace.Application.Features.Authentication.Services
 
             return users;
         }
-    }
 
-    public class RegisterUserDTO
-    {
-        public string Email { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Role { get; set; }
+        public async Task SaveSchoolManagerAndSchoolAsync(SchoolManager manager, School school, CancellationToken cancellationToken = default)
+        {
+            // Start a transaction to ensure both entities are saved together
+            try
+            {
+                // Add both entities
+                //await _applicationUserService;
+                //await _unitOfWork.Schools.AddAsync(school, cancellationToken);
+
+                // Save changes
+                await _unitOfWork.CompleteAsync();
+
+                // Commit the transaction
+                _logger.LogInformation("School {schoolName} and its manager {managerId} have been saved successfully",
+                    school.SchoolName, manager.Id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to save school {schoolName} and its manager {managerId}",
+                    school.SchoolName, manager.Id);
+                throw;
+            }
+        }
     }
 }
