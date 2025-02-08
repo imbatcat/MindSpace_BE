@@ -1,7 +1,5 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.Owned;

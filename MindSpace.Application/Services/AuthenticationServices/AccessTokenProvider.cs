@@ -10,7 +10,6 @@ namespace MindSpace.Application.Services.AuthenticationServices
 {
     public class AccessTokenProvider(IConfiguration configuration) : IAccessTokenProvider
     {
-
         public string CreateToken(ApplicationUser user, string role)
         {
             var jwtSettings = configuration.GetSection("JwtAccessTokenSettings");

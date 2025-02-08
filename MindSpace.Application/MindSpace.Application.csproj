@@ -30,6 +30,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Folder Include="Features\ApplicationUsers\" />
 		<Folder Include="Features\SupportingPrograms\Commands\CreateSupportingProgram\" />
 	</ItemGroup>
 </Project>

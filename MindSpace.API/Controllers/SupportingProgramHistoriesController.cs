@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.Features.SupportingProgramHistories.Queries.GetCountSupportingProgramHistories;
 using MindSpace.Application.Features.SupportingProgramHistories.Queries.GetSupportingProgramHistories;
-using MindSpace.Application.Features.SupportingProgramHistories.Specifications;
+using MindSpace.Application.Specifications.SupportingProgramHistorySpecifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.API.Controllers

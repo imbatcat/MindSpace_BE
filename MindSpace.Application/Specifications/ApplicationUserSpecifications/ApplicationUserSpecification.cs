@@ -1,8 +1,6 @@
-﻿using MindSpace.Application.Specifications;
-using MindSpace.Domain.Entities.Identity;
+﻿using MindSpace.Domain.Entities.Identity;
 
-
-namespace MindSpace.Application.Features.ApplicationUsers.Specifications
+namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
 {
     public class ApplicationUserSpecification : BaseSpecification<ApplicationUser>
     {
@@ -26,7 +24,6 @@ namespace MindSpace.Application.Features.ApplicationUsers.Specifications
             // AddInclude(x => x.School)
         }
 
-
         /// <summary>
         /// Search By General Filter
         /// </summary>
@@ -39,7 +36,6 @@ namespace MindSpace.Application.Features.ApplicationUsers.Specifications
             s.FullName.ToLower().Contains(specParams.SearchName.ToLower()) ||
             s.Id.Equals(specParams.UserId))
         {
-
             // will add AddInclude later
             // AddInclude(x => x.School)
 
@@ -57,7 +53,5 @@ namespace MindSpace.Application.Features.ApplicationUsers.Specifications
                 }
             }
         }
-
-
     }
 }

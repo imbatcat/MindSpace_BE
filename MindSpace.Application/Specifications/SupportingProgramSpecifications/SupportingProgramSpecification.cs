@@ -1,7 +1,6 @@
-﻿using MindSpace.Application.Specifications;
-using MindSpace.Domain.Entities.SupportingPrograms;
+﻿using MindSpace.Domain.Entities.SupportingPrograms;
 
-namespace MindSpace.Application.Features.SupportingPrograms.Specifications
+namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
 {
     public class SupportingProgramSpecification : BaseSpecification<SupportingProgram>
     {
@@ -18,7 +17,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Specifications
         /// Using short circuit
         /// if FALSE || TRUE, then consider the TRUE
         /// if TRUE || ..., then first one always TRUE, which maesn don't have value of MinQuantity and MaxQuantity
-        /// 
+        ///
         /// Constructor for General Filter and Pagination
         /// </summary>
         /// <param name="specParams"></param>
@@ -31,7 +30,6 @@ namespace MindSpace.Application.Features.SupportingPrograms.Specifications
                 (!specParams.PsychologistId.HasValue || x.PsychologistId.Equals(specParams.PsychologistId)) &&
                 (!specParams.StartDateAt.HasValue || x.StartDateAt.Equals(specParams.StartDateAt)))
         {
-
             // Add Paging
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
 

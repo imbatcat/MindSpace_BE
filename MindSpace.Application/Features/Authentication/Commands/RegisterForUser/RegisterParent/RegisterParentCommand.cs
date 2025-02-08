@@ -4,10 +4,10 @@ namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser
 {
     public class RegisterParentCommand : IRequest
     {
-        public required string Email { get; set; } = default!;
-        public required string Username { get; set; } = default!;
-        public required string Password { get; set; } = default!;
-        public required string Birthdate { get; set; } = default!;
-        public required string PhoneNumber { get; set; } = default!;
+        public string Email { get; set; } = default!;
+        public string Username { get; set; } = default!;
+        public string Password { get; set; } = default!;
+        public string Birthdate { get; set; } = default!;
+        public string PhoneNumber { get; set; } = default!;
     }
 }

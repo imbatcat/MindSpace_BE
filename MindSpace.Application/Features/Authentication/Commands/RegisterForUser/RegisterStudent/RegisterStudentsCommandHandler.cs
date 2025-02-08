@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist.Specifications;
-using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterStudent.Specifications;
-using MindSpace.Application.Services.AuthenticationServices;
+using MindSpace.Application.Specifications.SchoolSpecifications;
 using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;

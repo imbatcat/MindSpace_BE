@@ -42,7 +42,7 @@ namespace MindSpace.Application.Commons.Constants
         }
 
         /// <summary>
-        /// Default password for all registered users 
+        /// Default password for all registered users
         /// </summary>
         public static string DefaultPassword = "Password1!";
     }
