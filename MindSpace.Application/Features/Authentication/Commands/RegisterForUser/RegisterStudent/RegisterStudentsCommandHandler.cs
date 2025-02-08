@@ -1,54 +1,59 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist.Specifications;
+using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterStudent.Specifications;
 using MindSpace.Application.Services.AuthenticationServices;
-using MindSpace.Domain.Entities.Constants;
-using OfficeOpenXml;
+using MindSpace.Domain.Entities;
+using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Exceptions;
+using MindSpace.Domain.Interfaces.Repos;
+using MindSpace.Domain.Interfaces.Services.Authentication;
+using MindSpace.Domain.Services.Authentication;
 
 namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterStudent
 {
     public class RegisterStudentsCommandHandler(
-        UserRegistrationService userRegistrationService) : IRequestHandler<RegisterStudentsCommand>
+        ILogger<RegisterStudentsCommandHandler> logger,
+        IApplicationUserService applicationUserService,
+        IExcelReaderService excelReaderService,
+        IUnitOfWork unitOfWork) : IRequestHandler<RegisterStudentsCommand>
     {
         public async Task Handle(RegisterStudentsCommand request, CancellationToken cancellationToken)
         {
-            var file = request.file;
+            var results = await excelReaderService.ReadExcelAsync(request.file);
 
-            if (file == null || request.file.Length == 0)
+            foreach (var result in results)
             {
-                throw new BadHttpRequestException("No file uploaded.");
-            }
-
-            if (!file.FileName.EndsWith(".xlsx"))
-            {
-                throw new BadHttpRequestException("Invalid file type.");
-            }
-
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            using (var stream = new MemoryStream())
-            {
-                var students = new List<RegisterUserDTO>();
-                await file.CopyToAsync(stream);
-                using (var package = new ExcelPackage(stream))
+                Student newStudent = new Student()
                 {
-                    var worksheet = package.Workbook.Worksheets[0];
-                    int rowCount = worksheet.Dimension.Rows;
-                    int colCount = worksheet.Dimension.Columns;
+                    Email = result["Email"],
+                    UserName = result["Username"],
+                };
 
-                    for (int row = 2; row <= rowCount; row++)
-                    {
-                        var userDTO = new RegisterUserDTO()
-                        {
-                            UserName = worksheet.Cells[row, 1].Text,
-                            Email = worksheet.Cells[row, 2].Text,
-                            Password = worksheet.Cells[row, 3].Text,
-                            Role = UserRoles.Student
-                        };
+                var schoolSpecifications = new SchoolSpecifications(result["SchoolName"]);
+                var school = (await unitOfWork.Repository<School>().GetAllWithSpecAsync(schoolSpecifications)).FirstOrDefault();
 
-                        students.Add(userDTO);
-                        string schoolId = worksheet.Cells[row, 4].Text;
-                    }
+                if (school == null)
+                {
+                    logger.LogWarning("School {schoolName} does not exists", result["SchoolName"]);
+                    //add to "status" object here
+                    continue;
                 }
-                await userRegistrationService.RegisterUserAsync(students);
+                school.Students.Add(newStudent);
+                try
+                {
+                    await applicationUserService.InsertAsync(newStudent, result["Password"]);
+                }
+                catch (DuplicateUserException ex)
+                {
+                    logger.LogError(ex, "Duplicate user detected: {Email}", newStudent.Email);
+                    // Handle duplicate user scenario
+                }
+                catch (CreateUserFailedException ex)
+                {
+                    logger.LogError(ex, "Failed to create user: {Email}", newStudent.Email);
+                    // Handle user creation failure
+                }
             }
         }
     }

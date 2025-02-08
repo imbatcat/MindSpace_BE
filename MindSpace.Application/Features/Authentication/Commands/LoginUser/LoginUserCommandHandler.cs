@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
 using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Interfaces.Services.Authentication;
 
 namespace MindSpace.Application.Features.Authentication.Commands.LoginUser
 {
@@ -13,9 +14,9 @@ namespace MindSpace.Application.Features.Authentication.Commands.LoginUser
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
         IPasswordHasher<ApplicationUser> passwordHasher,
-        IdTokenProvider idTokenProvider,
-        AccessTokenProvider accessTokenProvider,
-        RefreshTokenProvider refreshTokenProvider) : IRequestHandler<LoginUserCommand, LoginResponseDTO>
+        IIDTokenProvider idTokenProvider,
+        IAccessTokenProvider accessTokenProvider,
+        IRefreshTokenProvider refreshTokenProvider) : IRequestHandler<LoginUserCommand, LoginResponseDTO>
     {
         public async Task<LoginResponseDTO> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {

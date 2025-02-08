@@ -1,22 +1,28 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
+using MindSpace.Application.Features.Authentication.DTOs;
 using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Domain.Entities.Constants;
+using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Interfaces.Services.Authentication;
 
 namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterParent
 {
     internal class RegisterParentCommandHandler
-        (UserRegistrationService userRegistrationService) : IRequestHandler<RegisterParentCommand>
+            (ILogger<RegisterParentCommandHandler> logger,
+            IApplicationUserService applicationUserService) : IRequestHandler<RegisterParentCommand>
     {
         public async Task Handle(RegisterParentCommand request, CancellationToken cancellationToken)
         {
-            var dto = new RegisterUserDTO()
+            ApplicationUser parent = new ApplicationUser()
             {
                 Email = request.Email,
-                Password = request.Password,
-                UserName = request.Email.ToLower(),
-                Role = UserRoles.Parent
+                UserName = request.Username,
+                PhoneNumber = request.PhoneNumber,
+                DateOfBirth = DateTime.Parse(request.Birthdate),
+                
             };
-            await userRegistrationService.RegisterUserAsync(dto);
+            await applicationUserService.InsertAsync(parent, request.Password);
         }
     }
 }

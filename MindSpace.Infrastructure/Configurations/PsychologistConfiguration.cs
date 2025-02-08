@@ -13,6 +13,7 @@ internal class PsychologistConfiguration : IEntityTypeConfiguration<Psychologist
 
         // Fields
         builder.Property(p => p.Bio)
+            .IsRequired(false)
             .HasMaxLength(1000).IsUnicode();
 
         builder.Property(p => p.AverageRating)

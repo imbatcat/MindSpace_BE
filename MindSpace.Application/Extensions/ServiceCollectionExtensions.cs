@@ -1,8 +1,13 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
+using MindSpace.Application.Features.Authentication.Services;
+using MindSpace.Application.Services;
 using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Application.UserContext;
+using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Interfaces.Services.Authentication;
+using MindSpace.Domain.Services.Authentication;
 
 namespace MindSpace.Application.Extensions
 {
@@ -25,10 +30,12 @@ namespace MindSpace.Application.Extensions
 
             // Add User Context
             services.AddScoped<IUserContext, UserContext.UserContext>();
-            services.AddScoped<UserRegistrationService>();
-            services.AddScoped<IdTokenProvider>();
-            services.AddScoped<AccessTokenProvider>();
-            services.AddScoped<RefreshTokenProvider>();
+
+            // Add Token Providers
+            services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();
+            services.AddScoped<IIDTokenProvider, IdTokenProvider>();
+            services.AddScoped<IRefreshTokenProvider, RefreshTokenProvider>();
+            services.AddSingleton<IExcelReaderService, ExcelReaderService>();
 
             // Add HttpContextAccessor
             services.AddHttpContextAccessor();

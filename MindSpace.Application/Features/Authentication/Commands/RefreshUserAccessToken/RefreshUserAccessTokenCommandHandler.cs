@@ -4,13 +4,14 @@ using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
 using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Interfaces.Services.Authentication;
 
 namespace MindSpace.Application.Features.Authentication.Commands.RefreshUserAccessToken
 {
     internal class RefreshUserAccessTokenCommandHandler
         (ILogger<RefreshUserAccessTokenCommandHandler> logger,
-        AccessTokenProvider accessTokenProvider,
-        RefreshTokenProvider refreshTokenProvider,
+        IAccessTokenProvider accessTokenProvider,
+        IRefreshTokenProvider refreshTokenProvider,
         UserManager<ApplicationUser> userManager) : IRequestHandler<RefreshUserAccessTokenCommand, RefreshUserAccessTokenDTO>
     {
         public async Task<RefreshUserAccessTokenDTO> Handle(RefreshUserAccessTokenCommand request, CancellationToken cancellationToken)

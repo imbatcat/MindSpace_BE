@@ -49,7 +49,7 @@ namespace MindSpace.API.Controllers
 
             if (jwtToken.ValidTo < DateTime.UtcNow.AddSeconds(3))
             {
-                return Unauthorized("Invalid or expired refresh token");
+                return Unauthorized("Expired refresh token");
             }
 
             var user = await userManager.FindByIdAsync(jwtToken.Subject);
@@ -68,14 +68,13 @@ namespace MindSpace.API.Controllers
         public async Task<IActionResult> RegisterSchoolManager([FromForm] RegisterSchoolManagerCommand command)
         {
             await mediator.Send(command);
-
             return Ok("All managers have been added");
         }
 
         // Admin registers account for Psychologist
         [HttpPost("register-for/psychologist")]
         [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> RegisterPsychologist([FromBody] RegisterPsychologistCommand command)
+        public async Task<IActionResult> RegisterPsychologist([FromForm] RegisterPsychologistCommand command)
         {
             await mediator.Send(command);
             return Ok("All psychologists have been added");
@@ -84,7 +83,7 @@ namespace MindSpace.API.Controllers
         // School Manager registers account for students
         [HttpPost("register-for/student")]
         [Authorize(Roles = UserRoles.SchoolManager)]
-        public async Task<IActionResult> RegisterStudent([FromBody] RegisterStudentsCommand command)
+        public async Task<IActionResult> RegisterStudent([FromForm] RegisterStudentsCommand command)
         {
             await mediator.Send(command);
             return Ok("Student registered successfully");

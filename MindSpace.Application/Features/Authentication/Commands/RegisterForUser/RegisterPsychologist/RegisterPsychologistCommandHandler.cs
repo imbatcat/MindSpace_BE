@@ -1,54 +1,61 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
-using MindSpace.Application.Services.AuthenticationServices;
-using MindSpace.Domain.Entities.Constants;
-using OfficeOpenXml;
+using Microsoft.Extensions.Logging;
+using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist.Specifications;
+using MindSpace.Domain.Entities;
+using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Interfaces.Repos;
+using MindSpace.Domain.Interfaces.Services.Authentication;
+using MindSpace.Domain.Services.Authentication;
+using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist
 {
     public class RegisterPsychologistCommandHandler(
-        UserRegistrationService userRegistrationService) : IRequestHandler<RegisterPsychologistCommand>
+        ILogger<RegisterPsychologistCommandHandler> logger,
+        IApplicationUserService applicationUserService,
+        IExcelReaderService excelReaderService,
+        IUnitOfWork unitOfWork) : IRequestHandler<RegisterPsychologistCommand>
     {
         public async Task Handle(RegisterPsychologistCommand request, CancellationToken cancellationToken)
         {
-            var file = request.file;
+            var results = await excelReaderService.ReadExcelAsync(request.file);
 
-            if (file == null || request.file.Length == 0)
+            foreach (var result in results)
             {
-                throw new BadHttpRequestException("No file uploaded.");
-            }
-
-            if (!file.FileName.EndsWith(".xlsx"))
-            {
-                throw new BadHttpRequestException("Invalid file type.");
-            }
-
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            using (var stream = new MemoryStream())
-            {
-                var psychologists = new List<RegisterUserDTO>();
-                await file.CopyToAsync(stream);
-                using (var package = new ExcelPackage(stream))
+                Psychologist newPsychologist = new Psychologist()
                 {
-                    var worksheet = package.Workbook.Worksheets[0];
-                    int rowCount = worksheet.Dimension.Rows;
-                    int colCount = worksheet.Dimension.Columns;
+                    Email = result["Email"],
+                    UserName = result["Username"],
+                };
 
-                    for (int row = 2; row <= rowCount; row++)
+                var specializationSpecification = new SpecializationSpecifications(result["Specialization"]);
+                var specialization = (await unitOfWork.Repository<Specialization>().GetAllWithSpecAsync(specializationSpecification)).FirstOrDefault();
+
+                if (specialization == null)
+                {
+                    //insert new
+                    specialization = new Specialization()
                     {
-                        var userDTO = new RegisterUserDTO()
-                        {
-                            UserName = worksheet.Cells[row, 1].Text,
-                            Email = worksheet.Cells[row, 2].Text,
-                            Password = worksheet.Cells[row, 3].Text,
-                            Role = UserRoles.Psychologist
-                        };
-
-                        psychologists.Add(userDTO);
-                        string schoolId = worksheet.Cells[row, 4].Text;
-                    }
+                        Name = result["Specialization"]
+                    };
+                    specialization = unitOfWork.Repository<Specialization>().Insert(specialization);
+                    await unitOfWork.CompleteAsync();
                 }
-                await userRegistrationService.RegisterUserAsync(psychologists);
+                newPsychologist.SpecializationId = specialization.Id;
+                try
+                {
+                    await applicationUserService.InsertAsync(newPsychologist, result["Password"]);
+                }
+                catch (DuplicateUserException ex)
+                {
+                    logger.LogError(ex, "Duplicate user detected: {Email}", newPsychologist.Email);
+                    // Handle duplicate user scenario
+                }
+                catch (CreateUserFailedException ex)
+                {
+                    logger.LogError(ex, "Failed to create user: {Email}", newPsychologist.Email);
+                    // Handle user creation failure
+                }
             }
         }
     }

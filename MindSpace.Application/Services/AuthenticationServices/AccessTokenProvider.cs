@@ -2,13 +2,15 @@
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Interfaces.Services.Authentication;
 using System.Security.Claims;
 using System.Text;
 
 namespace MindSpace.Application.Services.AuthenticationServices
 {
-    public class AccessTokenProvider(IConfiguration configuration)
+    public class AccessTokenProvider(IConfiguration configuration) : IAccessTokenProvider
     {
+
         public string CreateToken(ApplicationUser user, string role)
         {
             var jwtSettings = configuration.GetSection("JwtAccessTokenSettings");

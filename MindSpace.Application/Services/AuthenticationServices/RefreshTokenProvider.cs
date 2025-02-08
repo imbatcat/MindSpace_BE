@@ -2,11 +2,13 @@
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Interfaces.Services.Authentication;
+using System.Security.Claims;
 using System.Security.Cryptography;
 
 namespace MindSpace.Application.Services.AuthenticationServices
 {
-    public class RefreshTokenProvider(IConfiguration configuration)
+    public class RefreshTokenProvider(IConfiguration configuration) : IRefreshTokenProvider
     {
         public string CreateToken(ApplicationUser user)
         {
