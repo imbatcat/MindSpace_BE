@@ -23,7 +23,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Specifications
                 (!specParams.MaxQuantity.HasValue || x.MaxQuantity <= specParams.MaxQuantity) &&
                 (!specParams.SchoolManagerId.HasValue || x.SchoolManagerId.Equals(specParams.SchoolManagerId)) &&
                 (!specParams.SchoolId.HasValue || x.SchoolId.Equals(specParams.SchoolId)) &&
-                (!specParams.PsychologistId.HasValue || x.SchoolManagerId.Equals(specParams.PsychologistId)) &&
+                (!specParams.PsychologistId.HasValue || x.PsychologistId.Equals(specParams.PsychologistId)) &&
                 (!specParams.StartDateAt.HasValue || x.StartDateAt.Equals(specParams.StartDateAt)))
         {
 
