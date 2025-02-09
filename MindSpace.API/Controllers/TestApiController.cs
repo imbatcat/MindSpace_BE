@@ -10,7 +10,7 @@ namespace MindSpace.API.Controllers
     [ApiVersion(1)]
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public class TestController : ControllerBase
+    public class TestApiController : ControllerBase
     {
         private static readonly List<Item> items = new()
         {

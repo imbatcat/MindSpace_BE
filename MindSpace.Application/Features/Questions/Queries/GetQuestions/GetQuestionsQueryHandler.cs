@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.Tests;
 using MindSpace.Application.Specifications.QuestionSpecifications;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Domain.Interfaces.Repos;
@@ -38,7 +39,7 @@ namespace MindSpace.Application.Features.Questions.Queries.GetQuestions
 
         public async Task<PagedResultDTO<QuestionResponseDTO>> Handle(GetQuestionsQuery request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Get list of Supporting Programs with Spec: {@Spec}", request.SpecParams);
+            _logger.LogInformation("Get list of Questions with Spec: {@Spec}", request.SpecParams);
 
             var spec = new QuestionSpecification(request.SpecParams);
 

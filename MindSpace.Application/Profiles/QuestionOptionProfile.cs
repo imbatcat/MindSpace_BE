@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.Tests;
 using MindSpace.Domain.Entities.Tests;
 
 namespace MindSpace.Application.Profiles

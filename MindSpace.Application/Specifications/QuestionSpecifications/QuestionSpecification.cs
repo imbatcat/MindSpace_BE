@@ -5,11 +5,8 @@ namespace MindSpace.Application.Specifications.QuestionSpecifications
     public class QuestionSpecification : BaseSpecification<Question>
     {
         public QuestionSpecification(QuestionSpecParams specParams)
-            : base(q =>
-                string.IsNullOrEmpty(specParams.SearchQuestionContent) || q.Content.ToLower().Contains(specParams.SearchQuestionContent.ToLower()))
+            : base(q => string.IsNullOrEmpty(specParams.SearchQuestionContent) || q.Content.ToLower().Contains(specParams.SearchQuestionContent.ToLower()))
         {
-            // Add include
-            AddInclude(x => x.QuestionOptions);
 
             // Add Paging
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
