@@ -1,0 +1,35 @@
+name: Publish-My-App
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+jobs:
+  publish:
+    if: github.event.pull_request.merged == true || github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    # build and publish to azure
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with: 
+          dotnet-version: '9.0.x'
+
+      - name: Restore
+        run: dotnet restore ./MindSpace.sln
+
+      - name: Build
+        run: dotnet build ./MindSpace.sln --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish ./MindSpace.sln --configuration Release --no-build
