@@ -1,7 +1,7 @@
 ﻿using MindSpace.Application.Specifications;
 using MindSpace.Domain.Entities.Tests;
 
-namespace MindSpace.Application.Features.Questions.Specifications
+namespace MindSpace.Application.Specifications.QuestionSpecifications
 {
     public class QuestionSpecification : BaseSpecification<Question>
     {

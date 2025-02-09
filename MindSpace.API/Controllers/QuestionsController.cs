@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.DTOs;
 using MindSpace.Application.Features.Questions.Queries.GetQuestions;
-using MindSpace.Application.Features.Questions.Specifications;
+using MindSpace.Application.Specifications.QuestionSpecifications;
 using MindSpace.Domain.Entities.Tests;
 
 namespace MindSpace.API.Controllers
