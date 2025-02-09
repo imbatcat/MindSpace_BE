@@ -5,8 +5,8 @@ using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
+using MindSpace.Domain.Interfaces.Services;
 using MindSpace.Domain.Interfaces.Services.Authentication;
-using MindSpace.Domain.Services.Authentication;
 
 namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist
 {

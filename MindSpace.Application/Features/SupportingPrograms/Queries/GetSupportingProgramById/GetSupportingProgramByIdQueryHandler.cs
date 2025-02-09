@@ -9,7 +9,7 @@ using MindSpace.Domain.Interfaces.Repos;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById
 {
-    public class GetSupportingProgramByIdQueryHandler : IRequestHandler<GetSupportingProgramByIdQuery, SupportingProgramResponseDTO>
+    public class GetSupportingProgramByIdQueryHandler : IRequestHandler<GetSupportingProgramByIdQuery, SupportingProgramWithStudentsResponseDTO>
     {
         // ================================
         // === Fields & Props
@@ -35,22 +35,22 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
         // ================================
         // === Methods
         // ================================
-        public async Task<SupportingProgramResponseDTO> Handle(GetSupportingProgramByIdQuery request, CancellationToken cancellationToken)
+        public async Task<SupportingProgramWithStudentsResponseDTO> Handle(GetSupportingProgramByIdQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Get Supporting Program By Id: {@Id}", request.Id);
 
             var spec = new SupportingProgramSpecification(request.Id);
 
-            var dataDto = _unitOfWork
+            var dataDto = await _unitOfWork
                 .Repository<SupportingProgram>()
-                .GetBySpecProjectedAsync<SupportingProgramResponseDTO>(spec, _mapper.ConfigurationProvider);
+                .GetBySpecProjectedAsync<SupportingProgramWithStudentsResponseDTO>(spec, _mapper.ConfigurationProvider);
 
             if (dataDto == null)
             {
                 throw new NotFoundException(nameof(SupportingProgram), request.Id.ToString());
             }
 
-            return null;
+            return dataDto;
         }
     }
 }

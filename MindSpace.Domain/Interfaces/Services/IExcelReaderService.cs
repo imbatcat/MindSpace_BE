@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace MindSpace.Domain.Services.Authentication
+namespace MindSpace.Domain.Interfaces.Services
 {
     public interface IExcelReaderService
     {

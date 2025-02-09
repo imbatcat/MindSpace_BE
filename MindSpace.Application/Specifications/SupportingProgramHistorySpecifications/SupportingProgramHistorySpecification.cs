@@ -4,6 +4,12 @@ namespace MindSpace.Application.Specifications.SupportingProgramHistorySpecifica
 {
     public class SupportingProgramHistorySpecification : BaseSpecification<SupportingProgramHistory>
     {
+        public SupportingProgramHistorySpecification(int studentId)
+            : base(h => (h.StudentId.Equals(studentId)))
+        {
+            AddOrderByDescending(x => x.JoinedAt);
+        }
+
         /// <summary>
         /// General Filter
         /// </summary>
