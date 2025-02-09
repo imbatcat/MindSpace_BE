@@ -8,7 +8,7 @@ using MindSpace.Domain.Interfaces.Repos;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms
 {
-    public class GetSupportingProgramQueryHandler : IRequestHandler<GetSupportingProgramsQuery, PagedResultDTO<SupportingProgramDTO>>
+    public class GetSupportingProgramQueryHandler : IRequestHandler<GetSupportingProgramsQuery, PagedResultDTO<SupportingProgramResponseDTO>>
     {
         // ================================
         // === Fields & Props
@@ -36,7 +36,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
         // === Methods
         // ================================
 
-        public async Task<PagedResultDTO<SupportingProgramDTO>> Handle(GetSupportingProgramsQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResultDTO<SupportingProgramResponseDTO>> Handle(GetSupportingProgramsQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Get list of Supporting Programs with Spec: {@Spec}", request.SpecParams);
 
@@ -45,13 +45,13 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
             // Use Projection
             var listDto = await _unitOfWork
                 .Repository<SupportingProgram>()
-                .GetAllWithSpecProjectedAsync<SupportingProgramDTO>(spec, _mapper.ConfigurationProvider);
+                .GetAllWithSpecProjectedAsync<SupportingProgramResponseDTO>(spec, _mapper.ConfigurationProvider);
 
             var count = await _unitOfWork
                 .Repository<SupportingProgram>()
                 .CountAsync(spec);
 
-            return new PagedResultDTO<SupportingProgramDTO>(count, listDto);
+            return new PagedResultDTO<SupportingProgramResponseDTO>(count, listDto);
         }
     }
 }

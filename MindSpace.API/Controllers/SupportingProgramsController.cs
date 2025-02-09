@@ -36,12 +36,12 @@ namespace MindSpace.API.Controllers
         /// <param name="specParams"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<SupportingProgramDTO>>> GetSupportingPrograms(
+        public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingPrograms(
             [FromQuery] SupportingProgramSpecParams specParams)
         {
             var pagedResultDTO = await _mediator.Send(new GetSupportingProgramsQuery(specParams));
 
-            return PaginationOkResult<SupportingProgramDTO>(
+            return PaginationOkResult<SupportingProgramResponseDTO>(
                 pagedResultDTO.Data,
                 pagedResultDTO.Count,
                 specParams.PageIndex,
@@ -55,7 +55,7 @@ namespace MindSpace.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<SupportingProgramDTO>> GetSupportingProgramById(
+        public async Task<ActionResult<SupportingProgramResponseDTO>> GetSupportingProgramById(
             [FromRoute] int id)
         {
             var supportProgram = await _mediator.Send(new GetSupportingProgramByIdQuery(id));

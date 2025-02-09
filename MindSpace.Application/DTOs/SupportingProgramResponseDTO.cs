@@ -1,6 +1,6 @@
 ﻿namespace MindSpace.Application.DTOs
 {
-    public class SupportingProgramDTO
+    public class SupportingProgramResponseDTO
     {
         public int Id { get; set; }
         public string ThumbnailUrl { get; set; }
@@ -13,6 +13,6 @@
         public string? PostalCode { get; set; }
         public DateTime StartDateAt { get; set; }
 
-        public ICollection<StudentDTO> Students { get; set; } = new List<StudentDTO>();
+        public ICollection<StudentResponseDTO> Students { get; set; } = new List<StudentResponseDTO>();
     }
 }

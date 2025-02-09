@@ -4,6 +4,14 @@ namespace MindSpace.Application.Specifications.SupportingProgramHistorySpecifica
 {
     public class SupportingProgramHistorySpecification : BaseSpecification<SupportingProgramHistory>
     {
+        
+
+
+
+        /// <summary>
+        /// General Filter
+        /// </summary>
+        /// <param name="specParams"></param>
         public SupportingProgramHistorySpecification(SupportingProgramHistorySpecParams specParams)
             : base(h =>
                 (!specParams.StudentId.HasValue || h.StudentId.Equals(specParams.StudentId)) &&
@@ -11,10 +19,6 @@ namespace MindSpace.Application.Specifications.SupportingProgramHistorySpecifica
                 (!specParams.JoinedAtTo.HasValue || h.JoinedAt.Date <= specParams.JoinedAtTo) &&
                 (!specParams.JoinedAtForm.HasValue || h.JoinedAt.Date >= specParams.JoinedAtForm))
         {
-            // Include
-            AddInclude(s => s.SupportingProgram);
-            AddInclude(s => s.Student);
-
             // Paging
             AddPaging(
                 specParams.PageSize * (specParams.PageIndex - 1),

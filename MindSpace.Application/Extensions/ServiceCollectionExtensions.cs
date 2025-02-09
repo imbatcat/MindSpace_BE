@@ -2,6 +2,7 @@
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using MindSpace.Application.Features.Authentication.Services;
+using MindSpace.Application.Services;
 using MindSpace.Application.Services.AuthenticationServices;
 using MindSpace.Application.UserContext;
 using MindSpace.Domain.Interfaces.Services.Authentication;
@@ -37,6 +38,9 @@ namespace MindSpace.Application.Extensions
 
             // Add HttpContextAccessor
             services.AddHttpContextAccessor();
+
+            // Add Services
+            services.AddScoped<IApplicationUserService, ApplicationUserService>();
         }
     }
 }

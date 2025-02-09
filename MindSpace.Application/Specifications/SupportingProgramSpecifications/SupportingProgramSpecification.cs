@@ -8,6 +8,10 @@ namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
         // === Constructors
         // =====================================
 
+        /// <summary>
+        /// Select by Id
+        /// </summary>
+        /// <param name="programId"></param>
         public SupportingProgramSpecification(int programId)
             : base(x => x.Id.Equals(programId))
         {
@@ -16,7 +20,7 @@ namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
         /// <summary>
         /// Using short circuit
         /// if FALSE || TRUE, then consider the TRUE
-        /// if TRUE || ..., then first one always TRUE, which maesn don't have value of MinQuantity and MaxQuantity
+        /// if TRUE || ..., then first one always TRUE, which mean don't evaluate value of MinQuantity and MaxQuantity
         ///
         /// Constructor for General Filter and Pagination
         /// </summary>

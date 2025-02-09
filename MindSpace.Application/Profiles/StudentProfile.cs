@@ -8,7 +8,7 @@ namespace MindSpace.Application.Profiles
     {
         public StudentProfile()
         {
-            CreateProjection<Student, StudentDTO>();
+            CreateProjection<Student, StudentResponseDTO>();
         }
     }
 }

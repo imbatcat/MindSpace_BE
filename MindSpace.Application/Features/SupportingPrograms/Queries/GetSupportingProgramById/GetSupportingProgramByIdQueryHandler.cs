@@ -9,7 +9,7 @@ using MindSpace.Domain.Interfaces.Repos;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById
 {
-    public class GetSupportingProgramByIdQueryHandler : IRequestHandler<GetSupportingProgramByIdQuery, SupportingProgramDTO>
+    public class GetSupportingProgramByIdQueryHandler : IRequestHandler<GetSupportingProgramByIdQuery, SupportingProgramResponseDTO>
     {
         // ================================
         // === Fields & Props
@@ -35,7 +35,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
         // ================================
         // === Methods
         // ================================
-        public async Task<SupportingProgramDTO> Handle(GetSupportingProgramByIdQuery request, CancellationToken cancellationToken)
+        public async Task<SupportingProgramResponseDTO> Handle(GetSupportingProgramByIdQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Get Supporting Program By Id: {@Id}", request.Id);
 
@@ -43,7 +43,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
 
             var dataDto = _unitOfWork
                 .Repository<SupportingProgram>()
-                .GetBySpecProjectedAsync<SupportingProgramDTO>(spec, _mapper.ConfigurationProvider);
+                .GetBySpecProjectedAsync<SupportingProgramResponseDTO>(spec, _mapper.ConfigurationProvider);
 
             if (dataDto == null)
             {

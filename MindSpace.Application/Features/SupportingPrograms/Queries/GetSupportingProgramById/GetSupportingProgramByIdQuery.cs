@@ -3,7 +3,7 @@ using MindSpace.Application.DTOs;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById
 {
-    public class GetSupportingProgramByIdQuery : IRequest<SupportingProgramDTO>
+    public class GetSupportingProgramByIdQuery : IRequest<SupportingProgramResponseDTO>
     {
         public int Id { get; private set; }
 
