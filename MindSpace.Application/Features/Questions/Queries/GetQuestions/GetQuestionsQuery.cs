@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.Tests;
 using MindSpace.Application.Specifications.QuestionSpecifications;
 
 namespace MindSpace.Application.Features.Questions.Queries.GetQuestions
