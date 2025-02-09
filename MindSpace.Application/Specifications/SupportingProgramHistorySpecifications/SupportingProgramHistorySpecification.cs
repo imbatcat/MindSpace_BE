@@ -4,10 +4,6 @@ namespace MindSpace.Application.Specifications.SupportingProgramHistorySpecifica
 {
     public class SupportingProgramHistorySpecification : BaseSpecification<SupportingProgramHistory>
     {
-        
-
-
-
         /// <summary>
         /// General Filter
         /// </summary>

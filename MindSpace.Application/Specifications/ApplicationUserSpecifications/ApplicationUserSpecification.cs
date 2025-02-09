@@ -10,8 +10,6 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
         /// <param name="id"></param>
         public ApplicationUserSpecification(int id) : base(x => x.Id.Equals(id))
         {
-            // will add AddInclude later
-            // AddInclude(x => x.School)
         }
 
         /// <summary>
@@ -20,8 +18,6 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
         /// <param name="id"></param>
         public ApplicationUserSpecification(string email) : base(x => x.Email.Equals(email))
         {
-            // will add AddInclude later
-            // AddInclude(x => x.School)
         }
 
         /// <summary>
