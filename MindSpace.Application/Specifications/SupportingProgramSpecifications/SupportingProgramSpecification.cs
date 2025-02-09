@@ -9,7 +9,7 @@ namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
         // =====================================
 
         /// <summary>
-        /// Select by Id
+        /// Filter by SProgram Id
         /// </summary>
         /// <param name="programId"></param>
         public SupportingProgramSpecification(int programId)

@@ -9,14 +9,34 @@ namespace MindSpace.Application.Profiles
         public SupportingProgramProfile()
         {
             CreateProjection<SupportingProgram, SupportingProgramResponseDTO>()
-                .ForMember(d => d.Street, o => o.MapFrom(s => s.Address != null ? s.Address.Street : null))
-                .ForMember(d => d.Province, o => o.MapFrom(s => s.Address != null ? s.Address.Province : null))
-                .ForMember(d => d.City, o => o.MapFrom(s => s.Address != null ? s.Address.City : null))
-                .ForMember(d => d.PostalCode, o => o.MapFrom(s => s.Address != null ? s.Address.PostalCode : null))
-                .ForMember(d => d.Ward, o => o.MapFrom(s => s.Address != null ? s.Address.Ward : null))
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
+                .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Address.Street))
+                .ForMember(dest => dest.Ward, opt => opt.MapFrom(src => src.Address.Ward))
+                .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.Address.Province))
+                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.Address.PostalCode));
+
+
+            CreateProjection<SupportingProgram, SupportingProgramWithStudentsResponseDTO>()
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
+                .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Address.Street))
+                .ForMember(dest => dest.Ward, opt => opt.MapFrom(src => src.Address.Ward))
+                .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.Address.Province))
+                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.Address.PostalCode))
                 .ForMember(d => d.Students, o => o.MapFrom(
-                    s => s.SupportingProgramHistories.Select(h => h.Student))); // AutoMapper will map with StudentResponseDTO based on 
-                                                                                // the type of list of students in SupportingProgramResponseDTO
+                            s => s.SupportingProgramHistories.Select(h => h.Student))); // If Using Projection then AutoMapper will map with StudentResponseDTO based on 
+                                                                                        //the type of list of students in SupportingProgramResponseDT
+
+            CreateProjection<SupportingProgramHistory, SupportingProgramResponseDTO>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.SupportingProgram.Id))
+                .ForMember(dest => dest.ThumbnailUrl, opt => opt.MapFrom(src => src.SupportingProgram.ThumbnailUrl))
+                .ForMember(dest => dest.PdffileUrl, opt => opt.MapFrom(src => src.SupportingProgram.PdffileUrl))
+                .ForMember(dest => dest.MaxQuantity, opt => opt.MapFrom(src => src.SupportingProgram.MaxQuantity))
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.SupportingProgram.Address.City))
+                .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.SupportingProgram.Address.Street))
+                .ForMember(dest => dest.Ward, opt => opt.MapFrom(src => src.SupportingProgram.Address.Ward))
+                .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.SupportingProgram.Address.Province))
+                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.SupportingProgram.Address.PostalCode))
+                .ForMember(dest => dest.StartDateAt, opt => opt.MapFrom(src => src.SupportingProgram.StartDateAt));
         }
     }
 }

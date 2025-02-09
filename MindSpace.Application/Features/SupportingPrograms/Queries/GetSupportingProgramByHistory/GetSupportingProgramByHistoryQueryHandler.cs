@@ -2,28 +2,28 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
-using MindSpace.Application.Specifications.SupportingProgramSpecifications;
+using MindSpace.Application.Specifications.SupportingProgramHistorySpecifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Interfaces.Repos;
 
-namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms
+namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramByHistory
 {
-    public class GetSupportingProgramQueryHandler : IRequestHandler<GetSupportingProgramsQuery, PagedResultDTO<SupportingProgramResponseDTO>>
+    public class GetSupportingProgramByHistoryQueryHandler
+        : IRequestHandler<GetSupportingProgramByHistoryQuery, PagedResultDTO<SupportingProgramResponseDTO>>
     {
         // ================================
         // === Fields & Props
         // ================================
 
-        private readonly ILogger<GetSupportingProgramQueryHandler> _logger;
+        private readonly ILogger<GetSupportingProgramByHistoryQuery> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         // ================================
         // === Constructors
         // ================================
-
-        public GetSupportingProgramQueryHandler(
-            ILogger<GetSupportingProgramQueryHandler> logger,
+        public GetSupportingProgramByHistoryQueryHandler(
+            ILogger<GetSupportingProgramByHistoryQuery> logger,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
@@ -36,19 +36,19 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
         // === Methods
         // ================================
 
-        public async Task<PagedResultDTO<SupportingProgramResponseDTO>> Handle(GetSupportingProgramsQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResultDTO<SupportingProgramResponseDTO>> Handle(GetSupportingProgramByHistoryQuery request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Get list of Supporting Programs with Spec: {@Spec}", request.SpecParams);
+            _logger.LogInformation("Get list of Supporting Programs with History Spec: {@spec}", request.SpecParams);
 
-            var spec = new SupportingProgramSpecification(request.SpecParams);
+            var spec = new SupportingProgramHistorySpecification(request.SpecParams);
 
-            // Use Projection
+            // Use Projection 
             var listDto = await _unitOfWork
-                .Repository<SupportingProgram>()
+                .Repository<SupportingProgramHistory>()
                 .GetAllWithSpecProjectedAsync<SupportingProgramResponseDTO>(spec, _mapper.ConfigurationProvider);
 
             var count = await _unitOfWork
-                .Repository<SupportingProgram>()
+                .Repository<SupportingProgramHistory>()
                 .CountAsync(spec);
 
             return new PagedResultDTO<SupportingProgramResponseDTO>(count, listDto);

@@ -1,5 +1,4 @@
-﻿using MindSpace.Application.Specifications;
-using MindSpace.Domain.Entities.Tests;
+﻿using MindSpace.Domain.Entities.Tests;
 
 namespace MindSpace.Application.Specifications.QuestionSpecifications
 {

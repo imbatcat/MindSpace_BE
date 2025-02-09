@@ -1,6 +1,4 @@
-﻿using MindSpace.Application.Specifications;
-
-namespace MindSpace.Application.Specifications.QuestionSpecifications
+﻿namespace MindSpace.Application.Specifications.QuestionSpecifications
 {
     public class QuestionSpecParams : BasePagingParams
     {

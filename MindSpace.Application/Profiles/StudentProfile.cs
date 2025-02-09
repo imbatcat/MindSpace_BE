@@ -8,7 +8,9 @@ namespace MindSpace.Application.Profiles
     {
         public StudentProfile()
         {
-            CreateProjection<Student, StudentResponseDTO>();
+            CreateProjection<Student, StudentResponseDTO>()
+                .ForMember(d => d.DateOfBirth, o => o.MapFrom<DateOnly?>(s =>
+                            s.DateOfBirth.HasValue ? DateOnly.FromDateTime(s.DateOfBirth.Value) : null));
         }
     }
 }

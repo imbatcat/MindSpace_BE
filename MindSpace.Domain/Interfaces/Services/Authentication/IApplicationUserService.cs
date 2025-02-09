@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using MindSpace.Domain.Entities.Identity;
+﻿using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Interfaces.Specifications;
 
 namespace MindSpace.Domain.Interfaces.Services.Authentication
