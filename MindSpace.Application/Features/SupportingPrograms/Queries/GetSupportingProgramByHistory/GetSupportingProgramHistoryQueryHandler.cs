@@ -8,22 +8,22 @@ using MindSpace.Domain.Interfaces.Repos;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramByHistory
 {
-    public class GetSupportingProgramByHistoryQueryHandler
-        : IRequestHandler<GetSupportingProgramByHistoryQuery, PagedResultDTO<SupportingProgramResponseDTO>>
+    public class GetSupportingProgramHistoryQueryHandler
+        : IRequestHandler<GetSupportingProgramHistoryQuery, PagedResultDTO<SupportingProgramResponseDTO>>
     {
         // ================================
         // === Fields & Props
         // ================================
 
-        private readonly ILogger<GetSupportingProgramByHistoryQuery> _logger;
+        private readonly ILogger<GetSupportingProgramHistoryQuery> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         // ================================
         // === Constructors
         // ================================
-        public GetSupportingProgramByHistoryQueryHandler(
-            ILogger<GetSupportingProgramByHistoryQuery> logger,
+        public GetSupportingProgramHistoryQueryHandler(
+            ILogger<GetSupportingProgramHistoryQuery> logger,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
@@ -36,7 +36,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
         // === Methods
         // ================================
 
-        public async Task<PagedResultDTO<SupportingProgramResponseDTO>> Handle(GetSupportingProgramByHistoryQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResultDTO<SupportingProgramResponseDTO>> Handle(GetSupportingProgramHistoryQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Get list of Supporting Programs with History Spec: {@spec}", request.SpecParams);
 
