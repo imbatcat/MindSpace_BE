@@ -29,6 +29,10 @@ var app = builder.Build();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseMiddleware<TimeLoggingMiddleware>();
 
+// Configure CORS 
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
+.WithOrigins("http://localhost:4200", "https://localhost:4200"));
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
