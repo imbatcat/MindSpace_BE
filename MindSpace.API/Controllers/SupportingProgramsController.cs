@@ -62,7 +62,7 @@ namespace MindSpace.API.Controllers
         {
             // Get from the Table Supporting Program History to track number of SP by Student Id
 
-            var pagedResultDTO = await _mediator.Send(new GetSupportingProgramByHistoryQuery(specParams));
+            var pagedResultDTO = await _mediator.Send(new GetSupportingProgramHistoryQuery(specParams));
 
             return PaginationOkResult<SupportingProgramResponseDTO>(
                 pagedResultDTO.Data,

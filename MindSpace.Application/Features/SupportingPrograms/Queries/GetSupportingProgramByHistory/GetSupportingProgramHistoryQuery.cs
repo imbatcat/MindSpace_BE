@@ -4,11 +4,11 @@ using MindSpace.Application.Specifications.SupportingProgramHistorySpecification
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramByHistory
 {
-    public class GetSupportingProgramByHistoryQuery : IRequest<PagedResultDTO<SupportingProgramResponseDTO>>
+    public class GetSupportingProgramHistoryQuery : IRequest<PagedResultDTO<SupportingProgramResponseDTO>>
     {
         public SupportingProgramHistorySpecParams SpecParams { get; private set; }
 
-        public GetSupportingProgramByHistoryQuery(SupportingProgramHistorySpecParams specParams)
+        public GetSupportingProgramHistoryQuery(SupportingProgramHistorySpecParams specParams)
         {
             SpecParams = specParams;
         }
