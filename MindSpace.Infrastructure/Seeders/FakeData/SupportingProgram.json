@@ -1,5 +1,6 @@
 ﻿[
   {
+    "Title": "Chương Trình Hỗ Trợ Đặc Biệt",
     "ThumbnailUrl": "https://example.com/thumbnail1.jpg",
     "PdffileUrl": "https://example.com/program1.pdf",
     "MaxQuantity": 50,
@@ -15,7 +16,9 @@
     "PsychologistId": 7,
     "SchoolId": 1
   },
+
   {
+    "Title": "Chương Trình Hỗ Trợ Sinh Viên",
     "ThumbnailUrl": "https://example.com/thumbnail2.jpg",
     "PdffileUrl": "https://example.com/program2.pdf",
     "MaxQuantity": 30,
@@ -32,6 +35,7 @@
     "SchoolId": 2
   },
   {
+    "Title": "Chương Trình Phát Triển Cá Nhân",
     "ThumbnailUrl": "https://example.com/thumbnail3.jpg",
     "PdffileUrl": "https://example.com/program3.pdf",
     "MaxQuantity": 40,
@@ -48,6 +52,7 @@
     "SchoolId": 1
   },
   {
+    "Title": "Chương Trình Hỗ Trợ Học Đường",
     "ThumbnailUrl": "https://example.com/thumbnail4.jpg",
     "PdffileUrl": "https://example.com/program4.pdf",
     "MaxQuantity": 60,
@@ -61,9 +66,10 @@
     "StartDateAt": "2024-04-15T11:00:00Z",
     "SchoolManagerId": 10,
     "PsychologistId": 9,
-    "SchoolId": 1 
+    "SchoolId": 1
   },
   {
+    "Title": "Chương Trình Tư Vấn",
     "ThumbnailUrl": "https://example.com/thumbnail5.jpg",
     "PdffileUrl": "https://example.com/program5.pdf",
     "MaxQuantity": 25,

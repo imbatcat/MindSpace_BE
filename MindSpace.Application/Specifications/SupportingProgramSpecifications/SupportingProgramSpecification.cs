@@ -9,7 +9,7 @@ namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
         // =====================================
 
         /// <summary>
-        /// Filter by SProgram Id
+        /// Filter by Program Id
         /// </summary>
         /// <param name="programId"></param>
         public SupportingProgramSpecification(int programId)
@@ -18,15 +18,27 @@ namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
         }
 
         /// <summary>
+        /// Filter by Title for Create
+        /// </summary>
+        /// <param name="title"></param>
+        public SupportingProgramSpecification(string title)
+            : base(x => x.Title.ToLower().Contains(title.ToLower()))
+        {
+        }
+
+        /// <summary>
         /// Using short circuit
-        /// if FALSE || TRUE, then consider the TRUE
-        /// if TRUE || ..., then first one always TRUE, which mean don't evaluate value of MinQuantity and MaxQuantity
-        ///
+        /// if FALSE || TRUE, then consider the TRUE expression
+        /// if TRUE || ..., if left side is TRUE, which mean don't evaluate value of right side
+        /// 
+        /// if all NULLs => all TRUES => Get ALL values from the table
+        /// 
         /// Constructor for General Filter and Pagination
         /// </summary>
         /// <param name="specParams"></param>
         public SupportingProgramSpecification(SupportingProgramSpecParams specParams)
             : base(x =>
+                (!string.IsNullOrWhiteSpace(specParams.SearchTitle) || x.Title.ToLower().Contains(specParams.SearchTitle!.ToLower())) &&
                 (!specParams.MinQuantity.HasValue || x.MaxQuantity >= specParams.MinQuantity) &&
                 (!specParams.MaxQuantity.HasValue || x.MaxQuantity <= specParams.MaxQuantity) &&
                 (!specParams.SchoolManagerId.HasValue || x.SchoolManagerId.Equals(specParams.SchoolManagerId)) &&

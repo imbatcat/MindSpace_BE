@@ -7,6 +7,7 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
     public class SupportingProgram : BaseEntity
     {
         // Fields
+        public string Title { get; set; }
         public string ThumbnailUrl { get; set; }
         public string PdffileUrl { get; set; }
         public int MaxQuantity { get; set; }
@@ -16,19 +17,16 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
 
         // 1 SchoolManager - M SupportingProgram
         public int SchoolManagerId { get; set; }
-        [JsonIgnore]
         public virtual SchoolManager SchoolManager { get; set; }
 
 
         // 1 Psychologist - M SupportingProgram
         public int PsychologistId { get; set; }
-        [JsonIgnore]
         public virtual Psychologist Psychologist { get; set; }
 
 
         // 1 School - M Supporting Program
         public int SchoolId { get; set; }
-        [JsonIgnore]
         public virtual School School { get; set; }
 
 

@@ -40,7 +40,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     /// <param name="entity"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
-    public T Insert(T entity)
+    public T? Insert(T entity)
     {
         try
         {

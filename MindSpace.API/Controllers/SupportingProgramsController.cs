@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.SupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramByHistory;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
@@ -62,7 +62,7 @@ namespace MindSpace.API.Controllers
         {
             // Get from the Table Supporting Program History to track number of SP by Student Id
 
-            var pagedResultDTO = await _mediator.Send(new GetSupportingProgramHistoryQuery(specParams));
+            var pagedResultDTO = await _mediator.Send(new GetSupportingProgramByHistoryQuery(specParams));
 
             return PaginationOkResult<SupportingProgramResponseDTO>(
                 pagedResultDTO.Data,
@@ -88,5 +88,7 @@ namespace MindSpace.API.Controllers
         // ====================================
         // === CREATE, PATCH, DELETE
         // ====================================
+
+        //public async Task<ActionResult<>>
     }
 }

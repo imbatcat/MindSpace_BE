@@ -1,9 +1,14 @@
 ﻿using MindSpace.Domain.Entities.SupportingPrograms;
+using System.Linq.Expressions;
 
 namespace MindSpace.Application.Specifications.SupportingProgramHistorySpecifications
 {
     public class SupportingProgramHistorySpecification : BaseSpecification<SupportingProgramHistory>
     {
+        /// <summary>
+        /// Filter by Student Id
+        /// </summary>
+        /// <param name="studentId"></param>
         public SupportingProgramHistorySpecification(int studentId)
             : base(h => (h.StudentId.Equals(studentId)))
         {
@@ -42,5 +47,7 @@ namespace MindSpace.Application.Specifications.SupportingProgramHistorySpecifica
                     break;
             }
         }
+
+
     }
 }

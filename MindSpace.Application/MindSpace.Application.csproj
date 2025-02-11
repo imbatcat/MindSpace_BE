@@ -9,13 +9,10 @@
 	<ItemGroup>
 	  <Compile Remove="Features\ApplicationUsers\**" />
 	  <Compile Remove="Features\Authentication\Profiles\**" />
-	  <Compile Remove="Features\SupportingPrograms\Commands\**" />
 	  <EmbeddedResource Remove="Features\ApplicationUsers\**" />
 	  <EmbeddedResource Remove="Features\Authentication\Profiles\**" />
-	  <EmbeddedResource Remove="Features\SupportingPrograms\Commands\**" />
 	  <None Remove="Features\ApplicationUsers\**" />
 	  <None Remove="Features\Authentication\Profiles\**" />
-	  <None Remove="Features\SupportingPrograms\Commands\**" />
 	</ItemGroup>
 
 	<ItemGroup>
