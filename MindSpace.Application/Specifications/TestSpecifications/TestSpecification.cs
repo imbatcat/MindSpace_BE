@@ -4,6 +4,20 @@ namespace MindSpace.Application.Specifications.TestSpecifications
 {
     public class TestSpecification : BaseSpecification<Test>
     {
+        /// <summary>
+        /// Filter by Test Id
+        /// </summary>
+        /// <param name="testId"></param>
+        public TestSpecification(int testId)
+            : base(x => x.Id.Equals(testId))
+        {
+        }
+
+        /// <summary>
+        /// 
+        /// Constructor for General Filter and Pagination
+        /// </summary>
+        /// <param name="specParams"></param>
         public TestSpecification(TestSpecParams specParams)
             : base
             (

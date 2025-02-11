@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.DTOs.Tests;
+using MindSpace.Application.Features.Questions.Queries.GetQuestionById;
 using MindSpace.Application.Features.Questions.Queries.GetQuestions;
 using MindSpace.Application.Specifications.QuestionSpecifications;
-using MindSpace.Domain.Entities.Tests;
 
 namespace MindSpace.API.Controllers
 {
@@ -34,7 +34,7 @@ namespace MindSpace.API.Controllers
         /// <param name="specParams"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<Question>>> GetQuestions(
+        public async Task<ActionResult<IReadOnlyList<QuestionResponseDTO>>> GetQuestions(
             [FromQuery] QuestionSpecParams specParams)
         {
             var questionDtos = await _mediator.Send(new GetQuestionsQuery(specParams));
@@ -45,6 +45,17 @@ namespace MindSpace.API.Controllers
                 specParams.PageIndex,
                 specParams.PageSize
             );
+        }
+
+        /// <summary>
+        /// Get Question By Id
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<QuestionResponseDTO>> GetQuestionById(int id)
+        {
+            var question = await _mediator.Send(new GetQuestionByIdQuery(id));
+            return Ok(question);
         }
     }
 }
