@@ -12,15 +12,25 @@ using MindSpace.Domain.Interfaces.Services.Authentication;
 using MindSpace.Infrastructure.Persistence;
 using Repositories;
 using Seeders;
+using StackExchange.Redis;
 
 public static class ServiceCollectionExtensions
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        // Add SqlServer and ConnectionString
-        var connectionString = configuration.GetConnectionString("MindSpaceDb");
+        // Add SqlServer
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(connectionString).EnableSensitiveDataLogging());
+            options
+                .UseSqlServer(configuration.GetConnectionString("MindSpaceDb"))
+                .EnableSensitiveDataLogging());
+
+        // Setup Redis
+        services.AddSingleton<IConnectionMultiplexer>(config =>
+        {
+            var connString = configuration.GetConnectionString("RedisDb")
+                ?? throw new Exception("Cannot get regis connection string");
+            return ConnectionMultiplexer.Connect(connString);
+        });
 
         // Add Identity services (authentication with tokens and cookies) with role supports, using ApplicationDbContext as the data store for Identity
         services.AddIdentityApiEndpoints<ApplicationUser>()
@@ -29,9 +39,6 @@ public static class ServiceCollectionExtensions
 
         // Add Unit Of Work
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-        // Add User Services
-        services.AddScoped<IApplicationUserService, ApplicationUserService>();
 
         // Add Seeders
         services.AddScoped<IFileReader, FileReader>();
