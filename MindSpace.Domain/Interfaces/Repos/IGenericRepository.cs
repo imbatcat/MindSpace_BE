@@ -18,8 +18,8 @@ public interface IGenericRepository<T> where T : BaseEntity
     Task<int> CountAsync(ISpecification<T> spec);
 
     // INSERT, DELETE, UPDATE
-    public T Insert(T entity);
-    public T Update(T entityToUpdate);
-    public T Delete(T entityToDelete);
-    public T Delete(object id);
+    public T? Insert(T entity);
+    public T? Update(T entityToUpdate);
+    public T? Delete(T entityToDelete);
+    public T? Delete(object id);
 }

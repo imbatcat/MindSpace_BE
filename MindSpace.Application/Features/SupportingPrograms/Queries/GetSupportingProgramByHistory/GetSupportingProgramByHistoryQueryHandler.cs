@@ -2,28 +2,29 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.SupportingPrograms;
 using MindSpace.Application.Specifications.SupportingProgramHistorySpecifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Interfaces.Repos;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramByHistory
 {
-    public class GetSupportingProgramHistoryQueryHandler
-        : IRequestHandler<GetSupportingProgramHistoryQuery, PagedResultDTO<SupportingProgramResponseDTO>>
+    public class GetSupportingProgramByHistoryQueryHandler
+        : IRequestHandler<GetSupportingProgramByHistoryQuery, PagedResultDTO<SupportingProgramResponseDTO>>
     {
         // ================================
         // === Fields & Props
         // ================================
 
-        private readonly ILogger<GetSupportingProgramHistoryQuery> _logger;
+        private readonly ILogger<GetSupportingProgramByHistoryQuery> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         // ================================
         // === Constructors
         // ================================
-        public GetSupportingProgramHistoryQueryHandler(
-            ILogger<GetSupportingProgramHistoryQuery> logger,
+        public GetSupportingProgramByHistoryQueryHandler(
+            ILogger<GetSupportingProgramByHistoryQuery> logger,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
@@ -36,7 +37,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
         // === Methods
         // ================================
 
-        public async Task<PagedResultDTO<SupportingProgramResponseDTO>> Handle(GetSupportingProgramHistoryQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResultDTO<SupportingProgramResponseDTO>> Handle(GetSupportingProgramByHistoryQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Get list of Supporting Programs with History Spec: {@spec}", request.SpecParams);
 

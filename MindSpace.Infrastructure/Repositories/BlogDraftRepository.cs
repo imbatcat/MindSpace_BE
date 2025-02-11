@@ -12,12 +12,24 @@ namespace MindSpace.Infrastructure.Repositories
 {
     public class BlogDraftRepository : IBlogDraftRepository
     {
+        // ====================================
+        // === Props & Fields
+        // ====================================
+
         private readonly IDatabase _database;
+
+        // ====================================
+        // === Constructors
+        // ====================================
 
         public BlogDraftRepository(IConnectionMultiplexer redis)
         {
             _database = redis.GetDatabase();
         }
+
+        // ====================================
+        // === Methods
+        // ====================================
 
         /// <summary>
         /// Delete blog draft by id

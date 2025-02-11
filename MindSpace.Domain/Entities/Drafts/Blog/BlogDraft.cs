@@ -8,6 +8,6 @@ namespace MindSpace.Domain.Entities.Drafts.Blog
 {
     public class BlogDraft
     {
-        public required string Id { get; set; }
+        public required string Id { get; set; } 
     }
 }

@@ -2,13 +2,12 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Tests;
-using MindSpace.Application.Features.Questions.Queries.GetQuestionById;
 using MindSpace.Application.Specifications.QuestionSpecifications;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
 
-namespace MindSpace.Application.Features.Tests.Queries.GetQuestionById
+namespace MindSpace.Application.Features.Questions.Queries.GetQuestionById
 {
     public class GetQuestionByIdQueryHandler : IRequestHandler<GetQuestionByIdQuery, QuestionResponseDTO>
     {

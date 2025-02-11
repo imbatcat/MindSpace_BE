@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.SupportingPrograms;
+using MindSpace.Application.Features.SupportingPrograms.Commands;
 using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.Application.Profiles
@@ -8,6 +9,10 @@ namespace MindSpace.Application.Profiles
     {
         public SupportingProgramProfile()
         {
+            // =============================
+            // === GET
+            // =============================
+
             CreateProjection<SupportingProgram, SupportingProgramResponseDTO>()
                 .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
                 .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Address.Street))
@@ -24,7 +29,7 @@ namespace MindSpace.Application.Profiles
                 .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.Address.PostalCode))
                 .ForMember(d => d.Students, o => o.MapFrom(
                             s => s.SupportingProgramHistories.Select(h => h.Student))); // If Using Projection then AutoMapper will map with StudentResponseDTO based on 
-                                                                                        //the type of list of students in SupportingProgramResponseDT
+                                                                                        // the type of list of students in SupportingProgramResponseDT
 
             CreateProjection<SupportingProgramHistory, SupportingProgramResponseDTO>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.SupportingProgram.Id))
@@ -37,6 +42,18 @@ namespace MindSpace.Application.Profiles
                 .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.SupportingProgram.Address.Province))
                 .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.SupportingProgram.Address.PostalCode))
                 .ForMember(dest => dest.StartDateAt, opt => opt.MapFrom(src => src.SupportingProgram.StartDateAt));
+
+            // =============================
+            // === PATCH, POST
+            // =============================
+
+            CreateMap<CreateSupportingProgramCommand, SupportingProgram>()
+                .ForMember(dest => dest.Address.City, opt => opt.MapFrom(src => src.City))
+                .ForMember(dest => dest.Address.Street, opt => opt.MapFrom(src => src.Street))
+                .ForMember(dest => dest.Address.Ward, opt => opt.MapFrom(src => src.Ward))
+                .ForMember(dest => dest.Address.Province, opt => opt.MapFrom(src => src.Province))
+                .ForMember(dest => dest.Address.PostalCode, opt => opt.MapFrom(src => src.PostalCode));
+
         }
     }
 }
