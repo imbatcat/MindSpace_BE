@@ -10,6 +10,8 @@ MindSpace.Infrastructure/Migrations
 # Ignore appsetttings.json
 MindSpace.API/appsettings.json
 MindSpace.API/appsettings.Development.json
+# Ignore Docker-compose
+docker-compose.yml
 
 # User-specific files
 *.rsuser
