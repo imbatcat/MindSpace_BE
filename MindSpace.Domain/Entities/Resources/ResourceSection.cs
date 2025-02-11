@@ -1,4 +1,4 @@
-﻿namespace MindSpace.Domain.Entities.SupportingPrograms
+﻿namespace MindSpace.Domain.Entities.Resources
 {
     public class ResourceSection : BaseEntity
     {

@@ -4,6 +4,7 @@ using MindSpace.Application.Commons.Utilities;
 using MindSpace.Application.Commons.Utilities.Seeding;
 using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Appointments;
+using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Infrastructure.Seeders;

@@ -1,7 +1,7 @@
 ﻿using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 
-namespace MindSpace.Domain.Entities.SupportingPrograms
+namespace MindSpace.Domain.Entities.Resources
 {
     public class Resource : BaseEntity
     {
@@ -11,10 +11,14 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
         public string Introduction { get; set; }
         public string ThumbnailUrl { get; set; }
 
-
         // 1 SchoolManager - M Resources
         public int SchoolManagerId { get; set; }
         public SchoolManager SchoolManager { get; set; }
+
+
+        // 1 Specialization - M Resources
+        public int SpecializationId { get; set; }
+        public Specialization Specialization { get; set; }
 
 
         // 1 Resource - M ResourceSection

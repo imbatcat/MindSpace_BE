@@ -6,6 +6,7 @@ using Domain.Entities.Appointments;
 using Domain.Entities.Identity;
 using Domain.Entities.SupportingPrograms;
 using Domain.Entities.Tests;
+using MindSpace.Domain.Entities.Resources;
 
 internal class EntityOrderProvider : IEntityOrderProvider
 {

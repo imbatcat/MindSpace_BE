@@ -1,6 +1,6 @@
 ﻿using MindSpace.Domain.Entities.Identity;
 
-namespace MindSpace.Domain.Entities.SupportingPrograms
+namespace MindSpace.Domain.Entities
 {
     public class Feedback : BaseEntity
     {

@@ -3,6 +3,7 @@
 using Domain.Entities.SupportingPrograms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MindSpace.Domain.Entities;
 
 internal class FeedbackConfiguration : IEntityTypeConfiguration<Feedback>
 {
