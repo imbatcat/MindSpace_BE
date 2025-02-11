@@ -21,7 +21,7 @@ internal class ResourceConfiguration : IEntityTypeConfiguration<Resource>
 
         builder.Property(r => r.ArticleUrl)
             .HasMaxLength(500)
-            .IsRequired();
+            .IsRequired(false);
 
         builder.Property(r => r.Title)
             .HasMaxLength(200)
@@ -39,5 +39,10 @@ internal class ResourceConfiguration : IEntityTypeConfiguration<Resource>
         builder.HasOne(r => r.SchoolManager)
             .WithMany(sm => sm.Resources)
             .HasForeignKey(r => r.SchoolManagerId);
+
+        // 1 Specialization - M Resources
+        builder.HasOne(r => r.Specialization)
+            .WithMany(s => s.Resources)
+            .HasForeignKey(r => r.SpecializationId);
     }
 }

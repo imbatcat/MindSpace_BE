@@ -1,5 +1,6 @@
 ﻿using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Entities.Tests;
 
 namespace MindSpace.Domain.Entities
@@ -16,5 +17,8 @@ namespace MindSpace.Domain.Entities
 
         // 1 Specialization - M Tests
         public virtual ICollection<Test> Tests { get; set; } = new HashSet<Test>();
+
+        // 1 Specialization - M Resources
+        public virtual ICollection<Resource> Resources { get; set; } = new HashSet<Resource>();
     }
 }
