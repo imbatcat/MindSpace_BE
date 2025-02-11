@@ -48,11 +48,11 @@ namespace MindSpace.Application.Profiles
             // =============================
 
             CreateMap<CreateSupportingProgramCommand, SupportingProgram>()
-                .ForMember(dest => dest.Address.City, opt => opt.MapFrom(src => src.City))
-                .ForMember(dest => dest.Address.Street, opt => opt.MapFrom(src => src.Street))
-                .ForMember(dest => dest.Address.Ward, opt => opt.MapFrom(src => src.Ward))
-                .ForMember(dest => dest.Address.Province, opt => opt.MapFrom(src => src.Province))
-                .ForMember(dest => dest.Address.PostalCode, opt => opt.MapFrom(src => src.PostalCode));
+                .ForPath(dest => dest.Address.City, opt => opt.MapFrom(src => src.City))
+                .ForPath(dest => dest.Address.Street, opt => opt.MapFrom(src => src.Street))
+                .ForPath(dest => dest.Address.Ward, opt => opt.MapFrom(src => src.Ward))
+                .ForPath(dest => dest.Address.Province, opt => opt.MapFrom(src => src.Province))
+                .ForPath(dest => dest.Address.PostalCode, opt => opt.MapFrom(src => src.PostalCode));
 
         }
     }
