@@ -51,7 +51,7 @@ namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser
                     logger.LogError(ex, "Duplicate user detected: {Email}", newPsychologist.Email);
                     // Handle duplicate user scenario
                 }
-                catch (CreateUserFailedException ex)
+                catch (CreateFailedException ex)
                 {
                     logger.LogError(ex, "Failed to create user: {Email}", newPsychologist.Email);
                     // Handle user creation failure

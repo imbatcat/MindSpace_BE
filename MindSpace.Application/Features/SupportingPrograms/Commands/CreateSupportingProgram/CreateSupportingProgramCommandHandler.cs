@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.SupportingPrograms;
+using MindSpace.Application.Specifications.SupportingProgramSpecifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
@@ -43,13 +46,21 @@ namespace MindSpace.Application.Features.SupportingPrograms.Commands.CreateSuppo
 
         public async Task<SupportingProgramResponseDTO> Handle(CreateSupportingProgramCommand request, CancellationToken cancellationToken)
         {
-            //var spToCreate = _mapper.Map<SupportingProgram>(request);
-            //SupportingProgram? addedSP = _unitOfWork.Repository<SupportingProgram>()
-            //    .Update(spToCreate) ?? new NotFoundException(nameof(SupportingProgram), sp);
+            _logger.LogInformation("Create Supporting Program with Title: {@title}", request.Title);
 
-            //await _
+            var spec = new SupportingProgramSpecification(request.Title);
+            var existingProgram = await _unitOfWork.Repository<SupportingProgram>().GetBySpecAsync(spec);
 
-            return null;
+            // If existed then throw exception
+            if (existingProgram != null) throw new ResourceAlreadyExistsException(request.Title);
+
+            // Update or throw exception
+            var spToCreate = _mapper.Map<SupportingProgram>(request);
+            var addedSP = _unitOfWork.Repository<SupportingProgram>().Insert(spToCreate)
+                ?? throw new UpdateFailedException(nameof(SupportingProgram));
+
+            await _unitOfWork.CompleteAsync();
+            return _mapper.Map<SupportingProgram, SupportingProgramResponseDTO>(addedSP);
         }
     }
 }

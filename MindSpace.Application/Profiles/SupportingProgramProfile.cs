@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MindSpace.Application.DTOs.SupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Commands;
+using MindSpace.Application.Features.SupportingPrograms.Commands.PatchSupportingProgram;
 using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.Application.Profiles
@@ -54,6 +55,22 @@ namespace MindSpace.Application.Profiles
                 .ForPath(dest => dest.Address.Province, opt => opt.MapFrom(src => src.Province))
                 .ForPath(dest => dest.Address.PostalCode, opt => opt.MapFrom(src => src.PostalCode));
 
+            CreateMap<SupportingProgram, SupportingProgramResponseDTO>()
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
+                .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Address.Street))
+                .ForMember(dest => dest.Ward, opt => opt.MapFrom(src => src.Address.Ward))
+                .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.Address.Province))
+                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.Address.PostalCode));
+
+            // Fixing the int that always return 0 when null
+            CreateMap<int?, int>().ConvertUsing((src, dest) => src ?? dest);
+            CreateMap<PatchSupportingProgramCommand, SupportingProgram>()
+                .ForPath(dest => dest.Address.City, opt => opt.MapFrom(src => src.City))
+                .ForPath(dest => dest.Address.Street, opt => opt.MapFrom(src => src.Street))
+                .ForPath(dest => dest.Address.Ward, opt => opt.MapFrom(src => src.Ward))
+                .ForPath(dest => dest.Address.Province, opt => opt.MapFrom(src => src.Province))
+                .ForPath(dest => dest.Address.PostalCode, opt => opt.MapFrom(src => src.PostalCode))
+                .ForAllMembers(opt => opt.PreCondition((src, dest, srcMember) => srcMember != null));
         }
     }
 }
