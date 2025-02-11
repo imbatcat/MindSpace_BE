@@ -11,7 +11,12 @@ MindSpace.Infrastructure/Migrations
 MindSpace.API/appsettings.json
 MindSpace.API/appsettings.Development.json
 # Ignore Docker-compose
-docker-compose.yml
+/docker-compose.yml
+# JetBrains Rider
+*.sln.iml
+/MindSpace.API/appsettings.Development.json
+/MindSpace.API/appsettings.json
+MindSpace.API/Properties/launchSettings.json
 
 # User-specific files
 *.rsuser
@@ -406,8 +411,5 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
-# JetBrains Rider
-*.sln.iml
-/MindSpace.API/appsettings.Development.json
-/MindSpace.API/appsettings.json
-MindSpace.API/Properties/launchSettings.json
+
+
