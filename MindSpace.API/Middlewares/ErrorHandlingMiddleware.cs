@@ -43,10 +43,20 @@ namespace MindSpace.API.Middlewares
                 _logger.LogError(ex, ex.Message);
                 await WriteToResponse(context, StatusCodes.Status400BadRequest, ex.Message);
             }
-            catch (CreateUserFailedException ex)
+            catch (CreateFailedException ex)
             {
                 _logger.LogError(ex, ex.Message);
                 await WriteToResponse(context, StatusCodes.Status400BadRequest, ex.Message);
+            }
+            catch (UpdateFailedException ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                await WriteToResponse(context, StatusCodes.Status400BadRequest, ex.Message);
+            }
+            catch (ResourceAlreadyExistsException ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                await WriteToResponse(context, StatusCodes.Status409Conflict, ex.Message);
             }
             catch (BadHttpRequestException ex)
             {

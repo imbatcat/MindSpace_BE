@@ -10,6 +10,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Commands
 {
     public class CreateSupportingProgramCommand : IRequest<SupportingProgramResponseDTO>
     {
+        public required string Title { get; set; }
         public string ThumbnailUrl { get; set; }
         public string PdffileUrl { get; set; }
         public int MaxQuantity { get; set; }

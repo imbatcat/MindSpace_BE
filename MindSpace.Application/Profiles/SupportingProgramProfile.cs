@@ -54,6 +54,13 @@ namespace MindSpace.Application.Profiles
                 .ForPath(dest => dest.Address.Province, opt => opt.MapFrom(src => src.Province))
                 .ForPath(dest => dest.Address.PostalCode, opt => opt.MapFrom(src => src.PostalCode));
 
+            CreateMap<SupportingProgram, SupportingProgramResponseDTO>()
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
+                .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Address.Street))
+                .ForMember(dest => dest.Ward, opt => opt.MapFrom(src => src.Address.Ward))
+                .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.Address.Province))
+                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.Address.PostalCode));
+
         }
     }
 }

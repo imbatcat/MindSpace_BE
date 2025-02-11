@@ -92,7 +92,7 @@ namespace MindSpace.Application.Services
             var result = await _userManager.CreateAsync(user, password);
             if (!result.Succeeded)
             {
-                throw new CreateUserFailedException(user.Email!);
+                throw new CreateFailedException(user.Email!);
             }
         }
     }
