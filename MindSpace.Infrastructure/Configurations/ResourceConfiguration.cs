@@ -4,6 +4,7 @@ using Domain.Entities.Constants;
 using Domain.Entities.SupportingPrograms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MindSpace.Domain.Entities.Resources;
 
 internal class ResourceConfiguration : IEntityTypeConfiguration<Resource>
 {

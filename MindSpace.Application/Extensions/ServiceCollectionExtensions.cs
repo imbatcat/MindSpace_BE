@@ -33,13 +33,14 @@ namespace MindSpace.Application.Extensions
             services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();
             services.AddScoped<IIDTokenProvider, IdTokenProvider>();
             services.AddScoped<IRefreshTokenProvider, RefreshTokenProvider>();
-            services.AddSingleton<IExcelReaderService, ExcelReaderService>();
 
             // Add HttpContextAccessor
             services.AddHttpContextAccessor();
 
             // Add Services
             services.AddScoped<IApplicationUserService, ApplicationUserService>();
+            services.AddScoped<IResourcesService, ResourcesService>();
+            services.AddSingleton<IExcelReaderService, ExcelReaderService>();
         }
     }
 }

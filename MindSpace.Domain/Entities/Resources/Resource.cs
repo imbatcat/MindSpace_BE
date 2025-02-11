@@ -1,7 +1,7 @@
 ﻿using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 
-namespace MindSpace.Domain.Entities.SupportingPrograms
+namespace MindSpace.Domain.Entities.Resources
 {
     public class Resource : BaseEntity
     {

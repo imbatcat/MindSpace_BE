@@ -1,18 +1,30 @@
 ﻿using MindSpace.Domain.Entities.Drafts.TestPeriodic;
-using MindSpace.Domain.Interfaces.Services;
+using MindSpace.Domain.Interfaces.Repos;
 using StackExchange.Redis;
 using System.Text.Json;
 
-namespace MindSpace.Application.Services
+namespace MindSpace.Infrastructure.Repositories
 {
-    public class TestPeriodictDraftService : ITestDraftService
+    public class TestPeriodicDraftRepository : ITestDraftRepository
     {
+        // ==================================
+        // === Fields & Props
+        // ==================================
+
         private readonly IDatabase _database;
 
-        public TestPeriodictDraftService(IConnectionMultiplexer redis)
+        // ==================================
+        // === Constructors
+        // ==================================
+
+        public TestPeriodicDraftRepository(IConnectionMultiplexer redis)
         {
             _database = redis.GetDatabase();
         }
+
+        // ==================================
+        // === Methods
+        // ==================================
 
         public async Task<bool> DeleteTestDraftAsync(string key)
         {
@@ -21,12 +33,13 @@ namespace MindSpace.Application.Services
 
         public async Task<TestDraft?> GetTestDraftAsync(string key)
         {
-            var data = await _database.StringGetAsync(key);
-            return data.IsNullOrEmpty ? null : JsonSerializer.Deserialize<TestDraft>(data);
+            var testDraft = await _database.StringGetAsync(key);
+            return testDraft.IsNullOrEmpty ? null : JsonSerializer.Deserialize<TestDraft>(testDraft);
         }
 
         public async Task<TestDraft?> SetTestDraftAsync(TestDraft testDraft)
         {
+            // Object maintains only 2 days
             var created = await _database.StringSetAsync(testDraft.Id,
                 JsonSerializer.Serialize(testDraft),
                 TimeSpan.FromDays(2));

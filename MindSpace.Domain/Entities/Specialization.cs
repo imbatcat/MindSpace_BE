@@ -1,6 +1,6 @@
 ﻿using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Identity;
-using MindSpace.Domain.Entities.SupportingPrograms;
+using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Entities.Tests;
 
 namespace MindSpace.Domain.Entities
