@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.DTOs.SupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Commands;
+using MindSpace.Application.Features.SupportingPrograms.Commands.PatchSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramByHistory;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
@@ -91,11 +92,21 @@ namespace MindSpace.API.Controllers
         // ====================================
 
         [HttpPost]
-        public async Task<ActionResult<SupportingProgramResponseDTO>> CreateSupportingProgram(
+        public async Task<ActionResult> CreateSupportingProgram(
             [FromBody] CreateSupportingProgramCommand newSP)
         {
             var createdSP = await _mediator.Send(newSP);
             return CreatedAtAction(nameof(GetSupportingProgramById), new { createdSP.Id }, null);
+        }
+
+        [HttpPatch("{id:int}")]
+        public async Task<IActionResult> PatchSupportingProgram(
+            [FromRoute] int id,
+            [FromBody] PatchSupportingProgramCommand updatedSP)
+        {
+            updatedSP.Id = id;
+            await _mediator.Send(updatedSP);
+            return NoContent();
         }
     }
 }
