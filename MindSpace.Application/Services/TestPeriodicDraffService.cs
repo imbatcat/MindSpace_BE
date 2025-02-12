@@ -3,7 +3,7 @@ using MindSpace.Domain.Interfaces.Services;
 using StackExchange.Redis;
 using System.Text.Json;
 
-namespace MindSpace.Infrastructure.Repositories
+namespace MindSpace.Application.Services
 {
     public class TestPeriodicDraffService : ITestDraftService
     {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace MindSpace.Infrastructure.Repositories
+namespace MindSpace.Application.Services
 {
     public class BlogDraftService : IBlogDraftService
     {
@@ -60,7 +60,7 @@ namespace MindSpace.Infrastructure.Repositories
         public async Task<BlogDraft?> SetBlogDraftAsync(BlogDraft blogDraft)
         {
             var IsSetSuccessful = await _database.StringSetAsync(blogDraft.Id,
-                JsonSerializer.Serialize<BlogDraft>(blogDraft),
+                JsonSerializer.Serialize(blogDraft),
                 TimeSpan.FromDays(7));
 
             return !IsSetSuccessful ? null : await GetBlogDraftAsync(blogDraft.Id);

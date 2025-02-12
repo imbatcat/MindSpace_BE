@@ -9,7 +9,7 @@ namespace MindSpace.Domain.Entities.Drafts.TestPeriodic
     public class QuestionDraft
     {
         public required int QuestionId { get; set; }
-        public required string QuestionName { get; set; }
+        public string QuestionName { get; set; }
         public List<OptionDraft> Options { get; set; } = new List<OptionDraft>();
     }
 }
