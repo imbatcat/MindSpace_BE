@@ -9,6 +9,6 @@ namespace MindSpace.Domain.Entities.Drafts.TestPeriodic
     public class OptionDraft
     {
         public required string OptionId { get; set; }
-        public required string OptionName { get; set; }
+        public string OptionName { get; set; }
     }
 }

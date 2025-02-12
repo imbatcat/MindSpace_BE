@@ -7,6 +7,7 @@ using Domain.Interfaces.Repos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MindSpace.Application.Services;
 using MindSpace.Domain.Interfaces.Services;
 using MindSpace.Infrastructure.Persistence;
 using Repositories;
