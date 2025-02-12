@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Domain.Entities;
+using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.Owned;
 using MindSpace.Domain.Exceptions;
@@ -55,6 +56,7 @@ namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser
                 try
                 {
                     await applicationUserService.InsertAsync(newSchoolManager, result["Password"]);
+                    await applicationUserService.AssignRoleAsync(newSchoolManager, UserRoles.SchoolManager);
                 }
                 catch (DuplicateUserException ex)
                 {

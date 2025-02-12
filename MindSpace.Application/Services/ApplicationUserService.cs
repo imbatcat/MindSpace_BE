@@ -95,5 +95,10 @@ namespace MindSpace.Application.Services
                 throw new CreateFailedException(user.Email!);
             }
         }
+
+        public async Task AssignRoleAsync(ApplicationUser user, string role)
+        {
+            await _userManager.AddToRoleAsync(user, role);
+        }
     }
 }
