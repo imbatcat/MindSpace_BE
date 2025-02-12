@@ -1,11 +1,11 @@
 ﻿using MindSpace.Domain.Entities.Drafts.TestPeriodic;
-using MindSpace.Domain.Interfaces.Repos;
+using MindSpace.Domain.Interfaces.Services;
 using StackExchange.Redis;
 using System.Text.Json;
 
 namespace MindSpace.Infrastructure.Repositories
 {
-    public class TestPeriodicDraftRepository : ITestDraftRepository
+    public class TestPeriodicDraffService : ITestDraftService
     {
         // ==================================
         // === Fields & Props
@@ -17,7 +17,7 @@ namespace MindSpace.Infrastructure.Repositories
         // === Constructors
         // ==================================
 
-        public TestPeriodicDraftRepository(IConnectionMultiplexer redis)
+        public TestPeriodicDraffService(IConnectionMultiplexer redis)
         {
             _database = redis.GetDatabase();
         }

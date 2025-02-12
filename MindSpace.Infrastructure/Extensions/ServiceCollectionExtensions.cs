@@ -7,6 +7,7 @@ using Domain.Interfaces.Repos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MindSpace.Domain.Interfaces.Services;
 using MindSpace.Infrastructure.Persistence;
 using Repositories;
 using Seeders;
@@ -37,8 +38,8 @@ public static class ServiceCollectionExtensions
 
         // Add Unit Of Work and Repositories
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<ITestDraftRepository, TestPeriodicDraftRepository>();
-        services.AddScoped<IBlogDraftRepository, BlogDraftRepository>();
+        services.AddScoped<ITestDraftService, TestPeriodicDraffService>();
+        services.AddScoped<IBlogDraftService, BlogDraftService>();
 
         // Add Seeders
         services.AddScoped<IFileReader, FileReader>();

@@ -1,5 +1,5 @@
 ﻿using MindSpace.Domain.Entities.Drafts.Blog;
-using MindSpace.Domain.Interfaces.Repos;
+using MindSpace.Domain.Interfaces.Services;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MindSpace.Infrastructure.Repositories
 {
-    public class BlogDraftRepository : IBlogDraftRepository
+    public class BlogDraftService : IBlogDraftService
     {
         // ====================================
         // === Props & Fields
@@ -22,7 +22,7 @@ namespace MindSpace.Infrastructure.Repositories
         // === Constructors
         // ====================================
 
-        public BlogDraftRepository(IConnectionMultiplexer redis)
+        public BlogDraftService(IConnectionMultiplexer redis)
         {
             _database = redis.GetDatabase();
         }
@@ -63,9 +63,7 @@ namespace MindSpace.Infrastructure.Repositories
                 JsonSerializer.Serialize<BlogDraft>(blogDraft),
                 TimeSpan.FromDays(7));
 
-            if (!IsSetSuccessful) return null;
-
-            return await GetBlogDraftAsync(blogDraft.Id);
+            return !IsSetSuccessful ? null : await GetBlogDraftAsync(blogDraft.Id);
         }
     }
 }

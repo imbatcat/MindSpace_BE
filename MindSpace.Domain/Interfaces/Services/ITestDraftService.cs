@@ -1,8 +1,8 @@
 ﻿using MindSpace.Domain.Entities.Drafts.TestPeriodic;
 
-namespace MindSpace.Domain.Interfaces.Repos
+namespace MindSpace.Domain.Interfaces.Services
 {
-    public interface ITestDraftRepository
+    public interface ITestDraftService
     {
         Task<TestDraft?> GetTestDraftAsync(string testDraftId);
         Task<TestDraft?> SetTestDraftAsync(TestDraft testDraft);

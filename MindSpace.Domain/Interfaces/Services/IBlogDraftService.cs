@@ -1,8 +1,8 @@
 ﻿using MindSpace.Domain.Entities.Drafts.Blog;
 
-namespace MindSpace.Domain.Interfaces.Repos
+namespace MindSpace.Domain.Interfaces.Services
 {
-    public interface IBlogDraftRepository
+    public interface IBlogDraftService
     {
         Task<BlogDraft?> GetBlogDraftAsync(string blogDraftId);
         Task<BlogDraft?> SetBlogDraftAsync(BlogDraft blogDraft);
