@@ -10,9 +10,13 @@ using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.Reg
 using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist;
 using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterStudent;
 using MindSpace.Application.Features.Authentication.Commands.RevokeUser;
+using MindSpace.Application.Features.Authentication.Commands.SendEmailConfirmation;
+using MindSpace.Application.Features.Authentication.Commands.ConfirmEmail;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using System.IdentityModel.Tokens.Jwt;
+using MindSpace.Application.Features.Authentication.Commands.SendResetPasswordEmail;
+using MindSpace.Application.Features.Authentication.Commands.ResetPassword;
 
 namespace MindSpace.API.Controllers
 {
@@ -94,7 +98,6 @@ namespace MindSpace.API.Controllers
 
         // Admin registers account for School Manager
         [HttpPost("register-for/manager")]
-        [Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> RegisterSchoolManager([FromForm] RegisterSchoolManagerCommand command)
         {
             await mediator.Send(command);
@@ -119,5 +122,51 @@ namespace MindSpace.API.Controllers
             return Ok("Student registered successfully");
         }
 
+        [HttpPost("send-email-confirmation")]
+        [Authorize]
+        public async Task<IActionResult> SendEmailConfirmation()
+        {
+            var user = await userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            // Logic to send email confirmation
+            await mediator.Send(new SendEmailConfirmationCommand(user));
+            return NoContent();
+        }
+
+        [HttpPost("confirm-email")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmailCommand command)
+        {
+            var result = await mediator.Send(command);
+            if (result)
+            {
+                return Ok("Email confirmed successfully");
+            }
+            return BadRequest("Email confirmation failed");
+        }
+
+        [HttpPost("send-reset-password-email")]
+        [AllowAnonymous]
+        public async Task<IActionResult> SendResetPasswordEmail([FromBody] SendResetPasswordEmailCommand command)
+        {
+            await mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPost("reset-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand command)
+        {
+            var result = await mediator.Send(command);
+            if (result)
+            {
+                return Ok("Password reset successfully");
+            }
+            return BadRequest("Password reset failed");
+        }
     }
 }

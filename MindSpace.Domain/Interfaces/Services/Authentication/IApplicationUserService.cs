@@ -10,18 +10,21 @@ namespace MindSpace.Domain.Interfaces.Services.Authentication
         /// </summary>
         /// <returns>A read-only list of all users.</returns>
         Task<IReadOnlyList<ApplicationUser>> GetAllUsersAsync();
+
         /// <summary>
         /// Retrieves users by their role asynchronously.
         /// </summary>
         /// <param name="role">The role of the users to retrieve.</param>
         /// <returns>A list of users with the specified role.</returns>
         Task<IList<ApplicationUser>> GetUsersByRoleAsync(string role);
+
         /// <summary>
         /// Retrieves all users that match a given specification asynchronously.
         /// </summary>
         /// <param name="spec">The specification to filter users.</param>
         /// <returns>A read-only list of users that match the specification.</returns>
         Task<IReadOnlyList<ApplicationUser>> GetAllUsersWithSpecAsync(ISpecification<ApplicationUser> spec);
+
         /// <summary>
         /// Retrieves a single user that matches a given specification asynchronously.
         /// </summary>
@@ -39,6 +42,8 @@ namespace MindSpace.Domain.Interfaces.Services.Authentication
         Task InsertAsync(ApplicationUser user, string password);
 
         Task InsertBulkAsync(IEnumerable<(ApplicationUser user, string password)> usersWithPassword);
+
+        Task AssignRoleAsync(ApplicationUser user, string role);
 
         Task UpdateAsync(ApplicationUser user);
     }
