@@ -1,4 +1,4 @@
-﻿using MindSpace.Domain.Entities.Drafts.TestPeriodic;
+﻿using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 
 namespace MindSpace.Domain.Interfaces.Services
 {

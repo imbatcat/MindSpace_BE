@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MindSpace.Domain.Entities.Constants;
-using MindSpace.Domain.Entities.Drafts.Blog;
+using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Interfaces.Specifications;
 

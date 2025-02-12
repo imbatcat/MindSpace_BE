@@ -1,4 +1,4 @@
-﻿using MindSpace.Domain.Entities.Drafts.Blog;
+﻿using MindSpace.Domain.Entities.Drafts.Blogs;
 
 namespace MindSpace.Domain.Interfaces.Services
 {

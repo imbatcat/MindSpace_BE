@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using MindSpace.Domain.Entities.Drafts.Blog;
+using MindSpace.Application.Features.Draft.Commands.DeleteBlogDraft;
+using MindSpace.Application.Features.Draft.Commands.UpdateBlogDraft;
+using MindSpace.Application.Features.Draft.Queries.GetBlogDraftById;
+using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Services;
 
@@ -10,12 +14,26 @@ namespace MindSpace.API.Controllers
     [Route("api/v{v:apiVersion}/blog-draft")]
     public class BlogDraftController : BaseApiController
     {
-        public readonly IBlogDraftService _blogDraftService;
+        // ====================================
+        // === Props & Fields
+        // ====================================
 
-        public BlogDraftController(IBlogDraftService blogDraftService)
+        private readonly IBlogDraftService _blogDraftService;
+        private readonly IMediator _mediator;
+
+        // ====================================
+        // === Constructors
+        // ====================================
+
+        public BlogDraftController(IBlogDraftService blogDraftService, IMediator mediator)
         {
             _blogDraftService = blogDraftService;
+            _mediator = mediator;
         }
+
+        // ====================================
+        // === Methods
+        // ====================================
 
         /// <summary>
         /// Get a blog draft or we create a blog draft
@@ -24,13 +42,10 @@ namespace MindSpace.API.Controllers
         /// <returns></returns>
         /// <exception cref="NotFoundException"></exception>
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<BlogDraft>> GetOrCreateBlogDraft([FromRoute] string id)
+        public async Task<ActionResult<BlogDraft>> GetBlogDraftById([FromRoute] string id)
         {
-            var blogDraft = await _blogDraftService.GetBlogDraftAsync(id);
-
-            // If dont have a draft, then simply return new draft but not yet
-            // add to the redis
-            return Ok(blogDraft ?? new BlogDraft() { Id = id });
+            var blogDraft = await _mediator.Send(new GetBlogDraftByIdQuery(id));
+            return Ok(blogDraft);
         }
 
         /// <summary>
@@ -42,9 +57,9 @@ namespace MindSpace.API.Controllers
         public async Task<ActionResult> DeleteBlogDraft(
             [FromRoute] string id)
         {
-            var result = await _blogDraftService.DeleteBlogDraftAsync(id);
+            var isDeleteSuccesfully = await _mediator.Send(new DeleteBlogDraftCommand(id));
 
-            if (!result) return BadRequest("Problem when deleting cart");
+            if (!isDeleteSuccesfully) return BadRequest("Problem when deleting blog draft");
 
             return Ok();
         }
@@ -62,10 +77,7 @@ namespace MindSpace.API.Controllers
             [FromBody] BlogDraft blogDraft)
         {
             // Set or update new
-            var updatedBlogDraft = await _blogDraftService.SetBlogDraftAsync(blogDraft);
-
-            // If not found then throw exception
-            if (updatedBlogDraft == null) throw new NotFoundException(nameof(BlogDraft), blogDraft.Id);
+            var updatedBlogDraft = await _mediator.Send(new UpdateBlogDraftCommand(id, blogDraft));
 
             return Ok(updatedBlogDraft);
         }

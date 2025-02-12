@@ -1,4 +1,4 @@
-﻿using MindSpace.Domain.Entities.Drafts.Blog;
+﻿using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Interfaces.Services;
 using StackExchange.Redis;
 using System;

@@ -33,4 +33,8 @@
 			<Private>True</Private>
 		</ProjectReference>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Features\Draft\Commands\" />
+	</ItemGroup>
 </Project>

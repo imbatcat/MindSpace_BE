@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MindSpace.Domain.Entities.Drafts.Blog
+namespace MindSpace.Domain.Entities.Drafts.Blogs
 {
     public class SectionDraft
     {
