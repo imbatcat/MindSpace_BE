@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddPresentation();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddApplications();
+builder.Services.AddApplications(builder.Configuration);
 
 // ====================================
 // === Build the application
@@ -29,7 +29,7 @@ var app = builder.Build();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseMiddleware<TimeLoggingMiddleware>();
 
-// Configure CORS 
+// Configure CORS
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
 .WithOrigins("http://localhost:4200", "https://localhost:4200"));
 

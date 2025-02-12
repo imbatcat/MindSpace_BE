@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Specifications.SchoolSpecifications;
 using MindSpace.Domain.Entities;
+using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
@@ -41,6 +42,7 @@ namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser
                 try
                 {
                     await applicationUserService.InsertAsync(newStudent, result["Password"]);
+                    await applicationUserService.AssignRoleAsync(newStudent, UserRoles.Student);
                 }
                 catch (DuplicateUserException ex)
                 {

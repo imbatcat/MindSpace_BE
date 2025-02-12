@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Interfaces.Services.Authentication;
 
@@ -19,6 +20,7 @@ namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser
                 DateOfBirth = DateTime.Parse(request.Birthdate),
             };
             await applicationUserService.InsertAsync(parent, request.Password);
+            await applicationUserService.AssignRoleAsync(parent, UserRoles.Parent);
         }
     }
 }

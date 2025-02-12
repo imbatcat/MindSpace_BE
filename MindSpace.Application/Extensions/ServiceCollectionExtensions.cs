@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MindSpace.Application.Services;
 using MindSpace.Application.Services.AuthenticationServices;
@@ -11,7 +12,7 @@ namespace MindSpace.Application.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AddApplications(this IServiceCollection services)
+        public static void AddApplications(this IServiceCollection services, IConfiguration configuration)
         {
             // Application assembly
             var applicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
@@ -28,6 +29,11 @@ namespace MindSpace.Application.Extensions
 
             // Add User Context
             services.AddScoped<IUserContext, UserContext.UserContext>();
+
+            //Add email services
+            services.AddFluentEmail(configuration["Email:Sender"])
+                .AddSmtpSender(configuration["Email:Host"], int.Parse(configuration["Email:Port"]!), configuration["Email:Sender"], configuration["Email:Password"]);
+            services.AddTransient<IEmailService, EmailSenderService>();
 
             // Add Token Providers
             services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();

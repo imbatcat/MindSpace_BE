@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Specifications.SpecializationSpecifications;
 using MindSpace.Domain.Entities;
+using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
@@ -45,6 +46,7 @@ namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser
                 try
                 {
                     await applicationUserService.InsertAsync(newPsychologist, result["Password"]);
+                    await applicationUserService.AssignRoleAsync(newPsychologist, UserRoles.Psychologist);
                 }
                 catch (DuplicateUserException ex)
                 {
