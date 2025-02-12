@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MindSpace.Application.DTOs.SupportingPrograms;
-using MindSpace.Application.Features.SupportingPrograms.Commands;
+using MindSpace.Application.Features.SupportingPrograms.Commands.CreateSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Commands.PatchSupportingProgram;
 using MindSpace.Domain.Entities.SupportingPrograms;
 
