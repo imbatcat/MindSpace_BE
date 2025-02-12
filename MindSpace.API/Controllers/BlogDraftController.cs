@@ -32,7 +32,7 @@ namespace MindSpace.API.Controllers
         }
 
         // ====================================
-        // === Methods
+        // === GET
         // ====================================
 
         /// <summary>
@@ -47,6 +47,10 @@ namespace MindSpace.API.Controllers
             var blogDraft = await _mediator.Send(new GetBlogDraftByIdQuery(id));
             return Ok(blogDraft);
         }
+
+        // ====================================
+        // === COMMANDS
+        // ====================================
 
         /// <summary>
         /// Delete a Blog Draft

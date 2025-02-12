@@ -39,8 +39,6 @@ public static class ServiceCollectionExtensions
 
         // Add Unit Of Work and Repositories
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<ITestDraftService, TestPeriodicDraffService>();
-        services.AddScoped<IBlogDraftService, BlogDraftService>();
 
         // Add Seeders
         services.AddScoped<IFileReader, FileReader>();
