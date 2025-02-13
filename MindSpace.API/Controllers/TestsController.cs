@@ -1,6 +1,8 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.DTOs.Tests;
+using MindSpace.Application.Features.Tests.Commands.CreateTestImport;
 using MindSpace.Application.Features.Tests.Queries.GetTestById;
 using MindSpace.Application.Features.Tests.Queries.GetTests;
 using MindSpace.Application.Specifications.TestSpecifications;
@@ -57,6 +59,22 @@ namespace MindSpace.API.Controllers
         {
             var test = await _mediator.Send(new GetTestByIdQuery(id));
             return Ok(test);
+        }
+
+        // ====================================
+        // === CREATE, PATCH, DELETE
+        // ====================================
+
+        [HttpPost("import")]
+        public async Task<IActionResult> CreateTestWithImport([FromForm] CreateTestImportCommand command)
+        {
+            if (command.TestFile == null || command.TestFile.Length == 0)
+            {
+                return BadRequest("File Excel cannot be empty");
+            }
+
+            var result = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetTestById), new { result.Id }, null);
         }
     }
 }

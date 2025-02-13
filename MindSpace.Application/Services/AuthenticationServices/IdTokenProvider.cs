@@ -10,7 +10,7 @@ namespace MindSpace.Application.Services.AuthenticationServices
 {
     public sealed class IdTokenProvider(IConfiguration configuration) : IIDTokenProvider
     {
-        public string CreateToken(ApplicationUser user)
+        public string CreateToken(ApplicationUser user, string role)
         {
             var jwtSettings = configuration.GetSection("JwtIDTokenSettings");
             string secretKey = jwtSettings["Secret"]!;
@@ -23,10 +23,10 @@ namespace MindSpace.Application.Services.AuthenticationServices
                 Subject = new ClaimsIdentity(
                     [
                         new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                        new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                        new Claim(JwtRegisteredClaimNames.Birthdate, user.DateOfBirth.ToString()),
-                        new Claim(JwtRegisteredClaimNames.PreferredUsername, user.UserName),
-                        new Claim(JwtRegisteredClaimNames.Picture, user.ImageUrl)
+                        new Claim(JwtRegisteredClaimNames.Email, user.Email!),
+                        new Claim(JwtRegisteredClaimNames.Birthdate, user.DateOfBirth.ToString()!),
+                        new Claim("username", user.UserName!),
+                        new Claim("role", role)
                     ]),
                 Expires = DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("JwtIDTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,

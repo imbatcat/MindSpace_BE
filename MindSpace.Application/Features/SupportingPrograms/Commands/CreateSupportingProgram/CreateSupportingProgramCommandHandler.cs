@@ -8,6 +8,7 @@ using MindSpace.Application.Specifications.SupportingProgramSpecifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
+using MindSpace.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
