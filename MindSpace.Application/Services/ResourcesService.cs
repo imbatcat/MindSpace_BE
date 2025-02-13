@@ -59,5 +59,10 @@ namespace MindSpace.Application.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<IReadOnlyList<Resource>> GetResourceAsync(ISpecification<Resource> resourceSpec, IConfigurationProvider mappingConfiguration)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

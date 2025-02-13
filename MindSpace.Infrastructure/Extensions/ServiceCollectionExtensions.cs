@@ -21,7 +21,7 @@ public static class ServiceCollectionExtensions
         // Add SqlServer
         services.AddDbContext<ApplicationDbContext>(options =>
             options
-                .UseSqlServer(configuration.GetConnectionString("MindSpaceDb"))
+                .UseAzureSql(configuration.GetConnectionString("MindSpaceDb"))
                 .EnableSensitiveDataLogging());
 
         // Setup Redis

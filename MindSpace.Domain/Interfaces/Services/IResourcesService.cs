@@ -9,6 +9,7 @@ namespace MindSpace.Domain.Interfaces.Services
     public interface IResourcesService
     {
         public Task<IReadOnlyList<Resource>> GetResourcesAsync(ISpecification<Resource> resourceSpec, IConfigurationProvider mappingConfiguration);
+        public Task<IReadOnlyList<Resource>> GetResourceAsync(ISpecification<Resource> resourceSpec, IConfigurationProvider mappingConfiguration);
         public Task<int> CountResourcesWithSpecAsync(ISpecification<Resource> resourceSpec);
         public ResourceType[] GetResourceTypes();
         public Task<Resource?> CreateResourceAsArticle(Resource resource, int schoolManagerId);

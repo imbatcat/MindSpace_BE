@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.Draft.Commands.DeleteBlogDraft
 {
-    public class DeleteBlogDraftCommand : IRequest<bool>
+    public class DeleteBlogDraftCommand : IRequest
     {
         public string Id { get; }
 

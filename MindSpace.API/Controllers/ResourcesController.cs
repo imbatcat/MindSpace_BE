@@ -22,14 +22,20 @@ namespace MindSpace.API.Controllers
         private readonly IMapper _mapper;
         private readonly IBlogDraftService _blogDraftService;
 
+        public ResourcesController(IMediator mediator, IUserContext userContext, IUnitOfWork unitOfWork, IMapper mapper, IBlogDraftService blogDraftService)
+        {
+            _mediator = mediator;
+            _userContext = userContext;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+            _blogDraftService = blogDraftService;
+        }
+
         // ====================================
         // === Constructors
         // ====================================
 
-        public ResourcesController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+
 
         // ====================================
         // === QUERIES
@@ -40,8 +46,8 @@ namespace MindSpace.API.Controllers
         // === COMMANDS
         // ====================================
 
-        [HttpPost("blog")]
-        public async Task<ActionResult> CreateBlog([FromBody] string blogDraftId)
+        [HttpPost("blog/{blogDraftId}")]
+        public async Task<ActionResult> CreateBlog([FromRoute] string blogDraftId)
         {
             var blogDraft = await _blogDraftService.GetBlogDraftAsync(blogDraftId);
 
@@ -50,19 +56,19 @@ namespace MindSpace.API.Controllers
 
             // Add blog to table
             var blogToAdd = _mapper.Map<BlogDraft, Resource>(blogDraft);
-            _unitOfWork.Repository<Resource>().Insert(blogToAdd);
+            blogToAdd.ResourceSections = new List<ResourceSection>();
 
             // Add Blog Section to table
             foreach (var sectionDraft in blogDraft.Sections)
             {
                 var sectionToAdd = _mapper.Map<SectionDraft, ResourceSection>(sectionDraft);
-                sectionToAdd.ResourceId = blogToAdd.Id;
-                _unitOfWork.Repository<ResourceSection>().Insert(sectionToAdd);
+                sectionToAdd.Resource = blogToAdd;
+                blogToAdd.ResourceSections.Add(sectionToAdd);
             }
 
+            _unitOfWork.Repository<Resource>().Insert(blogToAdd);
             await _unitOfWork.CompleteAsync();
             return Ok(new { Message = "Blog created successfully", ResourceId = blogToAdd.Id });
         }
     }
 }
- 

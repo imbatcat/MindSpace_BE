@@ -10,9 +10,14 @@ using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.Draft.Commands.UpdateBlogDraft
 {
-    internal class UpdateBlogDraftCommandHandler : IRequestHandler<UpdateBlogDraftCommand, BlogDraft>
+    public class UpdateBlogDraftCommandHandler : IRequestHandler<UpdateBlogDraftCommand, BlogDraft>
     {
         private readonly IBlogDraftService _blogDraftService;
+
+        public UpdateBlogDraftCommandHandler(IBlogDraftService blogDraftService)
+        {
+            _blogDraftService = blogDraftService;
+        }
 
         public async Task<BlogDraft> Handle(UpdateBlogDraftCommand request, CancellationToken cancellationToken)
         {

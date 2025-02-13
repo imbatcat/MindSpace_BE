@@ -10,12 +10,10 @@ namespace MindSpace.Application.Features.Draft.Commands.UpdateBlogDraft
 {
     public class UpdateBlogDraftCommand : IRequest<BlogDraft>
     {
-        public string Id { get; }
         public BlogDraft BlogDraft { get; }
 
-        public UpdateBlogDraftCommand(string id, BlogDraft blogDraft)
+        public UpdateBlogDraftCommand(BlogDraft blogDraft)
         {
-            Id = id;
             BlogDraft = blogDraft;
         }
     }
