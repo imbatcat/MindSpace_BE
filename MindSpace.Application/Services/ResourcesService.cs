@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MindSpace.Domain.Entities.Constants;
-using MindSpace.Domain.Entities.Drafts.Blog;
+using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Interfaces.Repos;
 using MindSpace.Domain.Interfaces.Services;
@@ -56,6 +56,11 @@ namespace MindSpace.Application.Services
         }
 
         public Task<Resource?> CreateResourceAsBlog(BlogDraft blogDraft, int schoolManagerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IReadOnlyList<Resource>> GetResourceAsync(ISpecification<Resource> resourceSpec, IConfigurationProvider mappingConfiguration)
         {
             throw new NotImplementedException();
         }

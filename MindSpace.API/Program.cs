@@ -31,7 +31,7 @@ app.UseMiddleware<TimeLoggingMiddleware>();
 
 // Configure CORS
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
-.WithOrigins("http://localhost:4200", "https://localhost:4200"));
+.WithOrigins("https://localhost:3000/", "http://localhost:3000/"));
 
 if (app.Environment.IsDevelopment())
 {
@@ -46,7 +46,6 @@ app.MapGroup("api/identities")
     .WithTags("Identities");
 
 app.UseAuthorization();
-
 app.MapControllers();
 
 // ===================================================
@@ -60,6 +59,7 @@ var dataCleaner = scope.ServiceProvider.GetRequiredService<IDataCleaner>();
 var applicationDbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
 var IsClearAndReseedData = app.Configuration.GetValue<bool>("ClearAndReseedData");
+
 if (IsClearAndReseedData)
 {
     try

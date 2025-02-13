@@ -1,4 +1,4 @@
-﻿using MindSpace.Domain.Entities.Drafts.TestPeriodic;
+﻿using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 using MindSpace.Domain.Interfaces.Services;
 using StackExchange.Redis;
 using System.Text.Json;

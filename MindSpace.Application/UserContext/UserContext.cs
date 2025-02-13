@@ -20,5 +20,17 @@ namespace MindSpace.Application.UserContext
 
             return new CurrentUser(userId, email, roles);
         }
+
+        public int? GetCurrentUserId()
+        {
+            var user = httpContextAccessor?.HttpContext.User ?? throw new InvalidOperationException("User context is not present");
+
+            if (!user.Identities.Any() || !user.Identity.IsAuthenticated)
+            {
+                return null;
+            }
+            int.TryParse(user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value, out int intUserId);
+            return intUserId;
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using MindSpace.Domain.Entities.Drafts.Blog;
+﻿using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Interfaces.Services;
 using StackExchange.Redis;
 using System;
@@ -61,7 +61,7 @@ namespace MindSpace.Application.Services
         {
             var IsSetSuccessful = await _database.StringSetAsync(blogDraft.Id,
                 JsonSerializer.Serialize(blogDraft),
-                TimeSpan.FromDays(7));
+                TimeSpan.FromHours(2));
 
             return !IsSetSuccessful ? null : await GetBlogDraftAsync(blogDraft.Id);
         }

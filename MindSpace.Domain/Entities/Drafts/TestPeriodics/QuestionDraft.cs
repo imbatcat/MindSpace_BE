@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MindSpace.Domain.Entities.Drafts.TestPeriodic
+namespace MindSpace.Domain.Entities.Drafts.TestPeriodics
 {
     public class QuestionDraft
     {
