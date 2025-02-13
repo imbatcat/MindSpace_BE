@@ -46,7 +46,6 @@ app.MapGroup("api/identities")
     .WithTags("Identities");
 
 app.UseAuthorization();
-
 app.MapControllers();
 
 // ===================================================
@@ -60,6 +59,7 @@ var dataCleaner = scope.ServiceProvider.GetRequiredService<IDataCleaner>();
 var applicationDbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
 var IsClearAndReseedData = app.Configuration.GetValue<bool>("ClearAndReseedData");
+
 if (IsClearAndReseedData)
 {
     try

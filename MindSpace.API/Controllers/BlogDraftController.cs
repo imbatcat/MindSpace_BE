@@ -18,16 +18,14 @@ namespace MindSpace.API.Controllers
         // === Props & Fields
         // ====================================
 
-        private readonly IBlogDraftService _blogDraftService;
         private readonly IMediator _mediator;
 
         // ====================================
         // === Constructors
         // ====================================
 
-        public BlogDraftController(IBlogDraftService blogDraftService, IMediator mediator)
+        public BlogDraftController(IMediator mediator)
         {
-            _blogDraftService = blogDraftService;
             _mediator = mediator;
         }
 
@@ -61,13 +59,9 @@ namespace MindSpace.API.Controllers
         public async Task<ActionResult> DeleteBlogDraft(
             [FromRoute] string id)
         {
-            var isDeleteSuccesfully = await _mediator.Send(new DeleteBlogDraftCommand(id));
-
-            if (!isDeleteSuccesfully) return BadRequest("Problem when deleting blog draft");
-
-            return Ok();
+            await _mediator.Send(new DeleteBlogDraftCommand(id));
+            return NoContent();
         }
-
 
         /// <summary>
         /// 
@@ -75,13 +69,12 @@ namespace MindSpace.API.Controllers
         /// <param name="blogDraft"></param>
         /// <returns></returns>
         /// <exception cref="NotFoundException"></exception>
-        [HttpPost("{id:int}")]
+        [HttpPost]
         public async Task<ActionResult<BlogDraft>> UpdateBlogDraft(
-            [FromRoute] string id,
             [FromBody] BlogDraft blogDraft)
         {
             // Set or update new
-            var updatedBlogDraft = await _mediator.Send(new UpdateBlogDraftCommand(id, blogDraft));
+            var updatedBlogDraft = await _mediator.Send(new UpdateBlogDraftCommand(blogDraft));
 
             return Ok(updatedBlogDraft);
         }
