@@ -24,6 +24,9 @@ namespace MindSpace.Application.Services.AuthenticationServices
                     [
                         new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                         new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                        new Claim(JwtRegisteredClaimNames.Birthdate, user.DateOfBirth.ToString()),
+                        new Claim(JwtRegisteredClaimNames.PreferredUsername, user.UserName),
+                        new Claim(JwtRegisteredClaimNames.Picture, user.ImageUrl)
                     ]),
                 Expires = DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("JwtIDTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
