@@ -4,6 +4,6 @@ namespace MindSpace.Domain.Interfaces.Services.Authentication
 {
     public interface IIDTokenProvider
     {
-        string CreateToken(ApplicationUser user);
+        string CreateToken(ApplicationUser user, string role);
     }
 }
