@@ -49,6 +49,7 @@ namespace MindSpace.Application.Extensions
             services.AddSingleton<IExcelReaderService, ExcelReaderService>();
             services.AddScoped<ITestDraftService, TestPeriodicDraffService>();
             services.AddScoped<IBlogDraftService, BlogDraftService>();
+            services.AddScoped<ITestImportService, TestImportService>();
         }
     }
 }

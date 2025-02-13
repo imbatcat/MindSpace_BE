@@ -9,6 +9,7 @@ namespace MindSpace.Application.Profiles
         public PsychologyTestOptionProfile() 
         {
             CreateProjection<PsychologyTestOption, PsychologyTestOptionResponseDTO>();
+            CreateMap<PsychologyTestOption, PsychologyTestOptionResponseDTO>();
         }
     }
 }
