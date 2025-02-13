@@ -11,7 +11,9 @@
         public string? Description { get; set; }
         public int QuestionCount { get; set; }
         public decimal Price { get; set; }
+        public int AuthorId { get; set; }
         public ICollection<QuestionResponseDTO> Questions { get; set; }
         public ICollection<PsychologyTestOptionResponseDTO> PsychologyTestOptions { get; set; }
+        public ICollection<TestScoreRankResponseDTO> TestScoreRanks { get; set; }
     }
 }
