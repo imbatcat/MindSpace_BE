@@ -144,7 +144,7 @@ namespace MindSpace.Application.Features.Authentication.Commands.LoginUser
             logger.LogDebug("Generating tokens for user: {UserId} with role: {Role}", user.Id, userRole);
 
             string accessToken = accessTokenProvider.CreateToken(user, userRole);
-            string idToken = idTokenProvider.CreateToken(user);
+            string idToken = idTokenProvider.CreateToken(user, userRole);
             string refreshToken = refreshTokenProvider.CreateToken(user);
 
             user.RefreshToken = refreshToken;
