@@ -1,11 +1,4 @@
 ﻿using MindSpace.Domain.Entities.Constants;
-using MindSpace.Domain.Entities.Tests;
-using MindSpace.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.DTOs.Tests
 {

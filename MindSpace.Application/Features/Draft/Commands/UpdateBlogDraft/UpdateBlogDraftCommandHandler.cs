@@ -2,11 +2,6 @@
 using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.Draft.Commands.UpdateBlogDraft
 {
