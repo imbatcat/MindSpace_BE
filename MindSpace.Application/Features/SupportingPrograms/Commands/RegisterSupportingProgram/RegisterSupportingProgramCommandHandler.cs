@@ -1,9 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Features.Tests.Commands.CreateTestImport;
-using MindSpace.Application.Services;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
-using MindSpace.Application.Specifications.StudentSpecification;
 using MindSpace.Application.Specifications.SupportingProgramHistorySpecifications;
 using MindSpace.Application.Specifications.SupportingProgramSpecifications;
 using MindSpace.Domain.Entities.Identity;
@@ -11,11 +8,6 @@ using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
 using MindSpace.Domain.Interfaces.Services.Authentication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Commands.RegisterSupportingProgram
 {

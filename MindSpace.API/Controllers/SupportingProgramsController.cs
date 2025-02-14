@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.DTOs.SupportingPrograms;
-using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist;
 using MindSpace.Application.Features.SupportingPrograms.Commands.CreateSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Commands.PatchSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Commands.RegisterSupportingProgram;
