@@ -100,3 +100,7 @@ Authorization: Bearer {{token}}
 GET https://localhost:7096/api/v1/identity/confirm-email?token=Q2ZESjhMQ0ZQcVVwMmZOTm5iZzVsMzV5aVM4MGtYVEd6VXp5enFnZWNWK1ZFMk96T0ErUmpIK3NpcWRsaWQ4TXVxbm9KYVoyUnM0NTVYOWtjL1JhbGFnWWQyY2FEZ0tjK3M4d3VUTC9YaG0wdVN4ZXpERlhEUTNuTHdPTnYzMU1iZ3B4T1BaZGFhTFRDK2lwNFBhcVpMWkZRRXZ0T08weUFHcHphdWJZNC9TQ2dkaTR1ZExlOXp2Y1dWaVpyUDA2UUhmd1BnPT0=&email=ptdat04@gmail.com
 
 ###
+
+POST {{MindSpace.API_HostAddress}}/api/v1/payment/webhook
+
+###
