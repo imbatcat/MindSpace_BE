@@ -1,6 +1,5 @@
 ﻿using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.Owned;
-using System.Text.Json.Serialization;
 
 namespace MindSpace.Domain.Entities.SupportingPrograms
 {
@@ -13,6 +12,7 @@ namespace MindSpace.Domain.Entities.SupportingPrograms
         public int MaxQuantity { get; set; }
         public Address Address { get; set; }
         public DateTime StartDateAt { get; set; }
+        public bool IsActive { get; set; }
 
 
         // 1 SchoolManager - M SupportingProgram

@@ -10,7 +10,7 @@ using MindSpace.Domain.Interfaces.Services.Authentication;
 
 namespace MindSpace.Application.Extensions
 {
-    public static class ServiceCollectionExtensions
+    public static partial class ServiceCollectionExtensions
     {
         public static void AddApplications(this IServiceCollection services, IConfiguration configuration)
         {

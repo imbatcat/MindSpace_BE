@@ -2,11 +2,6 @@
 using MindSpace.Application.DTOs.Tests;
 using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 using MindSpace.Domain.Entities.Tests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Profiles
 {

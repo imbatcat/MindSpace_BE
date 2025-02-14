@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace MindSpace.Domain.Interfaces.Services
 {
     public interface IEmailService

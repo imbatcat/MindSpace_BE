@@ -16,6 +16,7 @@ internal class SupportingProgramConfiguration : IEntityTypeConfiguration<Support
         builder.Property(sp => sp.PdffileUrl).IsRequired().HasMaxLength(255);
         builder.Property(sp => sp.MaxQuantity).HasDefaultValue(0);
         builder.Property(sp => sp.StartDateAt).IsRequired();
+        builder.Property(sp => sp.IsActive).HasDefaultValue(true).IsRequired();
 
         // 1 Supporting Program - 1 Address
         builder.OwnsOne(navigationExpression: sp => sp.Address,

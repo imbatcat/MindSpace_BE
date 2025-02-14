@@ -6,7 +6,7 @@ namespace MindSpace.Application.Profiles
 {
     public class PsychologyTestOptionProfile : Profile
     {
-        public PsychologyTestOptionProfile() 
+        public PsychologyTestOptionProfile()
         {
             CreateProjection<PsychologyTestOption, PsychologyTestOptionResponseDTO>();
         }

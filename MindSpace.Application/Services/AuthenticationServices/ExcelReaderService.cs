@@ -120,7 +120,7 @@ namespace MindSpace.Application.Services.AuthenticationServices
             int rowCount = worksheet.Dimension?.Rows ?? 0;
             int colCount = worksheet.Dimension?.Columns ?? 0;
 
-            if (rowCount < 2) 
+            if (rowCount < 2)
                 return results;
 
             var headers = new string[colCount];

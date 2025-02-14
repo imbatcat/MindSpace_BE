@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 
 namespace MindSpace.Application.Features.Draft.Commands.UpdateTestDraft

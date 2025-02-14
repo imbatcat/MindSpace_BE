@@ -5,9 +5,9 @@ using MindSpace.Application.Features.Draft.Commands.UpdateTestDraft;
 using MindSpace.Application.Features.Draft.Queries.GetTestDraftById;
 using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 
-namespace MindSpace.API.Controllers 
+namespace MindSpace.API.Controllers
 {
-    
+
     public class TestDraftController : BaseApiController
     {
 
