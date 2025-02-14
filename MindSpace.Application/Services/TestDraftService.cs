@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace MindSpace.Application.Services
 {
-    public class TestPeriodicDraffService : ITestDraftService
+    public class TestDraftService : ITestDraftService
     {
         // ==================================
         // === Fields & Props
@@ -17,7 +17,7 @@ namespace MindSpace.Application.Services
         // === Constructors
         // ==================================
 
-        public TestPeriodicDraffService(IConnectionMultiplexer redis)
+        public TestDraftService(IConnectionMultiplexer redis)
         {
             _database = redis.GetDatabase();
         }

@@ -10,7 +10,7 @@ namespace MindSpace.Application.DTOs.Tests
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string? TestCode { get; set; }
+        public string TestCode { get; set; }
         public string? TestCategoryId { get; set; } // may change to TestCategoryResponseDTO later if needed
         public string? SpecializationId { get; set; } // may change to SpecializationResponseDTO later if needed
         public string TargetUser { get; set; }

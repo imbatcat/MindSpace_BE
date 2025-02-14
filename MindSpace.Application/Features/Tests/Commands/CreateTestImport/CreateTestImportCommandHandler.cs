@@ -60,6 +60,7 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestImport
 
             // Handle Questions
             _testImportService.InsertQuestions(testEntity, fileData[CreateTestImportConstants.QUESTION_SHEET]);
+            testEntity.QuestionCount = testEntity.TestQuestions.Count;
 
             // Handle Score Ranks
             _testImportService.InsertScoreRanks(testEntity, fileData[CreateTestImportConstants.SCORE_RANK_SHEET]);
