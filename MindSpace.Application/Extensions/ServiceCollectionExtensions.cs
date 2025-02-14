@@ -40,6 +40,9 @@ namespace MindSpace.Application.Extensions
             services.AddScoped<IIDTokenProvider, IdTokenProvider>();
             services.AddScoped<IRefreshTokenProvider, RefreshTokenProvider>();
 
+            //Add payment services
+            services.AddScoped<IPaymentService, PaymentService>();
+
             // Add HttpContextAccessor
             services.AddHttpContextAccessor();
 
