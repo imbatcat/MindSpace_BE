@@ -14,7 +14,6 @@ namespace MindSpace.Domain.Interfaces.Services
         public ResourceType[] GetResourceTypes();
         public Task<Resource?> CreateResourceAsArticle(Resource resource, int schoolManagerId);
         public Task<Resource?> CreateResourceAsPaper(Resource resource, int schoolManagerId);
-        public Task<Resource?> CreateResourceAsBlog(BlogDraft blogDraft, int schoolManagerId); // This one using Redis to lookup
         public Task<ResourceSection> CreateResourceSection(ResourceSection section);
     }
 }
