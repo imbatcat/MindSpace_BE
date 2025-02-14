@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.DTOs.Tests;
 using MindSpace.Application.Features.Tests.Commands.CreateTestImport;
+using MindSpace.Application.Features.Tests.Commands.CreateTestManual;
 using MindSpace.Application.Features.Tests.Queries.GetTestById;
 using MindSpace.Application.Features.Tests.Queries.GetTests;
 using MindSpace.Application.Specifications.TestSpecifications;
@@ -36,12 +36,12 @@ namespace MindSpace.API.Controllers
         /// <param name="specParams"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<TestResponseDTO>>> GetTests(
+        public async Task<ActionResult<IReadOnlyList<TestOverviewResponseDTO>>> GetTests(
             [FromQuery] TestSpecParams specParams)
         {
             var testDtos = await _mediator.Send(new GetTestsQuery(specParams));
 
-            return PaginationOkResult<TestResponseDTO>(
+            return PaginationOkResult<TestOverviewResponseDTO>(
                 testDtos.Data,
                 testDtos.Count,
                 specParams.PageIndex,
@@ -73,6 +73,14 @@ namespace MindSpace.API.Controllers
                 return BadRequest("File Excel cannot be empty");
             }
 
+            var result = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetTestById), new { result.Id }, null);
+        }
+
+        [HttpPost("manual")]
+        public async Task<IActionResult> CreateTestManual([FromBody] CreateTestManualCommand command)
+        {
+            // luu test draft tu redis vao db
             var result = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetTestById), new { result.Id }, null);
         }

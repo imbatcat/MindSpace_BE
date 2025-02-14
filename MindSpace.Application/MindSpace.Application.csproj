@@ -9,10 +9,13 @@
 	<ItemGroup>
 	  <Compile Remove="Features\ApplicationUsers\**" />
 	  <Compile Remove="Features\Authentication\Profiles\**" />
+	  <Compile Remove="Features\Payment\**" />
 	  <EmbeddedResource Remove="Features\ApplicationUsers\**" />
 	  <EmbeddedResource Remove="Features\Authentication\Profiles\**" />
+	  <EmbeddedResource Remove="Features\Payment\**" />
 	  <None Remove="Features\ApplicationUsers\**" />
 	  <None Remove="Features\Authentication\Profiles\**" />
+	  <None Remove="Features\Payment\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -26,7 +29,9 @@
 		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.3.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="payOS" Version="1.0.9" />
 		<PackageReference Include="StackExchange.Redis" Version="2.8.24" />
+		<PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
 	</ItemGroup>
 
 	<ItemGroup>
