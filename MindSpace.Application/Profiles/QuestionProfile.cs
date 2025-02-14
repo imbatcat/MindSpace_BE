@@ -11,9 +11,6 @@ namespace MindSpace.Application.Profiles
             CreateProjection<Question, QuestionResponseDTO>()
                 .ForMember(d => d.Content, a => a.MapFrom(q => q.Content != null ? q.Content : null))
                 .ForMember(d => d.QuestionOptions, a => a.MapFrom(q => q.QuestionOptions.Select(opt => opt)));
-
-            CreateMap<Question, QuestionResponseDTO>()
-                .ForMember(d => d.Content, a => a.MapFrom(q => q.Content));
         }
     }
 }
