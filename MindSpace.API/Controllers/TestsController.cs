@@ -81,9 +81,8 @@ namespace MindSpace.API.Controllers
         public async Task<IActionResult> CreateTestManual([FromBody] CreateTestManualCommand command)
         {
             // luu test draft tu redis vao db
-            // luu y: generate test code bang cach hash tu test name
             var result = await _mediator.Send(command);
-            return Ok(); // replace later
+            return CreatedAtAction(nameof(GetTestById), new { result.Id }, null);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace MindSpace.Domain.Entities.Tests
     public class Test : BaseEntity
     {
         public string Title { get; set; }
-        public string? TestCode { get; set; }
+        public string TestCode { get; set; }
         public TargetUser TargetUser { get; set; }
         public string? Description { get; set; }
         public int QuestionCount { get; set; }
