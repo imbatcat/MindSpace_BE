@@ -1,8 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.DTOs.SupportingPrograms;
+using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist;
 using MindSpace.Application.Features.SupportingPrograms.Commands.CreateSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Commands.PatchSupportingProgram;
+using MindSpace.Application.Features.SupportingPrograms.Commands.RegisterSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramByHistory;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
@@ -34,11 +36,7 @@ namespace MindSpace.API.Controllers
         // === GET
         // ====================================
 
-        /// <summary>
-        /// Get Supporting Programs By Params and Support Pagination
-        /// </summary>
-        /// <param name="specParams"></param>
-        /// <returns></returns>
+        // GET: /supporting-programs/
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingPrograms(
             [FromQuery] SupportingProgramSpecParams specParams)
@@ -53,11 +51,7 @@ namespace MindSpace.API.Controllers
             );
         }
 
-        /// <summary>
-        /// Get the supporting program at the history registration 
-        /// </summary>
-        /// <param name="specParams"></param>
-        /// <returns></returns>
+        // GET: /supporting-programs/history?studentId=2
         [HttpGet("history")]
         public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingProgramsHistory(
             [FromQuery] SupportingProgramHistorySpecParams specParams)
@@ -74,11 +68,7 @@ namespace MindSpace.API.Controllers
             );
         }
 
-        /// <summary>
-        /// Get Supporting Program By Id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        // GET: /supporting-programs/2
         [HttpGet("{id:int}")]
         public async Task<ActionResult<SupportingProgramWithStudentsResponseDTO>> GetSupportingProgramById(
             [FromRoute] int id)
@@ -91,6 +81,7 @@ namespace MindSpace.API.Controllers
         // === CREATE, PATCH, DELETE
         // ====================================
 
+        // POST: /supporting-programs
         [HttpPost]
         public async Task<ActionResult> CreateSupportingProgram(
             [FromBody] CreateSupportingProgramCommand newSP)
@@ -99,14 +90,23 @@ namespace MindSpace.API.Controllers
             return CreatedAtAction(nameof(GetSupportingProgramById), new { createdSP.Id }, null);
         }
 
-
+        // PATCH: /supporting-programs/2
         [HttpPatch("{id:int}")]
-        public async Task<IActionResult> PatchSupportingProgram(
+        public async Task<ActionResult> PatchSupportingProgram(
             [FromRoute] int id,
             [FromBody] PatchSupportingProgramCommand updatedSP)
         {
             updatedSP.Id = id;
             await _mediator.Send(updatedSP);
+            return NoContent();
+        }
+
+        // POST: /supporting-programs/ 
+        [HttpPost("register")]
+        public async Task<ActionResult> RegisterSupportingProgram(
+            [FromBody] RegisterSupportingProgramCommand registerSP)
+        {
+            await _mediator.Send(registerSP);
             return NoContent();
         }
     }

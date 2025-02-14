@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MindSpace.Application.Features.Authentication.Commands.ConfirmEmail;
 using MindSpace.Application.Features.Authentication.Commands.LoginUser;
 using MindSpace.Application.Features.Authentication.Commands.LogoutUser;
 using MindSpace.Application.Features.Authentication.Commands.RefreshUserAccessToken;
@@ -9,14 +10,13 @@ using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.Reg
 using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterParent;
 using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterPsychologist;
 using MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterStudent;
+using MindSpace.Application.Features.Authentication.Commands.ResetPassword;
 using MindSpace.Application.Features.Authentication.Commands.RevokeUser;
 using MindSpace.Application.Features.Authentication.Commands.SendEmailConfirmation;
-using MindSpace.Application.Features.Authentication.Commands.ConfirmEmail;
+using MindSpace.Application.Features.Authentication.Commands.SendResetPasswordEmail;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using System.IdentityModel.Tokens.Jwt;
-using MindSpace.Application.Features.Authentication.Commands.SendResetPasswordEmail;
-using MindSpace.Application.Features.Authentication.Commands.ResetPassword;
 
 namespace MindSpace.API.Controllers
 {

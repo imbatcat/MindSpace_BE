@@ -1,12 +1,7 @@
 ﻿using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Interfaces.Services;
 using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Services
 {

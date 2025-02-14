@@ -7,14 +7,12 @@ using Domain.Interfaces.Repos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MindSpace.Application.Services;
-using MindSpace.Domain.Interfaces.Services;
 using MindSpace.Infrastructure.Persistence;
 using Repositories;
 using Seeders;
 using StackExchange.Redis;
 
-public static class ServiceCollectionExtensions
+public static partial class ServiceCollectionExtensions
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {

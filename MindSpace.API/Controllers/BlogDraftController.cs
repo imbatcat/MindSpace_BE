@@ -1,13 +1,10 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.Features.Draft.Commands.DeleteBlogDraft;
 using MindSpace.Application.Features.Draft.Commands.UpdateBlogDraft;
 using MindSpace.Application.Features.Draft.Queries.GetBlogDraftById;
 using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Exceptions;
-using MindSpace.Domain.Interfaces.Services;
 
 namespace MindSpace.API.Controllers
 {

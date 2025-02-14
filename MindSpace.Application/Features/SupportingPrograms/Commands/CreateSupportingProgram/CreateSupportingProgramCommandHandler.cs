@@ -1,19 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.SupportingPrograms;
 using MindSpace.Application.Specifications.SupportingProgramSpecifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
-using MindSpace.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Commands.CreateSupportingProgram
 {

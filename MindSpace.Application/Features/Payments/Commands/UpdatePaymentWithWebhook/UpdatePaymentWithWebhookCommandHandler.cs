@@ -1,11 +1,10 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Specifications.PaymentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
 using MindSpace.Domain.Interfaces.Services;
-using MindSpace.Application.Specifications.PaymentSpecifications;
-using AutoMapper;
 
 namespace MindSpace.Application.Features.Payments.Commands.UpdatePaymentWithWebhook;
 

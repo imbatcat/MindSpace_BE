@@ -14,7 +14,8 @@
     "StartDateAt": "2024-03-01T09:00:00Z",
     "SchoolManagerId": 10,
     "PsychologistId": 7,
-    "SchoolId": 1
+    "SchoolId": 1,
+    "IsActive": true
   },
 
   {
@@ -32,7 +33,8 @@
     "StartDateAt": "2024-03-15T10:00:00Z",
     "SchoolManagerId": 11,
     "PsychologistId": 7,
-    "SchoolId": 2
+    "SchoolId": 2,
+    "IsActive": true
   },
   {
     "Title": "Chương Trình Phát Triển Cá Nhân",
@@ -49,7 +51,8 @@
     "StartDateAt": "2024-04-01T08:30:00Z",
     "SchoolManagerId": 10,
     "PsychologistId": 8,
-    "SchoolId": 1
+    "SchoolId": 1,
+    "IsActive": true
   },
   {
     "Title": "Chương Trình Hỗ Trợ Học Đường",
@@ -66,7 +69,8 @@
     "StartDateAt": "2024-04-15T11:00:00Z",
     "SchoolManagerId": 10,
     "PsychologistId": 9,
-    "SchoolId": 1
+    "SchoolId": 1,
+    "IsActive": true
   },
   {
     "Title": "Chương Trình Tư Vấn",
@@ -83,6 +87,7 @@
     "StartDateAt": "2024-05-01T14:00:00Z",
     "SchoolManagerId": 10,
     "PsychologistId": 7,
-    "SchoolId": 1
+    "SchoolId": 1,
+    "IsActive": false
   }
 ]

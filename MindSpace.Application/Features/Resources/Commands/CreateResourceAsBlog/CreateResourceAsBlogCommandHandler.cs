@@ -1,17 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.UserContext;
 using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
 using MindSpace.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsBlog
 {

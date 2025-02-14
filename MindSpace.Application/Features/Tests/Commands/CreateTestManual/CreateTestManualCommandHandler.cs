@@ -2,10 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Tests;
-using MindSpace.Application.Services;
-using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Entities.Drafts.TestPeriodics;
-using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;

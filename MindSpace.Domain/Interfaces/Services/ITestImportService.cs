@@ -1,12 +1,5 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using MindSpace.Domain.Entities.Tests;
-using MindSpace.Domain.Interfaces.Repos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Domain.Interfaces.Services
 {

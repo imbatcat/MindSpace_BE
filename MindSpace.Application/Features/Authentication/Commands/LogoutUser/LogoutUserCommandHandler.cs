@@ -1,7 +1,7 @@
-using System.Security.Claims;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Features.Authentication.Commands.RevokeUser;
+using System.Security.Claims;
 
 namespace MindSpace.Application.Features.Authentication.Commands.LogoutUser
 {

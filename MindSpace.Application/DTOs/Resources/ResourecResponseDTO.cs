@@ -1,9 +1,4 @@
 ﻿using MindSpace.Domain.Entities.Constants;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.DTOs.Resources
 {
