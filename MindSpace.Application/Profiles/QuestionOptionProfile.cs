@@ -9,7 +9,6 @@ namespace MindSpace.Application.Profiles
         public QuestionOptionProfile()
         {
             CreateProjection<QuestionOption, QuestionOptionResponseDTO>();
-            CreateMap<QuestionOption, QuestionOptionResponseDTO>();
         }
     }
 }

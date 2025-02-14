@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace MindSpace.Application.Features.Tests.Commands.CreateTestImport
 {
-    public class CreateTestImportCommandHandler : IRequestHandler<CreateTestImportCommand, TestResponseDTO>
+    public class CreateTestImportCommandHandler : IRequestHandler<CreateTestImportCommand, TestOverviewResponseDTO>
     {
         // ================================
         // === Fields & Props
@@ -40,57 +40,34 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestImport
         // === Methods
         // ================================
 
-        public async Task<TestResponseDTO?> Handle(CreateTestImportCommand request, CancellationToken cancellationToken)
+        public async Task<TestOverviewResponseDTO> Handle(CreateTestImportCommand request, CancellationToken cancellationToken)
         {
-            try
+            // Validate input file
+            if (request.TestFile == null || request.TestFile.Length == 0)
             {
-                // Validate input file
-                if (request.TestFile == null || request.TestFile.Length == 0)
-                {
-                    throw new BadHttpRequestException("File Excel không được để trống.");
-                }
-
-                // insert test with overview data
-                var testEntity = _mapper.Map<Test>(request.TestInfo);
-                _unitOfWork.Repository<Test>().Insert(testEntity);
-
-                // get data of test file
-                var fileData = await _testImportService.ReadAndValidateTestFileAsync(request.TestFile);
-
-                // Handle Psy Options
-                 _testImportService.InsertPsychologyTestOptions(testEntity, fileData[CreateTestImportConstants.PSYCHOLOGY_TEST_OPTION_SHEET]);
-
-                // Handle Questions
-                _testImportService.InsertQuestions(testEntity, fileData[CreateTestImportConstants.QUESTION_SHEET]);
-
-                // Handle Score Ranks
-                _testImportService.InsertScoreRanks(testEntity, fileData[CreateTestImportConstants.SCORE_RANK_SHEET]);
-
-                await _unitOfWork.CompleteAsync();
-
-                return _mapper.Map<TestResponseDTO>(testEntity);
+                throw new BadHttpRequestException("File Excel không được để trống.");
             }
-            catch (BadHttpRequestException ex)
-            {
-                throw new BadHttpRequestException(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                throw new ArgumentException(ex.Message);
-            }
-            catch (FormatException ex)
-            {
-                throw new FormatException(ex.Message);
-            }
-            catch(CreateFailedException ex)
-            {
-                throw new CreateFailedException(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Tạo test không thành công với bài test có title: ", request.TestInfo.Title);
-                return null;
-            }
+
+            // Insert test with overview data
+            var testEntity = _mapper.Map<Test>(request.TestInfo);
+            _unitOfWork.Repository<Test>().Insert(testEntity);
+
+            // Get data of test file
+            var fileData = await _testImportService.ReadAndValidateTestFileAsync(request.TestFile);
+
+            // Handle Psy Options
+            _testImportService.InsertPsychologyTestOptions(testEntity, fileData[CreateTestImportConstants.PSYCHOLOGY_TEST_OPTION_SHEET]);
+
+            // Handle Questions
+            _testImportService.InsertQuestions(testEntity, fileData[CreateTestImportConstants.QUESTION_SHEET]);
+
+            // Handle Score Ranks
+            _testImportService.InsertScoreRanks(testEntity, fileData[CreateTestImportConstants.SCORE_RANK_SHEET]);
+
+            await _unitOfWork.CompleteAsync();
+
+            return _mapper.Map<TestOverviewResponseDTO>(testEntity);
+
         }
 
     }

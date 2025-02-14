@@ -36,12 +36,12 @@ namespace MindSpace.API.Controllers
         /// <param name="specParams"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<TestResponseDTO>>> GetTests(
+        public async Task<ActionResult<IReadOnlyList<TestOverviewResponseDTO>>> GetTests(
             [FromQuery] TestSpecParams specParams)
         {
             var testDtos = await _mediator.Send(new GetTestsQuery(specParams));
 
-            return PaginationOkResult<TestResponseDTO>(
+            return PaginationOkResult<TestOverviewResponseDTO>(
                 testDtos.Data,
                 testDtos.Count,
                 specParams.PageIndex,
