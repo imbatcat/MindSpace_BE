@@ -24,7 +24,11 @@ namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsBlog
         // === Constructors
         // ====================================
 
-        public CreateResourceAsBlogCommandHandler(IUserContext userContext, IMapper mapper, IBlogDraftService blogDraftService, IUnitOfWork unitOfWork)
+        public CreateResourceAsBlogCommandHandler(
+            IUserContext userContext,
+            IMapper mapper,
+            IBlogDraftService blogDraftService,
+            IUnitOfWork unitOfWork)
         {
             _userContext = userContext;
             _mapper = mapper;

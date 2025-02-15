@@ -1,51 +1,48 @@
 ﻿using AutoMapper;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Resources;
+using MindSpace.Domain.Interfaces.Repos;
 using MindSpace.Domain.Interfaces.Services;
 using MindSpace.Domain.Interfaces.Specifications;
+using System.Linq;
 
 namespace MindSpace.Application.Services
 {
     public class ResourcesService : IResourcesService
     {
-        public Task<int> CountResourcesWithSpecAsync(ISpecification<Resource> resourceSpec)
+        // ===================================
+        // === Fields & Prop
+        // ===================================
+
+        private readonly IUnitOfWork _unitOfWork;
+
+        // ===================================
+        // === Constructors
+        // ===================================
+        public ResourcesService(IUnitOfWork unitOfWork)
         {
-            throw new NotImplementedException();
+            _unitOfWork = unitOfWork;
         }
 
-        public Task<Resource?> CreateResourceAsArticle(Resource resource, int schoolManagerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Resource?> CreateResourceAsPaper(Resource resource, int schoolManagerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResourceSection> CreateResourceSection(ResourceSection section)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> DisableResource(Resource resource)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IReadOnlyList<Resource>> GetResourceAsync(ISpecification<Resource> resourceSpec, IConfigurationProvider mappingConfiguration)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IReadOnlyList<Resource>> GetResourcesAsync(ISpecification<Resource> resourceSpec, IConfigurationProvider mappingConfiguration)
-        {
-            throw new NotImplementedException();
-        }
+        // ===================================
+        // === Methods
+        // ===================================
 
         public ResourceType[] GetResourceTypes()
         {
-            throw new NotImplementedException();
+            return Enum
+                .GetValues(typeof(ResourceType))
+                .Cast<ResourceType>().ToArray();
+        }
+
+        public Resource? CreateResourceAsArticle(Resource resource, int schoolManagerId)
+        {
+            if (resource.ArticleUrl == null) return null;
+
+            var addedResource = _unitOfWork.Repository<Resource>().Insert(resource);
+            if (addedResource == null) return null;
+
+            return addedResource;
         }
     }
 }

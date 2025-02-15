@@ -6,7 +6,8 @@
     "Introduction": "An introduction to mental health and its importance in daily life.",
     "ThumbnailUrl": "https://example.com/images/mental-health.jpg",
     "SchoolManagerId": 10,
-    "SpecializationId": 1
+    "SpecializationId": 1,
+    "IsActive": true
   },
   {
     "ResourceType": "Blog",
@@ -15,7 +16,8 @@
     "Introduction": "Effective techniques to manage stress and improve well-being.",
     "ThumbnailUrl": "https://example.com/images/stress-management.jpg",
     "SchoolManagerId": 10,
-    "SpecializationId": 2
+    "SpecializationId": 2,
+    "IsActive": true
   },
   {
     "ResourceType": "Article",
@@ -24,15 +26,17 @@
     "Introduction": "A comprehensive guide on anxiety, its causes, and coping mechanisms.",
     "ThumbnailUrl": "https://example.com/images/anxiety.jpg",
     "SchoolManagerId": 11,
-    "SpecializationId": 2
+    "SpecializationId": 2,
+    "IsActive": true
   },
   {
-    "ResourceType": "File",
+    "ResourceType": "Article",
     "ArticleUrl": "https://example.com/articles/mindfulness-practices",
     "Title": "Mindfulness Practices for a Calm Mind",
     "Introduction": "How mindfulness can improve your mental state and reduce stress.",
     "ThumbnailUrl": "https://example.com/images/mindfulness.jpg",
     "SchoolManagerId": 11,
-    "SpecializationId": 3
+    "SpecializationId": 3,
+    "IsActive": false
   }
 ]

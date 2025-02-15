@@ -35,6 +35,10 @@ internal class ResourceConfiguration : IEntityTypeConfiguration<Resource>
         builder.Property(r => r.ThumbnailUrl)
             .HasMaxLength(500);
 
+        builder.Property(r => r.isActive)
+            .HasDefaultValue(true)
+            .IsRequired();
+
         // 1 SchoolManager - M Resources
         builder.HasOne(r => r.SchoolManager)
             .WithMany(sm => sm.Resources)
