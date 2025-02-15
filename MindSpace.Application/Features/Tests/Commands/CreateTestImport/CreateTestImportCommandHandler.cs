@@ -3,7 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Tests;
+using MindSpace.Application.Specifications.TestSpecifications;
+using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Tests;
+using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
 using MindSpace.Domain.Interfaces.Services;
 
@@ -46,7 +49,19 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestImport
             }
 
             // Insert test with overview data
-            var testEntity = _mapper.Map<Test>(request.TestInfo);
+            var testInfo = request.TestInfo;
+            var testEntity = _mapper.Map<Test>(testInfo);
+
+            // Check existed PSYCHOLOGY test
+            var existedTest = await _unitOfWork.Repository<Test>()
+                .GetBySpecAsync(new TestSpecification(testInfo.Title,
+                                             testInfo.AuthorId,
+                                             testInfo.TestCode));
+            if (existedTest != null)
+            {
+                throw new DuplicateTestException("The title or test code is duplcated with an existed test!");
+            }
+
             _unitOfWork.Repository<Test>().Insert(testEntity);
 
             // Get data of test file

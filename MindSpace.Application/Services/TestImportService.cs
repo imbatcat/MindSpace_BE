@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using MindSpace.Application.Features.Tests.Commands.CreateTestImport;
 using MindSpace.Domain.Entities.Tests;
+using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
 using MindSpace.Domain.Interfaces.Services;
 
@@ -26,14 +27,15 @@ namespace MindSpace.Application.Services
         {
             var fileData = await _excelReaderService.ReadAllSheetsAsync(file);
 
-            if (!fileData.ContainsKey(CreateTestImportConstants.PSYCHOLOGY_TEST_OPTION_SHEET))
-            {
-                throw new ArgumentException($"File Excel thiếu sheet '{CreateTestImportConstants.PSYCHOLOGY_TEST_OPTION_SHEET}'");
-            }
             if (!fileData.ContainsKey(CreateTestImportConstants.QUESTION_SHEET))
             {
-                throw new ArgumentException($"File Excel thiếu sheet '{CreateTestImportConstants.QUESTION_SHEET}'");
+                throw new InvalidFileFormatException($"File Excel thiếu sheet '{CreateTestImportConstants.QUESTION_SHEET}'");
             }
+            if (!fileData.ContainsKey(CreateTestImportConstants.PSYCHOLOGY_TEST_OPTION_SHEET))
+            {
+                throw new InvalidFileFormatException($"File Excel thiếu sheet '{CreateTestImportConstants.PSYCHOLOGY_TEST_OPTION_SHEET}'");
+            }
+
 
             return fileData;
         }
@@ -42,7 +44,7 @@ namespace MindSpace.Application.Services
         {
             if (optionsData == null || optionsData.Count == 0)
             {
-                throw new ArgumentException("Sheet options không có dữ liệu.");
+                throw new InvalidFileFormatException("Sheet options không có dữ liệu.");
             }
 
             foreach (var option in optionsData)
@@ -50,12 +52,12 @@ namespace MindSpace.Application.Services
                 if (!option.ContainsKey(CreateTestImportConstants.PSYCHOLOGY_TEST_OPTION_TEXT_COLUMN) ||
                     !option.ContainsKey(CreateTestImportConstants.PSYCHOLOGY_TEST_OPTION_SCORE_COLUMN))
                 {
-                    throw new ArgumentException("Thiếu cột dữ liệu trong sheet options.");
+                    throw new InvalidFileFormatException("Thiếu cột dữ liệu trong sheet options.");
                 }
 
                 if (!int.TryParse(option[CreateTestImportConstants.PSYCHOLOGY_TEST_OPTION_SCORE_COLUMN], out int score))
                 {
-                    throw new FormatException("Điểm số của options không đúng định dạng số nguyên.");
+                    throw new InvalidFileFormatException("Điểm số của options không đúng định dạng số nguyên.");
                 }
 
                 var optionEntity = new PsychologyTestOption
@@ -73,14 +75,14 @@ namespace MindSpace.Application.Services
         {
             if (questionData == null || questionData.Count == 0)
             {
-                throw new ArgumentException("Sheet câu hỏi không có dữ liệu.");
+                throw new InvalidFileFormatException("Sheet câu hỏi không có dữ liệu.");
             }
 
             foreach (var question in questionData)
             {
                 if (!question.ContainsKey(CreateTestImportConstants.QUESTION_CONTENT_COLUMN))
                 {
-                    throw new ArgumentException("Thiếu cột nội dung câu hỏi.");
+                    throw new InvalidFileFormatException("Thiếu cột nội dung câu hỏi.");
                 }
 
                 var questionEntity = new Question
@@ -113,7 +115,7 @@ namespace MindSpace.Application.Services
                     !scoreRank.ContainsKey(CreateTestImportConstants.SCORE_RANK_RESULT_COLUMN)
                     )
                 {
-                    throw new ArgumentException("Thiếu cột dữ liệu trong sheet score ranks.");
+                    throw new InvalidFileFormatException("Thiếu cột dữ liệu trong sheet score ranks.");
                 }
 
                 var scoreRankEntity = new TestScoreRank
