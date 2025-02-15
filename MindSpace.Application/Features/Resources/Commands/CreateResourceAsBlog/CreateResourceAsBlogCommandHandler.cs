@@ -15,7 +15,6 @@ namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsBlog
         // === Props & Fields
         // ====================================
 
-        private readonly IUserContext _userContext;
         private readonly IMapper _mapper;
         private readonly IBlogDraftService _blogDraftService;
         private readonly IUnitOfWork _unitOfWork;
@@ -25,12 +24,10 @@ namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsBlog
         // ====================================
 
         public CreateResourceAsBlogCommandHandler(
-            IUserContext userContext,
             IMapper mapper,
             IBlogDraftService blogDraftService,
             IUnitOfWork unitOfWork)
         {
-            _userContext = userContext;
             _mapper = mapper;
             _blogDraftService = blogDraftService;
             _unitOfWork = unitOfWork;

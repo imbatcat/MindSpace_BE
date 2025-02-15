@@ -1,10 +1,5 @@
-﻿using MindSpace.Domain.Entities.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MindSpace.Domain.Entities.Constants;
+using MindSpace.Domain.Entities.Resources;
 
 namespace MindSpace.Application.Specifications.ResourceSpecifications
 {
@@ -17,14 +12,15 @@ namespace MindSpace.Application.Specifications.ResourceSpecifications
         public ResourceSpecification(string title)
             : base(x => x.Title.ToLower().Contains(title.ToLower()))
         {
+            AddOrderBy(x => x.Id);
         }
 
         /// <summary>
-        /// Filter by Id
+        /// Filter by Id and Type
         /// </summary>
         /// <param name="id"></param>
-        public ResourceSpecification(int id)
-            : base(x => x.Id == id)
+        public ResourceSpecification(int id, ResourceType type)
+            : base(x => x.ResourceType.Equals(type) && x.Id == id)
         {
             AddInclude(x => x.SchoolManager);
             AddInclude(x => x.Specialization);
