@@ -46,14 +46,6 @@ namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsBlog
             // Add blog to table
             var blogToAdd = _mapper.Map<BlogDraft, Resource>(blogDraft);
 
-            // Add blog Section to table
-            foreach (var sectionDraft in blogDraft.Sections)
-            {
-                var sectionToAdd = _mapper.Map<SectionDraft, ResourceSection>(sectionDraft);
-                sectionToAdd.Resource = blogToAdd;
-                blogToAdd.ResourceSections.Add(sectionToAdd);
-            }
-
             // Commit all changes
             _unitOfWork.Repository<Resource>().Insert(blogToAdd);
             await _unitOfWork.CompleteAsync();
