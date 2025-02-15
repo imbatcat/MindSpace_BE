@@ -1,11 +1,4 @@
-﻿using MindSpace.Domain.Entities.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MindSpace.Application.DTOs.Resources
+﻿namespace MindSpace.Application.DTOs.Resources
 {
     public class BlogResponseDTO
     {

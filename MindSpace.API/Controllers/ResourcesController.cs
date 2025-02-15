@@ -4,6 +4,7 @@ using MindSpace.Application.DTOs.Resources;
 using MindSpace.Application.Features.Resources.Commands.CreateResourceAsArticle;
 using MindSpace.Application.Features.Resources.Commands.CreateResourceAsBlog;
 using MindSpace.Application.Features.Resources.Queries.GetResourceAsArticleById;
+using MindSpace.Application.Features.Resources.Queries.GetResourceAsBlogById;
 using MindSpace.Application.Specifications.ResourceSpecifications;
 
 namespace MindSpace.API.Controllers
@@ -41,10 +42,11 @@ namespace MindSpace.API.Controllers
 
         // GET: /resources/blogs/1
         [HttpGet("blogs/{id:int}")]
-        public async Task<ActionResult<ArticleResponseDTO>> GetResourceAsBlogById(
+        public async Task<ActionResult<BlogResponseDTO>> GetResourceAsBlogById(
             [FromRoute] int id)
         {
-            return null;
+            var blog = await _mediator.Send(new GetResourceAsBlogByIdQuery(id));
+            return Ok(blog);
         }
 
         [HttpGet]

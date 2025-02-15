@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using MindSpace.Domain.Entities.Constants;
+﻿using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Interfaces.Repos;
 using MindSpace.Domain.Interfaces.Services;
-using MindSpace.Domain.Interfaces.Specifications;
-using System.Linq;
 
 namespace MindSpace.Application.Services
 {

@@ -1,6 +1,4 @@
-﻿using MindSpace.Domain.Entities.Constants;
-
-namespace MindSpace.Application.DTOs.Resources
+﻿namespace MindSpace.Application.DTOs.Resources
 {
     public class ArticleResponseDTO
     {

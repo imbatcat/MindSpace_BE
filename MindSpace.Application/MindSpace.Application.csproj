@@ -36,8 +36,4 @@
 			<Private>True</Private>
 		</ProjectReference>
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Features\Resources\Commands\CreateResourceAsFile\" />
-	</ItemGroup>
 </Project>

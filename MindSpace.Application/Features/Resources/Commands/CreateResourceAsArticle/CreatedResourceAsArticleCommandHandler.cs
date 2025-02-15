@@ -1,17 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using MindSpace.Application.Features.SupportingPrograms.Commands.CreateSupportingProgram;
-using MindSpace.Application.Specifications.ResourceSpecifications;
 using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsArticle
 {
