@@ -13,6 +13,15 @@ namespace MindSpace.Application.Specifications.TestSpecifications
         {
         }
 
+
+        public TestSpecification(string title, int authorId, string testCode)
+        : base(
+            x => (x.Title.ToLower().Equals(title.ToLower()) || x.TestCode.ToLower().Equals(testCode.ToLower())) 
+        )
+        {
+        }
+
+
         /// <summary>
         /// 
         /// Constructor for General Filter and Pagination
