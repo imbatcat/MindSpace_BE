@@ -100,5 +100,20 @@ namespace MindSpace.Application.Services
         {
             await _userManager.AddToRoleAsync(user, role);
         }
+
+        public async Task<ApplicationUser?> GetUserByEmailAsync(string email)
+        {
+            return await _userManager.FindByEmailAsync(email);
+        }
+
+        public async Task<string> GetUserRoleAsync(ApplicationUser user)
+        {
+            return (await _userManager.GetRolesAsync(user)).FirstOrDefault() ?? string.Empty;
+        }
+
+        public async Task<ApplicationUser?> GetByIdAsync(int userId)
+        {
+            return await _userManager.FindByIdAsync(userId.ToString());
+        }
     }
 }

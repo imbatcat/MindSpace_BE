@@ -51,7 +51,6 @@ public class IdentitySeeder(
                 case "student":
                     await userManager.AddToRoleAsync(user, UserRoles.Student);
                     break;
-
                 case "parent":
                     await userManager.AddToRoleAsync(user, UserRoles.Parent);
                     break;
@@ -64,7 +63,7 @@ public class IdentitySeeder(
                     await userManager.AddToRoleAsync(user, UserRoles.Psychologist);
                     break;
 
-                case "SchoolManager":
+                case "schoolmanager":
                     await userManager.AddToRoleAsync(user, UserRoles.SchoolManager);
                     break;
             }
