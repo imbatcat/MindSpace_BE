@@ -19,6 +19,7 @@ namespace MindSpace.Application.Services.AuthenticationServices
             }
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
             using (var stream = new MemoryStream())
             {
                 await file.CopyToAsync(stream);

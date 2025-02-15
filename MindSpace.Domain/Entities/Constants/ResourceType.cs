@@ -9,8 +9,5 @@ namespace MindSpace.Domain.Entities.Constants
 
         [EnumMember(Value = "Article")]
         Article,
-
-        [EnumMember(Value = "File")]
-        File,
     }
 }
