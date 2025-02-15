@@ -39,7 +39,5 @@
 
 	<ItemGroup>
 	  <Folder Include="Features\Resources\Commands\CreateResourceAsFile\" />
-	  <Folder Include="Features\Resources\Queries\GetResourceByType\" />
-	  <Folder Include="Features\Resources\Queries\GetResources\" />
 	</ItemGroup>
 </Project>

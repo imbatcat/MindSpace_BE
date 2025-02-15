@@ -15,7 +15,15 @@ namespace MindSpace.Application.Profiles
             // === GET
             // =============================
 
-            CreateMap<Resource, ResourceResponseDTO>();
+            CreateProjection<Resource, ArticleResponseDTO>()
+                .ForMember(d => d.SpecializationName, o => o.MapFrom(m => m.Specialization.Name))
+                .ForMember(d => d.SchoolManagerName, o => o.MapFrom(m => m.SchoolManager.FullName));
+
+            CreateProjection<Resource, BlogResponseDTO>()
+                .ForMember(d => d.SpecializationName, o => o.MapFrom(m => m.Specialization.Name))
+                .ForMember(d => d.SchoolManagerName, o => o.MapFrom(m => m.SchoolManager.FullName));
+
+            CreateProjection<ResourceSection, SectionResponseDTO>();
 
             // =====================================
             // === PATCH, POST

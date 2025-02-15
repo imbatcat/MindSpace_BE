@@ -12,7 +12,6 @@ namespace MindSpace.Application.Specifications.ResourceSpecifications
         public bool? IsActive { get; set; } = true;
         public int? SchoolManagerId { get; set; }
         public int? SpecializationId { get; set; }
-
-        public string SearchTitle { get; set; }
+        public string? SearchTitle { get; set; }
     }
 }
