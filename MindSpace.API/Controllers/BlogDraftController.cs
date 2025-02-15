@@ -36,7 +36,7 @@ namespace MindSpace.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         /// <exception cref="NotFoundException"></exception>
-        [HttpGet("{id:int}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<BlogDraft>> GetBlogDraftById([FromRoute] string id)
         {
             var blogDraft = await _mediator.Send(new GetBlogDraftByIdQuery(id));

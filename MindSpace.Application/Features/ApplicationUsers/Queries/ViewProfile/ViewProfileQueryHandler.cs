@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.UserContext;
-using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Services.Authentication;

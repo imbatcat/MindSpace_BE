@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Tests;
 using MindSpace.Application.Specifications.TestSpecifications;
-using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Repos;

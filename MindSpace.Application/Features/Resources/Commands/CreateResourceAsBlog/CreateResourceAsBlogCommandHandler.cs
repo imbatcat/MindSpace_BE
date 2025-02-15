@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using MindSpace.Application.UserContext;
 using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Exceptions;
