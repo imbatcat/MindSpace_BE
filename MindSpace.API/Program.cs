@@ -31,7 +31,7 @@ app.UseMiddleware<TimeLoggingMiddleware>();
 
 // Configure CORS
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
-.WithOrigins("https://localhost:3000/", "http://localhost:3000/"));
+.WithOrigins("https://localhost:3000/", "http://localhost:3000/", "http://localhost:8081", "http://192.168.1.2:19000"));
 
 if (app.Environment.IsDevelopment())
 {
