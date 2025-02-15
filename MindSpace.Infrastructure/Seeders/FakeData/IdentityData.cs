@@ -131,7 +131,7 @@ internal static class IdentityData
             {
                 UserName = "manager1",
                 NormalizedUserName = "MANAGER1",
-                Email = "Manager1@example.com",
+                Email = "manager1@example.com",
                 NormalizedEmail = "Manager1@EXAMPLE.COM",
                 FullName = "SchoolManager One",
                 Status = UserStatus.Enabled,
@@ -143,7 +143,7 @@ internal static class IdentityData
             {
                 UserName = "manager2",
                 NormalizedUserName = "MANAGER2",
-                Email = "Manager2@example.com",
+                Email = "manager2@example.com",
                 NormalizedEmail = "Manager2@EXAMPLE.COM",
                 FullName = "SchoolManager Two",
                 Status = UserStatus.Enabled,

@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile;
+using MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfile;
+using MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfileById;
 using MindSpace.Application.Features.Authentication.Commands.ConfirmEmail;
 using MindSpace.Application.Features.Authentication.Commands.LoginUser;
 using MindSpace.Application.Features.Authentication.Commands.LogoutUser;
@@ -167,6 +170,31 @@ namespace MindSpace.API.Controllers
                 return Ok("Password reset successfully");
             }
             return BadRequest("Password reset failed");
+        }
+
+        [HttpGet("profile")]
+        [Authorize]
+        public async Task<IActionResult> GetProfile()
+        {
+            var result = await mediator.Send(new ViewProfileQuery());
+            return Ok(result);
+        }
+
+        [HttpGet("profile/{id}")]
+        [Authorize(Roles = UserRoles.Admin)]
+        public async Task<IActionResult> GetProfileById(int id)
+        {
+            var result = await mediator.Send(new ViewProfileByIdQuery { UserId = id });
+            return Ok(result);
+        }
+
+        [HttpPut("profile/{id}")]
+        [Authorize]
+        public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileCommand command, [FromRoute] int id)
+        {
+            command.UserId = id;
+            var result = await mediator.Send(command);
+            return Ok(result);
         }
     }
 }
