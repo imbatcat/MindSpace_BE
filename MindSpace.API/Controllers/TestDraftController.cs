@@ -26,7 +26,7 @@ namespace MindSpace.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<TestDraft>> GetTestDraftById([FromRoute] string id)
         {
             var testDraft = await _mediator.Send(new GetTestDraftByIdQuery(id));
@@ -42,7 +42,7 @@ namespace MindSpace.API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("{id:int}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteTestDraft(
             [FromRoute] string id)
         {

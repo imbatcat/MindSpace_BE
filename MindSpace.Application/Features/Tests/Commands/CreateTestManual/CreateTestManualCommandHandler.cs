@@ -46,13 +46,7 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestManual
             // Add questions to table
             foreach (var questionDraft in testDraft.QuestionItems)
             {
-                var questionToAdd = _mapper.Map<QuestionDraft, Question>(questionDraft);
-                foreach (var optionDraft in questionDraft.QuestionOptions)
-                {
-                    var optionToAdd = _mapper.Map<OptionDraft, QuestionOption>(optionDraft);
-                    questionToAdd.QuestionOptions.Add(optionToAdd);
-                }
-
+                var questionToAdd = _mapper.Map<QuestionDraft, Question>(questionDraft); // question option is auto-mapped with question
                 // Add question to test
                 testToAdd.TestQuestions.Add(new TestQuestion { Question = questionToAdd, Test = testToAdd });
             }
@@ -62,6 +56,10 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestManual
 
             _unitOfWork.Repository<Test>().Insert(testToAdd);
             await _unitOfWork.CompleteAsync();
+            
+            // remove test draft from redis
+            await _testDraftService.DeleteTestDraftAsync(testDraftId);
+            
             return _mapper.Map<Test, TestOverviewResponseDTO>(testToAdd);
         }
     }
