@@ -1,8 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.Resources;
 using MindSpace.Application.Features.Resources.Commands.CreateResourceAsArticle;
 using MindSpace.Application.Features.Resources.Commands.CreateResourceAsBlog;
+using MindSpace.Application.Features.Resources.Queries.GetArticles;
+using MindSpace.Application.Features.Resources.Queries.GetBlogs;
 using MindSpace.Application.Features.Resources.Queries.GetResourceAsArticleById;
 using MindSpace.Application.Features.Resources.Queries.GetResourceAsBlogById;
 using MindSpace.Application.Specifications.ResourceSpecifications;
@@ -49,18 +52,22 @@ namespace MindSpace.API.Controllers
             return Ok(blog);
         }
 
-        [HttpGet]
-        public async Task<ActionResult<ArticleResponseDTO>> GetAllArticles(
+        // GET: /resources/articles
+        [HttpGet("articles")]
+        public async Task<ActionResult<Pagination<ArticleResponseDTO>>> GetAllArticles(
             [FromQuery] ResourceSpecificationSpecParams specParams)
         {
-            return null;
+            var articles = await _mediator.Send(new GetArticlesQuery(specParams));
+            return PaginationOkResult(articles.Data, articles.Count, specParams.PageIndex, specParams.PageSize);
         }
 
-        [HttpGet]
-        public async Task<ActionResult<BlogResponseDTO>> GetAllBlogs(
+        // GET: /resources/blogs
+        [HttpGet("blogs")]
+        public async Task<ActionResult<Pagination<BlogResponseDTO>>> GetAllBlogs(
             [FromQuery] ResourceSpecificationSpecParams specParams)
         {
-            return null;
+            var blogs = await _mediator.Send(new GetBlogsQuery(specParams));
+            return PaginationOkResult(blogs.Data, blogs.Count, specParams.PageIndex, specParams.PageSize);
         }
 
         // ====================================

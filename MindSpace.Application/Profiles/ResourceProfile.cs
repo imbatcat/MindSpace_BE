@@ -38,6 +38,9 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.ArticleUrl, o => o.Ignore())
                 .ForMember(d => d.ResourceSections, o => o.MapFrom(s => s.Sections));
 
+            CreateMap<SectionDraft, ResourceSection>()
+                .ForMember(d => d.Id, o => o.Ignore()); // Set Manually
+
             CreateMap<CreatedResourceAsArticleCommand, Resource>()
                 .ForMember(d => d.isActive, o => o.MapFrom(s => true))
                 .ForMember(d => d.ResourceType, o => o.MapFrom(s => ResourceType.Article));

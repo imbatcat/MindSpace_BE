@@ -34,9 +34,9 @@ namespace MindSpace.Application.Specifications.ResourceSpecifications
             : base(x =>
                 (!specParams.SchoolManagerId.HasValue || x.SchoolManagerId == specParams.SchoolManagerId) &&
                 (!specParams.SpecializationId.HasValue || x.SpecializationId == specParams.SpecializationId) &&
-                (!specParams.IsActive == x.isActive) &&
-                (string.IsNullOrEmpty(specParams.SearchTitle) || x.Title.Contains(specParams.SearchTitle) &&
-                (string.IsNullOrEmpty(specParams.Type) || specParams.Type.Equals(x.ResourceType.ToString()))))
+                (!specParams.IsActive.HasValue || x.isActive == specParams.IsActive) &&
+                (string.IsNullOrEmpty(specParams.SearchTitle) || x.Title.Contains(specParams.SearchTitle)) &&
+                (string.IsNullOrEmpty(specParams.Type) || x.ResourceType == (ResourceType)Enum.Parse(typeof(ResourceType), specParams.Type)))
         {
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
             AddOrderByDescending(x => x.Id);

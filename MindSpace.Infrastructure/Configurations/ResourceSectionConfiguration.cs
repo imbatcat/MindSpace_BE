@@ -25,6 +25,7 @@ internal class ResourceSectionConfiguration : IEntityTypeConfiguration<ResourceS
         // 1 Resource - M ResourceSection
         builder.HasOne(rs => rs.Resource)
             .WithMany(r => r.ResourceSections)
-            .HasForeignKey(rs => rs.ResourceId);
+            .HasForeignKey(rs => rs.ResourceId)
+            .OnDelete(DeleteBehavior.ClientCascade);
     }
 }
