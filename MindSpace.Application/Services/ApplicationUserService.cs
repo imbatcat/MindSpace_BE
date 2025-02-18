@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MindSpace.Application.Specifications;
+using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
 using MindSpace.Domain.Interfaces.Services.Authentication;
@@ -45,7 +48,6 @@ namespace MindSpace.Application.Services
         {
             return await ApplySpecification(spec).ToListAsync();
         }
-
         public async Task<ApplicationUser?> GetUserWithSpec(ISpecification<ApplicationUser> spec)
         {
             return await ApplySpecification(spec).FirstOrDefaultAsync();
@@ -115,5 +117,18 @@ namespace MindSpace.Application.Services
         {
             return await _userManager.FindByIdAsync(userId.ToString());
         }
+
+        public async Task ToggleAccountStatusAsync(int userId)
+        {
+            var user = await GetByIdAsync(userId);
+            if (user == null)
+            {
+                throw new NotFoundException(nameof(ApplicationUser), userId.ToString());
+            }
+
+            user.Status = user.Status == UserStatus.Enabled ? UserStatus.Disabled : UserStatus.Enabled;
+            await UpdateAsync(user);
+        }
+
     }
 }

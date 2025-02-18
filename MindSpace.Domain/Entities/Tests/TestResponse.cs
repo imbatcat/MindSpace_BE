@@ -10,9 +10,10 @@ namespace MindSpace.Domain.Entities.Tests
 
         //Relationships
 
-        // 1 Student - M Test Responses
-        public int StudentId { get; set; }
+        // 1 Student/Parent - M Test Responses
+        public int RespondentId { get; set; }  // Can be either StudentId or ParentId
         public virtual Student Student { get; set; }
+        public virtual Parent Parent { get; set; }
 
         // 1 Test Publication - M Test Responses
 

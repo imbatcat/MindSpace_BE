@@ -413,3 +413,12 @@ FodyWeavers.xsd
 
 
 
+.cursorrules
+.env
+.vscode/settings.json
+README.md
+requirements.txt
+tools/llm_api.py
+tools/screenshot_utils.py
+tools/search_engine.py
+tools/web_scraper.py

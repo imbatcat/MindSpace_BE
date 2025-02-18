@@ -10,6 +10,7 @@ namespace MindSpace.Application.Profiles
         {
             CreateMap<ApplicationUser, ApplicationUserProfileDTO>();
             CreateMap<ApplicationUser, PsychologistProfileDTO>();
+            CreateMap<ApplicationUser, ApplicationUserResponseDTO>();
         }
     }
 }

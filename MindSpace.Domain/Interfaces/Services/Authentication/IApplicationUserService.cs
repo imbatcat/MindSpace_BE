@@ -85,5 +85,11 @@ namespace MindSpace.Domain.Interfaces.Services.Authentication
         /// <param name="userId">The ID of the user to retrieve.</param>
         /// <returns>The user with the specified ID, or null if not found.</returns>
         Task<ApplicationUser?> GetByIdAsync(int userId);
+
+        /// <summary>
+        /// Toggles the status of a user account asynchronously.
+        /// </summary>
+        /// <param name="userId">The ID of the user to toggle.</param>
+        Task ToggleAccountStatusAsync(int userId);
     }
 }

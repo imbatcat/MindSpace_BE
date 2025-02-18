@@ -1,4 +1,5 @@
-﻿using MindSpace.Domain.Entities.Identity;
+﻿using MindSpace.Domain.Entities.Constants;
+using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
 {
@@ -8,7 +9,7 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
         /// Search By User Id
         /// </summary>
         /// <param name="id"></param>
-        public ApplicationUserSpecification(int id) : base(x => x.Id.Equals(id))
+        public ApplicationUserSpecification(int userId) : base(x => x.Id.Equals(userId))
         {
         }
 
@@ -24,16 +25,21 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
         /// Search By General Filter
         /// </summary>
         /// <param name="specParams"></param>
-        public ApplicationUserSpecification(ApplicationUserSpecParams specParams) : base(s =>
-
-            string.IsNullOrEmpty(specParams.SearchName) ||
-            s.Email.ToLower().Contains(specParams.SearchName.ToLower()) ||
-            s.UserName.ToLower().Contains(specParams.SearchName.ToLower()) ||
-            s.FullName.ToLower().Contains(specParams.SearchName.ToLower()) ||
-            s.Id.Equals(specParams.UserId))
+        /// <param name="isOnlyStudent">If true, only return student users</param>
+        public ApplicationUserSpecification(ApplicationUserSpecParams specParams, bool isOnlyStudent = false) :
+            base(s =>
+                (string.IsNullOrEmpty(specParams.SearchName) ||
+                s.Email!.ToLower().Contains(specParams.SearchName.ToLower()) ||
+                s.UserName!.ToLower().Contains(specParams.SearchName.ToLower()) ||
+                s.FullName!.ToLower().Contains(specParams.SearchName.ToLower())) &&
+                (specParams.Status!.Equals("All") || s.Status == Enum.Parse<UserStatus>(specParams.Status)) &&
+                (!specParams.MinAge.HasValue || DateTime.Today.AddYears(-specParams.MinAge.Value) >= s.DateOfBirth) &&
+                (!specParams.MaxAge.HasValue || DateTime.Today.AddYears(-specParams.MaxAge.Value - 1) <= s.DateOfBirth) &&
+                (!isOnlyStudent || s.Student != null) &&
+                (s.Psychologist != null || s.Student != null || s.SchoolManager != null || s.Parent != null) // this ensures admin is not selected 
+            )
         {
-            // will add AddInclude later
-            // AddInclude(x => x.School)
+            AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
 
             // Add Sorting
             if (!string.IsNullOrEmpty(specParams.Sort))
@@ -41,11 +47,13 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
                 switch (specParams.Sort)
                 {
                     case "dobAsc":
-                        AddOrderBy(x => x.DateOfBirth.ToString()); break;
+                        AddOrderBy(x => x.DateOfBirth.ToString()!); break;
                     case "dobDesc":
-                        AddOrderByDescending(x => x.DateOfBirth.ToString()); break;
-                    default:
-                        AddOrderBy(x => x.FullName); break; // default is sort by full name
+                        AddOrderByDescending(x => x.DateOfBirth.ToString()!); break;
+                    case "nameAsc":
+                        AddOrderBy(x => x.FullName!); break;
+                    case "nameDesc":
+                        AddOrderByDescending(x => x.FullName!); break;
                 }
             }
         }
