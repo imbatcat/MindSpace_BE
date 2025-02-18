@@ -38,7 +38,7 @@ namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
         /// <param name="specParams"></param>
         public SupportingProgramSpecification(SupportingProgramSpecParams specParams)
             : base(x =>
-                (!string.IsNullOrWhiteSpace(specParams.SearchTitle) || x.Title.ToLower().Contains(specParams.SearchTitle!.ToLower())) &&
+                (string.IsNullOrEmpty(specParams.SearchTitle) || x.Title.ToLower().Contains(specParams.SearchTitle!.ToLower())) &&
                 (!specParams.MinQuantity.HasValue || x.MaxQuantity >= specParams.MinQuantity) &&
                 (!specParams.MaxQuantity.HasValue || x.MaxQuantity <= specParams.MaxQuantity) &&
                 (!specParams.SchoolManagerId.HasValue || x.SchoolManagerId.Equals(specParams.SchoolManagerId)) &&

@@ -83,7 +83,8 @@ internal static class IdentityData
                 FullName = "Admin One",
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                UpdatedAt = DateTime.UtcNow,
+                DateOfBirth = new DateTime(1990, 1, 1)
             },
             new Psychologist
             {
@@ -137,7 +138,8 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
-                SchoolId = 1
+                SchoolId = 1,
+                DateOfBirth = new DateTime(1975, 1, 1)
             },
             new SchoolManager
             {
@@ -149,23 +151,26 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
-                SchoolId = 2
+                SchoolId = 2,
+                DateOfBirth = new DateTime(1978, 2, 2)
             },
-            new()
+            new Parent()
             {
                 UserName = "parent1",
                 NormalizedUserName = "PARENT1",
                 Email = "parent1@example.com",
                 NormalizedEmail = "PARENT1@EXAMPLE.COM",
-                FullName = "Parent One"
+                FullName = "Parent One",
+                DateOfBirth = new DateTime(1970, 1, 1)
             },
-            new()
+            new Parent()
             {
                 UserName = "parent2",
                 NormalizedUserName = "PARENT2",
                 Email = "parent2@example.com",
                 NormalizedEmail = "PARENT2@EXAMPLE.COM",
-                FullName = "Parent Two"
+                FullName = "Parent Two",
+                DateOfBirth = new DateTime(1972, 2, 2)
             }
         };
 

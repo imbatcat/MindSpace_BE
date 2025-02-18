@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile;
 using MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfile;
 using MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfileById;
+using MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccounts;
+using MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllStudents;
 using MindSpace.Application.Features.Authentication.Commands.ConfirmEmail;
 using MindSpace.Application.Features.Authentication.Commands.LoginUser;
 using MindSpace.Application.Features.Authentication.Commands.LogoutUser;
@@ -20,6 +22,8 @@ using MindSpace.Application.Features.Authentication.Commands.SendResetPasswordEm
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using System.IdentityModel.Tokens.Jwt;
+using MindSpace.Application.Specifications.ApplicationUserSpecifications;
+using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
 
 namespace MindSpace.API.Controllers
 {
@@ -195,6 +199,40 @@ namespace MindSpace.API.Controllers
             command.UserId = id;
             var result = await mediator.Send(command);
             return Ok(result);
+        }
+
+        [HttpGet("accounts")]
+        [Authorize(Roles = UserRoles.Admin)]
+        public async Task<IActionResult> GetAllAccounts([FromQuery] ApplicationUserSpecParams specParams)
+        {
+            var result = await mediator.Send(new ViewAllAccountsQuery(specParams));
+            return PaginationOkResult(
+                result.Data,
+                result.Count,
+                specParams.PageIndex,
+                specParams.PageSize
+            );
+        }
+
+        [HttpGet("accounts/students")]
+        [Authorize(Roles = UserRoles.SchoolManager)]
+        public async Task<IActionResult> GetAllStudents([FromQuery] ApplicationUserSpecParams specParams)
+        {
+            var result = await mediator.Send(new ViewAllStudentsQuery(specParams));
+            return PaginationOkResult(
+                result.Data,
+                result.Count,
+                specParams.PageIndex,
+                specParams.PageSize
+            );
+        }
+
+        [HttpPut("accounts/{id}/toggle-status")]
+        [Authorize(Roles = UserRoles.Admin)]
+        public async Task<IActionResult> ToggleAccountStatus([FromRoute] int id)
+        {
+            await mediator.Send(new ToggleAccountStatusCommand { UserId = id });
+            return NoContent();
         }
     }
 }

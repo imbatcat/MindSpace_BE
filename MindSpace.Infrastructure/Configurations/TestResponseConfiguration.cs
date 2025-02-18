@@ -22,7 +22,14 @@ internal class TestResponseConfiguration : IEntityTypeConfiguration<TestResponse
         builder
             .HasOne(tr => tr.Student)
             .WithMany(st => st.TestResponses)
-            .HasForeignKey(tr => tr.StudentId);
+            .HasForeignKey(tr => tr.RespondentId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder
+            .HasOne(tr => tr.Parent)
+            .WithMany(st => st.TestResponses)
+            .HasForeignKey(tr => tr.RespondentId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder
             .HasOne(tr => tr.TestPublication)
