@@ -3,6 +3,7 @@
 using Domain.Entities.Tests;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MindSpace.Domain.Entities.Identity;
 
 internal class TestResponseConfiguration : IEntityTypeConfiguration<TestResponse>
 {
@@ -20,16 +21,18 @@ internal class TestResponseConfiguration : IEntityTypeConfiguration<TestResponse
 
         //Relationships
         builder
-            .HasOne(tr => tr.Student)
-            .WithMany(st => st.TestResponses)
-            .HasForeignKey(tr => tr.RespondentId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .HasOne(s => s.Student)
+            .WithMany()
+            .HasForeignKey(tr => tr.StudentId)
+            .HasPrincipalKey(s => s.Id)
+            .IsRequired(false);
 
         builder
-            .HasOne(tr => tr.Parent)
-            .WithMany(st => st.TestResponses)
-            .HasForeignKey(tr => tr.RespondentId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .HasOne(p => p.Parent)
+            .WithMany()
+            .HasForeignKey(tr => tr.ParentId)
+            .HasPrincipalKey(p => p.Id)
+            .IsRequired(false);
 
         builder
             .HasOne(tr => tr.TestPublication)

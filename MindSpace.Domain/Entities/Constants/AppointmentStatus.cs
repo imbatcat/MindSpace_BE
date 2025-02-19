@@ -4,10 +4,10 @@ namespace MindSpace.Domain.Entities.Constants
 {
     public enum AppointmentStatus
     {
-        [EnumMember(Value = "Upcoming")]
-        Upcoming,
-        [EnumMember(Value = "Done")]
-        Done,
+        [EnumMember(Value = "Pending")]
+        Pending,
+        [EnumMember(Value = "Booked")]
+        Booked,
         [EnumMember(Value = "Canceled")]
         Canceled
     }

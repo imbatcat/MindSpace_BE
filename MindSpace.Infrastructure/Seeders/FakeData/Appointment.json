@@ -7,7 +7,7 @@
     "PsychologistScheduleId": 1,
     "SpecializationId": 1,
     "MeetURL": "https://meet.google.com/test-1",
-    "Status": "Paid"
+    "Status": "Pending"
   },
   {
     "CreateAt": "2025-02-03T08:00:00Z",
@@ -17,7 +17,7 @@
     "PsychologistScheduleId": 4,
     "SpecializationId": 1,
     "MeetURL": "https://meet.google.com/test-2",
-    "Status": "Paid"
+    "Status": "Pending"
   },
   {
     "CreateAt": "2025-02-04T08:00:00Z",
@@ -27,6 +27,6 @@
     "PsychologistScheduleId": 8,
     "SpecializationId": 3,
     "MeetURL": "https://meet.google.com/test-3",
-    "Status": "Paid"
+    "Status": "Pending"
   }
 ]

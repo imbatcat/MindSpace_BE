@@ -39,6 +39,6 @@ internal class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
             .HasConversion(
             convertToProviderExpression: s => s.ToString(),
             convertFromProviderExpression: s => Enum.Parse<AppointmentStatus>(s))
-            .HasDefaultValue(AppointmentStatus.Upcoming);
+            .HasDefaultValue(AppointmentStatus.Pending);
     }
 }
