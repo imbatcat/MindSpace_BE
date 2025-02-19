@@ -26,7 +26,7 @@
   {
     "TotalScore": null,
     "TestScoreRankResult": null,
-    "StudentId": 1,
+    "ParentId": 12,
     "TestPublicationId": 4,
     "CreateAt": "2024-05-17T14:00:00Z",
     "UpdateAt": "2024-05-17T14:00:00Z"
