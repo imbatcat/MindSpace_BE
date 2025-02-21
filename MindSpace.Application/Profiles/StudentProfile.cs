@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Application.Profiles
