@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Tests;
+using MindSpace.Application.Specifications.QuestionSpecifications;
 using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Domain.Exceptions;
@@ -46,7 +47,16 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestManual
             // Add questions to table
             foreach (var questionDraft in testDraft.QuestionItems)
             {
-                var questionToAdd = _mapper.Map<QuestionDraft, Question>(questionDraft); // question option is auto-mapped with question
+                // Check existed question for reuse
+                Question? questionToAdd = await _unitOfWork.Repository<Question>()
+                    .GetBySpecAsync(new QuestionSpecification(questionDraft.Id));
+
+                // if new question => create new question
+                if (questionToAdd  == null)
+                {
+                    questionToAdd = _mapper.Map<QuestionDraft, Question>(questionDraft); // question option is auto-mapped with question
+                }
+
                 // Add question to test
                 testToAdd.TestQuestions.Add(new TestQuestion { Question = questionToAdd, Test = testToAdd });
             }
