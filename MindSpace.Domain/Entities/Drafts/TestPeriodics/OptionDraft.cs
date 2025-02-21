@@ -2,7 +2,7 @@
 {
     public class OptionDraft
     {
-        public required string Id { get; set; }
+        public required int Id { get; set; }
         public string DisplayedText { get; set; }
     }
 }
