@@ -1,4 +1,6 @@
-﻿namespace MindSpace.Application.DTOs.SupportingPrograms
+﻿using MindSpace.Application.DTOs.ApplicationUsers;
+
+namespace MindSpace.Application.DTOs.SupportingPrograms
 {
     public class SupportingProgramWithStudentsResponseDTO
     {

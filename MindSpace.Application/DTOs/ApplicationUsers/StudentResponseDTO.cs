@@ -1,4 +1,4 @@
-﻿namespace MindSpace.Application.DTOs
+﻿namespace MindSpace.Application.DTOs.ApplicationUsers
 {
     public class StudentResponseDTO
     {
@@ -7,5 +7,6 @@
         public string? PhoneNumber { get; set; }
         public string? ImageUrl { get; set; }
         public DateOnly? DateOfBirth { get; set; }
+        public SchoolDTO? School { get; set; }
     }
 }

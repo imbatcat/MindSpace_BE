@@ -13,5 +13,6 @@ namespace MindSpace.Application.DTOs.ApplicationUsers
         public string ImageUrl { get; set; }
         public string Status { get; set; }
         public string Role { get; set; }
+        public SchoolDTO? School { get; set; }
     }
 }
