@@ -33,8 +33,8 @@ internal class TestResponseConfiguration : IEntityTypeConfiguration<TestResponse
             .IsRequired(false);
 
         builder
-            .HasOne(tr => tr.TestPublication)
-            .WithMany(tp => tp.TestResponses)
-            .HasForeignKey(tr => tr.TestPublicationId);
+            .HasOne(tr => tr.Test)
+            .WithMany(t => t.TestResponses)
+            .HasForeignKey(tr => tr.TestId);
     }
 }

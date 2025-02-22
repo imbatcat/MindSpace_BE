@@ -40,7 +40,6 @@ internal class EntityOrderProvider : IEntityOrderProvider
         typeof(Appointment).FullName!,
         typeof(Payment).FullName!,
         typeof(PsychologistSchedule).FullName!,
-        typeof(TestPublication).FullName!,
         typeof(PsychologyTestOption).FullName!
     };
 }

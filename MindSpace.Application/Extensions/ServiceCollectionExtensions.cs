@@ -53,7 +53,6 @@ namespace MindSpace.Application.Extensions
             services.AddScoped<ITestDraftService, TestDraftService>();
             services.AddScoped<IBlogDraftService, BlogDraftService>();
             services.AddScoped<ITestImportService, TestImportService>();
-            services.AddScoped<ITestDraftService, TestDraftService>();
         }
     }
 }

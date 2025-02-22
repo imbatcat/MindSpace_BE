@@ -9,8 +9,8 @@ namespace MindSpace.Domain.Entities.Identity
         // 1 SchoolManager - 1 User
         public virtual ApplicationUser User { get; set; }
 
-        // 1 SchoolManager - M TestPublications
-        public virtual ICollection<TestPublication> TestPublications { get; set; } = new HashSet<TestPublication>();
+        // 1 SchoolManager - M Tests
+        public virtual ICollection<Test> Tests { get; set; } = new HashSet<Test>();
 
         // 1 SchoolManager - 1 School
         public int SchoolId { get; set; }

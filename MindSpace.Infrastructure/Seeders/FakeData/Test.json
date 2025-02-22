@@ -52,6 +52,8 @@
     "TestCategoryId": 3,
     "SpecializationId": 1,
     "AuthorId": 6,
+    "StartDate": "2024-01-01T08:00:00",
+    "EndDate": "2024-03-31T23:59:59",
     "CreateAt": "2023-08-10T10:30:00",
     "UpdateAt": "2023-08-25T11:20:00"
   },
@@ -108,6 +110,8 @@
     "TestCategoryId": 3,
     "SpecializationId": 1,
     "AuthorId": 6,
+    "StartDate": "2024-01-01T08:00:00",
+    "EndDate": "2024-03-31T23:59:59",
     "CreateAt": "2023-12-10T09:15:00",
     "UpdateAt": "2023-12-15T15:45:00"
   },
@@ -136,6 +140,8 @@
     "TestCategoryId": 1,
     "SpecializationId": 1,
     "AuthorId": 6,
+    "StartDate": "2024-02-01T08:00:00",
+    "EndDate": "2024-03-31T23:59:59",
     "CreateAt": "2024-01-15T09:45:00",
     "UpdateAt": "2024-01-20T15:30:00"
   },
@@ -164,6 +170,8 @@
     "TestCategoryId": 1,
     "SpecializationId": 1,
     "AuthorId": 6,
+    "StartDate": "2024-03-01T08:00:00",
+    "EndDate": "2024-03-31T23:59:59",
     "CreateAt": "2024-02-01T08:15:00",
     "UpdateAt": "2024-02-05T14:45:00"
   },
@@ -192,6 +200,8 @@
     "TestCategoryId": 3,
     "SpecializationId": 2,
     "AuthorId": 6,
+    "StartDate": "2024-03-01T08:00:00",
+    "EndDate": "2024-03-31T23:59:59",
     "CreateAt": "2024-02-20T10:15:00",
     "UpdateAt": "2024-02-25T16:45:00"
   },
@@ -220,6 +230,8 @@
     "TestCategoryId": 3,
     "SpecializationId": 1,
     "AuthorId": 6,
+    "StartDate": "2024-04-01T08:00:00",
+    "EndDate": "2024-04-30T23:59:59",
     "CreateAt": "2024-03-10T09:00:00",
     "UpdateAt": "2024-03-15T15:00:00"
   },
@@ -248,6 +260,8 @@
     "TestCategoryId": 3,
     "SpecializationId": 1,
     "AuthorId": 6,
+    "StartDate": "2024-04-01T08:00:00",
+    "EndDate": "2024-04-30T23:59:59",
     "CreateAt": "2024-04-01T08:00:00",
     "UpdateAt": "2024-04-05T14:00:00"
   },
@@ -276,6 +290,8 @@
     "TestCategoryId": 3,
     "SpecializationId": 3,
     "AuthorId": 6,
+    "StartDate": "2024-05-01T08:00:00",
+    "EndDate": "2024-05-31T23:59:59",
     "CreateAt": "2024-04-20T10:45:00",
     "UpdateAt": "2024-04-25T16:30:00"
   },
