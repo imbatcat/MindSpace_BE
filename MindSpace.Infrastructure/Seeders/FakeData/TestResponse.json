@@ -18,15 +18,15 @@
   {
     "TotalScore": 15,
     "TestScoreRankResult": "Mức độ kỷ luật tích cực trung bình",
-    "StudentId": 1,
+    "ParentId": 12,
     "TestId": 3,
     "CreateAt": "2024-05-22T10:00:00Z",
     "UpdateAt": "2024-05-22T10:00:00Z"
   },
   {
     "TotalScore": 15,
-    "TestScoreRankResult": "Mức độ kỷ luật tích cực thấp",
-    "ParentId": 12,
+    "TestScoreRankResult": null,
+    "StudentId": 1,
     "TestId": 4,
     "CreateAt": "2024-05-17T14:00:00Z",
     "UpdateAt": "2024-05-17T14:00:00Z"

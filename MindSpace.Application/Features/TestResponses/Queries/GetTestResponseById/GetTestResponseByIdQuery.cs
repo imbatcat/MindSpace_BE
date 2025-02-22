@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using MindSpace.Application.DTOs.Tests;
 
 namespace MindSpace.Application.Features.TestResponses.Queries.GetTestResponseById
 {
-    internal class GetTestResponseByIdQuery
+    public class GetTestResponseByIdQuery : IRequest<TestResponseResponseDTO>
     {
+        public int Id { get; set; }
+        public GetTestResponseByIdQuery(int id)
+        {
+            Id = id;
+        }
     }
 }
