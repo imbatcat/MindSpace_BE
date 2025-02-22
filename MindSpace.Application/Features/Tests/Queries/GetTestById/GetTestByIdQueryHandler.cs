@@ -9,21 +9,21 @@ using MindSpace.Domain.Interfaces.Repos;
 
 namespace MindSpace.Application.Features.Tests.Queries.GetTestById
 {
-    public class GetQuestionByIdQueryHandler : IRequestHandler<GetTestByIdQuery, TestResponseDTO>
+    public class GetTestByIdQueryHandler : IRequestHandler<GetTestByIdQuery, TestResponseDTO>
     {
         // ================================
         // === Fields & Props
         // ================================
 
-        private readonly ILogger<GetQuestionByIdQueryHandler> _logger;
+        private readonly ILogger<GetTestByIdQueryHandler> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         // ================================
         // === Constructors
         // ================================
-        public GetQuestionByIdQueryHandler(
-            ILogger<GetQuestionByIdQueryHandler> logger,
+        public GetTestByIdQueryHandler(
+            ILogger<GetTestByIdQueryHandler> logger,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {

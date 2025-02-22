@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.DTOs.Tests;
+using MindSpace.Application.Features.TestResponses.Queries.GetTestResponseById;
 using MindSpace.Application.Features.TestResponses.Queries.GetTestResponses;
 using MindSpace.Application.Specifications.TestResponseSpecifications;
 
@@ -35,6 +36,13 @@ namespace MindSpace.API.Controllers
                     specParams.PageIndex, 
                     specParams.PageSize
                 );
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<TestResponseResponseDTO>> GetTestResponseById(int id)
+        {
+            var testResponse = await _mediator.Send(new GetTestResponseByIdQuery(id));
+            return Ok(testResponse);
         }
     }
 }
