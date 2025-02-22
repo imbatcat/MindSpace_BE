@@ -45,6 +45,7 @@ namespace MindSpace.Application.Specifications.TestSpecifications
                    && (!specParams.MaxPrice.HasValue || t.Price <= specParams.MaxPrice)
                    && (!specParams.TestCategoryId.HasValue || t.TestCategoryId == specParams.TestCategoryId)
                    && (!specParams.SpecializationId.HasValue || t.SpecializationId == specParams.SpecializationId)
+                   && (!specParams.AuthorId.HasValue || t.AuthorId == specParams.AuthorId)
             )
         {
 
