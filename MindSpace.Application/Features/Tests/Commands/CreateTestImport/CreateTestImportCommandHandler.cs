@@ -61,8 +61,6 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestImport
                 throw new DuplicateTestException("The title or test code is duplcated with an existed test!");
             }
 
-            _unitOfWork.Repository<Test>().Insert(testEntity);
-
             // Get data of test file
             var fileData = await _testImportService.ReadAndValidateTestFileAsync(request.TestFile);
 
@@ -76,12 +74,12 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestImport
             // Handle Score Ranks
             _testImportService.InsertScoreRanks(testEntity, fileData[CreateTestImportConstants.SCORE_RANK_SHEET]);
 
+            _unitOfWork.Repository<Test>().Insert(testEntity);
             await _unitOfWork.CompleteAsync();
 
             return _mapper.Map<TestOverviewResponseDTO>(testEntity);
 
         }
-
     }
 
 
