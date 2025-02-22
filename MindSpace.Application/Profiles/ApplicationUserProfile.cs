@@ -8,8 +8,15 @@ namespace MindSpace.Application.Profiles
     {
         public ApplicationUserProfile()
         {
+            CreateProjection<SchoolManager, ApplicationUserResponseDTO>()
+                .ForMember(d => d.School, a => a.MapFrom(u => u.School));
+
+            CreateProjection<Student, ApplicationUserResponseDTO>()
+                .ForMember(d => d.School, a => a.MapFrom(u => u.School));
+
+            CreateProjection<Parent, ApplicationUserResponseDTO>();
+
             CreateProjection<ApplicationUser, ApplicationUserResponseDTO>()
-                .ForMember(d => d.School, a => a.MapFrom(u => u.SchoolManager != null ? u.SchoolManager.SchoolId : (int?)null))
                 .ForMember(d => d.Id, a => a.MapFrom(u => u.Id))
                 .ForMember(d => d.Email, a => a.MapFrom(u => u.Email))
                 .ForMember(d => d.FullName, a => a.MapFrom(u => u.FullName))
@@ -21,7 +28,9 @@ namespace MindSpace.Application.Profiles
 
             CreateMap<ApplicationUser, ApplicationUserProfileDTO>();
             CreateMap<ApplicationUser, PsychologistProfileDTO>();
-            CreateMap<ApplicationUser, ApplicationUserResponseDTO>();
+
+            CreateMap<ApplicationUser, ApplicationUserResponseDTO>()
+                .Include<SchoolManager, ApplicationUserResponseDTO>();
         }
     }
 }

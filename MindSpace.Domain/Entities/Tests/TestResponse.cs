@@ -5,7 +5,6 @@ namespace MindSpace.Domain.Entities.Tests
     public class TestResponse : BaseEntity
     {
         public int? TotalScore { get; set; }
-
         public string? TestScoreRankResult { get; set; }
 
         //Relationships
