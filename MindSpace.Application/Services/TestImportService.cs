@@ -13,16 +13,13 @@ namespace MindSpace.Application.Services
     public class TestImportService : ITestImportService
     {
         private readonly IExcelReaderService _excelReaderService;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
 
-        public TestImportService(IExcelReaderService excelReaderService, IUnitOfWork unitOfWork, IMapper mapper)
+        public TestImportService(IExcelReaderService excelReaderService)
         {
             _excelReaderService = excelReaderService;
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
         }
 
+        // common function to read and validate test file
         public async Task<Dictionary<string, List<Dictionary<string, string>>>> ReadAndValidateTestFileAsync(IFormFile file)
         {
             var fileData = await _excelReaderService.ReadAllSheetsAsync(file);
@@ -40,6 +37,7 @@ namespace MindSpace.Application.Services
             return fileData;
         }
 
+        // extract data of psychology test options from excel file
         public void InsertPsychologyTestOptions(Test testEntity, List<Dictionary<string, string>> optionsData)
         {
             if (optionsData == null || optionsData.Count == 0)
@@ -60,19 +58,20 @@ namespace MindSpace.Application.Services
                     throw new InvalidFileFormatException("Điểm số của options không đúng định dạng số nguyên.");
                 }
 
+                // add new option to test
                 var optionEntity = new PsychologyTestOption
                 {
                     DisplayedText = option[CreateTestImportConstants.PSYCHOLOGY_TEST_OPTION_TEXT_COLUMN],
                     Score = score,
                     PsychologyTest = testEntity
                 };
-
-                _unitOfWork.Repository<PsychologyTestOption>().Insert(optionEntity);
+                testEntity.PsychologyTestOptions.Add(optionEntity);
             }
         }
 
+        // extract data of questions from excel file
         public void InsertQuestions(Test testEntity, List<Dictionary<string, string>> questionData)
-        {
+        {            
             if (questionData == null || questionData.Count == 0)
             {
                 throw new InvalidFileFormatException("Sheet câu hỏi không có dữ liệu.");
@@ -90,8 +89,7 @@ namespace MindSpace.Application.Services
                     Content = question[CreateTestImportConstants.QUESTION_CONTENT_COLUMN]
                 };
 
-                _unitOfWork.Repository<Question>().Insert(questionEntity);
-
+                // add new question to test
                 testEntity.TestQuestions.Add(new TestQuestion
                 {
                     Test = testEntity,
@@ -100,6 +98,7 @@ namespace MindSpace.Application.Services
             }
         }
 
+        // extract data of score ranks from excel file
         public void InsertScoreRanks(Test testEntity, List<Dictionary<string, string>> scoreRankData)
         {
             if (scoreRankData == null || scoreRankData.Count == 0)
@@ -126,7 +125,8 @@ namespace MindSpace.Application.Services
                     Test = testEntity
                 };
 
-                _unitOfWork.Repository<TestScoreRank>().Insert(scoreRankEntity);
+                // add new score rank to test
+                testEntity.TestScoreRanks.Add(scoreRankEntity);
             }
         }
     }
