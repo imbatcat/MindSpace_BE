@@ -41,9 +41,6 @@
         <None Update="Seeders\FakeData\Question.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="Seeders\FakeData\TestPublication.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
         <None Update="Seeders\FakeData\QuestionOption.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>

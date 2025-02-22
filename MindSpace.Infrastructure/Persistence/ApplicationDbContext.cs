@@ -44,7 +44,6 @@ namespace MindSpace.Infrastructure.Persistence
         private DbSet<QuestionOption> QuestionOptions { get; set; }
         private DbSet<TestScoreRank> TestScoreRanks { get; set; }
         private DbSet<TestQuestion> TestQuestions { get; set; }
-        private DbSet<TestPublication> TestPublications { get; set; }
         private DbSet<TestResponse> TestResponses { get; set; }
         private DbSet<TestResponseItem> TestResponseItems { get; set; }
 

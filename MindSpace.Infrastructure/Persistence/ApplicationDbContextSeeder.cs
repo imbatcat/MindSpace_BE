@@ -81,10 +81,6 @@ namespace MindSpace.Infrastructure.Persistence
             await new JsonDataSeeder<TestQuestion>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestQuestion>>(), _dbContext)
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestQuestionSeeder)
                 .SeedAsync();
-
-            await new JsonDataSeeder<TestPublication>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestPublication>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestPublicationSeeder)
-                .SeedAsync();
             await new JsonDataSeeder<TestResponse>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestResponse>>(), _dbContext)
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestResponseSeeder)
                 .SeedAsync();
