@@ -1,9 +1,11 @@
 using MediatR;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.PaymentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
+using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.Application.Features.Payments.Commands.UpdatePaymentWithWebhook;
@@ -11,7 +13,8 @@ namespace MindSpace.Application.Features.Payments.Commands.UpdatePaymentWithWebh
 public class UpdatePaymentWithWebhookCommandHandler(
     ILogger<UpdatePaymentWithWebhookCommandHandler> logger,
     IUnitOfWork unitOfWork,
-    IPaymentService paymentService
+    IPaymentService paymentService,
+    ISignalRNotification signalRNotification
     ) : IRequestHandler<UpdatePaymentWithWebhookCommand>
 {
     public async Task Handle(UpdatePaymentWithWebhookCommand request, CancellationToken cancellationToken)
@@ -32,16 +35,18 @@ public class UpdatePaymentWithWebhookCommandHandler(
             }
 
             await paymentService.UpdatePaymentFromWebhookAsync(payment, verifiedData);
+            await unitOfWork.CompleteAsync();
 
             // Update Appointment Status
             // Add to Invoice Table
-            // Update Schedules Status
+            // Update Schedules Status (Demo)
+            PsychologistSchedule schedule = new PsychologistSchedule()
+            {
+                Status = PsychologistScheduleStatus.Booked
+            };
 
             // Notify all connections subscribe to clients about the status's changes
-            var connectionId =
-
-
-            await unitOfWork.CompleteAsync();
+            await signalRNotification.NotifyScheduleStatus(schedule);
 
             logger.LogInformation("Successfully processed payment webhook for transaction: {TransactionCode}", verifiedData.OrderCode);
         }

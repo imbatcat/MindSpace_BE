@@ -111,9 +111,6 @@ namespace MindSpace.API.Extensions
                 configuration.ReadFrom.Configuration(context.Configuration);
             });
 
-            // Add SignalR for Readltime Communications
-            builder.Services.AddSignalR();
-
             // Add API Versioning
             builder.Services.AddApiVersioning(options =>
             {

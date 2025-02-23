@@ -34,6 +34,9 @@ public static partial class ServiceCollectionExtensions
             return ConnectionMultiplexer.Connect(connString);
         });
 
+        // Add SignalR for Readltime Communications
+        services.AddSignalR();
+
         // Add Identity services (authentication with tokens and cookies) with role supports, using ApplicationDbContext as the data store for Identity
         services.AddIdentityApiEndpoints<ApplicationUser>()
             .AddRoles<ApplicationRole>()
