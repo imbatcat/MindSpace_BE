@@ -1,11 +1,11 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.PaymentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Exceptions;
-using MindSpace.Domain.Interfaces.Repos;
-using MindSpace.Domain.Interfaces.Services;
 
 namespace MindSpace.Application.Features.Payments.Commands.CancelPayment;
 

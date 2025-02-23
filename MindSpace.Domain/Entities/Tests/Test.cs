@@ -31,7 +31,7 @@ namespace MindSpace.Domain.Entities.Tests
 
         // 1 Test - M Test Questions
         public virtual ICollection<TestQuestion> TestQuestions { get; set; } = new HashSet<TestQuestion>();
-        
+
         // 1 Test - M Test Score Ranks
         public virtual ICollection<TestScoreRank> TestScoreRanks { get; set; } = new HashSet<TestScoreRank>();
         // 1 Test - M Psychology Test Options

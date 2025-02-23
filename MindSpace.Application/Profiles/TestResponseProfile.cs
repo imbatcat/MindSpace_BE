@@ -6,7 +6,8 @@ namespace MindSpace.Application.Profiles
 {
     public class TestResponseProfile : Profile
     {
-        public TestResponseProfile() {
+        public TestResponseProfile()
+        {
             CreateProjection<TestResponse, TestResponseOverviewResponseDTO>()
                 .ForMember(d => d.TestScoreRankResult, a => a.MapFrom(tp => tp.TestScoreRankResult))
                 .ForMember(d => d.TotalScore, a => a.MapFrom(tp => tp.TotalScore))

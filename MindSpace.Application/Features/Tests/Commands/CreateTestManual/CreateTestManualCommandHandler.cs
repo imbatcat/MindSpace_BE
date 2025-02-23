@@ -2,12 +2,12 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Tests;
+using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.QuestionSpecifications;
 using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Domain.Exceptions;
-using MindSpace.Domain.Interfaces.Repos;
-using MindSpace.Domain.Interfaces.Services;
 
 namespace MindSpace.Application.Features.Tests.Commands.CreateTestManual
 {
@@ -52,7 +52,7 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestManual
                     .GetBySpecAsync(new QuestionSpecification(questionDraft.Id));
 
                 // if new question => create new question
-                if (questionToAdd  == null)
+                if (questionToAdd == null)
                 {
                     questionToAdd = _mapper.Map<QuestionDraft, Question>(questionDraft); // question option is auto-mapped with question
                 }
@@ -66,10 +66,10 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestManual
 
             _unitOfWork.Repository<Test>().Insert(testToAdd);
             await _unitOfWork.CompleteAsync();
-            
+
             // remove test draft from redis
             await _testDraftService.DeleteTestDraftAsync(testDraftId);
-            
+
             return _mapper.Map<Test, TestOverviewResponseDTO>(testToAdd);
         }
     }

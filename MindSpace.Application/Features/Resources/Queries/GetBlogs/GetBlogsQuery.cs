@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using MindSpace.Application.DTOs.Resources;
 using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.Resources;
 using MindSpace.Application.Specifications.ResourceSpecifications;
 using MindSpace.Domain.Entities.Constants;
 

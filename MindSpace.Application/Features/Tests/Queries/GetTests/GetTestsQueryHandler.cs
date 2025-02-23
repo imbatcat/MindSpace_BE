@@ -3,9 +3,9 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
 using MindSpace.Application.DTOs.Tests;
+using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.TestSpecifications;
 using MindSpace.Domain.Entities.Tests;
-using MindSpace.Domain.Interfaces.Repos;
 
 namespace MindSpace.Application.Features.Tests.Queries.GetTests
 {

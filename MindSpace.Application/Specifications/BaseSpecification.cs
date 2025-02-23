@@ -1,4 +1,4 @@
-﻿using MindSpace.Domain.Interfaces.Specifications;
+﻿using MindSpace.Application.Interfaces.Specifications;
 using System.Linq.Expressions;
 
 namespace MindSpace.Application.Specifications

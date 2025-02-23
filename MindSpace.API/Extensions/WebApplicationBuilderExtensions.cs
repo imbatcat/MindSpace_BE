@@ -13,7 +13,10 @@ namespace MindSpace.API.Extensions
     {
         public static void AddPresentation(this WebApplicationBuilder builder)
         {
+            // Add Controllers with Endpoints
             builder.Services.AddControllers();
+
+            // Add Authentication
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -28,6 +31,7 @@ namespace MindSpace.API.Extensions
                 };
             });
 
+            // Add Authorization
             builder.Services.AddAuthorization(options =>
             {
                 var requireAuthPolicy = new AuthorizationPolicyBuilder()
@@ -36,6 +40,7 @@ namespace MindSpace.API.Extensions
                 options.DefaultPolicy = requireAuthPolicy;
             });
 
+            // Config Routing on Urls
             builder.Services.AddRouting(options =>
             {
                 options.LowercaseUrls = true;
@@ -73,6 +78,7 @@ namespace MindSpace.API.Extensions
                 });
             });
 
+            // Add CORS
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowFrontend", policy =>
@@ -99,11 +105,14 @@ namespace MindSpace.API.Extensions
             builder.Services.AddScoped<ErrorHandlingMiddleware>();
             builder.Services.AddScoped<TimeLoggingMiddleware>();
 
-            // Add Log
+            // Add Serilogs
             builder.Host.UseSerilog((context, configuration) =>
             {
                 configuration.ReadFrom.Configuration(context.Configuration);
             });
+
+            // Add SignalR for Readltime Communications
+            builder.Services.AddSignalR();
 
             // Add API Versioning
             builder.Services.AddApiVersioning(options =>

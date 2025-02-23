@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Exceptions;
-using MindSpace.Domain.Interfaces.Repos;
 
 namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsArticle
 {

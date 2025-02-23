@@ -31,9 +31,9 @@ namespace MindSpace.API.Controllers
         {
             var data = await _mediator.Send(new GetTestResponsesQuery(specParams));
             return PaginationOkResult<TestResponseOverviewResponseDTO>(
-                    data.Data, 
-                    data.Count, 
-                    specParams.PageIndex, 
+                    data.Data,
+                    data.Count,
+                    specParams.PageIndex,
                     specParams.PageSize
                 );
         }

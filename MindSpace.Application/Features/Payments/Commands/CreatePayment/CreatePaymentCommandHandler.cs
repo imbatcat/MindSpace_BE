@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Domain.Interfaces.Services;
+using MindSpace.Application.Interfaces.Services;
 using Net.payOS.Errors;
 using Net.payOS.Types;
 

@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
+using MindSpace.Application.Interfaces.Services.Authentication;
 using MindSpace.Application.Specifications.SchoolSpecifications;
 using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
-using MindSpace.Domain.Interfaces.Repos;
-using MindSpace.Domain.Interfaces.Services;
-using MindSpace.Domain.Interfaces.Services.Authentication;
 
 namespace MindSpace.Application.Features.Authentication.Commands.RegisterForUser.RegisterStudent
 {

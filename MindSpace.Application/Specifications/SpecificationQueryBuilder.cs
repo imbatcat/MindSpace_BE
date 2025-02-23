@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MindSpace.Domain.Interfaces.Specifications;
+using MindSpace.Application.Interfaces.Specifications;
 
 namespace MindSpace.Application.Specifications
 {

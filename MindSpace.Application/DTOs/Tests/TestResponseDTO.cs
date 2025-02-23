@@ -1,6 +1,4 @@
-﻿using MindSpace.Application.DTOs.ApplicationUsers;
-
-namespace MindSpace.Application.DTOs.Tests
+﻿namespace MindSpace.Application.DTOs.Tests
 {
     public class TestResponseDTO : TestOverviewResponseDTO
     {

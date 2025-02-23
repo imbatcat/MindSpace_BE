@@ -3,7 +3,6 @@
 using Domain.Entities.Tests;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MindSpace.Domain.Entities.Identity;
 
 internal class TestResponseConfiguration : IEntityTypeConfiguration<TestResponse>
 {
