@@ -11,6 +11,10 @@ namespace MindSpace.Application.Profiles
             CreateProjection<Student, StudentResponseDTO>()
                 .ForMember(d => d.DateOfBirth, o => o.MapFrom<DateOnly?>(s =>
                             s.DateOfBirth.HasValue ? DateOnly.FromDateTime(s.DateOfBirth.Value) : null));
+
+            CreateMap<Student, StudentResponseDTO>()
+                .ForMember(d => d.DateOfBirth, o => o.MapFrom<DateOnly?>(s =>
+                            s.DateOfBirth.HasValue ? DateOnly.FromDateTime(s.DateOfBirth.Value) : null));
         }
     }
 }

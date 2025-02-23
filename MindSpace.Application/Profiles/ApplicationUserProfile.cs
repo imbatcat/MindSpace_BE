@@ -31,6 +31,8 @@ namespace MindSpace.Application.Profiles
 
             CreateMap<ApplicationUser, ApplicationUserResponseDTO>()
                 .Include<SchoolManager, ApplicationUserResponseDTO>();
+
+            CreateMap<Parent, ApplicationUserResponseDTO>();
         }
     }
 }
