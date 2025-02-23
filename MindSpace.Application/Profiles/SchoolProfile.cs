@@ -9,6 +9,7 @@ namespace MindSpace.Application.Profiles
         public SchoolProfile()
         {
             CreateProjection<School, SchoolDTO>();
+            CreateMap<School, SchoolDTO>();
         }
     }
 }
