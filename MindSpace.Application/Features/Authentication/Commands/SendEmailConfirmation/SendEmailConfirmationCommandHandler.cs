@@ -1,8 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Domain.Entities.Identity;
-using MindSpace.Domain.Interfaces.Services;
 using System.Text;
 
 namespace MindSpace.Application.Features.Authentication.Commands.SendEmailConfirmation

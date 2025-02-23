@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MindSpace.API.Extensions;
 using MindSpace.API.Middlewares;
+using MindSpace.API.SignalR;
 using MindSpace.Application.Commons.Utilities.Seeding;
 using MindSpace.Application.Extensions;
 using MindSpace.Infrastructure.Extensions;
@@ -45,6 +46,7 @@ app.MapGroup("api/identities")
 
 app.UseAuthorization();
 app.MapControllers();
+app.MapHub<NotificationHub>("/hub/notifications");
 
 // ===================================================
 // === Create a scope and call the service manually

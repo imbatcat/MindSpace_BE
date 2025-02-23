@@ -2,11 +2,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
 using MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile;
-using MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfile;
-using MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfileById;
 using MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccounts;
 using MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllStudents;
+using MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfile;
+using MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfileById;
 using MindSpace.Application.Features.Authentication.Commands.ConfirmEmail;
 using MindSpace.Application.Features.Authentication.Commands.LoginUser;
 using MindSpace.Application.Features.Authentication.Commands.LogoutUser;
@@ -19,11 +20,10 @@ using MindSpace.Application.Features.Authentication.Commands.ResetPassword;
 using MindSpace.Application.Features.Authentication.Commands.RevokeUser;
 using MindSpace.Application.Features.Authentication.Commands.SendEmailConfirmation;
 using MindSpace.Application.Features.Authentication.Commands.SendResetPasswordEmail;
+using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using System.IdentityModel.Tokens.Jwt;
-using MindSpace.Application.Specifications.ApplicationUserSpecifications;
-using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
 
 namespace MindSpace.API.Controllers
 {

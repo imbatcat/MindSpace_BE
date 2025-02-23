@@ -1,17 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.DTOs.Resources;
 using MindSpace.Application.DTOs;
-using MindSpace.Application.Features.Resources.Queries.GetArticles;
+using MindSpace.Application.DTOs.Resources;
+using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.ResourceSpecifications;
 using MindSpace.Domain.Entities.Resources;
-using MindSpace.Domain.Interfaces.Repos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.Resources.Queries.GetBlogs
 {

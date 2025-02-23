@@ -1,6 +1,4 @@
-﻿using MindSpace.Domain.Entities.Constants;
-
-namespace MindSpace.Application.Specifications.ResourceSpecifications
+﻿namespace MindSpace.Application.Specifications.ResourceSpecifications
 {
     public class ResourceSpecificationSpecParams : BasePagingParams
     {

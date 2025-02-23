@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
+using MindSpace.Application.Interfaces.Services.Authentication;
 using MindSpace.Domain.Entities.Identity;
-using MindSpace.Domain.Interfaces.Services.Authentication;
 
 namespace MindSpace.Application.Features.Authentication.Commands.RefreshUserAccessToken
 {

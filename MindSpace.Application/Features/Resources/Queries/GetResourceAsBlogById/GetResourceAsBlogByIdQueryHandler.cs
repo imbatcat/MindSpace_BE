@@ -2,11 +2,11 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Resources;
+using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.ResourceSpecifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Exceptions;
-using MindSpace.Domain.Interfaces.Repos;
 
 namespace MindSpace.Application.Features.Resources.Queries.GetResourceAsBlogById
 {

@@ -6,7 +6,7 @@ namespace MindSpace.Application.Profiles
 {
     public class TestCategoryProfile : Profile
     {
-            public TestCategoryProfile()
+        public TestCategoryProfile()
         {
             CreateProjection<TestCategory, TestCategoryDTO>();
             CreateMap<TestCategory, TestCategoryDTO>();

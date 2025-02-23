@@ -1,10 +1,10 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.PaymentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Exceptions;
-using MindSpace.Domain.Interfaces.Repos;
-using MindSpace.Domain.Interfaces.Services;
 
 namespace MindSpace.Application.Features.Payments.Commands.UpdatePaymentWithWebhook;
 
@@ -32,6 +32,15 @@ public class UpdatePaymentWithWebhookCommandHandler(
             }
 
             await paymentService.UpdatePaymentFromWebhookAsync(payment, verifiedData);
+
+            // Update Appointment Status
+            // Add to Invoice Table
+            // Update Schedules Status
+
+            // Notify all connections subscribe to clients about the status's changes
+            var connectionId =
+
+
             await unitOfWork.CompleteAsync();
 
             logger.LogInformation("Successfully processed payment webhook for transaction: {TransactionCode}", verifiedData.OrderCode);

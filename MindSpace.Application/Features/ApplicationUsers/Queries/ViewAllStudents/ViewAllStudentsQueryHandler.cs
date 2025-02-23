@@ -3,9 +3,9 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
 using MindSpace.Application.DTOs.ApplicationUsers;
+using MindSpace.Application.Interfaces.Services.Authentication;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Domain.Entities.Constants;
-using MindSpace.Domain.Interfaces.Services.Authentication;
 
 namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllStudents
 {

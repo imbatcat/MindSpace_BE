@@ -4,10 +4,10 @@ using Application.Specifications;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Domain.Entities;
-using Domain.Interfaces.Repos;
-using Domain.Interfaces.Specifications;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Specifications;
 using Persistence;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity

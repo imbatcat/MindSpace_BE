@@ -2,10 +2,10 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.ApplicationUsers;
+using MindSpace.Application.Interfaces.Services.Authentication;
 using MindSpace.Application.UserContext;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
-using MindSpace.Domain.Interfaces.Services.Authentication;
 
 namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfile
 {

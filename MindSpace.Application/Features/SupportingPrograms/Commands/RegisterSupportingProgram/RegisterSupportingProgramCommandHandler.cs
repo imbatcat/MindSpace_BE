@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services.Authentication;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Application.Specifications.SupportingProgramHistorySpecifications;
 using MindSpace.Application.Specifications.SupportingProgramSpecifications;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Exceptions;
-using MindSpace.Domain.Interfaces.Repos;
-using MindSpace.Domain.Interfaces.Services.Authentication;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Commands.RegisterSupportingProgram
 {

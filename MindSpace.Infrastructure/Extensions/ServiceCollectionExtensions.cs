@@ -3,11 +3,15 @@
 using Application.Commons.Utilities;
 using Application.Commons.Utilities.Seeding;
 using Domain.Entities.Identity;
-using Domain.Interfaces.Repos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services.Authentication;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Infrastructure.Persistence;
+using MindSpace.Infrastructure.Services.AuthenticationServices;
+using MindSpace.Infrastructure.Services;
 using Repositories;
 using Seeders;
 using StackExchange.Redis;
@@ -37,6 +41,28 @@ public static partial class ServiceCollectionExtensions
 
         // Add Unit Of Work and Repositories
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        // Add email services
+        services.AddFluentEmail(configuration["Email:Sender"])
+            .AddSmtpSender(configuration["Email:Host"], int.Parse(configuration["Email:Port"]!), configuration["Email:Sender"], configuration["Email:Password"]);
+        services.AddTransient<IEmailService, EmailSenderService>();
+
+        // Add Token Providers
+        services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();
+        services.AddScoped<IIDTokenProvider, IdTokenProvider>();
+        services.AddScoped<IRefreshTokenProvider, RefreshTokenProvider>();
+
+        // Add HttpContextAccessor
+        services.AddHttpContextAccessor();
+
+        // Add Services
+        services.AddScoped<IPaymentService, PaymentService>();
+        services.AddScoped<IApplicationUserService, ApplicationUserService>();
+        services.AddScoped<IResourcesService, ResourcesService>();
+        services.AddSingleton<IExcelReaderService, ExcelReaderService>();
+        services.AddScoped<ITestDraftService, TestDraftService>();
+        services.AddScoped<IBlogDraftService, BlogDraftService>();
+        services.AddScoped<ITestImportService, TestImportService>();
 
         // Add Seeders
         services.AddScoped<IFileReader, FileReader>();

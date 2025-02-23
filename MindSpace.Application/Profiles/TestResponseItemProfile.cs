@@ -6,7 +6,7 @@ namespace MindSpace.Application.Profiles
 {
     public class TestResponseItemProfile : Profile
     {
-        public TestResponseItemProfile ()
+        public TestResponseItemProfile()
         {
             CreateProjection<TestResponseItem, TestResponseItemResponseDTO>()
                 .ForMember(d => d.Id, a => a.MapFrom(tri => tri.Id))

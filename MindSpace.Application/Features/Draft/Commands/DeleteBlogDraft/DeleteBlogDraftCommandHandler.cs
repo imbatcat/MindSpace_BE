@@ -1,7 +1,7 @@
 ﻿using MediatR;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Exceptions;
-using MindSpace.Domain.Interfaces.Services;
 
 namespace MindSpace.Application.Features.Draft.Commands.DeleteBlogDraft
 {

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.Features.Payments.Commands.CancelPayment;
 using MindSpace.Application.Features.Payments.Commands.CreatePayment;
@@ -9,7 +8,9 @@ using Newtonsoft.Json;
 
 namespace MindSpace.API.Controllers
 {
-    public class PaymentController(IMediator mediator, ILogger<PaymentController> logger, IMapper mapper) : BaseApiController
+    public class PaymentController(
+        IMediator mediator,
+        ILogger<PaymentController> logger) : BaseApiController
     {
         [HttpPost]
         public async Task<IActionResult> CreatePayment([FromBody] CreatePaymentCommand command)
@@ -32,6 +33,7 @@ namespace MindSpace.API.Controllers
                 Data = webhookData,
                 Signature = webhookData.signature
             });
+
             return Ok();
         }
 
@@ -42,9 +44,8 @@ namespace MindSpace.API.Controllers
             {
                 PaymentId = paymentId,
             });
+
             return Ok();
         }
-
-
     }
 }

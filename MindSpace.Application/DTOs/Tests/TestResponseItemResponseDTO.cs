@@ -1,6 +1,4 @@
-﻿using MindSpace.Domain.Entities.Tests;
-
-namespace MindSpace.Application.DTOs.Tests
+﻿namespace MindSpace.Application.DTOs.Tests
 {
     public class TestResponseItemResponseDTO
     {
@@ -8,6 +6,6 @@ namespace MindSpace.Application.DTOs.Tests
         public int TestResponseId { get; set; }
         public string QuestionContent { get; set; }
         public int? Score { get; set; }
-        public string AnswerText { get; set; } 
+        public string AnswerText { get; set; }
     }
 }
