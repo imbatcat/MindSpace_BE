@@ -12,6 +12,7 @@ using MindSpace.Application.Interfaces.Services.Authentication;
 using MindSpace.Infrastructure.Persistence;
 using MindSpace.Infrastructure.Services;
 using MindSpace.Infrastructure.Services.AuthenticationServices;
+using MindSpace.Infrastructure.SignalR;
 using Repositories;
 using Seeders;
 using StackExchange.Redis;
@@ -66,6 +67,7 @@ public static partial class ServiceCollectionExtensions
         services.AddScoped<ITestDraftService, TestDraftService>();
         services.AddScoped<IBlogDraftService, BlogDraftService>();
         services.AddScoped<ITestImportService, TestImportService>();
+        services.AddScoped<ISignalRNotification, SignalRNotificationService>();
 
         // Add Seeders
         services.AddScoped<IFileReader, FileReader>();
