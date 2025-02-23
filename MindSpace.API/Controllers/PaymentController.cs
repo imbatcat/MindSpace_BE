@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using MindSpace.API.SignalR;
 using MindSpace.Application.Features.Payments.Commands.CancelPayment;
 using MindSpace.Application.Features.Payments.Commands.CreatePayment;
 using MindSpace.Application.Features.Payments.Commands.UpdatePaymentWithWebhook;
@@ -10,7 +12,9 @@ namespace MindSpace.API.Controllers
 {
     public class PaymentController(
         IMediator mediator,
-        ILogger<PaymentController> logger) : BaseApiController
+        ILogger<PaymentController> logger,
+        IHubContext<NotificationHub> hubContext
+        ) : BaseApiController
     {
         [HttpPost]
         public async Task<IActionResult> CreatePayment([FromBody] CreatePaymentCommand command)
