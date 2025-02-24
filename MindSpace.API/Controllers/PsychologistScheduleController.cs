@@ -22,17 +22,17 @@ namespace MindSpace.API.Controllers
         public async Task<ActionResult<IReadOnlyList<PsychologistScheduleResponseDTO>>> GetPsychologistSchedules([FromQuery] PsychologistScheduleSpecParams specParams)
         {
             var data = await _mediator.Send(new GetPsychologistScheduleQuery(specParams));
-            return PaginationOkResult<PsychologistScheduleResponseDTO>(
-                    data.Data,
-                    data.Count,
-                    specParams.PageIndex,
-                    specParams.PageSize
-                );
+            return Ok(data);
         }
 
         // POST
+        /// <summary>
+        /// Send a list of chosen PsychologistScheduleDTO from FE on a time interval (always a week, from FE-passed start date to FE-passed end date)
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         //[HttpPost]
-        //public async Task<ActionResult> CreatePsychologistSchedule([FromBody] CreatePsychologistScheduleCommand command)
+        //public async Task<ActionResult> CreatePsychologistSchedule([FromBody] UpdatePsychologistScheduleCommand command)
         //{
         //    var result = await _mediator.Send(command);
         //    return CreatedAtAction(nameof(GetPsychologistScheduleById), new { result.Id }, null);

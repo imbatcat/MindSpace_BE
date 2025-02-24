@@ -15,9 +15,6 @@ namespace MindSpace.Application.Specifications.PsychologistScheduleSpecification
                 (!specParams.Status.HasValue || x.Status == specParams.Status)
             )
         {
-            // Add Paging
-            AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
-
             // Add Sorting
             AddOrderBy(x => x.Date);
             AddOrderBy(x => x.StartTime);
