@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using MindSpace.Application.DTOs.Resources;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Domain.Entities.Drafts.Blogs;
@@ -8,7 +9,7 @@ using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsBlog
 {
-    public class CreateResourceAsBlogCommandHandler : IRequestHandler<CreateResourceAsBlogCommand>
+    public class CreateResourceAsBlogCommandHandler : IRequestHandler<CreateResourceAsBlogCommand, BlogResponseDTO>
     {
         // ====================================
         // === Props & Fields
@@ -36,7 +37,7 @@ namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsBlog
         // === Methods
         // ====================================
 
-        public async Task Handle(CreateResourceAsBlogCommand request, CancellationToken cancellationToken)
+        public async Task<BlogResponseDTO> Handle(CreateResourceAsBlogCommand request, CancellationToken cancellationToken)
         {
             var blogDraft = await _blogDraftService.GetBlogDraftAsync(request.BlogDraftId);
 
@@ -47,8 +48,14 @@ namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsBlog
             var blogToAdd = _mapper.Map<BlogDraft, Resource>(blogDraft);
 
             // Commit all changes
-            _unitOfWork.Repository<Resource>().Insert(blogToAdd);
+            var addedBlog = _unitOfWork.Repository<Resource>().Insert(blogToAdd)
+                ?? throw new CreateFailedException("Blog");
             await _unitOfWork.CompleteAsync();
+
+            // Remove blog draft from redis
+            await _blogDraftService.DeleteBlogDraftAsync(blogDraft.Id);
+
+            return _mapper.Map<Resource, BlogResponseDTO>(addedBlog);
         }
     }
 }

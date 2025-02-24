@@ -24,7 +24,13 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.SchoolManagerName, o => o.MapFrom(m => m.SchoolManager.FullName))
                 .ForMember(d => d.Sections, o => o.MapFrom(m => m.ResourceSections));
 
+            CreateMap<Resource, BlogResponseDTO>()
+                .ForMember(d => d.SpecializationName, o => o.MapFrom(m => m.Specialization.Name))
+                .ForMember(d => d.SchoolManagerName, o => o.MapFrom(m => m.SchoolManager.FullName))
+                .ForMember(d => d.Sections, o => o.MapFrom(m => m.ResourceSections));
+
             CreateProjection<ResourceSection, SectionResponseDTO>();
+            CreateMap<ResourceSection, SectionResponseDTO>();
 
             // =====================================
             // === PATCH, POST

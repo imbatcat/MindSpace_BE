@@ -74,13 +74,13 @@ namespace MindSpace.API.Controllers
         // === Commands
         // ====================================
 
-        // PUT: /resources/blog/blogdraft:13134
-        [HttpPut("blogs/{blogDraftId}")]
+        // PUT: /resources/blogs/blogdraft:13134
+        [HttpPost("blogs")]
         public async Task<ActionResult> CreateBlog(
-            [FromRoute] string blogDraftId)
+            [FromBody] CreateResourceAsBlogCommand command)
         {
-            await _mediator.Send(new CreateResourceAsBlogCommand(blogDraftId));
-            return NoContent();
+            var result = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetResourceAsBlogById), new { result.Id }, null);
         }
 
         // POST: /resources/articles
