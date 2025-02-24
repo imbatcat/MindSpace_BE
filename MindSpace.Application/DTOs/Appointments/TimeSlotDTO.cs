@@ -2,7 +2,7 @@
 
 namespace MindSpace.Application.DTOs.Appointments
 {
-    public class TimeSlotResponseDTO
+    public class TimeSlotDTO
     {
         public int? Id { get; set; }
         public string StartTime { get; set; }

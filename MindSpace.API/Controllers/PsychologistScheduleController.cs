@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.DTOs.Appointments;
-using MindSpace.Application.Features.PsychologistSchedules.Queries;
+using MindSpace.Application.Features.PsychologistSchedules.Commands.UpdatePsychologistScheduleSimple;
+using MindSpace.Application.Features.PsychologistSchedules.Queries.GetPsychologistSchedule;
 using MindSpace.Application.Specifications.PsychologistScheduleSpecifications;
 
 namespace MindSpace.API.Controllers
@@ -27,16 +28,29 @@ namespace MindSpace.API.Controllers
 
         // POST
         /// <summary>
-        /// Send a list of chosen PsychologistScheduleDTO from FE on a time interval (always a week, from FE-passed start date to FE-passed end date)
+        /// Send a list of chosen PsychologistScheduleDTO from FE in a time interval (always a week, from FE-passed start date to FE-passed end date)
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        //[HttpPost]
-        //public async Task<ActionResult> CreatePsychologistSchedule([FromBody] UpdatePsychologistScheduleCommand command)
+        //[HttpPost("complex")]
+        //public async Task<ActionResult> UpdatePsychologistSchedule([FromBody] UpdatePsychologistScheduleComplexCommand command)
         //{
         //    var result = await _mediator.Send(command);
-        //    return CreatedAtAction(nameof(GetPsychologistScheduleById), new { result.Id }, null);
+        //    return NoContent();
         //}
+
+        // POST
+        /// <summary>
+        /// Send a list of chosen PsychologistScheduleDTO from FE in a time interval, simply send a list of timeslots without grouping by date or weekday
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost("simple")]
+        public async Task<ActionResult> UpdatePsychologistSchedule([FromBody] UpdatePsychologistScheduleSimpleCommand command)
+        {
+            await _mediator.Send(command);
+            return NoContent();
+        }
 
     }
 }

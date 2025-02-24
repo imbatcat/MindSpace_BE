@@ -2,7 +2,7 @@
 {
     public class PsychologistScheduleRequestDTO
     {
-        public string WeekDay { get; set; }
-        public List<TimeSlotResponseDTO> TimeSlots = new List<TimeSlotResponseDTO>();
+        public string? WeekDay { get; set; }
+        public List<TimeSlotDTO> TimeSlots = new List<TimeSlotDTO>(); // list timeslot cua moi ngay trong tuan
     }
 }

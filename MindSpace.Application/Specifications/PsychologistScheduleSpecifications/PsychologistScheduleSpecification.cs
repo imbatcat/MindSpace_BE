@@ -17,7 +17,6 @@ namespace MindSpace.Application.Specifications.PsychologistScheduleSpecification
         {
             // Add Sorting
             AddOrderBy(x => x.Date);
-            AddOrderBy(x => x.StartTime);
         }
     }
 }
