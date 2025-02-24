@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.DTOs;
 using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.PsychologistScheduleSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 
-namespace MindSpace.Application.Features.PsychologistSchedules.Queries
+namespace MindSpace.Application.Features.PsychologistSchedules.Queries.GetPsychologistSchedule
 {
     public class GetPsychologistScheduleQueryHandler : IRequestHandler<GetPsychologistScheduleQuery, IReadOnlyList<PsychologistScheduleResponseDTO>>
     {
@@ -39,18 +38,19 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Queries
                 .GroupBy(x => x.Date)
                 .Select(group => new PsychologistScheduleResponseDTO
                 {
-                    PsychologistId = (int)group.First().PsychologistId,
+                    PsychologistId = group.First().PsychologistId,
                     Date = group.Key.ToString("yyyy-MM-dd"), // Convert DateOnly to string
                     WeekDay = group.Key.DayOfWeek.ToString(),
-                    TimeSlots = group.Select(ps => new TimeSlotResponseDTO
-                    {
-                        Id = ps.Id,
-                        StartTime = ps.StartTime.ToString("HH:mm"), 
-                        EndTime = ps.EndTime.ToString("HH:mm"),     
-                        Date = ps.Date.ToString("yyyy-MM-dd"),      
-                        PsychologistId = ps.PsychologistId,
-                        Status = ps.Status
-                    }).ToList()
+                    TimeSlots = group.OrderBy(ps => ps.StartTime)
+                                    .Select(ps => new TimeSlotDTO
+                                    {
+                                        Id = ps.Id,
+                                        StartTime = ps.StartTime.ToString("HH:mm"),
+                                        EndTime = ps.EndTime.ToString("HH:mm"),
+                                        Date = ps.Date.ToString("yyyy-MM-dd"),
+                                        PsychologistId = ps.PsychologistId,
+                                        Status = ps.Status
+                                    }).ToList()
                 })
                 .ToList();
 
