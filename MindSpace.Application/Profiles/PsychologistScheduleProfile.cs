@@ -8,7 +8,8 @@ namespace MindSpace.Application.Profiles
     {
         public PsychologistScheduleProfile()
         {
-            CreateProjection<PsychologistSchedule, PsychologistScheduleResponseDTO>()
+            CreateProjection<PsychologistSchedule, TimeSlotResponseDTO>()
+            .ForMember(d => d.Id, a => a.MapFrom(p => p.Id))
             .ForMember(d => d.PsychologistId, a => a.MapFrom(p => p.PsychologistId))
             .ForMember(d => d.StartTime, a => a.MapFrom(p => p.StartTime))
             .ForMember(d => d.EndTime, a => a.MapFrom(p => p.EndTime))

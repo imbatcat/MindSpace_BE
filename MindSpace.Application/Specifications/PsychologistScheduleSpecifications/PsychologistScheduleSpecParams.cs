@@ -2,7 +2,7 @@
 
 namespace MindSpace.Application.Specifications.PsychologistScheduleSpecifications
 {
-    public class PsychologistScheduleSpecParams : BasePagingParams
+    public class PsychologistScheduleSpecParams 
     {
         public int? PsychologistId { get; set; }
         public TimeOnly? StartTime { get; set; }

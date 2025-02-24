@@ -9,7 +9,7 @@ using MindSpace.Domain.Entities.Appointments;
 
 namespace MindSpace.Application.Features.PsychologistSchedules.Queries
 {
-    public class GetPsychologistScheduleQueryHandler : IRequestHandler<GetPsychologistScheduleQuery, PagedResultDTO<PsychologistScheduleResponseDTO>>
+    public class GetPsychologistScheduleQueryHandler : IRequestHandler<GetPsychologistScheduleQuery, IReadOnlyList<PsychologistScheduleResponseDTO>>
     {
         // props and fields
         private IMapper _mapper;
@@ -25,20 +25,36 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Queries
         }
 
         // methods
-        public async Task<PagedResultDTO<PsychologistScheduleResponseDTO>> Handle(GetPsychologistScheduleQuery request, CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<PsychologistScheduleResponseDTO>> Handle(GetPsychologistScheduleQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Get list of Psychologist Schedules with Spec: {@Spec}", request.SpecParams);
             var spec = new PsychologistScheduleSpecification(request.SpecParams);
 
-            var listDtos = await _unitOfWork
+            var listTimeSlots = await _unitOfWork
                                   .Repository<PsychologistSchedule>()
-                                  .GetAllWithSpecProjectedAsync<PsychologistScheduleResponseDTO>(spec, _mapper.ConfigurationProvider);
+                                  .GetAllWithSpecAsync(spec);
 
-            var count = await _unitOfWork
-                                  .Repository<PsychologistSchedule>()
-                                  .CountAsync(spec);
+            // Group timeslots by date
+            var listDtos = listTimeSlots
+                .GroupBy(x => x.Date)
+                .Select(group => new PsychologistScheduleResponseDTO
+                {
+                    PsychologistId = (int)group.First().PsychologistId,
+                    Date = group.Key.ToString("yyyy-MM-dd"), // Convert DateOnly to string
+                    WeekDay = group.Key.DayOfWeek.ToString(),
+                    TimeSlots = group.Select(ps => new TimeSlotResponseDTO
+                    {
+                        Id = ps.Id,
+                        StartTime = ps.StartTime.ToString("HH:mm"), 
+                        EndTime = ps.EndTime.ToString("HH:mm"),     
+                        Date = ps.Date.ToString("yyyy-MM-dd"),      
+                        PsychologistId = ps.PsychologistId,
+                        Status = ps.Status
+                    }).ToList()
+                })
+                .ToList();
 
-            return new PagedResultDTO<PsychologistScheduleResponseDTO>(count, listDtos);
+            return listDtos;
         }
     }
 }

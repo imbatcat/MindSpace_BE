@@ -6,7 +6,7 @@ using MindSpace.Domain.Entities.Appointments;
 
 namespace MindSpace.Application.Features.PsychologistSchedules.Queries
 {
-    public class GetPsychologistScheduleQuery : IRequest<PagedResultDTO<PsychologistScheduleResponseDTO>>
+    public class GetPsychologistScheduleQuery : IRequest<IReadOnlyList<PsychologistScheduleResponseDTO>>
     {
         public PsychologistScheduleSpecParams SpecParams { get; set; }
         public GetPsychologistScheduleQuery(PsychologistScheduleSpecParams specParams)
