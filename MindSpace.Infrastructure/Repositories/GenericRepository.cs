@@ -34,23 +34,12 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     // === INSERT, UPDATE, DELETE
     // ===========================
 
-    /// <summary>
-    ///     Insert a new record of a entity
-    /// </summary>
-    /// <param name="entity"></param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentNullException"></exception>
     public T? Insert(T entity)
     {
         var addedEntity = _dbContext.Set<T>().Add(entity).Entity;
         return addedEntity;
     }
 
-    /// <summary>
-    ///     Update Entity
-    /// </summary>
-    /// <param name="entityToUpdate"></param>
-    /// <returns></returns>
     public T? Update(T entityToUpdate)
     {
         var updatedEntity = _dbContext.Set<T>().Update(entityToUpdate).Entity;
@@ -58,11 +47,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return updatedEntity;
     }
 
-    /// <summary>
-    ///     Delete an entity
-    /// </summary>
-    /// <param name="entityToDelete"></param>
-    /// <returns></returns>
     public T? Delete(T entityToDelete)
     {
         // Attach if the entry not tracked in in-memory
@@ -74,39 +58,33 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return deletedEntity;
     }
 
-    /// <summary>
-    ///     Delete an object base on id
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
     public T? Delete(object id)
     {
         var entityToDelete = _dbContext.Set<T>().Find(id);
         return entityToDelete == null ? null : Delete(entityToDelete);
     }
 
-    // ===================================
+    // ========================================
     // === GET queries with Specification
     // === Using with Include and .ThenInclude
-    // ===================================
+    // ========================================
 
     public async Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T> spec)
-        => await ApplySpecification(spec).ToListAsync();
+    {
+        IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
+        return await SpecificationQueryBuilder<T>.BuildQuery(query, spec).ToListAsync();
+    }
 
     public async Task<T?> GetBySpecAsync(ISpecification<T> spec)
-        => await ApplySpecification(spec).FirstOrDefaultAsync();
+    {
+        IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
+        return await SpecificationQueryBuilder<T>.BuildQuery(query, spec).FirstOrDefaultAsync();
+    }
 
     public async Task<int> CountAsync(ISpecification<T> spec)
     {
-        var query = _dbContext.Set<T>().AsQueryable();
-        return await SpecificationQueryBuilder<T>.BuildCountQuery(query, spec).CountAsync();
-    }
-
-    private IQueryable<T> ApplySpecification(ISpecification<T> spec)
-    {
         IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
-        return SpecificationQueryBuilder<T>.BuildQuery(query, spec);
+        return await SpecificationQueryBuilder<T>.BuildCountQuery(query, spec).CountAsync();
     }
 
     // ===========================================
@@ -115,15 +93,27 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     // ===========================================
     public async Task<TDto?> GetBySpecProjectedAsync<TDto>(ISpecification<T> spec, IConfigurationProvider mapperConfig)
     {
-        return await ApplySpecification(spec)
+        IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
+        return await SpecificationQueryBuilder<T>.BuildQuery(query, spec)
             .ProjectTo<TDto>(mapperConfig)
             .FirstOrDefaultAsync();
     }
 
     public async Task<IReadOnlyList<TDto>> GetAllWithSpecProjectedAsync<TDto>(ISpecification<T> spec, IConfigurationProvider mapperConfig)
     {
-        return await ApplySpecification(spec)
+        IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
+        return await SpecificationQueryBuilder<T>.BuildQuery(query, spec)
             .ProjectTo<TDto>(mapperConfig)
             .ToListAsync();
+    }
+
+    // ===========================================
+    // === GET queries with GROUP BY 
+    // ===========================================
+
+    public async Task<IReadOnlyList<T>> GetAllGroupByAsync(ISpecification<T> spec)
+    {
+        IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
+        return await SpecificationQueryBuilder<T>.BuildGroupByQuery(query, spec).ToListAsync();
     }
 }
