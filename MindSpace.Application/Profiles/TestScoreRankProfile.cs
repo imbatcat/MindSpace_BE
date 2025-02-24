@@ -14,6 +14,7 @@ namespace MindSpace.Application.Profiles
                .ForMember(d => d.MaxScore, a => a.MapFrom(t => t.MaxScore))
                .ForMember(d => d.Result, a => a.MapFrom(t => t.Result));
 
+            CreateMap<TestScoreRank, TestScoreRankResponseDTO>();
 
         }
     }
