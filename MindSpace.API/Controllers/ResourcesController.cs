@@ -86,10 +86,10 @@ namespace MindSpace.API.Controllers
         // POST: /resources/articles
         [HttpPost("articles")]
         public async Task<ActionResult> CreateArticle(
-            [FromBody] CreatedResourceAsArticleCommand createdArticle)
+            [FromBody] CreatedResourceAsArticleCommand command)
         {
-            await _mediator.Send(createdArticle);
-            return NoContent();
+            var result = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetResourceAsArticleById), new { result.Id}, null);
         }
     }
 }
