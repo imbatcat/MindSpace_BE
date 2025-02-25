@@ -1,8 +1,9 @@
 ﻿using MediatR;
+using MindSpace.Application.DTOs.Resources;
 
 namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsArticle
 {
-    public class CreatedResourceAsArticleCommand : IRequest
+    public class CreatedResourceAsArticleCommand : IRequest<ArticleResponseDTO>
     {
         public string ArticleUrl { get; set; }
         public string Title { get; set; }
