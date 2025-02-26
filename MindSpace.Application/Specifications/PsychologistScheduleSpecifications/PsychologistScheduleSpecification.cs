@@ -7,7 +7,7 @@ namespace MindSpace.Application.Specifications.PsychologistScheduleSpecification
         // constructor for filter and pagination
         public PsychologistScheduleSpecification(PsychologistScheduleSpecParams specParams)
             : base(x =>
-                (!specParams.PsychologistId.HasValue || x.PsychologistId == specParams.PsychologistId) &&
+                (x.PsychologistId == specParams.PsychologistId) &&
                 (!specParams.StartTime.HasValue || x.StartTime >= specParams.StartTime) &&
                 (!specParams.EndTime.HasValue || x.EndTime <= specParams.EndTime) &&
                 (!specParams.MinDate.HasValue || x.Date >= specParams.MinDate) &&

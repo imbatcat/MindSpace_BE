@@ -26,6 +26,7 @@ namespace MindSpace.API.Controllers
             return Ok(data);
         }
 
+
         // POST
         /// <summary>
         /// Send a list of chosen PsychologistScheduleDTO from FE in a time interval (always a week, from FE-passed start date to FE-passed end date)
@@ -49,7 +50,7 @@ namespace MindSpace.API.Controllers
         public async Task<ActionResult> UpdatePsychologistSchedule([FromBody] UpdatePsychologistScheduleSimpleCommand command)
         {
             await _mediator.Send(command);
-            return NoContent();
+            return CreatedAtAction(nameof(GetPsychologistSchedules), new { psychologistId = command.PsychologistId }, null);
         }
 
     }
