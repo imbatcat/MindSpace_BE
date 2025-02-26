@@ -17,8 +17,7 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.TestResponseId, a => a.MapFrom(tri => tri.TestResponseId));
 
             // Map
-            CreateMap<TestResponseItemResponseDTO, TestResponseItem>()
-                .ForMember(d => d.Id, a => a.Ignore())
+            CreateMap<TestResponseItemRequestDTO, TestResponseItem>()
                 .ForMember(d => d.QuestionContent, a => a.MapFrom(tri => tri.QuestionContent))
                 .ForMember(d => d.AnswerText, a => a.MapFrom(tri => tri.AnswerText))
                 .ForMember(d => d.Score, a => a.MapFrom(tri => tri.Score));
