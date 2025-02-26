@@ -10,7 +10,7 @@ namespace MindSpace.Application.Specifications.TestResponseSpecifications
         }
         public TestResponseSpecification(TestResponseSpecParams specParams)
             : base(tr =>
-                    string.IsNullOrEmpty(specParams.TestScoreRankResult) || tr.TestScoreRankResult == specParams.TestScoreRankResult &&
+                    string.IsNullOrEmpty(specParams.TestScoreRankResult) || (!string.IsNullOrEmpty(tr.TestScoreRankResult) && tr.TestScoreRankResult.ToLower().Contains(specParams.TestScoreRankResult.ToLower())) &&
                     (!specParams.StudentId.HasValue || tr.StudentId == specParams.StudentId) &&
                     (!specParams.ParentId.HasValue || tr.ParentId == specParams.ParentId) &&
                     (!specParams.TestId.HasValue || tr.TestId == specParams.TestId) &&
