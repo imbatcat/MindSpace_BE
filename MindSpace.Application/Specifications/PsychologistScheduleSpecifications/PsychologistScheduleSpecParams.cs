@@ -4,7 +4,7 @@ namespace MindSpace.Application.Specifications.PsychologistScheduleSpecification
 {
     public class PsychologistScheduleSpecParams 
     {
-        public int? PsychologistId { get; set; }
+        public required int PsychologistId { get; set; }
         public TimeOnly? StartTime { get; set; }
         public TimeOnly? EndTime { get; set; }
         public DateOnly? MinDate { get; set; }

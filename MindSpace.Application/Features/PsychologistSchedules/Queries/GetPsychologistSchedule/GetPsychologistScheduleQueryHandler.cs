@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services.Authentication;
 using MindSpace.Application.Specifications.PsychologistScheduleSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 
@@ -13,20 +14,23 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Queries.GetPsycho
         // props and fields
         private IMapper _mapper;
         private IUnitOfWork _unitOfWork;
+        private IApplicationUserService _applicationUserService;
         private ILogger _logger;
 
         // constructors
-        public GetPsychologistScheduleQueryHandler(IMapper mapper, IUnitOfWork unitOfWork, ILogger<GetPsychologistScheduleQueryHandler> logger)
+        public GetPsychologistScheduleQueryHandler(IMapper mapper, IUnitOfWork unitOfWork, ILogger<GetPsychologistScheduleQueryHandler> logger, IApplicationUserService applicationUserService)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
             _logger = logger;
+            _applicationUserService = applicationUserService;
         }
 
         // methods
         public async Task<IReadOnlyList<PsychologistScheduleResponseDTO>> Handle(GetPsychologistScheduleQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Get list of Psychologist Schedules with Spec: {@Spec}", request.SpecParams);
+            
             var spec = new PsychologistScheduleSpecification(request.SpecParams);
 
             var listTimeSlots = await _unitOfWork

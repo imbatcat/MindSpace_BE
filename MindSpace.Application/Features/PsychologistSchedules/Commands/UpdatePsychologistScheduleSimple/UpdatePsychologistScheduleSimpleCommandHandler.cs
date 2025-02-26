@@ -23,6 +23,7 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Commands.UpdatePs
 
         public async Task Handle(UpdatePsychologistScheduleSimpleCommand request, CancellationToken cancellationToken)
         {
+            // check only current user can update his/her own schedules
             var specParams = new PsychologistScheduleSpecParams
             {
                 PsychologistId = request.PsychologistId,
