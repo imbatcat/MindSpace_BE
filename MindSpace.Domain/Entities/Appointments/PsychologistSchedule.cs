@@ -10,7 +10,7 @@ namespace MindSpace.Domain.Entities.Appointments
         public Psychologist Psychologist { get; set; }
 
         // 1 PsychologistSchedule - 1 Appointment
-        public virtual Appointment? Appointment { get; set; }
+        public virtual HashSet<Appointment> Appointments { get; set; } = [];
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
         public DateOnly Date { get; set; }

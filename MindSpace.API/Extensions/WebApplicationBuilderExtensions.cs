@@ -5,14 +5,17 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MindSpace.API.Middlewares;
 using Serilog;
+using Stripe;
 using System.Text;
 
 namespace MindSpace.API.Extensions
 {
     public static class WebApplicationBuilderExtensions
     {
-        public static void AddPresentation(this WebApplicationBuilder builder)
+        public static void AddPresentation(this WebApplicationBuilder builder, IConfiguration configuration)
         {
+            StripeConfiguration.ApiKey = configuration["Stripe:SecretKey"];
+            
             // Add Controllers with Endpoints
             builder.Services.AddControllers();
 

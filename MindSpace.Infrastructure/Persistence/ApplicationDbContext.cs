@@ -34,7 +34,7 @@ namespace MindSpace.Infrastructure.Persistence
         // Appointments
         private DbSet<PsychologistSchedule> PsychologistSchedules { get; set; }
         private DbSet<Appointment> Appointments { get; set; }
-        private DbSet<Payment> Payments { get; set; }
+        private DbSet<Invoice> Invoices { get; set; }
 
         // Tests
         private DbSet<TestCategory> TestCategories { get; set; }

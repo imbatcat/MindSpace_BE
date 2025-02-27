@@ -38,7 +38,7 @@ internal class EntityOrderProvider : IEntityOrderProvider
         typeof(Specialization).FullName!,
         typeof(TestCategory).FullName!,
         typeof(Appointment).FullName!,
-        typeof(Payment).FullName!,
+        typeof(Invoice).FullName!,
         typeof(PsychologistSchedule).FullName!,
         typeof(PsychologyTestOption).FullName!
     };

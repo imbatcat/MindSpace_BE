@@ -5,19 +5,22 @@ using Domain.Entities.Constants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
+public class PaymentConfiguration : IEntityTypeConfiguration<Invoice>
 {
-    public void Configure(EntityTypeBuilder<Payment> builder)
+    public void Configure(EntityTypeBuilder<Invoice> builder)
     {
-        builder.ToTable("Payments", "dbo");
+        builder.ToTable("Invoices", "dbo");
 
         // 1 appointment - M payments
         builder.HasOne(p => p.Appointment)
-            .WithMany(a => a.Payments)
+            .WithMany(a => a.Invoices)
             .HasForeignKey(a => a.AppointmentId)
             .OnDelete(DeleteBehavior.ClientCascade);
 
-        builder.Property(p => p.AccountNo).HasMaxLength(50);
+        builder.HasOne(p => p.Account)
+            .WithMany()
+            .HasForeignKey(p => p.AccountId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.Property(p => p.Amount)
             .HasColumnType("decimal(18, 2)");
@@ -34,10 +37,5 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
             .HasConversion(
             convertToProviderExpression: s => s.ToString(),
             convertFromProviderExpression: s => Enum.Parse<PaymentType>(s));
-
-        builder.Property(builder => builder.Status)
-            .HasConversion(
-            convertToProviderExpression: s => s.ToString(),
-            convertFromProviderExpression: s => Enum.Parse<PaymentStatus>(s));
     }
 }

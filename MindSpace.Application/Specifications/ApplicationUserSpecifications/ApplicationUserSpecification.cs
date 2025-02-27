@@ -39,7 +39,9 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
                 (s.Psychologist != null || s.Student != null || s.SchoolManager != null || s.Parent != null) // this ensures admin is not selected 
             )
         {
+            
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+
 
             // Add Sorting
             if (!string.IsNullOrEmpty(specParams.Sort))
