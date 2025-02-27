@@ -2,7 +2,7 @@
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MindSpace.Application.UserContext;
+using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 
 namespace MindSpace.Application.Extensions
 {
@@ -23,8 +23,6 @@ namespace MindSpace.Application.Extensions
             services.AddValidatorsFromAssembly(applicationAssembly)
                 .AddFluentValidationAutoValidation();
 
-            // Add User Context
-            services.AddScoped<IUserContext, UserContext.UserContext>();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace MindSpace.Application.UserContext
+﻿using MindSpace.Application.Commons.Identity;
+
+namespace MindSpace.Application.Interfaces.Services.AuthenticationServices
 {
     public interface IUserContext
     {

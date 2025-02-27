@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 using System.Security.Claims;
 
-namespace MindSpace.API.SignalR
+namespace MindSpace.Infrastructure.Services.SignalR
 {
     public class NotificationHub : Hub
     {

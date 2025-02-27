@@ -1,7 +1,7 @@
 using FluentEmail.Core;
-using MindSpace.Application.Interfaces.Services;
+using MindSpace.Application.Interfaces.Services.EmailServices;
 
-namespace MindSpace.Infrastructure.Services
+namespace MindSpace.Infrastructure.Services.EmailServices
 {
     public class EmailSenderService(IFluentEmail fluentEmail) : IEmailService
     {

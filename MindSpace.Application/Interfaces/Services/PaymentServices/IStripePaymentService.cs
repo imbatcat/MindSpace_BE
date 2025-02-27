@@ -1,4 +1,4 @@
-﻿namespace MindSpace.Application.Interfaces.Services
+﻿namespace MindSpace.Application.Interfaces.Services.PaymentServices
 {
     public interface IStripePaymentService
     {

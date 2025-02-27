@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using MindSpace.Application.Interfaces.Repos;
-using MindSpace.Application.Interfaces.Services;
+using MindSpace.Application.Interfaces.Services.PaymentServices;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Models;
@@ -9,9 +9,9 @@ using Net.payOS.Types;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace MindSpace.Infrastructure.Services;
+namespace MindSpace.Infrastructure.Services.PaymentServices;
 
-public class PaymentService : IPaymentService
+public class PayOSPaymentService : IPaymentService
 {
     private readonly PayOS _payOS;
     private readonly IConfiguration _configuration;
@@ -19,7 +19,7 @@ public class PaymentService : IPaymentService
     private readonly string _checksumKey;
     private readonly long _expiredAt;
 
-    public PaymentService(IConfiguration configuration, IUnitOfWork unitOfWork)
+    public PayOSPaymentService(IConfiguration configuration, IUnitOfWork unitOfWork)
     {
         _configuration = configuration;
         _unitOfWork = unitOfWork;

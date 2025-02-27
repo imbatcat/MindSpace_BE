@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
-using MindSpace.Application.Interfaces.Services;
+using MindSpace.Application.Interfaces.Services.FileReaderServices;
 using OfficeOpenXml;
 
-namespace MindSpace.Infrastructure.Services.AuthenticationServices
+namespace MindSpace.Infrastructure.Services.FileReaderServices
 {
     public class ExcelReaderService : IExcelReaderService
     {

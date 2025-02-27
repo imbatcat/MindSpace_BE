@@ -1,4 +1,4 @@
-namespace MindSpace.Application.Interfaces.Services
+namespace MindSpace.Application.Interfaces.Services.EmailServices
 {
     public interface IEmailService
     {

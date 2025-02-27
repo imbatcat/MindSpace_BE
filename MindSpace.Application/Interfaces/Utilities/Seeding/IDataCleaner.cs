@@ -1,4 +1,4 @@
-﻿namespace MindSpace.Application.Commons.Utilities.Seeding
+﻿namespace MindSpace.Application.Interfaces.Utilities.Seeding
 {
     public interface IDataCleaner
     {
