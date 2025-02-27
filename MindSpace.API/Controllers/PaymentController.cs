@@ -4,7 +4,6 @@ using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using MindSpace.API.SignalR;
 using MindSpace.Application.Features.Payments.Commands.CancelPayment;
 using MindSpace.Application.Features.Payments.Commands.CreatePayment;
 using MindSpace.Application.Features.Payments.Commands.UpdatePaymentWithWebhook;
@@ -16,6 +15,7 @@ using Session = Stripe.Checkout.Session;
 using SessionCreateOptions = Stripe.Checkout.SessionCreateOptions;
 using SessionService = Stripe.Checkout.SessionService;
 using Stripe.Treasury;
+using MindSpace.Infrastructure.Services.SignalR;
 
 namespace MindSpace.API.Controllers
 {

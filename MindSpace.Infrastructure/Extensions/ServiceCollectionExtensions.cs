@@ -1,7 +1,5 @@
 ﻿namespace MindSpace.Infrastructure.Extensions;
 
-using Application.Commons.Utilities;
-using Application.Commons.Utilities.Seeding;
 using Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,11 +7,22 @@ using Microsoft.Extensions.DependencyInjection;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.Authentication;
+using MindSpace.Application.Interfaces.Services.AuthenticationServices;
+using MindSpace.Application.Interfaces.Services.EmailServices;
+using MindSpace.Application.Interfaces.Services.FileReaderServices;
+using MindSpace.Application.Interfaces.Services.PaymentServices;
+using MindSpace.Application.Interfaces.Services.SignalR;
+using MindSpace.Application.Interfaces.Utilities;
+using MindSpace.Application.Interfaces.Utilities.Seeding;
 using MindSpace.Infrastructure.Persistence;
+using MindSpace.Infrastructure.Repositories;
+using MindSpace.Infrastructure.Seeders;
 using MindSpace.Infrastructure.Services;
 using MindSpace.Infrastructure.Services.AuthenticationServices;
+using MindSpace.Infrastructure.Services.EmailServices;
+using MindSpace.Infrastructure.Services.FileReaderServices;
 using MindSpace.Infrastructure.Services.PaymentServices;
-using MindSpace.Infrastructure.SignalR;
+using MindSpace.Infrastructure.Services.SignalR;
 using Repositories;
 using Seeders;
 using StackExchange.Redis;
@@ -55,18 +64,19 @@ public static partial class ServiceCollectionExtensions
         // Add SignalR Notification Service
         services.AddScoped<ISignalRNotification, SignalRNotificationService>();
 
-        // Add Token Providers
-        services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();
-        services.AddScoped<IIDTokenProvider, IdTokenProvider>();
-        services.AddScoped<IRefreshTokenProvider, RefreshTokenProvider>();
-
         // Add HttpContextAccessor
         services.AddHttpContextAccessor();
 
+        // Add Authentication Services 
+        services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();
+        services.AddScoped<IIDTokenProvider, IdTokenProvider>();
+        services.AddScoped<IRefreshTokenProvider, RefreshTokenProvider>();
+        services.AddScoped<IUserContext, UserContext>();
+
         // Add Services
-        services.AddScoped<IPaymentService, PaymentService>();
+        services.AddScoped<IPaymentService, PayOSPaymentService>();
         services.AddScoped<IStripePaymentService, StripePaymentService>();
-        services.AddScoped<IApplicationUserService, ApplicationUserService>();
+        services.AddScoped<IApplicationUserService, ApplicationUserRepository>();
         services.AddScoped<IResourcesService, ResourcesService>();
         services.AddSingleton<IExcelReaderService, ExcelReaderService>();
         services.AddScoped<ITestDraftService, TestDraftService>();
@@ -76,8 +86,10 @@ public static partial class ServiceCollectionExtensions
         // Add Seeders
         services.AddScoped<IFileReader, FileReader>();
         services.AddScoped<IIdentitySeeder, IdentitySeeder>();
-        services.AddScoped<IEntityOrderProvider, EntityOrderProvider>();
         services.AddScoped<IDataCleaner, DatabaseCleaner>();
         services.AddScoped<ApplicationDbContextSeeder>();
+
+        // Add User Context
+        services.AddScoped<IUserContext, UserContext>();
     }
 }

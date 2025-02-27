@@ -1,10 +1,10 @@
 ﻿namespace MindSpace.Infrastructure.Seeders;
 
-using Application.Commons.Utilities.Seeding;
 using Domain.Entities.Constants;
 using Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Interfaces.Utilities.Seeding;
 using MindSpace.Infrastructure.Seeders.FakeData;
 using Persistence;
 

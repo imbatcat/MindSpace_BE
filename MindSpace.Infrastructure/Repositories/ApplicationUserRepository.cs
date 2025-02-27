@@ -7,9 +7,9 @@ using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
 
-namespace MindSpace.Infrastructure.Services
+namespace MindSpace.Infrastructure.Repositories
 {
-    public class ApplicationUserService : IApplicationUserService
+    public class ApplicationUserRepository : IApplicationUserService
     {
         // ================================
         // === Fields & Props
@@ -22,7 +22,7 @@ namespace MindSpace.Infrastructure.Services
         // === Constructors
         // ================================
 
-        public ApplicationUserService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
+        public ApplicationUserRepository(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;

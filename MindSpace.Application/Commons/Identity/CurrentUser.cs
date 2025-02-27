@@ -1,4 +1,4 @@
-﻿namespace MindSpace.Application.UserContext
+﻿namespace MindSpace.Application.Commons.Identity
 {
     public record CurrentUser(string Id, string Email, IEnumerable<string> Roles)
     {

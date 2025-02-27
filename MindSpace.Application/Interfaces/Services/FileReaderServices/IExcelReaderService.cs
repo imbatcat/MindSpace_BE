@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace MindSpace.Application.Interfaces.Services
+namespace MindSpace.Application.Interfaces.Services.FileReaderServices
 {
     public interface IExcelReaderService
     {

@@ -1,6 +1,6 @@
 namespace MindSpace.Infrastructure.Seeders;
 
-using Application.Commons.Utilities;
+using MindSpace.Application.Interfaces.Utilities;
 using System.Text;
 
 public class FileReader : IFileReader

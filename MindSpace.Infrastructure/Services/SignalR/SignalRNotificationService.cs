@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using MindSpace.API.SignalR;
-using MindSpace.Application.Interfaces.Services;
+using MindSpace.Application.Interfaces.Services.SignalR;
 using MindSpace.Domain.Entities.Appointments;
 
-namespace MindSpace.Infrastructure.SignalR
+namespace MindSpace.Infrastructure.Services.SignalR
 {
     public class SignalRNotificationService : ISignalRNotification
     {

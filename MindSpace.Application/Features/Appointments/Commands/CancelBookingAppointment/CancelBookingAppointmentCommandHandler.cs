@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Repos;
-using MindSpace.Application.Interfaces.Services;
+using MindSpace.Application.Interfaces.Services.SignalR;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;

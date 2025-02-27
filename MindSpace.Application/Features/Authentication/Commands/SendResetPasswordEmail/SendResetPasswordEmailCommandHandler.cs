@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Interfaces.Services;
+using MindSpace.Application.Interfaces.Services.EmailServices;
 using MindSpace.Domain.Entities.Identity;
 using System.Text;
 

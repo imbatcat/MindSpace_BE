@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Repos;
-using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.Authentication;
+using MindSpace.Application.Interfaces.Services.FileReaderServices;
 using MindSpace.Application.Specifications.SpecializationSpecifications;
 using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Constants;
