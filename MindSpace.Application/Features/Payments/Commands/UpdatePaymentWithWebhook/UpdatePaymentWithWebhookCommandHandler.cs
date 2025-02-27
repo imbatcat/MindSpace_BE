@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
@@ -25,12 +26,12 @@ public class UpdatePaymentWithWebhookCommandHandler(
             var verifiedData = await paymentService.VerifyWebhookDataAsync(request.Data);
 
             var specification = new PaymentSpecification(int.Parse(verifiedData.OrderCode));
-            var payment = await unitOfWork.Repository<Payment>().GetBySpecAsync(specification);
+            var payment = await unitOfWork.Repository<Invoice>().GetBySpecAsync(specification);
 
             if (payment == null)
             {
                 logger.LogError("Payment not found for transaction code: {TransactionCode}", verifiedData.OrderCode);
-                throw new NotFoundException(nameof(Payment), verifiedData.OrderCode);
+                throw new NotFoundException(nameof(Invoice), verifiedData.OrderCode);
             }
 
             await paymentService.UpdatePaymentFromWebhookAsync(payment, verifiedData);

@@ -6,9 +6,9 @@ namespace MindSpace.Domain.Entities.Constants
     {
         [EnumMember(Value = "Pending")]
         Pending,
-        [EnumMember(Value = "Booked")]
-        Booked,
-        [EnumMember(Value = "Canceled")]
-        Canceled
+        [EnumMember(Value = "Success")]
+        Success,
+        [EnumMember(Value = "Failed")]
+        Failed,
     }
 }

@@ -23,15 +23,15 @@ internal class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
             .HasForeignKey(a => a.PsychologistId)
             .OnDelete(DeleteBehavior.ClientCascade);
 
-        // 1 PsychologistSchedule - 1 Appointment
-        builder.HasOne(a => a.PsychologistSchedule)
-            .WithOne(ps => ps.Appointment)
-            .HasForeignKey<Appointment>(a => a.PsychologistScheduleId);
-
         // 1 Specialization - M Appointments
         builder.HasOne(a => a.Specialization)
             .WithMany(s => s.Appointments)
             .HasForeignKey(a => a.SpecializationId);
+
+        // 1 PsychologistSchedule - M Appointments
+        builder.HasOne(a => a.PsychologistSchedule)
+            .WithMany(ps => ps.Appointments)
+            .HasForeignKey(a => a.PsychologistScheduleId);
 
         builder.Property(a => a.MeetURL).HasMaxLength(255);
 

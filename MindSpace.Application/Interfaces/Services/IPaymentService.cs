@@ -13,12 +13,12 @@ public interface IPaymentService
         int appointmentId,
         int accountId);
     Task CancelPaymentLinkAsync(int paymentId);
-    Task<Payment> SavePaymentAsync(
+    Task<Invoice> SavePaymentAsync(
         int appointmentId,
         int accountId,
         int amount,
         int transactionCode,
         string description);
     Task<PaymentWebhookResponse> VerifyWebhookDataAsync(WebhookType webhookData);
-    Task UpdatePaymentFromWebhookAsync(Payment payment, PaymentWebhookResponse webhookData);
+    Task UpdatePaymentFromWebhookAsync(Invoice payment, PaymentWebhookResponse webhookData);
 }

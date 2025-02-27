@@ -97,7 +97,7 @@ namespace MindSpace.Infrastructure.Persistence
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.AppointmentSeeder)
                 .SeedAsync();
 
-            await new JsonDataSeeder<Payment>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<Payment>>(), _dbContext)
+            await new JsonDataSeeder<Invoice>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<Invoice>>(), _dbContext)
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.PaymentSeeder)
                 .SeedAsync();
 

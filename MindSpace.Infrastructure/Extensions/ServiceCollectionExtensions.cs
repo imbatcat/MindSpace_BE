@@ -12,6 +12,7 @@ using MindSpace.Application.Interfaces.Services.Authentication;
 using MindSpace.Infrastructure.Persistence;
 using MindSpace.Infrastructure.Services;
 using MindSpace.Infrastructure.Services.AuthenticationServices;
+using MindSpace.Infrastructure.Services.PaymentServices;
 using MindSpace.Infrastructure.SignalR;
 using Repositories;
 using Seeders;
@@ -51,6 +52,9 @@ public static partial class ServiceCollectionExtensions
             .AddSmtpSender(configuration["Email:Host"], int.Parse(configuration["Email:Port"]!), configuration["Email:Sender"], configuration["Email:Password"]);
         services.AddTransient<IEmailService, EmailSenderService>();
 
+        // Add SignalR Notification Service
+        services.AddScoped<ISignalRNotification, SignalRNotificationService>();
+
         // Add Token Providers
         services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();
         services.AddScoped<IIDTokenProvider, IdTokenProvider>();
@@ -61,13 +65,13 @@ public static partial class ServiceCollectionExtensions
 
         // Add Services
         services.AddScoped<IPaymentService, PaymentService>();
+        services.AddScoped<IStripePaymentService, StripePaymentService>();
         services.AddScoped<IApplicationUserService, ApplicationUserService>();
         services.AddScoped<IResourcesService, ResourcesService>();
         services.AddSingleton<IExcelReaderService, ExcelReaderService>();
         services.AddScoped<ITestDraftService, TestDraftService>();
         services.AddScoped<IBlogDraftService, BlogDraftService>();
         services.AddScoped<ITestImportService, TestImportService>();
-        services.AddScoped<ISignalRNotification, SignalRNotificationService>();
 
         // Add Seeders
         services.AddScoped<IFileReader, FileReader>();

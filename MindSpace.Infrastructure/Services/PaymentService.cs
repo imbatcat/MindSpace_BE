@@ -71,17 +71,17 @@ public class PaymentService : IPaymentService
         await _payOS.cancelPaymentLink(paymentId);
     }
 
-    public async Task<Payment> SavePaymentAsync(
+    public async Task<Invoice> SavePaymentAsync(
         int appointmentId,
         int accountId,
         int amount,
         int transactionCode,
         string description)
     {
-        var payment = new Payment
+        var payment = new Invoice
         {
             AppointmentId = appointmentId,
-            AccountNo = accountId.ToString(),
+            AccountId = accountId,
             Amount = amount,
             TransactionCode = transactionCode,
             Provider = "payOS",
@@ -89,12 +89,11 @@ public class PaymentService : IPaymentService
             PaymentDescription = description,
             CreateAt = DateTime.UtcNow,
             UpdateAt = DateTime.UtcNow,
-            Status = PaymentStatus.Pending,
             PaymentType = PaymentType.Purchase,
             TransactionTime = null
         };
 
-        _unitOfWork.Repository<Payment>().Insert(payment);
+        _unitOfWork.Repository<Invoice>().Insert(payment);
         await _unitOfWork.CompleteAsync();
 
         return payment;
@@ -112,24 +111,13 @@ public class PaymentService : IPaymentService
         });
     }
 
-    public async Task UpdatePaymentFromWebhookAsync(Payment payment, PaymentWebhookResponse webhookData)
+    public async Task UpdatePaymentFromWebhookAsync(Invoice payment, PaymentWebhookResponse webhookData)
     {
-        payment.Status = MapPaymentStatus(webhookData.Status);
         payment.TransactionTime = webhookData.TransactionTime;
         payment.UpdateAt = DateTime.UtcNow;
 
-        _unitOfWork.Repository<Payment>().Update(payment);
+        _unitOfWork.Repository<Invoice>().Update(payment);
         await _unitOfWork.CompleteAsync();
-    }
-
-    private static PaymentStatus MapPaymentStatus(string payOSStatus)
-    {
-        return payOSStatus.ToLower() switch
-        {
-            "00" => PaymentStatus.Success,
-            "01" => PaymentStatus.Failed,
-            _ => PaymentStatus.Failed
-        };
     }
 
     private string GenerateSignature(int amount, string cancelUrl, string description, int orderCode, string returnUrl)

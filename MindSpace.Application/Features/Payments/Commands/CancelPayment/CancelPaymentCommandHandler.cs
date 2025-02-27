@@ -38,14 +38,13 @@ public class CancelPaymentCommandHandler(
     private async Task UpdatePaymentStatusAsync(int paymentId)
     {
         var specification = new PaymentSpecification(paymentId);
-        var payment = (await unitOfWork.Repository<Payment>().GetAllWithSpecAsync(specification))
+        var payment = (await unitOfWork.Repository<Invoice>().GetAllWithSpecAsync(specification))
             .FirstOrDefault()
-            ?? throw new NotFoundException(nameof(Payment), paymentId.ToString());
+            ?? throw new NotFoundException(nameof(Invoice), paymentId.ToString());
 
-        payment.Status = PaymentStatus.Failed;
         payment.UpdateAt = DateTime.UtcNow;
 
-        unitOfWork.Repository<Payment>().Update(payment);
+        unitOfWork.Repository<Invoice>().Update(payment);
         await unitOfWork.CompleteAsync();
     }
 }

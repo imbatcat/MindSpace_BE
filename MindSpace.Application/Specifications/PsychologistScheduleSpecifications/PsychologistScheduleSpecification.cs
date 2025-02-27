@@ -18,5 +18,16 @@ namespace MindSpace.Application.Specifications.PsychologistScheduleSpecification
             // Add Sorting
             AddOrderBy(x => x.Date);
         }
+
+        public PsychologistScheduleSpecification(int id, bool includePsychologist = false) :
+    base(x =>
+        x.Id.Equals(id)
+    )
+        {
+            if (includePsychologist)
+            {
+                AddInclude(x => x.Psychologist);
+            }
+        }
     }
 }
