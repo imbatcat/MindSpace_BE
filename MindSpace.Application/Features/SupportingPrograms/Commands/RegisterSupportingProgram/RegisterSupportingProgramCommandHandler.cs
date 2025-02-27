@@ -18,13 +18,13 @@ namespace MindSpace.Application.Features.SupportingPrograms.Commands.RegisterSup
         // ================================
 
         private IUnitOfWork _unitOfWork;
-        private IApplicationUserService _userService;
+        private IApplicationUserRepository _userService;
         private readonly ILogger<RegisterSupportingProgramCommandHandler> _logger;
 
         // ================================
         // === Constructors
         // ================================
-        public RegisterSupportingProgramCommandHandler(IUnitOfWork unitOfWork, IApplicationUserService userService, ILogger<RegisterSupportingProgramCommandHandler> logger)
+        public RegisterSupportingProgramCommandHandler(IUnitOfWork unitOfWork, IApplicationUserRepository userService, ILogger<RegisterSupportingProgramCommandHandler> logger)
         {
             _unitOfWork = unitOfWork;
             _userService = userService;

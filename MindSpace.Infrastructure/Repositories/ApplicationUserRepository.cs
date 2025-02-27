@@ -9,7 +9,7 @@ using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.Infrastructure.Repositories
 {
-    public class ApplicationUserRepository : IApplicationUserService
+    public class ApplicationUserRepository : IApplicationUserRepository
     {
         // ================================
         // === Fields & Props

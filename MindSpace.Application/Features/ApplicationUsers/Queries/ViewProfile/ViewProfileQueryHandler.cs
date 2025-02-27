@@ -11,7 +11,7 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfile
 {
     internal class ViewProfileQueryHandler
     (ILogger<ViewProfileQueryHandler> logger,
-    IApplicationUserService applicationUserService,
+    IApplicationUserRepository applicationUserService,
     IMapper mapper,
     IUserContext userContext) : IRequestHandler<ViewProfileQuery, ApplicationUserProfileDTO>
     {

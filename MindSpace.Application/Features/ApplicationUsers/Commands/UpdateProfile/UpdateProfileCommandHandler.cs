@@ -9,7 +9,7 @@ namespace MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile
 {
     internal class UpdateProfileCommandHandler(
         ILogger<UpdateProfileCommandHandler> logger,
-        IApplicationUserService applicationUserService,
+        IApplicationUserRepository applicationUserService,
         IMapper mapper) : IRequestHandler<UpdateProfileCommand, ApplicationUserProfileDTO>
     {
         public async Task<ApplicationUserProfileDTO> Handle(UpdateProfileCommand request, CancellationToken cancellationToken)

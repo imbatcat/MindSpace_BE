@@ -11,7 +11,7 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllStudent
 {
     public class ViewAllStudentsQueryHandler(
         ILogger<ViewAllStudentsQueryHandler> logger,
-        IApplicationUserService applicationUserService,
+        IApplicationUserRepository applicationUserService,
         IMapper mapper
     ) : IRequestHandler<ViewAllStudentsQuery, PagedResultDTO<ApplicationUserResponseDTO>>
     {
