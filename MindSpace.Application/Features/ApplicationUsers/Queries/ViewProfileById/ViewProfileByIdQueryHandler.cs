@@ -9,7 +9,7 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfileByI
 {
     public class ViewProfileByIdQueryHandler(
         ILogger<ViewProfileByIdQueryHandler> logger,
-        IApplicationUserService applicationUserService,
+        IApplicationUserRepository applicationUserService,
         IMapper mapper
     ) : IRequestHandler<ViewProfileByIdQuery, ApplicationUserProfileDTO>
     {

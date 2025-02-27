@@ -3,7 +3,7 @@ using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Application.Interfaces.Services.Authentication
 {
-    public interface IApplicationUserService
+    public interface IApplicationUserRepository
     {
         /// <summary>
         /// Retrieves all users asynchronously.

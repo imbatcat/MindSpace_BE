@@ -14,11 +14,11 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Queries.GetPsycho
         // props and fields
         private IMapper _mapper;
         private IUnitOfWork _unitOfWork;
-        private IApplicationUserService _applicationUserService;
+        private IApplicationUserRepository _applicationUserService;
         private ILogger _logger;
 
         // constructors
-        public GetPsychologistScheduleQueryHandler(IMapper mapper, IUnitOfWork unitOfWork, ILogger<GetPsychologistScheduleQueryHandler> logger, IApplicationUserService applicationUserService)
+        public GetPsychologistScheduleQueryHandler(IMapper mapper, IUnitOfWork unitOfWork, ILogger<GetPsychologistScheduleQueryHandler> logger, IApplicationUserRepository applicationUserService)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;

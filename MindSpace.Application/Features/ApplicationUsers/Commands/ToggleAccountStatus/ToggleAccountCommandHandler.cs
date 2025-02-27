@@ -6,9 +6,9 @@ namespace MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccount
 {
     public class ToggleAccountStatusCommandHandler : IRequestHandler<ToggleAccountStatusCommand>
     {
-        private readonly IApplicationUserService _applicationUserService;
+        private readonly IApplicationUserRepository _applicationUserService;
         private readonly ILogger<ToggleAccountStatusCommandHandler> _logger;
-        public ToggleAccountStatusCommandHandler(IApplicationUserService applicationUserService, ILogger<ToggleAccountStatusCommandHandler> logger)
+        public ToggleAccountStatusCommandHandler(IApplicationUserRepository applicationUserService, ILogger<ToggleAccountStatusCommandHandler> logger)
         {
             _applicationUserService = applicationUserService;
             _logger = logger;

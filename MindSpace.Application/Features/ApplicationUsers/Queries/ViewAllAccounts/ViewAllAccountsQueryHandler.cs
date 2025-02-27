@@ -13,7 +13,7 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccount
 {
     public class ViewAllAccountsQueryHandler(
         ILogger<ViewAllAccountsQueryHandler> logger,
-        IApplicationUserService applicationUserService,
+        IApplicationUserRepository applicationUserService,
         RoleManager<ApplicationRole> roleManager,
         UserManager<ApplicationUser> userManager,
         IMapper mapper

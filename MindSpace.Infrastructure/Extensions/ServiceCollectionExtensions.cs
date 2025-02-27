@@ -76,7 +76,7 @@ public static partial class ServiceCollectionExtensions
         // Add Services
         services.AddScoped<IPaymentService, PayOSPaymentService>();
         services.AddScoped<IStripePaymentService, StripePaymentService>();
-        services.AddScoped<IApplicationUserService, ApplicationUserRepository>();
+        services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
         services.AddScoped<IResourcesService, ResourcesService>();
         services.AddSingleton<IExcelReaderService, ExcelReaderService>();
         services.AddScoped<ITestDraftService, TestDraftService>();
