@@ -3,9 +3,13 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services.Authentication;
+using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Application.Specifications.PsychologistScheduleSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
+using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.Application.Features.PsychologistSchedules.Commands.UpdatePsychologistScheduleSimple
 {
@@ -14,16 +18,28 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Commands.UpdatePs
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ILogger<UpdatePsychologistScheduleSimpleCommandHandler> _logger;
-        public UpdatePsychologistScheduleSimpleCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ILogger<UpdatePsychologistScheduleSimpleCommandHandler> logger)
+        private readonly IUserContext _userContext;
+        private readonly IApplicationUserRepository _applicationUserRepository;
+        public UpdatePsychologistScheduleSimpleCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ILogger<UpdatePsychologistScheduleSimpleCommandHandler> logger, IUserContext userContext, IApplicationUserRepository applicationUserRepository)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _logger = logger;
+            _userContext = userContext;
+            _applicationUserRepository = applicationUserRepository;
         }
 
         public async Task Handle(UpdatePsychologistScheduleSimpleCommand request, CancellationToken cancellationToken)
         {
             // check only current user can update his/her own schedules
+
+            var userClaims = _userContext.GetCurrentUser();
+            ApplicationUser? currentUser = _applicationUserRepository.GetUserByEmailAsync(userClaims!.Email).Result;
+            if (currentUser == null || currentUser.Id != request.PsychologistId)
+            {
+                throw new AuthorizationFailedException("You are not authorized to update schedule of this psychologist!");
+            }
+
             var specParams = new PsychologistScheduleSpecParams
             {
                 PsychologistId = request.PsychologistId,
@@ -34,7 +50,7 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Commands.UpdatePs
             var existedSlots = _unitOfWork.Repository<PsychologistSchedule>()
                                 .GetAllWithSpecAsync(new PsychologistScheduleSpecification(specParams))
                                 .Result;
-            foreach(var slot in existedSlots)
+            foreach (var slot in existedSlots)
             {
                 _unitOfWork.Repository<PsychologistSchedule>().Delete(slot.Id);
             }
