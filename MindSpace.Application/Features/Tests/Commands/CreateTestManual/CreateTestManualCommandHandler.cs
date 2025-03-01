@@ -52,7 +52,7 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestManual
                     .GetBySpecAsync(new QuestionSpecification(questionDraft.Id));
 
                 // if new question => create new question
-                if (questionToAdd == null)
+                if (questionToAdd == null) 
                 {
                     questionToAdd = _mapper.Map<QuestionDraft, Question>(questionDraft); // question option is auto-mapped with question
                 }
