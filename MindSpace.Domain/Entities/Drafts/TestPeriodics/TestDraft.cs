@@ -1,4 +1,6 @@
-﻿namespace MindSpace.Domain.Entities.Drafts.TestPeriodics
+﻿using MindSpace.Domain.Entities.Constants;
+
+namespace MindSpace.Domain.Entities.Drafts.TestPeriodics
 {
     public class TestDraft
     {
@@ -7,6 +9,7 @@
         public string? TestCode { get; set; } = string.Empty;
         public string? Description { get; set; } = string.Empty;
         public int? TestCategoryId { get; set; } = null;
+        public TargetUser? TargetUser {  get; set; } = null;
         public int? AuthorId { get; set; } = null;
         public int? SpecializationId { get; set; } = null;
         public int? QuestionCount { get; set; } = null;

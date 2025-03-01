@@ -62,7 +62,8 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.Price, a => a.MapFrom(t => t.Price))
                 .ForMember(d => d.AuthorId, a => a.MapFrom(t => t.AuthorId))
                 .ForMember(d => d.TestCategoryId, a => a.MapFrom(t => t.TestCategoryId))
-                .ForMember(d => d.SpecializationId, a => a.MapFrom(t => t.SpecializationId));
+                .ForMember(d => d.SpecializationId, a => a.MapFrom(t => t.SpecializationId))
+                .ForMember(d => d.TargetUser, a => a.MapFrom(t => t.TargetUser));
 
         }
     }
