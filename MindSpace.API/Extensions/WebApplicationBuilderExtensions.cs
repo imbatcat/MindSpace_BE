@@ -96,7 +96,8 @@ namespace MindSpace.API.Extensions
                     )
                     .AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowCredentials();
+                    .AllowCredentials()
+                    .WithExposedHeaders("Location");
                 });
             });
 
