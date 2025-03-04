@@ -36,7 +36,8 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
                 (!specParams.MinAge.HasValue || DateTime.Today.AddYears(-specParams.MinAge.Value) >= s.DateOfBirth) &&
                 (!specParams.MaxAge.HasValue || DateTime.Today.AddYears(-specParams.MaxAge.Value - 1) <= s.DateOfBirth) &&
                 (!isOnlyStudent || s.Student != null) &&
-                (s.Psychologist != null || s.Student != null || s.SchoolManager != null || s.Parent != null) // this ensures admin is not selected 
+                (s.Psychologist != null || s.Student != null || s.SchoolManager != null || s.Parent != null)
+            && (!specParams.SchoolId.HasValue || s.SchoolManager.SchoolId == specParams.SchoolId || s.Student.SchoolId == specParams.SchoolId)// this ensures admin is not selected 
             )
         {
             
