@@ -29,9 +29,12 @@ namespace MindSpace.Application.Profiles
             CreateMap<ApplicationUser, ApplicationUserProfileDTO>();
             CreateMap<ApplicationUser, PsychologistProfileDTO>();
 
-            CreateMap<ApplicationUser, ApplicationUserResponseDTO>()
-                .Include<SchoolManager, ApplicationUserResponseDTO>();
 
+            CreateMap<ApplicationUser, ApplicationUserResponseDTO>()
+                 .Include<SchoolManager, ApplicationUserResponseDTO>();
+            CreateMap<Student, ApplicationUserResponseDTO>();
+            CreateMap<SchoolManager, ApplicationUserResponseDTO>();
+            CreateMap<Psychologist, ApplicationUserResponseDTO>();
             CreateMap<Parent, ApplicationUserResponseDTO>();
         }
     }
