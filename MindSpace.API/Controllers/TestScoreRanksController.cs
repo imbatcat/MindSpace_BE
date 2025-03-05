@@ -5,6 +5,7 @@ using MindSpace.Application.Features.TestResponses.Queries.GetTestScoreRankByTot
 
 namespace MindSpace.API.Controllers
 {
+    [Route("api/v{version:apiVersion}/test-score-ranks")]
     public class TestScoreRanksController : BaseApiController
     {
         // 1. get score ranks based on total score

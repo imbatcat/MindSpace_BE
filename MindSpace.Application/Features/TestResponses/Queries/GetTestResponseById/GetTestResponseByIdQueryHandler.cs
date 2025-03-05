@@ -24,7 +24,7 @@ namespace MindSpace.Application.Features.TestResponses.Queries.GetTestResponseBy
             _logger = logger;
         }
         // methods
-        public async Task<TestResponseResponseDTO?> Handle(GetTestResponseByIdQuery request, CancellationToken cancellationToken)
+        public async Task<TestResponseResponseDTO> Handle(GetTestResponseByIdQuery request, CancellationToken cancellationToken)
         {
             var result = await _unitOfWork.Repository<TestResponse>()
                 .GetBySpecProjectedAsync<TestResponseResponseDTO>(
