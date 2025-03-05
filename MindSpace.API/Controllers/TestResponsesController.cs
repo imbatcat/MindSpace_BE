@@ -8,6 +8,7 @@ using MindSpace.Application.Specifications.TestResponseSpecifications;
 
 namespace MindSpace.API.Controllers
 {
+    [Route("api/v{version:apiVersion}/test-responses")]
     public class TestResponsesController : BaseApiController
     {
         //============================

@@ -7,6 +7,7 @@ using MindSpace.Application.Specifications.PsychologistScheduleSpecifications;
 
 namespace MindSpace.API.Controllers
 {
+    [Route("api/v{version:apiVersion}/psychologist-schedules")]
     public class PsychologistScheduleController : BaseApiController
     {
         // props and fields
@@ -29,28 +30,15 @@ namespace MindSpace.API.Controllers
 
         // POST
         /// <summary>
-        /// Send a list of chosen PsychologistScheduleDTO from FE in a time interval (always a week, from FE-passed start date to FE-passed end date)
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
-        //[HttpPost("complex")]
-        //public async Task<ActionResult> UpdatePsychologistSchedule([FromBody] UpdatePsychologistScheduleComplexCommand command)
-        //{
-        //    var result = await _mediator.Send(command);
-        //    return NoContent();
-        //}
-
-        // POST
-        /// <summary>
         /// Send a list of chosen PsychologistScheduleDTO from FE in a time interval, simply send a list of timeslots without grouping by date or weekday
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        [HttpPost("simple")]
+        [HttpPost]
         public async Task<ActionResult> UpdatePsychologistSchedule([FromBody] UpdatePsychologistScheduleSimpleCommand command)
         {
             await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetPsychologistSchedules), new { psychologistId = command.PsychologistId }, null);
+            return CreatedAtAction(nameof(GetPsychologistSchedules), new { psychologistId = command.PsychologistId, minDate = command.StartDate, maxDate = command.EndDate }, null);
         }
 
     }

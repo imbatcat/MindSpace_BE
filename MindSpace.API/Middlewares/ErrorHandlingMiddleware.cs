@@ -31,7 +31,7 @@ namespace MindSpace.API.Middlewares
                 await next.Invoke(context);
 
                 // In here, if error occurs, then short-circuiting the middleware
-                // and catch the exeception
+                // and catch the exception
             }
             catch (AuthorizationFailedException ex)
             {
