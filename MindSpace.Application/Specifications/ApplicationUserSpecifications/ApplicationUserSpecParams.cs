@@ -13,5 +13,6 @@
         public string? RoleId { get; set; }
         public int? MinAge { get; set; } = 0;
         public int? MaxAge { get; set; } = 100;
+        public int? SchoolId { get; set; }
     }
 }

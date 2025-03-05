@@ -46,6 +46,7 @@ namespace MindSpace.Application.Features.Questions.Queries.GetQuestions
             // Use Projection map to DTO
             var listDto = await _unitOfWork.Repository<Question>().GetAllWithSpecProjectedAsync<QuestionResponseDTO>(spec, _mapper.ConfigurationProvider);
 
+
             var count = await _unitOfWork
                  .Repository<Question>()
                  .CountAsync(spec);

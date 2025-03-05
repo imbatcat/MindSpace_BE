@@ -81,7 +81,7 @@ namespace MindSpace.API.Middlewares
             catch (DuplicateTestException ex)
             {
                 _logger.LogWarning(ex, ex.Message);
-                await WriteToResponse(context, StatusCodes.Status400BadRequest, ex.Message);
+                await WriteToResponse(context, StatusCodes.Status409Conflict, ex.Message);
             }
             catch (InvalidFileFormatException ex)
             {
