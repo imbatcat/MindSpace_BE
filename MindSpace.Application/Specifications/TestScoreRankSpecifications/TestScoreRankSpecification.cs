@@ -9,8 +9,8 @@ namespace MindSpace.Application.Specifications.TestScoreRankSpecifications
         {
         }
         public TestScoreRankSpecification(int testId, int totalScore)
-            : base(x => x.TestId.Equals(testId) 
-                    && x.MinScore <= totalScore 
+            : base(x => x.TestId.Equals(testId)
+                    && x.MinScore <= totalScore
                     && x.MaxScore >= totalScore)
         {
         }

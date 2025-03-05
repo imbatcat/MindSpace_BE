@@ -29,7 +29,7 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Queries.GetPsycho
         public async Task<IReadOnlyList<PsychologistScheduleResponseDTO>> Handle(GetPsychologistScheduleQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Get list of Psychologist Schedules with Spec: {@Spec}", request.SpecParams);
-            
+
             var spec = new PsychologistScheduleSpecification(request.SpecParams);
 
             var listTimeSlots = await _unitOfWork

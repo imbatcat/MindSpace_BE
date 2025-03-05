@@ -90,8 +90,6 @@
     </ItemGroup>
 
     <ProjectExtensions>
-        <VisualStudio>
-            <UserProperties />
-        </VisualStudio>
+        <VisualStudio><UserProperties seeders_4fakedata_4resourcesections_1json__JsonSchema="json" /></VisualStudio>
     </ProjectExtensions>
 </Project>

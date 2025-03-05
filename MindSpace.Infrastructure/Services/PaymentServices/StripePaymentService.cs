@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Services.PaymentServices;
-using Stripe;
 using Stripe.Checkout;
 
 namespace MindSpace.Infrastructure.Services.PaymentServices

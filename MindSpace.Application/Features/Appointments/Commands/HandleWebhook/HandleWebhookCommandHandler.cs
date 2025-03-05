@@ -7,7 +7,6 @@ using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Exceptions;
 using Stripe;
 using Stripe.Checkout;
-using Stripe.V2;
 namespace MindSpace.Application.Features.Appointments.Commands.HandleWebhook
 {
     internal class HandleWebhookCommandHandler : IRequestHandler<HandleWebhookCommand>

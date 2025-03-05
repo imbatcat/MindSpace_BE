@@ -4,7 +4,6 @@ using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services.PaymentServices;
 using MindSpace.Application.Specifications.PaymentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
-using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.Application.Features.Payments.Commands.CancelPayment;

@@ -40,7 +40,7 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
             && (!specParams.SchoolId.HasValue || s.SchoolManager.SchoolId == specParams.SchoolId || s.Student.SchoolId == specParams.SchoolId)// this ensures admin is not selected 
             )
         {
-            
+
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
 
 

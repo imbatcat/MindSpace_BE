@@ -1,5 +1,4 @@
 using MediatR;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services.PaymentServices;

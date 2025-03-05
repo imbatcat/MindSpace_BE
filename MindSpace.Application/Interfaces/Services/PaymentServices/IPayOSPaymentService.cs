@@ -19,6 +19,6 @@ public interface IPaymentService
         int amount,
         int transactionCode,
         string description);
-    Task<PaymentWebhookResponse> VerifyWebhookDataAsync(WebhookType webhookData);
-    Task UpdatePaymentFromWebhookAsync(Invoice payment, PaymentWebhookResponse webhookData);
+    Task<PaymentWebhookResponseDTO> VerifyWebhookDataAsync(WebhookType webhookData);
+    Task UpdatePaymentFromWebhookAsync(Invoice payment, PaymentWebhookResponseDTO webhookData);
 }

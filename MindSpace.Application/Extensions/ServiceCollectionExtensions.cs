@@ -2,7 +2,6 @@
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 
 namespace MindSpace.Application.Extensions
 {

@@ -3,7 +3,7 @@ using MindSpace.Application.DTOs.Appointments;
 
 namespace MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment
 {
-    public class ConfirmBookingAppointmentCommand : IRequest<ConfirmBookingAppointmentResult>
+    public class ConfirmBookingAppointmentCommand : IRequest<ConfirmBookingAppointmentResultDTO>
     {
         public int PsychologistId { get; set; }
         public int ScheduleId { get; set; }

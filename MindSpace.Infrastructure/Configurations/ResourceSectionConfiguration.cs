@@ -18,7 +18,7 @@ internal class ResourceSectionConfiguration : IEntityTypeConfiguration<ResourceS
             .IsRequired();
 
         builder.Property(rs => rs.HtmlContent)
-            .HasMaxLength(255)
+            .HasMaxLength(2000)
             .IsRequired()
             .IsUnicode();
 
