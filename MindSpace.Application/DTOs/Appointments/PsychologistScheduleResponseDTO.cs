@@ -1,8 +1,6 @@
-﻿using MindSpace.Domain.Entities.Constants;
-
-namespace MindSpace.Application.DTOs.Appointments
+﻿namespace MindSpace.Application.DTOs.Appointments
 {
-    public class PsychologistScheduleResponseDTO 
+    public class PsychologistScheduleResponseDTO
     {
         public int PsychologistId { get; set; }
         public string Date { get; set; }

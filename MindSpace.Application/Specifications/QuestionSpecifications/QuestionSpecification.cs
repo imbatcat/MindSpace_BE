@@ -1,5 +1,4 @@
 ﻿using MindSpace.Domain.Entities.Tests;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MindSpace.Application.Specifications.QuestionSpecifications
 {
@@ -20,9 +19,9 @@ namespace MindSpace.Application.Specifications.QuestionSpecifications
         /// </summary>
         /// <param name="specParams"></param>
         public QuestionSpecification(QuestionSpecParams specParams)
-            : base(q => (string.IsNullOrEmpty(specParams.SearchQuestionContent) 
+            : base(q => (string.IsNullOrEmpty(specParams.SearchQuestionContent)
                             || q.Content.ToLower().Contains(specParams.SearchQuestionContent.ToLower()))
-                        && (specParams.IsOnlyGetQuestionsWithOptions == false 
+                        && (specParams.IsOnlyGetQuestionsWithOptions == false
                             || q.QuestionOptions.Any()))
         {
 

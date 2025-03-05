@@ -21,7 +21,6 @@ namespace MindSpace.Application.Profiles
                 .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.Address.Province))
                 .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.Address.PostalCode));
 
-
             CreateProjection<SupportingProgram, SupportingProgramWithStudentsResponseDTO>()
                 .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
                 .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Address.Street))

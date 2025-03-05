@@ -89,7 +89,7 @@ namespace MindSpace.API.Controllers
             [FromBody] CreatedResourceAsArticleCommand command)
         {
             var result = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetResourceAsArticleById), new { result.Id}, null);
+            return CreatedAtAction(nameof(GetResourceAsArticleById), new { result.Id }, null);
         }
     }
 }

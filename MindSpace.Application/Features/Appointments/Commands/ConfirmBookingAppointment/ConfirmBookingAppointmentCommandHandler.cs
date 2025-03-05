@@ -13,7 +13,7 @@ using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment;
 
-public class ConfirmBookingAppointmentCommandHandler : IRequestHandler<ConfirmBookingAppointmentCommand, ConfirmBookingAppointmentResult>
+public class ConfirmBookingAppointmentCommandHandler : IRequestHandler<ConfirmBookingAppointmentCommand, ConfirmBookingAppointmentResultDTO>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ISignalRNotification _signalRNotification;
@@ -34,7 +34,7 @@ public class ConfirmBookingAppointmentCommandHandler : IRequestHandler<ConfirmBo
         _configuration = configuration;
     }
 
-    public async Task<ConfirmBookingAppointmentResult> Handle(ConfirmBookingAppointmentCommand request, CancellationToken cancellationToken)
+    public async Task<ConfirmBookingAppointmentResultDTO> Handle(ConfirmBookingAppointmentCommand request, CancellationToken cancellationToken)
     {
         try
         {
@@ -43,7 +43,7 @@ public class ConfirmBookingAppointmentCommandHandler : IRequestHandler<ConfirmBo
             var appointment = await TryGetAppointmentAsync();
             if (appointment != null)
             {
-                return new ConfirmBookingAppointmentResult
+                return new ConfirmBookingAppointmentResultDTO
                 {
                     SessionId = appointment.SessionId,
                     SessionUrl = "placeholder, this does nothing"
@@ -66,7 +66,7 @@ public class ConfirmBookingAppointmentCommandHandler : IRequestHandler<ConfirmBo
 
             await _signalRNotification.NotifyScheduleStatus(scheduleWithPsychologist);
 
-            return new ConfirmBookingAppointmentResult
+            return new ConfirmBookingAppointmentResultDTO
             {
                 SessionId = sessionId,
                 SessionUrl = sessionUrl

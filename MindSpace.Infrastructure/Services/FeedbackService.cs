@@ -1,11 +1,6 @@
 ﻿using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Specifications;
 using MindSpace.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Infrastructure.Services
 {

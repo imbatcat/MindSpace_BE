@@ -99,10 +99,10 @@ public class PayOSPaymentService : IPaymentService
         return payment;
     }
 
-    public async Task<PaymentWebhookResponse> VerifyWebhookDataAsync(WebhookType webhookData)
+    public async Task<PaymentWebhookResponseDTO> VerifyWebhookDataAsync(WebhookType webhookData)
     {
         var verifiedData = _payOS.verifyPaymentWebhookData(webhookData);
-        return await Task.FromResult(new PaymentWebhookResponse
+        return await Task.FromResult(new PaymentWebhookResponseDTO
         {
             OrderCode = verifiedData.orderCode.ToString(),
             Status = verifiedData.code,
@@ -111,7 +111,7 @@ public class PayOSPaymentService : IPaymentService
         });
     }
 
-    public async Task UpdatePaymentFromWebhookAsync(Invoice payment, PaymentWebhookResponse webhookData)
+    public async Task UpdatePaymentFromWebhookAsync(Invoice payment, PaymentWebhookResponseDTO webhookData)
     {
         payment.TransactionTime = webhookData.TransactionTime;
         payment.UpdateAt = DateTime.UtcNow;

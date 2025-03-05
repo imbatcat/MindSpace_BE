@@ -15,7 +15,7 @@ namespace MindSpace.API.Extensions
         public static void AddPresentation(this WebApplicationBuilder builder, IConfiguration configuration)
         {
             StripeConfiguration.ApiKey = configuration["Stripe:SecretKey"];
-            
+
             // Add Controllers with Endpoints
             builder.Services.AddControllers();
 

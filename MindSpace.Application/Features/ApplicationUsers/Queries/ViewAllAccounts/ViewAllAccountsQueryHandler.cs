@@ -8,7 +8,6 @@ using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
-using StackExchange.Redis;
 
 namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccounts
 {
@@ -44,6 +43,6 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccount
             return new PagedResultDTO<ApplicationUserResponseDTO>(count, userDtos);
         }
 
-        
+
     }
 }

@@ -22,8 +22,6 @@ using MindSpace.Infrastructure.Services.EmailServices;
 using MindSpace.Infrastructure.Services.FileReaderServices;
 using MindSpace.Infrastructure.Services.PaymentServices;
 using MindSpace.Infrastructure.Services.SignalR;
-using Repositories;
-using Seeders;
 using StackExchange.Redis;
 
 public static partial class ServiceCollectionExtensions
