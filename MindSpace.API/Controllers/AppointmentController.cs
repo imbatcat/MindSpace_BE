@@ -3,16 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.Features.Appointments.Commands.CancelBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
-using Newtonsoft.Json;
-using Stripe;
-using Stripe.V2;
+using Stripe.Checkout;
 
 namespace MindSpace.API.Controllers
 {
     public class AppointmentController : BaseApiController
     {
         private readonly IMediator _mediator;
-
         public AppointmentController(IMediator mediator)
         {
             _mediator = mediator;
@@ -42,6 +39,15 @@ namespace MindSpace.API.Controllers
             };
             await _mediator.Send(command);
             return Ok();
+        }
+
+        [HttpGet("booking/expire-session/{sessionId}")]
+        public async Task<IActionResult> ExpireSession([FromRoute] string sessionId)
+        {
+            var session = new SessionService();
+            await session.ExpireAsync(sessionId);
+
+            return Ok("Session expired");
         }
     }
 }

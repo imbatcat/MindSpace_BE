@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Interfaces.Services.Authentication;
+using MindSpace.Application.Interfaces.Repos;
 
 namespace MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus
 {
