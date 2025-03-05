@@ -1,5 +1,5 @@
+using MindSpace.Application.DTOs;
 using MindSpace.Domain.Entities.Appointments;
-using MindSpace.Domain.Models;
 using Net.payOS.Types;
 
 namespace MindSpace.Application.Interfaces.Services.PaymentServices;

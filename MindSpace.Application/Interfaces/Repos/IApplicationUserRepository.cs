@@ -1,7 +1,8 @@
 ﻿using MindSpace.Application.Interfaces.Specifications;
+using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Domain.Entities.Identity;
 
-namespace MindSpace.Application.Interfaces.Services.Authentication
+namespace MindSpace.Application.Interfaces.Repos
 {
     public interface IApplicationUserRepository
     {
@@ -91,5 +92,13 @@ namespace MindSpace.Application.Interfaces.Services.Authentication
         /// </summary>
         /// <param name="userId">The ID of the user to toggle.</param>
         Task ToggleAccountStatusAsync(int userId);
+
+        /// <summary>
+        /// Filter Users by Role from UserManager
+        /// </summary>
+        /// <param name="role"></param>
+        /// <param name="specParams"></param>
+        /// <returns></returns>
+        Task<List<ApplicationUser>> FilterUserByRoleAsync(string role, ApplicationUserSpecParams specParams);
     }
 }

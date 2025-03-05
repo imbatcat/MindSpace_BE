@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Configuration;
+using MindSpace.Application.DTOs;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services.PaymentServices;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
-using MindSpace.Domain.Models;
 using Net.payOS;
 using Net.payOS.Types;
 using System.Security.Cryptography;

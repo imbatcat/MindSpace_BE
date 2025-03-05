@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MindSpace.Application.Interfaces.Services.Authentication;
+using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Specifications;
 using MindSpace.Application.Specifications;
+using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
@@ -128,5 +129,24 @@ namespace MindSpace.Infrastructure.Repositories
             await UpdateAsync(user);
         }
 
+        public async Task<List<ApplicationUser>> FilterUserByRoleAsync(string role, ApplicationUserSpecParams specParams)
+        {
+            IList<ApplicationUser> usersInRole = await _userManager.GetUsersInRoleAsync(role);
+
+            var specification = new ApplicationUserSpecification(specParams, isOnlyStudent: false);
+
+            var filteredUsers = usersInRole.AsQueryable().Where(specification.Criteria);
+
+            if (specification.OrderBy != null)
+            {
+                filteredUsers = filteredUsers.OrderBy(specification.OrderBy);
+            }
+
+            int skip = specification.Skip;
+            int take = specification.Take;
+            var pagedUsers = filteredUsers.Skip(skip).Take(take).ToList();
+
+            return pagedUsers;
+        }
     }
 }

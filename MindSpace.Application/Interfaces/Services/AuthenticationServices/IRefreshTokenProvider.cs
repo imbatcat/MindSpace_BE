@@ -1,6 +1,6 @@
 ﻿using MindSpace.Domain.Entities.Identity;
 
-namespace MindSpace.Application.Interfaces.Services.Authentication
+namespace MindSpace.Application.Interfaces.Services.AuthenticationServices
 {
     public interface IRefreshTokenProvider
     {
