@@ -1,4 +1,4 @@
-namespace MindSpace.Domain.Models;
+namespace MindSpace.Application.DTOs;
 
 public class PaymentWebhookResponse
 {

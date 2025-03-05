@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MindSpace.Application.Interfaces.Services.Authentication;
+using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Specifications;
 using MindSpace.Application.Specifications;
 using MindSpace.Domain.Entities.Constants;

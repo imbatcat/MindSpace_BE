@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
-using MindSpace.Application.Interfaces.Services.Authentication;
 using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Application.Interfaces.Services.EmailServices;
 using MindSpace.Application.Interfaces.Services.FileReaderServices;
@@ -89,7 +88,5 @@ public static partial class ServiceCollectionExtensions
         services.AddScoped<IDataCleaner, DatabaseCleaner>();
         services.AddScoped<ApplicationDbContextSeeder>();
 
-        // Add User Context
-        services.AddScoped<IUserContext, UserContext>();
     }
 }

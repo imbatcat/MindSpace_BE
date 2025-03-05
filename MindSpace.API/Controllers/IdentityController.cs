@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MindSpace.API.RequestHelpers;
+using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
 using MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile;
 using MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccounts;
@@ -41,7 +44,7 @@ namespace MindSpace.API.Controllers
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<ActionResult> Login([FromBody] LoginUserCommand command)
+        public async Task<ActionResult<LoginResponseDTO>> Login([FromBody] LoginUserCommand command)
         {
             var response = await mediator.Send(command);
             return Ok(response);
@@ -62,7 +65,7 @@ namespace MindSpace.API.Controllers
 
         [HttpPost("refresh")]
         [AllowAnonymous]
-        public async Task<ActionResult> Refresh()
+        public async Task<ActionResult<RefreshUserAccessTokenDTO>> Refresh()
         {
             var refreshToken = Request.Cookies["refreshToken"];
             if (string.IsNullOrEmpty(refreshToken))
@@ -178,7 +181,7 @@ namespace MindSpace.API.Controllers
 
         [HttpGet("profile")]
         [Authorize]
-        public async Task<IActionResult> GetProfile()
+        public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfile()
         {
             var result = await mediator.Send(new ViewProfileQuery());
             return Ok(result);
@@ -186,7 +189,7 @@ namespace MindSpace.API.Controllers
 
         [HttpGet("profile/{id}")]
         [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> GetProfileById(int id)
+        public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfileById(int id)
         {
             var result = await mediator.Send(new ViewProfileByIdQuery { UserId = id });
             return Ok(result);
@@ -194,7 +197,7 @@ namespace MindSpace.API.Controllers
 
         [HttpPut("profile/{id}")]
         [Authorize]
-        public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileCommand command, [FromRoute] int id)
+        public async Task<ActionResult<ApplicationUserProfileDTO>> UpdateProfile([FromBody] UpdateProfileCommand command, [FromRoute] int id)
         {
             command.UserId = id;
             var result = await mediator.Send(command);
@@ -203,7 +206,7 @@ namespace MindSpace.API.Controllers
 
         [HttpGet("accounts")]
         [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> GetAllAccounts([FromQuery] ApplicationUserSpecParams specParams)
+        public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllAccounts([FromQuery] ApplicationUserSpecParams specParams)
         {
             var result = await mediator.Send(new ViewAllAccountsQuery(specParams));
             return PaginationOkResult(
@@ -216,7 +219,7 @@ namespace MindSpace.API.Controllers
 
         [HttpGet("accounts/students")]
         [Authorize(Roles = UserRoles.SchoolManager)]
-        public async Task<IActionResult> GetAllStudents([FromQuery] ApplicationUserSpecParams specParams)
+        public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllStudents([FromQuery] ApplicationUserSpecParams specParams)
         {
             var result = await mediator.Send(new ViewAllStudentsQuery(specParams));
             return PaginationOkResult(

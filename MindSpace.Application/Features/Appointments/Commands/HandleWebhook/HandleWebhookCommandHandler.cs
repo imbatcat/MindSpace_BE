@@ -29,7 +29,8 @@ namespace MindSpace.Application.Features.Appointments.Commands.HandleWebhook
                 {
                     case EventTypes.CheckoutSessionCompleted:
                         var session = stripeEvent.Data.Object as Session;
-                        await HandleCompletedSessionAsync(session!.Id);
+                        _logger.LogInformation("Checkout session completed: {0}", session);
+                        // await HandleCompletedSessionAsync(session!.Id);
                         break;
                     case EventTypes.CheckoutSessionExpired:
                         var expiredSession = stripeEvent.Data.Object as Session;

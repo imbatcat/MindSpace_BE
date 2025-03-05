@@ -1,7 +1,7 @@
 ﻿using MindSpace.Application.Interfaces.Specifications;
 using MindSpace.Domain.Entities.Identity;
 
-namespace MindSpace.Application.Interfaces.Services.Authentication
+namespace MindSpace.Application.Interfaces.Repos
 {
     public interface IApplicationUserRepository
     {
