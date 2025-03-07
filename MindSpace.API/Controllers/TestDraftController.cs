@@ -9,6 +9,7 @@ namespace MindSpace.API.Controllers;
 
 public class TestDraftController(IMediator mediator) : BaseApiController
 {
+    // GET /api/test-draft/{id}
     [HttpGet("{id}")]
     public async Task<ActionResult<TestDraft>> GetTestDraftById([FromRoute] string id)
     {
@@ -16,6 +17,7 @@ public class TestDraftController(IMediator mediator) : BaseApiController
         return Ok(testDraft);
     }
 
+    // DELETE /api/test-draft/{id}
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteTestDraft(
         [FromRoute] string id)
@@ -24,6 +26,7 @@ public class TestDraftController(IMediator mediator) : BaseApiController
         return NoContent();
     }
 
+    // POST /api/test-draft
     [HttpPost]
     public async Task<ActionResult<TestDraft>> UpdateTestDraft(
         [FromBody] TestDraft testDraft)

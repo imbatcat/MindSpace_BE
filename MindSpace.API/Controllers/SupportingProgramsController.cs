@@ -20,7 +20,7 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     // === GET
     // ====================================
 
-    // GET: /supporting-programs/
+    // GET /api/supporting-programs
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingPrograms(
         [FromQuery] SupportingProgramSpecParams specParams)
@@ -35,7 +35,7 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         );
     }
 
-    // GET: /supporting-programs/history?studentId=2
+    // GET /api/supporting-programs/history?studentId=2
     [HttpGet("history")]
     public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingProgramsHistory(
         [FromQuery] SupportingProgramHistorySpecParams specParams)
@@ -52,7 +52,7 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         );
     }
 
-    // GET: /supporting-programs/2
+    // GET /api/supporting-programs/{id}
     [HttpGet("{id:int}")]
     public async Task<ActionResult<SupportingProgramWithStudentsResponseDTO>> GetSupportingProgramById(
         [FromRoute] int id)
@@ -65,7 +65,7 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     // === CREATE, PATCH, DELETE
     // ====================================
 
-    // POST: /supporting-programs
+    // POST /api/supporting-programs
     [HttpPost]
     public async Task<ActionResult> CreateSupportingProgram(
         [FromBody] CreateSupportingProgramCommand newSP)
@@ -74,7 +74,7 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         return CreatedAtAction(nameof(GetSupportingProgramById), new { createdSP.Id }, null);
     }
 
-    // PATCH: /supporting-programs/2
+    // PATCH /api/supporting-programs/{id}
     [HttpPatch("{id:int}")]
     public async Task<ActionResult> PatchSupportingProgram(
         [FromRoute] int id,
@@ -85,7 +85,7 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         return NoContent();
     }
 
-    // POST: /supporting-programs/ 
+    // POST /api/supporting-programs/register
     [HttpPost("register")]
     public async Task<ActionResult> RegisterSupportingProgram(
         [FromBody] RegisterSupportingProgramCommand registerSP)

@@ -20,8 +20,8 @@ namespace MindSpace.API.Controllers
         };
 
         // GET /api/items - Get all items
-        [HttpGet]
         //[AllowAnonymous] for Guest role
+        [HttpGet]
         [Authorize(Roles = UserRoles.Student)]
         public IActionResult GetAllItems()
         {

@@ -8,14 +8,7 @@ namespace MindSpace.API.Controllers;
 [Route("api/v{version:apiVersion}/test-score-ranks")]
 public class TestScoreRanksController(IMediator mediator) : BaseApiController
 {
-    // 1. get score ranks based on total score
-    //==================
-    // props and fields
-    //==================
-
-    // ============================
-    // GET
-    // ============================
+    // GET /api/test-score-ranks?totalScore={totalScore}&testId={testId}
     [HttpGet]
     public async Task<ActionResult<TestScoreRankResponseDTO>> GetTestScoreRankByTotalScore([FromQuery] int totalScore, int testId)
     {

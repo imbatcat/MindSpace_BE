@@ -9,6 +9,7 @@ namespace MindSpace.API.Controllers;
 
 public class AppointmentController(IMediator mediator) : BaseApiController
 {
+    // POST /api/appointment/booking/confirm
     [HttpPost("booking/confirm")]
     public async Task<IActionResult> ConfirmBookingAppointment([FromBody] ConfirmBookingAppointmentCommand command)
     {
@@ -16,6 +17,7 @@ public class AppointmentController(IMediator mediator) : BaseApiController
         return Ok(result);
     }
 
+    // POST /api/appointment/booking/cancel
     [HttpPost("booking/cancel")]
     public async Task<IActionResult> CancelBookingAppointment([FromBody] CancelBookingAppointmentCommand command)
     {
@@ -23,6 +25,7 @@ public class AppointmentController(IMediator mediator) : BaseApiController
         return NoContent();
     }
 
+    // POST /api/appointment/booking/webhook/{link}
     [HttpPost("booking/webhook/{link}")]
     public async Task<IActionResult> HandleWebhook(string link)
     {
@@ -35,6 +38,7 @@ public class AppointmentController(IMediator mediator) : BaseApiController
         return Ok();
     }
 
+    // GET /api/appointment/booking/expire-session/{sessionId}
     [HttpGet("booking/expire-session/{sessionId}")]
     public async Task<IActionResult> ExpireSession([FromRoute] string sessionId)
     {

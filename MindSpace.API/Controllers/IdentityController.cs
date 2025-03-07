@@ -33,6 +33,7 @@ namespace MindSpace.API.Controllers
         IMediator mediator,
         UserManager<ApplicationUser> userManager) : BaseApiController
     {
+        // POST /api/identity/register
         [HttpPost("register")]
         [AllowAnonymous]
         public async Task<ActionResult> Register([FromBody] RegisterParentCommand command)
@@ -41,6 +42,7 @@ namespace MindSpace.API.Controllers
             return NoContent();
         }
 
+        // POST /api/identity/login
         [HttpPost("login")]
         [AllowAnonymous]
         public async Task<ActionResult<LoginResponseDTO>> Login([FromBody] LoginUserCommand command)
@@ -49,6 +51,7 @@ namespace MindSpace.API.Controllers
             return Ok(response);
         }
 
+        // POST /api/identity/logout
         [HttpPost("logout")]
         [Authorize]
         public async Task<IActionResult> LogoutAsync()
@@ -62,6 +65,7 @@ namespace MindSpace.API.Controllers
             return NoContent();
         }
 
+        // POST /api/identity/refresh
         [HttpPost("refresh")]
         [AllowAnonymous]
         public async Task<ActionResult<RefreshUserAccessTokenDTO>> Refresh()
@@ -90,6 +94,7 @@ namespace MindSpace.API.Controllers
             return Ok(newTokens);
         }
 
+        // POST /api/identity/revoke/{id}
         [HttpPost("revoke/{id}")]
         [Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> RevokeRefreshToken(string id)
@@ -105,7 +110,7 @@ namespace MindSpace.API.Controllers
             }
         }
 
-        // Admin registers account for School Manager
+        // POST /api/identity/register-for/manager
         [HttpPost("register-for/manager")]
         public async Task<IActionResult> RegisterSchoolManager([FromForm] RegisterSchoolManagerCommand command)
         {
@@ -113,7 +118,7 @@ namespace MindSpace.API.Controllers
             return Ok("All managers have been added");
         }
 
-        // Admin registers account for Psychologist
+        // POST /api/identity/register-for/psychologist
         [HttpPost("register-for/psychologist")]
         [Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> RegisterPsychologist([FromForm] RegisterPsychologistCommand command)
@@ -122,7 +127,7 @@ namespace MindSpace.API.Controllers
             return Ok("All psychologists have been added");
         }
 
-        // School Manager registers account for students
+        // POST /api/identity/register-for/student
         [HttpPost("register-for/student")]
         [Authorize(Roles = UserRoles.SchoolManager)]
         public async Task<IActionResult> RegisterStudent([FromForm] RegisterStudentsCommand command)
@@ -131,6 +136,7 @@ namespace MindSpace.API.Controllers
             return Ok("Student registered successfully");
         }
 
+        // POST /api/identity/send-email-confirmation
         [HttpPost("send-email-confirmation")]
         [Authorize]
         public async Task<IActionResult> SendEmailConfirmation()
@@ -146,6 +152,7 @@ namespace MindSpace.API.Controllers
             return NoContent();
         }
 
+        // POST /api/identity/confirm-email
         [HttpPost("confirm-email")]
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmailCommand command)
@@ -158,6 +165,7 @@ namespace MindSpace.API.Controllers
             return BadRequest("Email confirmation failed");
         }
 
+        // POST /api/identity/send-reset-password-email
         [HttpPost("send-reset-password-email")]
         [AllowAnonymous]
         public async Task<IActionResult> SendResetPasswordEmail([FromBody] SendResetPasswordEmailCommand command)
@@ -166,6 +174,7 @@ namespace MindSpace.API.Controllers
             return NoContent();
         }
 
+        // POST /api/identity/reset-password
         [HttpPost("reset-password")]
         [AllowAnonymous]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand command)
@@ -178,6 +187,7 @@ namespace MindSpace.API.Controllers
             return BadRequest("Password reset failed");
         }
 
+        // GET /api/identity/profile
         [HttpGet("profile")]
         [Authorize]
         public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfile()
@@ -186,6 +196,7 @@ namespace MindSpace.API.Controllers
             return Ok(result);
         }
 
+        // GET /api/identity/profile/{id}
         [HttpGet("profile/{id}")]
         [Authorize(Roles = UserRoles.Admin)]
         public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfileById(int id)
@@ -194,6 +205,7 @@ namespace MindSpace.API.Controllers
             return Ok(result);
         }
 
+        // PUT /api/identity/profile/{id}
         [HttpPut("profile/{id}")]
         [Authorize]
         public async Task<ActionResult<ApplicationUserProfileDTO>> UpdateProfile([FromBody] UpdateProfileCommand command, [FromRoute] int id)
@@ -203,6 +215,7 @@ namespace MindSpace.API.Controllers
             return Ok(result);
         }
 
+        // GET /api/identity/accounts
         [HttpGet("accounts")]
         [Authorize(Roles = UserRoles.Admin)]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllAccounts([FromQuery] ApplicationUserSpecParams specParams)
@@ -216,6 +229,7 @@ namespace MindSpace.API.Controllers
             );
         }
 
+        // GET /api/identity/accounts/students
         [HttpGet("accounts/students")]
         [Authorize(Roles = UserRoles.SchoolManager)]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllStudents([FromQuery] ApplicationUserSpecParams specParams)
@@ -229,6 +243,7 @@ namespace MindSpace.API.Controllers
             );
         }
 
+        // PUT /api/identity/accounts/{id}/toggle-status
         [HttpPut("accounts/{id}/toggle-status")]
         [Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> ToggleAccountStatus([FromRoute] int id)

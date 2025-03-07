@@ -23,7 +23,6 @@ namespace MindSpace.Domain.Entities.Identity
         // 1 Psychologist - M SupportingProgram
         public virtual ICollection<SupportingProgram> SupportingPrograms { get; set; } = new HashSet<SupportingProgram>();
 
-
         // 1 Psychologist - M Feedbacks
         public virtual ICollection<Feedback> Feedbacks { get; set; } = new HashSet<Feedback>();
 

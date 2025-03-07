@@ -11,6 +11,7 @@ namespace MindSpace.API.Controllers;
 
 public class TestsController(IMediator mediator) : BaseApiController
 {
+    // GET /api/tests
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<TestOverviewResponseDTO>>> GetTests(
         [FromQuery] TestSpecParams specParams)
@@ -25,6 +26,7 @@ public class TestsController(IMediator mediator) : BaseApiController
         );
     }
 
+    // GET /api/tests/{id}
     [HttpGet("{id:int}")]
     public async Task<ActionResult<TestResponseDTO>> GetTestById(int id)
     {
@@ -32,6 +34,7 @@ public class TestsController(IMediator mediator) : BaseApiController
         return Ok(test);
     }
 
+    // POST /api/tests/import
     [HttpPost("import")]
     public async Task<IActionResult> CreateTestWithImport([FromForm] CreateTestImportCommand command)
     {
@@ -44,6 +47,7 @@ public class TestsController(IMediator mediator) : BaseApiController
         return CreatedAtAction(nameof(GetTestById), new { result.Id }, null);
     }
 
+    // POST /api/tests/manual
     [HttpPost("manual")]
     public async Task<IActionResult> CreateTestManual([FromBody] CreateTestManualCommand command)
     {
