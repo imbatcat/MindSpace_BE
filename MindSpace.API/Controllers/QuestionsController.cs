@@ -5,57 +5,41 @@ using MindSpace.Application.Features.Questions.Queries.GetQuestionById;
 using MindSpace.Application.Features.Questions.Queries.GetQuestions;
 using MindSpace.Application.Specifications.QuestionSpecifications;
 
-namespace MindSpace.API.Controllers
+namespace MindSpace.API.Controllers;
+
+public class QuestionsController(IMediator mediator) : BaseApiController
 {
-    public class QuestionsController : BaseApiController
+    // ====================================
+    // === GET
+    // ====================================
+
+    /// <summary>
+    /// Get Questions By Params and Support Pagination
+    /// </summary>
+    /// <param name="specParams"></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<ActionResult<IReadOnlyList<QuestionResponseDTO>>> GetQuestions(
+        [FromQuery] QuestionSpecParams specParams)
     {
-        // ====================================
-        // === Props & Fields
-        // ====================================
+        var questionDtos = await mediator.Send(new GetQuestionsQuery(specParams));
 
-        private readonly IMediator _mediator;
+        return PaginationOkResult<QuestionResponseDTO>(
+            questionDtos.Data,
+            questionDtos.Count,
+            specParams.PageIndex,
+            specParams.PageSize
+        );
+    }
 
-        // ====================================
-        // === Constructors
-        // ====================================
-
-        public QuestionsController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
-        // ====================================
-        // === GET
-        // ====================================
-
-        /// <summary>
-        /// Get Questions By Params and Support Pagination
-        /// </summary>
-        /// <param name="specParams"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<QuestionResponseDTO>>> GetQuestions(
-            [FromQuery] QuestionSpecParams specParams)
-        {
-            var questionDtos = await _mediator.Send(new GetQuestionsQuery(specParams));
-
-            return PaginationOkResult<QuestionResponseDTO>(
-                questionDtos.Data,
-                questionDtos.Count,
-                specParams.PageIndex,
-                specParams.PageSize
-            );
-        }
-
-        /// <summary>
-        /// Get Question By Id
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<QuestionResponseDTO>> GetQuestionById(int id)
-        {
-            var question = await _mediator.Send(new GetQuestionByIdQuery(id));
-            return Ok(question);
-        }
+    /// <summary>
+    /// Get Question By Id
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<QuestionResponseDTO>> GetQuestionById(int id)
+    {
+        var question = await mediator.Send(new GetQuestionByIdQuery(id));
+        return Ok(question);
     }
 }

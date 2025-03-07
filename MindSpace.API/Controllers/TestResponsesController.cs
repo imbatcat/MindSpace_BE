@@ -6,55 +6,34 @@ using MindSpace.Application.Features.TestResponses.Queries.GetTestResponseById;
 using MindSpace.Application.Features.TestResponses.Queries.GetTestResponses;
 using MindSpace.Application.Specifications.TestResponseSpecifications;
 
-namespace MindSpace.API.Controllers
+namespace MindSpace.API.Controllers;
+
+[Route("api/v{version:apiVersion}/test-responses")]
+public class TestResponsesController(IMediator mediator) : BaseApiController
 {
-    [Route("api/v{version:apiVersion}/test-responses")]
-    public class TestResponsesController : BaseApiController
+    [HttpGet]
+    public async Task<ActionResult<IReadOnlyList<TestResponseOverviewResponseDTO>>> GetTestResponses([FromQuery] TestResponseSpecParams specParams)
     {
-        //============================
-        // props and fields
-        //============================
+        var data = await mediator.Send(new GetTestResponsesQuery(specParams));
+        return PaginationOkResult<TestResponseOverviewResponseDTO>(
+                data.Data,
+                data.Count,
+                specParams.PageIndex,
+                specParams.PageSize
+            );
+    }
 
-        private readonly IMediator _mediator;
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<TestResponseResponseDTO>> GetTestResponseById(int id)
+    {
+        var testResponse = await mediator.Send(new GetTestResponseByIdQuery(id));
+        return Ok(testResponse);
+    }
 
-        // ============================
-        // Constructors
-        // ============================
-        public TestResponsesController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
-        // ============================
-        // GET
-        // ============================
-        [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<TestResponseOverviewResponseDTO>>> GetTestResponses([FromQuery] TestResponseSpecParams specParams)
-        {
-            var data = await _mediator.Send(new GetTestResponsesQuery(specParams));
-            return PaginationOkResult<TestResponseOverviewResponseDTO>(
-                    data.Data,
-                    data.Count,
-                    specParams.PageIndex,
-                    specParams.PageSize
-                );
-        }
-
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<TestResponseResponseDTO>> GetTestResponseById(int id)
-        {
-            var testResponse = await _mediator.Send(new GetTestResponseByIdQuery(id));
-            return Ok(testResponse);
-        }
-
-        // ============================
-        // POST
-        // ============================
-        [HttpPost]
-        public async Task<ActionResult> CreateTestResponse([FromBody] CreateTestResponseCommand command)
-        {
-            var result = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetTestResponseById), new { result.Id }, null);
-        }
+    [HttpPost]
+    public async Task<ActionResult> CreateTestResponse([FromBody] CreateTestResponseCommand command)
+    {
+        var result = await mediator.Send(command);
+        return CreatedAtAction(nameof(GetTestResponseById), new { result.Id }, null);
     }
 }
