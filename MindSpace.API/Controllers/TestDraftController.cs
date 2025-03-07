@@ -5,64 +5,30 @@ using MindSpace.Application.Features.Draft.Commands.UpdateTestDraft;
 using MindSpace.Application.Features.Draft.Queries.GetTestDraftById;
 using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 
-namespace MindSpace.API.Controllers
+namespace MindSpace.API.Controllers;
+
+public class TestDraftController(IMediator mediator) : BaseApiController
 {
-    public class TestDraftController : BaseApiController
+    [HttpGet("{id}")]
+    public async Task<ActionResult<TestDraft>> GetTestDraftById([FromRoute] string id)
     {
+        var testDraft = await mediator.Send(new GetTestDraftByIdQuery(id));
+        return Ok(testDraft);
+    }
 
-        // ====================================
-        // === Props & Fields
-        // ====================================
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteTestDraft(
+        [FromRoute] string id)
+    {
+        await mediator.Send(new DeleteTestDraftCommand(id));
+        return NoContent();
+    }
 
-        private readonly IMediator _mediator;
-
-        // ====================================
-        // === Constructors
-        // ====================================
-
-        public TestDraftController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TestDraft>> GetTestDraftById([FromRoute] string id)
-        {
-            var testDraft = await _mediator.Send(new GetTestDraftByIdQuery(id));
-            return Ok(testDraft);
-        }
-
-        // ====================================
-        // === COMMANDS
-        // ====================================
-
-        /// <summary>
-        /// Delete a Test Draft
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteTestDraft(
-            [FromRoute] string id)
-        {
-            await _mediator.Send(new DeleteTestDraftCommand(id));
-            return NoContent();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="testDraft"></param>
-        /// <returns></returns>
-        /// <exception cref="NotFoundException"></exception>
-        [HttpPost]
-        public async Task<ActionResult<TestDraft>> UpdateTestDraft(
-            [FromBody] TestDraft testDraft)
-        {
-            // Set or update new
-            var updatedTestDraft = await _mediator.Send(new UpdateTestDraftCommand(testDraft));
-
-            return Ok(updatedTestDraft);
-        }
+    [HttpPost]
+    public async Task<ActionResult<TestDraft>> UpdateTestDraft(
+        [FromBody] TestDraft testDraft)
+    {
+        var updatedTestDraft = await mediator.Send(new UpdateTestDraftCommand(testDraft));
+        return Ok(updatedTestDraft);
     }
 }
