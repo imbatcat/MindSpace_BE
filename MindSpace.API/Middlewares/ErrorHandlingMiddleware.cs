@@ -53,11 +53,6 @@ namespace MindSpace.API.Middlewares
                 _logger.LogError(ex, ex.Message);
                 await WriteToResponse(context, StatusCodes.Status400BadRequest, ex.Message);
             }
-            catch (ResourceAlreadyExistsException ex)
-            {
-                _logger.LogError(ex, ex.Message);
-                await WriteToResponse(context, StatusCodes.Status409Conflict, ex.Message);
-            }
             catch (BadHttpRequestException ex)
             {
                 _logger.LogError(ex, ex.Message);
@@ -78,7 +73,7 @@ namespace MindSpace.API.Middlewares
                 _logger.LogWarning(ex, ex.Message);
                 await WriteToResponse(context, StatusCodes.Status404NotFound, ex.Message);
             }
-            catch (DuplicateTestException ex)
+            catch (DuplicateObjectException ex)
             {
                 _logger.LogWarning(ex, ex.Message);
                 await WriteToResponse(context, StatusCodes.Status409Conflict, ex.Message);

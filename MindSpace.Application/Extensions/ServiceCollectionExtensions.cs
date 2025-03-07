@@ -21,7 +21,6 @@ namespace MindSpace.Application.Extensions
             // Add Fluent Validation
             services.AddValidatorsFromAssembly(applicationAssembly)
                 .AddFluentValidationAutoValidation();
-
         }
     }
 }

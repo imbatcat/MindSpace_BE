@@ -13,6 +13,5 @@ namespace MindSpace.Application.DTOs.Tests
         public int? SchoolId { get; set; }
         public int TestCategoryId { get; set; }
         public int SpecializationId { get; set; }
-
     }
 }

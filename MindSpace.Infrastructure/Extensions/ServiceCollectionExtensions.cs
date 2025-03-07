@@ -10,7 +10,6 @@ using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Application.Interfaces.Services.EmailServices;
 using MindSpace.Application.Interfaces.Services.FileReaderServices;
 using MindSpace.Application.Interfaces.Services.PaymentServices;
-using MindSpace.Application.Interfaces.Services.SignalR;
 using MindSpace.Application.Interfaces.Utilities;
 using MindSpace.Application.Interfaces.Utilities.Seeding;
 using MindSpace.Infrastructure.Persistence;
@@ -42,8 +41,7 @@ public static partial class ServiceCollectionExtensions
             return ConnectionMultiplexer.Connect(connString);
         });
 
-        // Add SignalR for Readltime Communications
-        services.AddSignalR();
+
 
         // Add Identity services (authentication with tokens and cookies) with role supports, using ApplicationDbContext as the data store for Identity
         services.AddIdentityApiEndpoints<ApplicationUser>()
@@ -58,11 +56,12 @@ public static partial class ServiceCollectionExtensions
             .AddSmtpSender(configuration["Email:Host"], int.Parse(configuration["Email:Port"]!), configuration["Email:Sender"], configuration["Email:Password"]);
         services.AddTransient<IEmailService, EmailSenderService>();
 
-        // Add SignalR Notification Service
-        services.AddScoped<ISignalRNotification, SignalRNotificationService>();
-
         // Add HttpContextAccessor
         services.AddHttpContextAccessor();
+
+        // Add SignalR Services
+        services.AddSignalR();
+        services.AddSingleton<INotificationService, NotificationService>();
 
         // Add Authentication Services 
         services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();

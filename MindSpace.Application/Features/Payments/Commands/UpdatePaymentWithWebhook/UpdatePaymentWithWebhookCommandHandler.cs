@@ -1,8 +1,10 @@
+using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.DTOs.Notifications;
 using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.PaymentServices;
-using MindSpace.Application.Interfaces.Services.SignalR;
 using MindSpace.Application.Specifications.PaymentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
@@ -14,7 +16,8 @@ public class UpdatePaymentWithWebhookCommandHandler(
     ILogger<UpdatePaymentWithWebhookCommandHandler> logger,
     IUnitOfWork unitOfWork,
     IPaymentService paymentService,
-    ISignalRNotification signalRNotification
+    INotificationService notificationService,
+    IMapper mapper
     ) : IRequestHandler<UpdatePaymentWithWebhookCommand>
 {
     public async Task Handle(UpdatePaymentWithWebhookCommand request, CancellationToken cancellationToken)
@@ -37,16 +40,17 @@ public class UpdatePaymentWithWebhookCommandHandler(
             await paymentService.UpdatePaymentFromWebhookAsync(payment, verifiedData);
             await unitOfWork.CompleteAsync();
 
-            // Update Appointment Status
-            // Add to Invoice Table
-            // Update Schedules Status (Demo)
             PsychologistSchedule schedule = new PsychologistSchedule()
             {
                 Status = PsychologistScheduleStatus.Booked
             };
 
             // Notify all connections subscribe to clients about the status's changes
-            await signalRNotification.NotifyScheduleStatus(schedule);
+            await notificationService.NotifyPsychologistScheduleBooked(
+                UserRoles.Student, mapper.Map<PsychologistScheduleNotificationResponseDTO>(schedule));
+
+            await notificationService.NotifyPsychologistScheduleBooked(
+                UserRoles.Psychologist, mapper.Map<PsychologistScheduleNotificationResponseDTO>(schedule));
 
             logger.LogInformation("Successfully processed payment webhook for transaction: {TransactionCode}", verifiedData.OrderCode);
         }

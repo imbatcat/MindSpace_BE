@@ -7,7 +7,6 @@ using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 
 namespace MindSpace.API.Controllers
 {
-
     public class TestDraftController : BaseApiController
     {
 

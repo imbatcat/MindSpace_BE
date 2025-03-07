@@ -1,10 +1,13 @@
+using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Appointments;
+using MindSpace.Application.DTOs.Notifications;
 using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.PaymentServices;
-using MindSpace.Application.Interfaces.Services.SignalR;
+using MindSpace.Application.Notifications;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 using MindSpace.Application.Specifications.PsychologistScheduleSpecifications;
 using MindSpace.Domain.Entities.Appointments;
@@ -15,24 +18,34 @@ namespace MindSpace.Application.Features.Appointments.Commands.ConfirmBookingApp
 
 public class ConfirmBookingAppointmentCommandHandler : IRequestHandler<ConfirmBookingAppointmentCommand, ConfirmBookingAppointmentResultDTO>
 {
+    // ==============================
+    // === Fields & Props
+    // ==============================
+
     private readonly IUnitOfWork _unitOfWork;
-    private readonly ISignalRNotification _signalRNotification;
     private readonly ILogger<ConfirmBookingAppointmentCommandHandler> _logger;
+    private readonly INotificationService _notificationService;
     private readonly IStripePaymentService _stripePaymentService;
     private readonly IConfiguration _configuration;
-    public ConfirmBookingAppointmentCommandHandler(
-        IUnitOfWork unitOfWork,
-        ISignalRNotification signalRNotification,
-        ILogger<ConfirmBookingAppointmentCommandHandler> logger,
-        IStripePaymentService stripePaymentService,
-        IConfiguration configuration)
+    private readonly IMapper _mapper;
+
+    // ==============================
+    // === Constructors
+    // ==============================
+
+    public ConfirmBookingAppointmentCommandHandler(IUnitOfWork unitOfWork, ILogger<ConfirmBookingAppointmentCommandHandler> logger, INotificationService notificationService, IStripePaymentService stripePaymentService, IConfiguration configuration, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
-        _signalRNotification = signalRNotification;
         _logger = logger;
+        _notificationService = notificationService;
         _stripePaymentService = stripePaymentService;
         _configuration = configuration;
+        _mapper = mapper;
     }
+
+    // ==============================
+    // === Methods
+    // ==============================
 
     public async Task<ConfirmBookingAppointmentResultDTO> Handle(ConfirmBookingAppointmentCommand request, CancellationToken cancellationToken)
     {
@@ -64,7 +77,9 @@ public class ConfirmBookingAppointmentCommandHandler : IRequestHandler<ConfirmBo
 
             await UpdateAppointemntAndScheduleAsync(sessionId, scheduleWithPsychologist);
 
-            await _signalRNotification.NotifyScheduleStatus(scheduleWithPsychologist);
+            // Notify student and psychologist to lock the schedule
+            await _notificationService.NotifyPsychologistScheduleLocked(UserRoles.Student, _mapper.Map<PsychologistScheduleNotificationResponseDTO>(scheduleWithPsychologist));
+            await _notificationService.NotifyPsychologistScheduleLocked(UserRoles.Psychologist, _mapper.Map<PsychologistScheduleNotificationResponseDTO>(scheduleWithPsychologist));
 
             return new ConfirmBookingAppointmentResultDTO
             {

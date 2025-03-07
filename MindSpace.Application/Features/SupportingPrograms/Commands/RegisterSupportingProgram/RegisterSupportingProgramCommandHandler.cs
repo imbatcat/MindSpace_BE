@@ -55,7 +55,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Commands.RegisterSup
             // Check if student already register this supporting program or not 
             var historySpec = new SupportingProgramHistorySpecification(existingStudent.Id, existingSupportingProgram.Id);
             var historySP = await _unitOfWork.Repository<SupportingProgramHistory>().GetBySpecAsync(historySpec);
-            if (historySP != null) throw new ResourceAlreadyExistsException(nameof(SupportingProgramHistory));
+            if (historySP != null) throw new DuplicateObjectException("Student already register this supporting program");
 
             // Commit changes
             _ = _unitOfWork.Repository<SupportingProgramHistory>().Insert(supportingProgramHistory)

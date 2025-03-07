@@ -1,49 +1,37 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using System.Collections.Concurrent;
+using MindSpace.Application.Notifications;
 using System.Security.Claims;
 
 namespace MindSpace.Infrastructure.Services.SignalR
 {
-    public class NotificationHub : Hub
+    public class NotificationHub : Hub<IClientNotification>
     {
-
-        // ==============================
-        // === Props & Fields
-        // ==============================
-
-        // email - connection string
-        private static readonly ConcurrentDictionary<string, string> UserConnection = new();
-
         // ==============================
         // === Methods
         // ==============================
 
-        public override Task OnConnectedAsync()
+        public override async Task OnConnectedAsync()
         {
-            var userEmail = Context.User?.FindFirst(ClaimTypes.Email).Value;
-            if (!string.IsNullOrEmpty(userEmail))
-            {
-                UserConnection.AddOrUpdate(userEmail, Context.ConnectionId,
-                                            (key, oldConnection) => Context.ConnectionId);
-            }
-            return base.OnConnectedAsync();
+            var user = Context.User;
+            if (user == null) return;
+
+            var userRole = user.FindFirst(ClaimTypes.Role).Value;
+            if (userRole == null) return;
+
+            await Groups.AddToGroupAsync(Context.ConnectionId, userRole);
+            await base.OnConnectedAsync();
         }
 
-        public override Task OnDisconnectedAsync(Exception? exception)
+        public override async Task OnDisconnectedAsync(Exception? exception)
         {
-            var email = Context.User?.FindFirst(ClaimTypes.Email).Value;
-            if (!string.IsNullOrEmpty(email))
-            {
-                UserConnection.TryRemove(email, out _);
-            }
+            var user = Context.User;
+            if (user == null) return;
 
-            return base.OnDisconnectedAsync(exception);
-        }
+            var userRole = user.FindFirst(ClaimTypes.Role).Value;
+            if (userRole == null) return;
 
-        public static string? GetConnectionIdByEmail(string email)
-        {
-            UserConnection.TryGetValue(email, out string connectionId);
-            return connectionId;
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, userRole);
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }

@@ -4,6 +4,7 @@ using Domain.Entities.Constants;
 using Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.Interfaces.Utilities.Seeding;
 using MindSpace.Infrastructure.Seeders.FakeData;
 using Persistence;
@@ -13,8 +14,6 @@ public class IdentitySeeder(
     ApplicationDbContext dbContext,
     UserManager<ApplicationUser> userManager) : IIdentitySeeder
 {
-    private static readonly string Password = "Password1!";
-
     public async Task SeedAsync()
     {
         if (await dbContext.Database.CanConnectAsync())
@@ -30,7 +29,7 @@ public class IdentitySeeder(
                 if (!dbContext.Users.Any())
                 {
                     users = IdentityData.GetUsers();
-                    foreach (var user in users) await userManager.CreateAsync(user, Password);
+                    foreach (var user in users) await userManager.CreateAsync(user, AppCts.DefaultPassword);
                 }
                 if (users is not null && !dbContext.UserRoles.Any()) await GetUserRoles(users);
             }

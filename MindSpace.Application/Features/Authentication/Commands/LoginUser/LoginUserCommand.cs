@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.ApplicationUsers;
 
 namespace MindSpace.Application.Features.Authentication.Commands.LoginUser
 {
