@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
-using MindSpace.Application.DTOs;
 using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
 using MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile;

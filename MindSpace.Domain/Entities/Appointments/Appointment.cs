@@ -28,6 +28,5 @@ namespace MindSpace.Domain.Entities.Appointments
 
         public string SessionId { get; set; }
         public AppointmentStatus Status { get; set; }
-
     }
 }

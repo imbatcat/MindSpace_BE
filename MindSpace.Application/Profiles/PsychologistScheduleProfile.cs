@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MindSpace.Application.DTOs.Appointments;
+using MindSpace.Application.DTOs.Notifications;
 using MindSpace.Domain.Entities.Appointments;
 
 namespace MindSpace.Application.Profiles
@@ -23,6 +24,8 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.Date, a => a.MapFrom(p => string.IsNullOrEmpty(p.Date) ? (DateOnly?)null : DateOnly.Parse(p.Date)))
                 .ForMember(d => d.PsychologistId, a => a.Ignore())
                 .ForMember(d => d.Status, a => a.Ignore());
+
+            CreateMap<PsychologistSchedule, PsychologistScheduleNotificationResponseDTO>();
         }
     }
 }

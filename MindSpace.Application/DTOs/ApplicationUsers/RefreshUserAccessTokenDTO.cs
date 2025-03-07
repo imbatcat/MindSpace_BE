@@ -1,4 +1,4 @@
-﻿namespace MindSpace.Application.DTOs
+﻿namespace MindSpace.Application.DTOs.ApplicationUsers
 {
     public class RefreshUserAccessTokenDTO
     {

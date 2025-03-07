@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Domain.Entities.Identity;
 

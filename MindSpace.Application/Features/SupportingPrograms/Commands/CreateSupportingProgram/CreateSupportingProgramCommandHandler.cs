@@ -45,7 +45,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Commands.CreateSuppo
             var existingProgram = await _unitOfWork.Repository<SupportingProgram>().GetBySpecAsync(spec);
 
             // If existed then throw exception
-            if (existingProgram != null) throw new ResourceAlreadyExistsException(request.Title);
+            if (existingProgram != null) throw new DuplicateObjectException($"Supporting Program with title {request.Title} exists");
 
             // Update or throw exception
             var spToCreate = _mapper.Map<SupportingProgram>(request);

@@ -59,7 +59,7 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestImport
                                              testInfo.TestCode));
             if (existedTest != null)
             {
-                throw new DuplicateTestException("The title or test code is duplcated with an existed test!");
+                throw new DuplicateObjectException("The title or test code is duplcated with an existed test!");
             }
 
             // Get data of test file

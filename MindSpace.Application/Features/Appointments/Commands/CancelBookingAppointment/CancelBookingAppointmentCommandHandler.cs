@@ -1,8 +1,10 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.DTOs.Notifications;
 using MindSpace.Application.Interfaces.Repos;
-using MindSpace.Application.Interfaces.Services.SignalR;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
@@ -12,18 +14,32 @@ namespace MindSpace.Application.Features.Appointments.Commands.CancelBookingAppo
 {
     public class CancelBookingAppointmentCommandHandler : IRequestHandler<CancelBookingAppointmentCommand>
     {
+        // ==============================
+        // === Fields & Props
+        // ==============================
+
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<CancelBookingAppointmentCommandHandler> _logger;
-        private readonly ISignalRNotification _signalRNotification;
+        private readonly INotificationService _notificationService;
         private readonly IConfiguration _configuration;
+        private readonly IMapper _mapper;
 
-        public CancelBookingAppointmentCommandHandler(IUnitOfWork unitOfWork, ILogger<CancelBookingAppointmentCommandHandler> logger, ISignalRNotification signalRNotification, IConfiguration configuration)
+        // ==============================
+        // === Constructors
+        // ==============================
+
+        public CancelBookingAppointmentCommandHandler(IUnitOfWork unitOfWork, ILogger<CancelBookingAppointmentCommandHandler> logger, INotificationService notificationService, IConfiguration configuration, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;
-            _signalRNotification = signalRNotification;
+            _notificationService = notificationService;
             _configuration = configuration;
+            _mapper = mapper;
         }
+
+        // ==============================
+        // === Methods
+        // ==============================
 
         public async Task Handle(CancelBookingAppointmentCommand request, CancellationToken cancellationToken)
         {
@@ -33,7 +49,14 @@ namespace MindSpace.Application.Features.Appointments.Commands.CancelBookingAppo
 
                 var (appointment, schedule) = await UpdateAppointemntAndScheduleAsync(request.StudentId, request.PsychologistId, request.ScheduleId);
 
-                await _signalRNotification.NotifyScheduleStatus(schedule);
+                // Notify schedule free to both student and psychologist
+                await _notificationService.NotifyPsychologistScheduleFree(
+                    UserRoles.Student,
+                    _mapper.Map<PsychologistScheduleNotificationResponseDTO>(schedule));
+
+                await _notificationService.NotifyPsychologistScheduleFree(
+                    UserRoles.Psychologist,
+                    _mapper.Map<PsychologistScheduleNotificationResponseDTO>(schedule));
 
                 _logger.LogInformation("Successfully cancelled booking appointment for student {StudentId}", request.StudentId);
             }
