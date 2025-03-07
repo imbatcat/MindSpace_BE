@@ -7,76 +7,69 @@ using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Exceptions;
 using Stripe;
 using Stripe.Checkout;
-namespace MindSpace.Application.Features.Appointments.Commands.HandleWebhook
+
+namespace MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
+
+internal class HandleWebhookCommandHandler(
+    IUnitOfWork unitOfWork,
+    ILogger<HandleWebhookCommandHandler> logger) : IRequestHandler<HandleWebhookCommand>
 {
-    internal class HandleWebhookCommandHandler : IRequestHandler<HandleWebhookCommand>
+    public async Task Handle(HandleWebhookCommand request, CancellationToken cancellationToken)
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly ILogger<HandleWebhookCommandHandler> _logger;
-        public HandleWebhookCommandHandler(IUnitOfWork unitOfWork, ILogger<HandleWebhookCommandHandler> logger)
+        try
         {
-            _unitOfWork = unitOfWork;
-            _logger = logger;
+            var stripeEvent = EventUtility.ParseEvent(request.StripeEventJson);
+
+            switch (stripeEvent.Type)
+            {
+                case EventTypes.CheckoutSessionCompleted:
+                    var session = stripeEvent.Data.Object as Session;
+                    logger.LogInformation("Checkout session completed: {0}", session);
+                    // await HandleCompletedSessionAsync(session!.Id);
+                    break;
+                case EventTypes.CheckoutSessionExpired:
+                    var expiredSession = stripeEvent.Data.Object as Session;
+                    await HandleExpiredSessionAsync(expiredSession!.Id);
+                    //Call SignalR to notify the client that the session has expired
+                    break;
+                default:
+                    // Unexpected event type
+                    Console.WriteLine("Unhandled event type: {0}", stripeEvent.Type);
+                    break;
+            }
         }
-        public async Task Handle(HandleWebhookCommand request, CancellationToken cancellationToken)
+        catch (Exception ex)
         {
-            try
-            {
-                var stripeEvent = EventUtility.ParseEvent(request.StripeEventJson);
+            logger.LogError(ex, "Error handling webhook event: {0}", ex.Message);
+            throw;
+        }
 
-                switch (stripeEvent.Type)
-                {
-                    case EventTypes.CheckoutSessionCompleted:
-                        var session = stripeEvent.Data.Object as Session;
-                        _logger.LogInformation("Checkout session completed: {0}", session);
-                        // await HandleCompletedSessionAsync(session!.Id);
-                        break;
-                    case EventTypes.CheckoutSessionExpired:
-                        var expiredSession = stripeEvent.Data.Object as Session;
-                        await HandleExpiredSessionAsync(expiredSession!.Id);
-                        //Call SignalR to notify the client that the session has expired
-                        break;
-                    default:
-                        // Unexpected event type
-                        Console.WriteLine("Unhandled event type: {0}", stripeEvent.Type);
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error handling webhook event: {0}", ex.Message);
-                throw;
-            }
+        async Task HandleExpiredSessionAsync(string sessionId)
+        {
+            var specification = new AppointmentSpecification(sessionId);
+            var appointment = await unitOfWork.Repository<Appointment>().GetBySpecAsync(specification)
+                ?? throw new NotFoundException(nameof(Appointment), sessionId);
 
-            async Task HandleExpiredSessionAsync(string sessionId)
-            {
-                var specification = new AppointmentSpecification(sessionId);
-                var appointment = await _unitOfWork.Repository<Appointment>().GetBySpecAsync(specification)
-                    ?? throw new NotFoundException(nameof(Appointment), sessionId);
+            appointment.Status = AppointmentStatus.Failed;
+            appointment.PsychologistSchedule.Status = PsychologistScheduleStatus.Free;
 
-                appointment.Status = AppointmentStatus.Failed;
-                appointment.PsychologistSchedule.Status = PsychologistScheduleStatus.Free;
+            unitOfWork.Repository<Appointment>().Update(appointment);
+            unitOfWork.Repository<PsychologistSchedule>().Update(appointment.PsychologistSchedule);
+            await unitOfWork.CompleteAsync();
+        }
 
-                _unitOfWork.Repository<Appointment>().Update(appointment);
-                _unitOfWork.Repository<PsychologistSchedule>().Update(appointment.PsychologistSchedule);
-                await _unitOfWork.CompleteAsync();
-            }
+        async Task HandleCompletedSessionAsync(string sessionId)
+        {
+            var specification = new AppointmentSpecification(sessionId);
+            var appointment = await unitOfWork.Repository<Appointment>().GetBySpecAsync(specification)
+                ?? throw new NotFoundException(nameof(Appointment), sessionId);
 
-            async Task HandleCompletedSessionAsync(string sessionId)
-            {
-                var specification = new AppointmentSpecification(sessionId);
-                var appointment = await _unitOfWork.Repository<Appointment>().GetBySpecAsync(specification)
-                    ?? throw new NotFoundException(nameof(Appointment), sessionId);
+            appointment.Status = AppointmentStatus.Success;
+            appointment.PsychologistSchedule.Status = PsychologistScheduleStatus.Booked;
 
-                appointment.Status = AppointmentStatus.Success;
-                appointment.PsychologistSchedule.Status = PsychologistScheduleStatus.Booked;
-
-                _unitOfWork.Repository<Appointment>().Update(appointment);
-                _unitOfWork.Repository<PsychologistSchedule>().Update(appointment.PsychologistSchedule);
-                await _unitOfWork.CompleteAsync();
-            }
+            unitOfWork.Repository<Appointment>().Update(appointment);
+            unitOfWork.Repository<PsychologistSchedule>().Update(appointment.PsychologistSchedule);
+            await unitOfWork.CompleteAsync();
         }
     }
-
-
 }

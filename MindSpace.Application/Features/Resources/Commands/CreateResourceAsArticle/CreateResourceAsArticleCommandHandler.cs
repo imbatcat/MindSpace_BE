@@ -6,44 +6,23 @@ using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Exceptions;
 
-namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsArticle
+namespace MindSpace.Application.Features.Resources.Commands.CreateResourceAsArticle;
+
+public class CreateResourceAsArticleCommandHandler(
+    ILogger<CreatedResourceAsArticleCommand> logger,
+    IUnitOfWork unitOfWork,
+    IMapper mapper) : IRequestHandler<CreatedResourceAsArticleCommand, ArticleResponseDTO>
 {
-    public class CreateResourceAsArticleCommandHandler : IRequestHandler<CreatedResourceAsArticleCommand, ArticleResponseDTO>
+    public async Task<ArticleResponseDTO> Handle(CreatedResourceAsArticleCommand request, CancellationToken cancellationToken)
     {
-        // ================================
-        // === Fields & Props
-        // ================================
+        logger.LogInformation("Create Resource with Title: {@title}", request.Title);
 
-        private readonly ILogger<CreatedResourceAsArticleCommand> _logger;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        var articleToCreate = mapper.Map<Resource>(request);
+        _ = unitOfWork.Repository<Resource>().Insert(articleToCreate)
+            ?? throw new UpdateFailedException(nameof(Resource));
 
-        // ================================
-        // === Constructors
-        // ================================
+        await unitOfWork.CompleteAsync();
 
-        public CreateResourceAsArticleCommandHandler(ILogger<CreatedResourceAsArticleCommand> logger, IUnitOfWork unitOfWork, IMapper mapper)
-        {
-            _logger = logger;
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
-        }
-
-        // ================================
-        // === Methods
-        // ================================
-
-        public async Task<ArticleResponseDTO> Handle(CreatedResourceAsArticleCommand request, CancellationToken cancellationToken)
-        {
-            _logger.LogInformation("Create Resource with Title: {@title}", request.Title);
-
-            var articleToCreate = _mapper.Map<Resource>(request);
-            _ = _unitOfWork.Repository<Resource>().Insert(articleToCreate)
-                ?? throw new UpdateFailedException(nameof(Resource));
-
-            await _unitOfWork.CompleteAsync();
-
-            return _mapper.Map<Resource, ArticleResponseDTO>(articleToCreate);
-        }
+        return mapper.Map<Resource, ArticleResponseDTO>(articleToCreate);
     }
 }

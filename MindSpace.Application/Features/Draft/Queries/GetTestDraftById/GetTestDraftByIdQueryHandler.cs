@@ -2,31 +2,13 @@
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 
-namespace MindSpace.Application.Features.Draft.Queries.GetTestDraftById
+namespace MindSpace.Application.Features.Draft.Queries.GetTestDraftById;
+
+public class GetTestDraftByIdQueryHandler(ITestDraftService testDraftService) : IRequestHandler<GetTestDraftByIdQuery, TestDraft>
 {
-    public class GetTestDraftByIdQueryHandler : IRequestHandler<GetTestDraftByIdQuery, TestDraft>
+    public async Task<TestDraft> Handle(GetTestDraftByIdQuery request, CancellationToken cancellationToken)
     {
-        // ====================================
-        // === Props & Fields
-        // ====================================
-        public readonly ITestDraftService _testDraftService;
-
-        // ====================================
-        // === Constructors
-        // ====================================
-
-        public GetTestDraftByIdQueryHandler(ITestDraftService testDraftService)
-        {
-            _testDraftService = testDraftService;
-        }
-
-        // ====================================
-        // === Methods
-        // ====================================
-        public async Task<TestDraft> Handle(GetTestDraftByIdQuery request, CancellationToken cancellationToken)
-        {
-            var testDraft = await _testDraftService.GetTestDraftAsync(request.Id);
-            return testDraft ?? new TestDraft() { Id = request.Id };
-        }
+        var testDraft = await testDraftService.GetTestDraftAsync(request.Id);
+        return testDraft ?? new TestDraft() { Id = request.Id };
     }
 }
