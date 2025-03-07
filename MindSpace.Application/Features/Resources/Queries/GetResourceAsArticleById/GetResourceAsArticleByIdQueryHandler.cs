@@ -8,46 +8,25 @@ using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Exceptions;
 
-namespace MindSpace.Application.Features.Resources.Queries.GetResourceAsArticleById
+namespace MindSpace.Application.Features.Resources.Queries.GetResourceAsArticleById;
+
+public class GetResourceAsArticleByIdQueryHandler(
+    ILogger<GetResourceAsArticleByIdQueryHandler> logger,
+    IUnitOfWork unitOfWork,
+    IMapper mapper) : IRequestHandler<GetResourceAsArticleByIdQuery, ArticleResponseDTO>
 {
-    public class GetResourceAsArticleByIdQueryHandler : IRequestHandler<GetResourceAsArticleByIdQuery, ArticleResponseDTO>
+    public async Task<ArticleResponseDTO> Handle(GetResourceAsArticleByIdQuery request, CancellationToken cancellationToken)
     {
-        // ================================
-        // === Fields & Props
-        // ================================
+        logger.LogInformation($"Get Article: {request.Id}");
 
-        private readonly ILogger<GetResourceAsArticleByIdQueryHandler> _logger;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        var spec = new ResourceSpecification(request.Id, ResourceType.Article);
+        var article = await unitOfWork
+            .Repository<Resource>()
+            .GetBySpecProjectedAsync<ArticleResponseDTO>(spec, mapper.ConfigurationProvider);
 
-        // ================================
-        // === Constructors
-        // ================================
+        if (article == null)
+            throw new NotFoundException(nameof(Resource), request.Id.ToString());
 
-        public GetResourceAsArticleByIdQueryHandler(ILogger<GetResourceAsArticleByIdQueryHandler> logger, IUnitOfWork unitOfWork, IMapper mapper)
-        {
-            _logger = logger;
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
-        }
-
-        // ================================
-        // === Methods
-        // ================================
-
-        public async Task<ArticleResponseDTO> Handle(GetResourceAsArticleByIdQuery request, CancellationToken cancellationToken)
-        {
-            _logger.LogInformation($"Get Article: {request.Id}");
-
-            var spec = new ResourceSpecification(request.Id, ResourceType.Article);
-            var article = await _unitOfWork
-                .Repository<Resource>()
-                .GetBySpecProjectedAsync<ArticleResponseDTO>(spec, _mapper.ConfigurationProvider);
-
-            if (article == null)
-                throw new NotFoundException(nameof(Resource), request.Id.ToString());
-
-            return _mapper.Map<ArticleResponseDTO>(article);
-        }
+        return mapper.Map<ArticleResponseDTO>(article);
     }
 }

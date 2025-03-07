@@ -3,23 +3,15 @@ using MindSpace.Application.Interfaces.Services;
 using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 using MindSpace.Domain.Exceptions;
 
-namespace MindSpace.Application.Features.Draft.Commands.UpdateTestDraft
+namespace MindSpace.Application.Features.Draft.Commands.UpdateTestDraft;
+
+public class UpdateTestDraftCommandHandler(ITestDraftService testDraftService) : IRequestHandler<UpdateTestDraftCommand, TestDraft>
 {
-    public class UpdateTestDraftCommandHandler : IRequestHandler<UpdateTestDraftCommand, TestDraft>
+    public async Task<TestDraft> Handle(UpdateTestDraftCommand request, CancellationToken cancellationToken)
     {
-        private readonly ITestDraftService _testDraftService;
+        var updatedTestDraft = await testDraftService.SetTestDraftAsync(request.TestDraft)
+            ?? throw new NotFoundException(nameof(TestDraft), request.TestDraft.Id);
 
-        public UpdateTestDraftCommandHandler(ITestDraftService testDraftService)
-        {
-            _testDraftService = testDraftService;
-        }
-
-        public async Task<TestDraft> Handle(UpdateTestDraftCommand request, CancellationToken cancellationToken)
-        {
-            var updatedTestDraft = await _testDraftService.SetTestDraftAsync(request.TestDraft)
-                ?? throw new NotFoundException(nameof(TestDraft), request.TestDraft.Id);
-
-            return updatedTestDraft;
-        }
+        return updatedTestDraft;
     }
 }

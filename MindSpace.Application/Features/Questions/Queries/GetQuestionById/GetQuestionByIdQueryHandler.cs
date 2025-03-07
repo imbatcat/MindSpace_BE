@@ -7,50 +7,28 @@ using MindSpace.Application.Specifications.QuestionSpecifications;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Domain.Exceptions;
 
-namespace MindSpace.Application.Features.Questions.Queries.GetQuestionById
+namespace MindSpace.Application.Features.Questions.Queries.GetQuestionById;
+
+public class GetQuestionByIdQueryHandler(
+    ILogger<GetQuestionByIdQueryHandler> logger,
+    IUnitOfWork unitOfWork,
+    IMapper mapper) : IRequestHandler<GetQuestionByIdQuery, QuestionResponseDTO>
 {
-    public class GetQuestionByIdQueryHandler : IRequestHandler<GetQuestionByIdQuery, QuestionResponseDTO>
+    public async Task<QuestionResponseDTO> Handle(GetQuestionByIdQuery request, CancellationToken cancellationToken)
     {
-        // ================================
-        // === Fields & Props
-        // ================================
+        logger.LogInformation("Get Question By Id: {@Id}", request.Id);
 
-        private readonly ILogger<GetQuestionByIdQueryHandler> _logger;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        var spec = new QuestionSpecification(request.Id);
 
-        // ================================
-        // === Constructors
-        // ================================
-        public GetQuestionByIdQueryHandler(
-            ILogger<GetQuestionByIdQueryHandler> logger,
-            IUnitOfWork unitOfWork,
-            IMapper mapper)
+        var dataDto = await unitOfWork
+            .Repository<Question>()
+            .GetBySpecProjectedAsync<QuestionResponseDTO>(spec, mapper.ConfigurationProvider);
+
+        if (dataDto == null)
         {
-            _logger = logger;
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
+            throw new NotFoundException(nameof(Question), request.Id.ToString());
         }
 
-        // ================================
-        // === Methods
-        // ================================
-        public async Task<QuestionResponseDTO> Handle(GetQuestionByIdQuery request, CancellationToken cancellationToken)
-        {
-            _logger.LogInformation("Get Question By Id: {@Id}", request.Id);
-
-            var spec = new QuestionSpecification(request.Id);
-
-            var dataDto = await _unitOfWork
-                .Repository<Question>()
-                .GetBySpecProjectedAsync<QuestionResponseDTO>(spec, _mapper.ConfigurationProvider);
-
-            if (dataDto == null)
-            {
-                throw new NotFoundException(nameof(Question), request.Id.ToString());
-            }
-
-            return dataDto;
-        }
+        return dataDto;
     }
 }

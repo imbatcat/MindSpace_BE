@@ -8,46 +8,25 @@ using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Exceptions;
 
-namespace MindSpace.Application.Features.Resources.Queries.GetResourceAsBlogById
+namespace MindSpace.Application.Features.Resources.Queries.GetResourceAsBlogById;
+
+public class GetResourceAsBlogByIdQueryHandler(
+    ILogger<GetResourceAsBlogByIdQueryHandler> logger,
+    IUnitOfWork unitOfWork,
+    IMapper mapper) : IRequestHandler<GetResourceAsBlogByIdQuery, BlogResponseDTO>
 {
-    public class GetResourceAsBlogByIdQueryHandler : IRequestHandler<GetResourceAsBlogByIdQuery, BlogResponseDTO>
+    public async Task<BlogResponseDTO> Handle(GetResourceAsBlogByIdQuery request, CancellationToken cancellationToken)
     {
-        // ================================
-        // === Fields & Props
-        // ================================
+        logger.LogInformation($"Get Blog: {request.Id}");
 
-        private readonly ILogger<GetResourceAsBlogByIdQueryHandler> _logger;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        var spec = new ResourceSpecification(request.Id, ResourceType.Blog);
+        var blog = await unitOfWork
+            .Repository<Resource>()
+            .GetBySpecProjectedAsync<BlogResponseDTO>(spec, mapper.ConfigurationProvider);
 
-        // ================================
-        // === Constructors
-        // ================================
+        if (blog == null)
+            throw new NotFoundException(nameof(Resource), request.Id.ToString());
 
-        public GetResourceAsBlogByIdQueryHandler(ILogger<GetResourceAsBlogByIdQueryHandler> logger, IUnitOfWork unitOfWork, IMapper mapper)
-        {
-            _logger = logger;
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
-        }
-
-        // ================================
-        // === Methods
-        // ================================
-
-        public async Task<BlogResponseDTO> Handle(GetResourceAsBlogByIdQuery request, CancellationToken cancellationToken)
-        {
-            _logger.LogInformation($"Get Blog: {request.Id}");
-
-            var spec = new ResourceSpecification(request.Id, ResourceType.Blog);
-            var blog = await _unitOfWork
-                .Repository<Resource>()
-                .GetBySpecProjectedAsync<BlogResponseDTO>(spec, _mapper.ConfigurationProvider);
-
-            if (blog == null)
-                throw new NotFoundException(nameof(Resource), request.Id.ToString());
-
-            return _mapper.Map<BlogResponseDTO>(blog);
-        }
+        return mapper.Map<BlogResponseDTO>(blog);
     }
 }

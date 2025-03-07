@@ -3,22 +3,14 @@ using MindSpace.Application.Interfaces.Services;
 using MindSpace.Domain.Entities.Drafts.Blogs;
 using MindSpace.Domain.Exceptions;
 
-namespace MindSpace.Application.Features.Draft.Commands.DeleteBlogDraft
+namespace MindSpace.Application.Features.Draft.Commands.DeleteBlogDraft;
+
+public class DeleteBlogDraftCommandHandler(IBlogDraftService blogDraftService) : IRequestHandler<DeleteBlogDraftCommand>
 {
-    public class DeleteBlogDraftCommandHandler : IRequestHandler<DeleteBlogDraftCommand>
+    public async Task Handle(DeleteBlogDraftCommand request, CancellationToken cancellationToken)
     {
-        private readonly IBlogDraftService _blogDraftService;
+        var isDeletedSuccessful = await blogDraftService.DeleteBlogDraftAsync(request.Id);
 
-        public DeleteBlogDraftCommandHandler(IBlogDraftService blogDraftService)
-        {
-            _blogDraftService = blogDraftService;
-        }
-
-        public async Task Handle(DeleteBlogDraftCommand request, CancellationToken cancellationToken)
-        {
-            var isDeletedSuccessful = await _blogDraftService.DeleteBlogDraftAsync(request.Id);
-
-            if (!isDeletedSuccessful) throw new NotFoundException(nameof(BlogDraft), request.Id);
-        }
+        if (!isDeletedSuccessful) throw new NotFoundException(nameof(BlogDraft), request.Id);
     }
 }
