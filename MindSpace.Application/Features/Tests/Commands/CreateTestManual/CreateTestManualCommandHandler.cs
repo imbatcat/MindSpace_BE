@@ -47,14 +47,18 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestManual
             // Add questions to table
             foreach (var questionDraft in testDraft.QuestionItems)
             {
-                // Check existed question for reuse
-                Question? questionToAdd = await _unitOfWork.Repository<Question>()
-                    .GetBySpecAsync(new QuestionSpecification(questionDraft.Id));
-
-                // if new question => create new question
-                if (questionToAdd == null)
+                Question questionToAdd;
+                if (questionDraft.IsNewQuestion)
                 {
-                    questionToAdd = _mapper.Map<QuestionDraft, Question>(questionDraft); // question option is auto-mapped with question
+                    // if new question => create new question
+                    questionToAdd = _mapper.Map<QuestionDraft, Question>(questionDraft);
+                    // question option is auto-mapped with question
+                }
+                else
+                {
+                    questionToAdd = await _unitOfWork.Repository<Question>()
+                               .GetBySpecAsync(new QuestionSpecification(questionDraft.Id))
+                               ?? throw new NotFoundException(nameof(Question), questionDraft.Id.ToString());
                 }
 
                 // Add question to test
