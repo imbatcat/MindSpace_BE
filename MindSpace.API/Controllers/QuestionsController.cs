@@ -13,11 +13,7 @@ public class QuestionsController(IMediator mediator) : BaseApiController
     // === GET
     // ====================================
 
-    /// <summary>
-    /// Get Questions By Params and Support Pagination
-    /// </summary>
-    /// <param name="specParams"></param>
-    /// <returns></returns>
+    // GET /api/questions
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<QuestionResponseDTO>>> GetQuestions(
         [FromQuery] QuestionSpecParams specParams)
@@ -32,10 +28,7 @@ public class QuestionsController(IMediator mediator) : BaseApiController
         );
     }
 
-    /// <summary>
-    /// Get Question By Id
-    /// <param name="id"></param>
-    /// <returns></returns>
+    // GET /api/questions/{id}
     [HttpGet("{id:int}")]
     public async Task<ActionResult<QuestionResponseDTO>> GetQuestionById(int id)
     {

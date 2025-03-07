@@ -14,6 +14,7 @@ namespace MindSpace.API.Controllers;
 
 public class ResourcesController(IMediator mediator) : BaseApiController
 {
+    // GET /api/resources/articles/{id}
     [HttpGet("articles/{id:int}")]
     public async Task<ActionResult<ArticleResponseDTO>> GetResourceAsArticleById(
         [FromRoute] int id)
@@ -22,6 +23,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return Ok(article);
     }
 
+    // GET /api/resources/blogs/{id}
     [HttpGet("blogs/{id:int}")]
     public async Task<ActionResult<BlogResponseDTO>> GetResourceAsBlogById(
         [FromRoute] int id)
@@ -30,6 +32,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return Ok(blog);
     }
 
+    // GET /api/resources/articles
     [HttpGet("articles")]
     public async Task<ActionResult<Pagination<ArticleResponseDTO>>> GetAllArticles(
         [FromQuery] ResourceSpecificationSpecParams specParams)
@@ -38,6 +41,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return PaginationOkResult(articles.Data, articles.Count, specParams.PageIndex, specParams.PageSize);
     }
 
+    // GET /api/resources/blogs
     [HttpGet("blogs")]
     public async Task<ActionResult<Pagination<BlogResponseDTO>>> GetAllBlogs(
         [FromQuery] ResourceSpecificationSpecParams specParams)
@@ -46,6 +50,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return PaginationOkResult(blogs.Data, blogs.Count, specParams.PageIndex, specParams.PageSize);
     }
 
+    // POST /api/resources/blogs
     [HttpPost("blogs")]
     public async Task<ActionResult> CreateBlog(
         [FromBody] CreateResourceAsBlogCommand command)
@@ -54,6 +59,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return CreatedAtAction(nameof(GetResourceAsBlogById), new { result.Id }, null);
     }
 
+    // POST /api/resources/articles
     [HttpPost("articles")]
     public async Task<ActionResult> CreateArticle(
         [FromBody] CreatedResourceAsArticleCommand command)
