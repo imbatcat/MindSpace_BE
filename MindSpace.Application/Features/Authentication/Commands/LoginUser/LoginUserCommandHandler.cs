@@ -13,9 +13,7 @@ namespace MindSpace.Application.Features.Authentication.Commands.LoginUser
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
         IPasswordHasher<ApplicationUser> passwordHasher,
-        IIDTokenProvider idTokenProvider,
-        IAccessTokenProvider accessTokenProvider,
-        IRefreshTokenProvider refreshTokenProvider) : IRequestHandler<LoginUserCommand, LoginResponseDTO>
+        IUserTokenService userTokenService) : IRequestHandler<LoginUserCommand, LoginResponseDTO>
     {
         public async Task<LoginResponseDTO> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
@@ -143,9 +141,9 @@ namespace MindSpace.Application.Features.Authentication.Commands.LoginUser
         {
             logger.LogDebug("Generating tokens for user: {UserId} with role: {Role}", user.Id, userRole);
 
-            string accessToken = accessTokenProvider.CreateToken(user, userRole);
-            string idToken = idTokenProvider.CreateToken(user, userRole);
-            string refreshToken = refreshTokenProvider.CreateToken(user);
+            string accessToken = userTokenService.CreateAccessToken(user, userRole);
+            string idToken = userTokenService.CreateIdToken(user, userRole);
+            string refreshToken = userTokenService.CreateRefreshToken(user);
 
             user.RefreshToken = refreshToken;
             await userManager.UpdateAsync(user);

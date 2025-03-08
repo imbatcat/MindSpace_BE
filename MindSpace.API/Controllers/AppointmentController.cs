@@ -7,9 +7,9 @@ using Stripe.Checkout;
 
 namespace MindSpace.API.Controllers;
 
-public class AppointmentController(IMediator mediator) : BaseApiController
+public class AppointmentsController(IMediator mediator) : BaseApiController
 {
-    // POST /api/appointment/booking/confirm
+    // POST /api/appointments/booking/confirm
     [HttpPost("booking/confirm")]
     public async Task<IActionResult> ConfirmBookingAppointment([FromBody] ConfirmBookingAppointmentCommand command)
     {
@@ -17,7 +17,7 @@ public class AppointmentController(IMediator mediator) : BaseApiController
         return Ok(result);
     }
 
-    // POST /api/appointment/booking/cancel
+    // POST /api/appointments/booking/cancel
     [HttpPost("booking/cancel")]
     public async Task<IActionResult> CancelBookingAppointment([FromBody] CancelBookingAppointmentCommand command)
     {
@@ -25,8 +25,8 @@ public class AppointmentController(IMediator mediator) : BaseApiController
         return NoContent();
     }
 
-    // POST /api/appointment/booking/webhook/{link}
-    [HttpPost("booking/webhook/{link}")]
+    // POST /api/appointments/booking/webhook/{link}
+    [HttpPost("bookings/webhook/{link}")]
     public async Task<IActionResult> HandleWebhook(string link)
     {
         var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
@@ -38,7 +38,7 @@ public class AppointmentController(IMediator mediator) : BaseApiController
         return Ok();
     }
 
-    // GET /api/appointment/booking/expire-session/{sessionId}
+    // GET /api/appointments/booking/expire-session/{sessionId}
     [HttpGet("booking/expire-session/{sessionId}")]
     public async Task<IActionResult> ExpireSession([FromRoute] string sessionId)
     {

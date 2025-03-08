@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.Interfaces.Services.PaymentServices;
 using Stripe.Checkout;
 
@@ -7,7 +8,6 @@ namespace MindSpace.Infrastructure.Services.PaymentServices
 {
     internal class StripePaymentService : IStripePaymentService
     {
-        private readonly string _paymentCurrency = "vnd";
         private readonly IConfiguration _configuration;
         private readonly ILogger<StripePaymentService> _logger;
         public StripePaymentService(IConfiguration configuration, ILogger<StripePaymentService> logger)
@@ -16,13 +16,12 @@ namespace MindSpace.Infrastructure.Services.PaymentServices
             _logger = logger;
         }
 
-
-        public (string sessionId, string sessionUrl) CreateCheckoutSession(decimal sessionPrice, decimal commisionRate)
+        public (string sessionId, string sessionUrl) CreateCheckoutSession(decimal sessionPrice, decimal commissionRate)
         {
             var priceData = new SessionLineItemPriceDataOptions()
             {
-                Currency = _paymentCurrency,
-                UnitAmount = (long)(sessionPrice * commisionRate) + 200000,
+                Currency = AppCts.Currency,
+                UnitAmount = (long)(sessionPrice * commissionRate),
                 ProductData = new SessionLineItemPriceDataProductDataOptions
                 {
                     Name = "Appointment",

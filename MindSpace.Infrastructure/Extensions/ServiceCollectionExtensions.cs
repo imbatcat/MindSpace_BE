@@ -64,9 +64,7 @@ public static partial class ServiceCollectionExtensions
         services.AddSingleton<INotificationService, NotificationService>();
 
         // Add Authentication Services 
-        services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();
-        services.AddScoped<IIDTokenProvider, IdTokenProvider>();
-        services.AddScoped<IRefreshTokenProvider, RefreshTokenProvider>();
+        services.AddScoped<IUserTokenService, UserTokenService>();
         services.AddScoped<IUserContext, UserContext>();
 
         // Add Services

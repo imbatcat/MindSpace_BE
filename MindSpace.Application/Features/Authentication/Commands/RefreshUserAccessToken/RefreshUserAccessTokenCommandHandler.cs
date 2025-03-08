@@ -9,8 +9,7 @@ namespace MindSpace.Application.Features.Authentication.Commands.RefreshUserAcce
 {
     internal class RefreshUserAccessTokenCommandHandler
         (ILogger<RefreshUserAccessTokenCommandHandler> logger,
-        IAccessTokenProvider accessTokenProvider,
-        IRefreshTokenProvider refreshTokenProvider,
+        IUserTokenService userTokenService,
         UserManager<ApplicationUser> userManager) : IRequestHandler<RefreshUserAccessTokenCommand, RefreshUserAccessTokenDTO>
     {
         public async Task<RefreshUserAccessTokenDTO> Handle(RefreshUserAccessTokenCommand request, CancellationToken cancellationToken)
@@ -18,8 +17,8 @@ namespace MindSpace.Application.Features.Authentication.Commands.RefreshUserAcce
             logger.LogInformation("Creating a new access token for user {username}", request.User.UserName);
             var roles = await userManager.GetRolesAsync(request.User);
 
-            var accessToken = accessTokenProvider.CreateToken(request.User, roles.First());
-            var refreshToken = refreshTokenProvider.CreateToken(request.User);
+            var accessToken = userTokenService.CreateAccessToken(request.User, roles.First());
+            var refreshToken = userTokenService.CreateRefreshToken(request.User);
 
             request.User.RefreshToken = refreshToken;
             await userManager.UpdateAsync(request.User);
