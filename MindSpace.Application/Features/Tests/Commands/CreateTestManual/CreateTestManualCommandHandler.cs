@@ -9,7 +9,6 @@ using MindSpace.Application.Specifications.TestSpecifications;
 using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Domain.Exceptions;
-using System.Globalization;
 
 namespace MindSpace.Application.Features.Tests.Commands.CreateTestManual
 {
