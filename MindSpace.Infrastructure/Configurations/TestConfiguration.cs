@@ -12,8 +12,8 @@ internal class TestConfiguration : IEntityTypeConfiguration<Test>
         builder.ToTable("Tests", "dbo");
 
         //Indexing
-        builder.HasIndex(t => new { t.TestCode, t.AuthorId }).IsUnique(); // Unique trên TestCode và AuthorId (ManagerId)
-        builder.HasIndex(t => new { t.Title, t.AuthorId }).IsUnique(); // Unique trên Title và AuthorId
+        builder.HasIndex(t => new { t.TestCode, t.AuthorId }).IsUnique();
+        builder.HasIndex(t => new { t.Title, t.AuthorId }).IsUnique();
 
         //Properties
         builder.Property(t => t.Title).IsUnicode().IsRequired().HasMaxLength(150);

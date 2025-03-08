@@ -5,9 +5,11 @@ using MindSpace.Application.DTOs.Tests;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.QuestionSpecifications;
+using MindSpace.Application.Specifications.TestSpecifications;
 using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Domain.Exceptions;
+using System.Globalization;
 
 namespace MindSpace.Application.Features.Tests.Commands.CreateTestManual
 {
@@ -37,6 +39,16 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestManual
 
             // Check each field in the test draft to see any missing data
             if (testDraft == null) throw new NotFoundException(nameof(TestDraft), testDraftId);
+
+            // Check existed test
+            var existedTest = await _unitOfWork.Repository<Test>()
+                .GetBySpecAsync(new TestSpecification(testDraft.Title,
+                                             testDraft.AuthorId.Value,
+                                             testDraft.TestCode));
+            if (existedTest != null)
+            {
+                throw new DuplicateObjectException("The title or test code is duplcated with an existed test!");
+            }
 
             // Add test to table
             var testToAdd = _mapper.Map<TestDraft, Test>(testDraft);

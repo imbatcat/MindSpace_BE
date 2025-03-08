@@ -31,7 +31,7 @@ public class CreateTestImportCommandHandler(
         var testInfo = request.TestInfo;
         var testEntity = mapper.Map<Test>(testInfo);
 
-        // Check existed PSYCHOLOGY test
+        // Check existed test
         var existedTest = await unitOfWork.Repository<Test>()
             .GetBySpecAsync(new TestSpecification(testInfo.Title,
                                          testInfo.AuthorId,
