@@ -8,7 +8,7 @@ using MindSpace.Application.Specifications.PsychologistScheduleSpecifications;
 namespace MindSpace.API.Controllers;
 
 [Route("api/v{version:apiVersion}/psychologist-schedules")]
-public class PsychologistScheduleController(IMediator mediator) : BaseApiController
+public class PsychologistSchedulesController(IMediator mediator) : BaseApiController
 {
     // GET /api/psychologist-schedules
     [HttpGet]

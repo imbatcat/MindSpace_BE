@@ -44,5 +44,10 @@ namespace MindSpace.Application.Commons.Constants
         /// Default password for all registered users
         /// </summary>
         public static string DefaultPassword = "Password1!";
+
+        /// <summary>
+        /// Default currency for payments 
+        /// </summary>
+        public static string Currency = "VND";
     }
 }
