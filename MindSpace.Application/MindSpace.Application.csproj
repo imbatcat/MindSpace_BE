@@ -7,11 +7,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Features\Authentication\Profiles\**" />
+	  <Compile Remove="Features\Authentications\Profiles\**" />
 	  <Compile Remove="Features\Payment\**" />
-	  <EmbeddedResource Remove="Features\Authentication\Profiles\**" />
+	  <EmbeddedResource Remove="Features\Authentications\Profiles\**" />
 	  <EmbeddedResource Remove="Features\Payment\**" />
-	  <None Remove="Features\Authentication\Profiles\**" />
+	  <None Remove="Features\Authentications\Profiles\**" />
 	  <None Remove="Features\Payment\**" />
 	</ItemGroup>
 
