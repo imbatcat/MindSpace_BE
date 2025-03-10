@@ -15,7 +15,7 @@ internal class TestResponseItemConfiguration : IEntityTypeConfiguration<TestResp
             .WithMany(tr => tr.TestResponseItems)
             .HasForeignKey(tri => tri.TestResponseId);
 
-        // Question Content
+        // Question ContentResponse
         builder.Property(tri => tri.QuestionContent).IsUnicode().HasMaxLength(500);
 
         // Answer Text

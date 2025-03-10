@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Features.Authentication.Commands.RevokeUser;
 using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using System.Security.Claims;
 

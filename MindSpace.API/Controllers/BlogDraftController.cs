@@ -4,7 +4,6 @@ using MindSpace.Application.Features.Draft.Commands.DeleteBlogDraft;
 using MindSpace.Application.Features.Draft.Commands.UpdateBlogDraft;
 using MindSpace.Application.Features.Draft.Queries.GetBlogDraftById;
 using MindSpace.Domain.Entities.Drafts.Blogs;
-using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.API.Controllers;
 

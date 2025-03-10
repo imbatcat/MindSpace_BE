@@ -32,6 +32,7 @@ app.UseMiddleware<TimeLoggingMiddleware>();
 
 // Configure CORS
 app.UseCors("AllowFrontend");
+app.UseCors("AllowGemini");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
