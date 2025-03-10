@@ -21,7 +21,7 @@ namespace MindSpace.Application.Specifications.QuestionSpecifications
         public QuestionSpecification(QuestionSpecParams specParams)
             : base(q => (string.IsNullOrEmpty(specParams.SearchQuestionContent)
                             || q.Content.ToLower().Contains(specParams.SearchQuestionContent.ToLower()))
-                        && (specParams.IsOnlyGetQuestionsWithOptions == false
+                            && (specParams.IsOnlyGetQuestionsWithOptions == false
                             || q.QuestionOptions.Any()))
         {
 

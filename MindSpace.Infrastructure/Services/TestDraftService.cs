@@ -19,7 +19,7 @@ namespace MindSpace.Infrastructure.Services
 
         public TestDraftService(IConnectionMultiplexer redis)
         {
-            _database = redis.GetDatabase();
+            _database = redis.GetDatabase(0);
         }
 
         // ==================================

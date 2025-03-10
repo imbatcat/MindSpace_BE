@@ -100,6 +100,14 @@ namespace MindSpace.API.Extensions
                     .AllowCredentials()
                     .WithExposedHeaders("Location");
                 });
+
+                options.AddPolicy("AllowGemini", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .WithExposedHeaders("Content-Disposition");
+                });
             });
 
 
