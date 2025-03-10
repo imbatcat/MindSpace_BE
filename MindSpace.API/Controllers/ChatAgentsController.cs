@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.DTOs.Chat;
+using MindSpace.Application.Features.ChatAgents.Commands;
 using MindSpace.Application.Interfaces.Services;
 
 namespace MindSpace.API.Controllers
@@ -15,16 +16,13 @@ namespace MindSpace.API.Controllers
         // === Methods
         // ==============================
 
+        // POST api/v1/chat-agents/generate
         [HttpPost("generate")]
         public async Task<ActionResult<ChatResponseDTO>> GenerateContentAsync(
-            [FromBody] PromptRequestDTO promptRequestDTO)
+            [FromBody] GenerateChatContentCommand chatAgentCommand)
         {
-            var output = await agentChatService.GenerateContentAsync(promptRequestDTO.Prompt);
-            var chatReponseDto = new ChatResponseDTO()
-            {
-                Message = output,
-            };
-            return Ok(chatReponseDto);
+            var result = await mediator.Send(chatAgentCommand);
+            return Ok(result);
         }
     }
 }

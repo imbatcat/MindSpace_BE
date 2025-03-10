@@ -2,11 +2,8 @@
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Chat;
 using MindSpace.Application.Interfaces.Services;
-using MindSpace.Domain.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System.Net.Http.Json;
-using System.Text.Json;
 
 namespace MindSpace.Infrastructure.Services.ChatServices
 {
@@ -43,6 +40,8 @@ namespace MindSpace.Infrastructure.Services.ChatServices
         public async Task<string> GenerateContentAsync(string prompt)
         {
             string url = $"{_apiUrl}?key={_apiKey}";
+
+            // Fetch relevant a
 
             // Request Object for Gemini Prompting
             var request = new ContentRequest()
@@ -85,6 +84,30 @@ namespace MindSpace.Infrastructure.Services.ChatServices
             {
                 throw new Exception("Error communicating with Gemini API.");
             }
+        }
+
+        public string GenerateScopedSuggestion(IEnumerable<string> listOfLimitations, string prompt)
+        {
+            // If null then just get prompt from user
+            if (listOfLimitations == null || !listOfLimitations.Any()) return prompt;
+
+            // Impose some rules for agent
+            string limitations = string.Join("\n- ", listOfLimitations);
+            string systemInstruction = $"""
+                You are an AI assistant specializing in the following psychology domains:
+                - {limitations}
+
+                **Response Guidelines:**
+                - Your response must be **strictly limited** to these psychology specializations.
+                - If the user’s query is **outside these topics**, politely decline and request a refined query.
+                - Keep your response **concise (max 3-4 sentences)** while ensuring clarity.
+                - Avoid unnecessary details and stay relevant.
+
+                **User Query:** {prompt}
+                **Your concise response:** 
+               """;
+
+            return systemInstruction;
         }
     }
 }

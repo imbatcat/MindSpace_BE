@@ -25,7 +25,6 @@ namespace MindSpace.Application.Specifications.TestSpecifications
 
 
         /// <summary>
-        /// 
         /// Constructor for General Filter and Pagination
         /// </summary>
         /// <param name="specParams"></param>
