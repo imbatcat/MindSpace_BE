@@ -17,6 +17,7 @@ using MindSpace.Infrastructure.Repositories;
 using MindSpace.Infrastructure.Seeders;
 using MindSpace.Infrastructure.Services;
 using MindSpace.Infrastructure.Services.AuthenticationServices;
+using MindSpace.Infrastructure.Services.ChatServices;
 using MindSpace.Infrastructure.Services.EmailServices;
 using MindSpace.Infrastructure.Services.FileReaderServices;
 using MindSpace.Infrastructure.Services.PaymentServices;
@@ -67,12 +68,16 @@ public static partial class ServiceCollectionExtensions
         services.AddScoped<IUserTokenService, UserTokenService>();
         services.AddScoped<IUserContext, UserContext>();
 
-        // Add Services
+        // Add HttpClient services
+        services.AddHttpClient();
+
+        // Add Class Services
         services.AddScoped<IPaymentService, PayOSPaymentService>();
         services.AddScoped<IStripePaymentService, StripePaymentService>();
         services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
         services.AddScoped<IResourcesService, ResourcesService>();
         services.AddSingleton<IExcelReaderService, ExcelReaderService>();
+        services.AddSingleton<IAgentChatService, GeminiAgentChatService>();
         services.AddScoped<ITestDraftService, TestDraftService>();
         services.AddScoped<IBlogDraftService, BlogDraftService>();
         services.AddScoped<ITestImportService, TestImportService>();
@@ -82,6 +87,5 @@ public static partial class ServiceCollectionExtensions
         services.AddScoped<IIdentitySeeder, IdentitySeeder>();
         services.AddScoped<IDataCleaner, DatabaseCleaner>();
         services.AddScoped<ApplicationDbContextSeeder>();
-
     }
 }
