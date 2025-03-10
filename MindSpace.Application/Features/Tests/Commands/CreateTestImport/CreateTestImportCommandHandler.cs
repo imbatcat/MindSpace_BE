@@ -33,12 +33,10 @@ public class CreateTestImportCommandHandler(
 
         // Check existed test
         var existedTest = await unitOfWork.Repository<Test>()
-            .GetBySpecAsync(new TestSpecification(testInfo.Title,
-                                         testInfo.AuthorId,
-                                         testInfo.TestCode));
+            .GetBySpecAsync(new TestSpecification(testInfo.TestCode));
         if (existedTest != null)
         {
-            throw new DuplicateObjectException("The title or test code is duplcated with an existed test!");
+            throw new DuplicateObjectException("The test code is duplicated with an existed test!");
         }
 
         // Get data of test file

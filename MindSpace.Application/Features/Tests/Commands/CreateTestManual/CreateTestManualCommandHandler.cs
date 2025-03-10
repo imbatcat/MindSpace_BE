@@ -41,12 +41,10 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestManual
 
             // Check existed test
             var existedTest = await _unitOfWork.Repository<Test>()
-                .GetBySpecAsync(new TestSpecification(testDraft.Title,
-                                             testDraft.AuthorId.Value,
-                                             testDraft.TestCode));
+                .GetBySpecAsync(new TestSpecification(testDraft.TestCode));
             if (existedTest != null)
             {
-                throw new DuplicateObjectException("The title or test code is duplcated with an existed test!");
+                throw new DuplicateObjectException("The test code is duplicated with an existed test!");
             }
 
             // Add test to table
