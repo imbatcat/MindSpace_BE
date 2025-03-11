@@ -17,6 +17,7 @@ using MindSpace.Infrastructure.Repositories;
 using MindSpace.Infrastructure.Seeders;
 using MindSpace.Infrastructure.Services;
 using MindSpace.Infrastructure.Services.AuthenticationServices;
+using MindSpace.Infrastructure.Services.CachingServices;
 using MindSpace.Infrastructure.Services.ChatServices;
 using MindSpace.Infrastructure.Services.EmailServices;
 using MindSpace.Infrastructure.Services.FileReaderServices;
@@ -38,11 +39,9 @@ public static partial class ServiceCollectionExtensions
         services.AddSingleton<IConnectionMultiplexer>(config =>
         {
             var connString = configuration.GetConnectionString("RedisDb")
-                ?? throw new Exception("Cannot get regis connection string");
+                ?? throw new Exception("Cannot get redis connection string");
             return ConnectionMultiplexer.Connect(connString);
         });
-
-
 
         // Add Identity services (authentication with tokens and cookies) with role supports, using ApplicationDbContext as the data store for Identity
         services.AddIdentityApiEndpoints<ApplicationUser>()
@@ -68,8 +67,14 @@ public static partial class ServiceCollectionExtensions
         services.AddScoped<IUserTokenService, UserTokenService>();
         services.AddScoped<IUserContext, UserContext>();
 
-        // Add HttpClient services
+        // Add HttpClient Services
         services.AddHttpClient();
+
+        // Add Chat Agent Service
+        services.AddSingleton<IAgentChatService, GeminiAgentChatService>();
+
+        // Add Caching Service
+        services.AddSingleton<IResponseCachingService, ResponseCachingService>();
 
         // Add Class Services
         services.AddScoped<IPaymentService, PayOSPaymentService>();
@@ -77,7 +82,6 @@ public static partial class ServiceCollectionExtensions
         services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
         services.AddScoped<IResourcesService, ResourcesService>();
         services.AddSingleton<IExcelReaderService, ExcelReaderService>();
-        services.AddSingleton<IAgentChatService, GeminiAgentChatService>();
         services.AddScoped<ITestDraftService, TestDraftService>();
         services.AddScoped<IBlogDraftService, BlogDraftService>();
         services.AddScoped<ITestImportService, TestImportService>();

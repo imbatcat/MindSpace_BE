@@ -188,6 +188,7 @@ namespace MindSpace.API.Controllers
         }
 
         // GET /api/identities/profile
+        [Cache(600)]
         [HttpGet("profile")]
         [Authorize]
         public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfile()
@@ -197,6 +198,7 @@ namespace MindSpace.API.Controllers
         }
 
         // GET /api/identities/profile/{id}
+        [Cache(600)]
         [HttpGet("profile/{id}")]
         [Authorize(Roles = UserRoles.Admin)]
         public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfileById(int id)
@@ -216,6 +218,7 @@ namespace MindSpace.API.Controllers
         }
 
         // GET /api/identities/accounts
+        [Cache(30000)]
         [HttpGet("accounts")]
         [Authorize(Roles = UserRoles.Admin)]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllAccounts([FromQuery] ApplicationUserSpecParams specParams)
@@ -230,6 +233,7 @@ namespace MindSpace.API.Controllers
         }
 
         // GET /api/identities/accounts/students
+        [Cache(30000)]
         [HttpGet("accounts/students")]
         [Authorize(Roles = UserRoles.SchoolManager)]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllStudents([FromQuery] ApplicationUserSpecParams specParams)

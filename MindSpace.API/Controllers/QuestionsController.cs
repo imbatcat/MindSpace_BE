@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.Tests;
 using MindSpace.Application.Features.Questions.Queries.GetQuestionById;
 using MindSpace.Application.Features.Questions.Queries.GetQuestions;
@@ -14,6 +15,7 @@ public class QuestionsController(IMediator mediator) : BaseApiController
     // ====================================
 
     // GET /api/questions
+    [Cache(30000)]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<QuestionResponseDTO>>> GetQuestions(
         [FromQuery] QuestionSpecParams specParams)
@@ -29,6 +31,7 @@ public class QuestionsController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/questions/{id}
+    [Cache(600)]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<QuestionResponseDTO>> GetQuestionById(int id)
     {

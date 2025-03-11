@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.SupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Commands.CreateSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Commands.PatchSupportingProgram;
@@ -21,6 +22,7 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     // ====================================
 
     // GET /api/supporting-programs
+    [Cache(30000)]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingPrograms(
         [FromQuery] SupportingProgramSpecParams specParams)
@@ -36,6 +38,7 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     }
 
     // GET /api/supporting-programs/history?studentId=2
+    [Cache(30000)]
     [HttpGet("history")]
     public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingProgramsHistory(
         [FromQuery] SupportingProgramHistorySpecParams specParams)
@@ -53,6 +56,7 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     }
 
     // GET /api/supporting-programs/{id}
+    [Cache(300)]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<SupportingProgramWithStudentsResponseDTO>> GetSupportingProgramById(
         [FromRoute] int id)
