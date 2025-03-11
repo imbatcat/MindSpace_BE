@@ -1,6 +1,6 @@
 ﻿namespace MindSpace.API.RequestHelpers
 {
-    public class InvalidateCache
+    public class InvalidateCacheAttribute
     {
     }
 }

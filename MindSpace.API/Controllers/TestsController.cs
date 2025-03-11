@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.Tests;
 using MindSpace.Application.Features.Tests.Commands.CreateTestImport;
 using MindSpace.Application.Features.Tests.Commands.CreateTestManual;
@@ -11,7 +12,9 @@ namespace MindSpace.API.Controllers;
 
 public class TestsController(IMediator mediator) : BaseApiController
 {
+
     // GET /api/tests
+    [Cache(30000)]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<TestOverviewResponseDTO>>> GetTests(
         [FromQuery] TestSpecParams specParams)
@@ -27,6 +30,7 @@ public class TestsController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/tests/{id}
+    [Cache(600)]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<TestResponseDTO>> GetTestById(int id)
     {

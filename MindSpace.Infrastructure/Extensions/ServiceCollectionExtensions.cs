@@ -67,8 +67,14 @@ public static partial class ServiceCollectionExtensions
         services.AddScoped<IUserTokenService, UserTokenService>();
         services.AddScoped<IUserContext, UserContext>();
 
-        // Add HttpClient services
+        // Add HttpClient Services
         services.AddHttpClient();
+
+        // Add Chat Agent Service
+        services.AddSingleton<IAgentChatService, GeminiAgentChatService>();
+
+        // Add Caching Service
+        services.AddSingleton<IResponseCachingService, ResponseCachingService>();
 
         // Add Class Services
         services.AddScoped<IPaymentService, PayOSPaymentService>();
@@ -76,7 +82,6 @@ public static partial class ServiceCollectionExtensions
         services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
         services.AddScoped<IResourcesService, ResourcesService>();
         services.AddSingleton<IExcelReaderService, ExcelReaderService>();
-        services.AddSingleton<IAgentChatService, GeminiAgentChatService>();
         services.AddScoped<ITestDraftService, TestDraftService>();
         services.AddScoped<IBlogDraftService, BlogDraftService>();
         services.AddScoped<ITestImportService, TestImportService>();

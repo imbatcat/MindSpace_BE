@@ -41,6 +41,7 @@ namespace MindSpace.Infrastructure.Services.CachingServices
 
         public async Task<string?> GetDataFromCacheAsync(string key)
         {
+            // indended json
             var result = await _cacheDatabase.StringGetAsync(
                 new RedisKey(key));
 

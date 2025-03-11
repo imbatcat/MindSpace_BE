@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MindSpace.API.RequestHelpers;
 using MindSpace.Application.Features.Draft.Commands.DeleteTestDraft;
 using MindSpace.Application.Features.Draft.Commands.UpdateTestDraft;
 using MindSpace.Application.Features.Draft.Queries.GetTestDraftById;
@@ -10,6 +11,7 @@ namespace MindSpace.API.Controllers;
 public class TestDraftController(IMediator mediator) : BaseApiController
 {
     // GET /api/test-draft/{id}
+    [Cache(600)]
     [HttpGet("{id}")]
     public async Task<ActionResult<TestDraft>> GetTestDraftById([FromRoute] string id)
     {

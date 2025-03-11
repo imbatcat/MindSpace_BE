@@ -51,7 +51,7 @@ namespace MindSpace.Application.Commons.Constants
         public static string Currency = "VND";
 
         /// <summary>
-        /// Database sharding for 1 instance
+        /// Database sharding for 1 instance (1 server)
         /// </summary>
         public static class Redis
         {
