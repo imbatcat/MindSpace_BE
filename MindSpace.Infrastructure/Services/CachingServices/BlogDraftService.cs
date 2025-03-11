@@ -3,7 +3,7 @@ using MindSpace.Domain.Entities.Drafts.Blogs;
 using StackExchange.Redis;
 using System.Text.Json;
 
-namespace MindSpace.Infrastructure.Services
+namespace MindSpace.Infrastructure.Services.CachingServices
 {
     public class BlogDraftService : IBlogDraftService
     {

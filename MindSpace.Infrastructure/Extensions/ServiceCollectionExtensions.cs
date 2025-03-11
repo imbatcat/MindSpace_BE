@@ -38,11 +38,9 @@ public static partial class ServiceCollectionExtensions
         services.AddSingleton<IConnectionMultiplexer>(config =>
         {
             var connString = configuration.GetConnectionString("RedisDb")
-                ?? throw new Exception("Cannot get regis connection string");
+                ?? throw new Exception("Cannot get redis connection string");
             return ConnectionMultiplexer.Connect(connString);
         });
-
-
 
         // Add Identity services (authentication with tokens and cookies) with role supports, using ApplicationDbContext as the data store for Identity
         services.AddIdentityApiEndpoints<ApplicationUser>()
