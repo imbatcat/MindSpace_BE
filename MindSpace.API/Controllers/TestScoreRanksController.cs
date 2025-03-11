@@ -9,6 +9,10 @@ namespace MindSpace.API.Controllers;
 [Route("api/v{version:apiVersion}/test-score-ranks")]
 public class TestScoreRanksController(IMediator mediator) : BaseApiController
 {
+    // ====================================
+    // === GET
+    // ====================================
+
     // GET /api/test-score-ranks?totalScore={totalScore}&testId={testId}
     [Cache(600)]
     [HttpGet]

@@ -21,6 +21,7 @@ public class PsychologistSchedulesController(IMediator mediator) : BaseApiContro
     }
 
     // POST /api/psychologist-schedules
+    [InvalidateCache("/api/psychologist-schedules|")]
     [HttpPost]
     public async Task<ActionResult> UpdatePsychologistSchedule([FromBody] UpdatePsychologistScheduleSimpleCommand command)
     {

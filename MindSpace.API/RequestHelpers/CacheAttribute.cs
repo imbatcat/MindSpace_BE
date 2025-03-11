@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using MindSpace.Application.Interfaces.Services;
 using System.Drawing;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace MindSpace.API.RequestHelpers
 {
@@ -73,8 +74,10 @@ namespace MindSpace.API.RequestHelpers
                 keyBuilder.Append($"|{param.Key}-{param.Value}");
             }
 
-            // api/products|pageIndex-1|pageSize-5|sort-name
-            return keyBuilder.ToString();
+            // api/v1/products|pageIndex-1|pageSize-5|sort-name
+            // - Remove the version
+            var keyWithoutVersion = Regex.Replace(keyBuilder.ToString(), "\\/v\\d+(?:-\\w+)*\\/", "/");
+            return keyWithoutVersion;
         }
     }
 }

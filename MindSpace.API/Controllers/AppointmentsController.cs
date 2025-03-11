@@ -10,6 +10,10 @@ namespace MindSpace.API.Controllers;
 
 public class AppointmentsController(IMediator mediator) : BaseApiController
 {
+    // ==============================
+    // === POST, PUT, DELETE, PATCH
+    // ==============================
+
     // POST /api/appointments/booking/confirm
     [HttpPost("booking/confirm")]
     public async Task<IActionResult> ConfirmBookingAppointment([FromBody] ConfirmBookingAppointmentCommand command)
@@ -38,6 +42,10 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         await mediator.Send(command);
         return Ok();
     }
+
+    // ==============================
+    // === GET
+    // ==============================
 
     // GET /api/appointments/booking/expire-session/{sessionId}
     [Cache(600)]

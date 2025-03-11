@@ -12,6 +12,9 @@ namespace MindSpace.API.Controllers;
 
 public class TestsController(IMediator mediator) : BaseApiController
 {
+    // ====================================
+    // === GET
+    // ====================================
 
     // GET /api/tests
     [Cache(30000)]
@@ -38,7 +41,12 @@ public class TestsController(IMediator mediator) : BaseApiController
         return Ok(test);
     }
 
+    // ==============================
+    // === POST, PUT, DELETE, PATCH
+    // ==============================
+
     // POST /api/tests/import
+    [InvalidateCache("/api/tests|")]
     [HttpPost("import")]
     public async Task<IActionResult> CreateTestWithImport([FromForm] CreateTestImportCommand command)
     {
@@ -52,6 +60,7 @@ public class TestsController(IMediator mediator) : BaseApiController
     }
 
     // POST /api/tests/manual
+    [InvalidateCache("/api/tests|")]
     [HttpPost("manual")]
     public async Task<IActionResult> CreateTestManual([FromBody] CreateTestManualCommand command)
     {
