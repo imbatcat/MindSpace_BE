@@ -14,6 +14,10 @@ namespace MindSpace.API.Controllers;
 
 public class ResourcesController(IMediator mediator) : BaseApiController
 {
+    // ====================================
+    // === GET
+    // ====================================
+
     // GET /api/resources/articles/{id}
     [Cache(600)]
     [HttpGet("articles/{id:int}")]
@@ -54,7 +58,12 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return PaginationOkResult(blogs.Data, blogs.Count, specParams.PageIndex, specParams.PageSize);
     }
 
+    // ==============================
+    // === POST, PUT, DELETE, PATCH
+    // ==============================
+
     // POST /api/resources/blogs
+    [InvalidateCache("/api/resources/blogs|")]
     [HttpPost("blogs")]
     public async Task<ActionResult> CreateBlog(
         [FromBody] CreateResourceAsBlogCommand command)
@@ -64,6 +73,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     }
 
     // POST /api/resources/articles
+    [InvalidateCache("/api/resources/blogs|")]
     [HttpPost("articles")]
     public async Task<ActionResult> CreateArticle(
         [FromBody] CreatedResourceAsArticleCommand command)

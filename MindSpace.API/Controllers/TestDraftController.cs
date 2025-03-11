@@ -10,14 +10,21 @@ namespace MindSpace.API.Controllers;
 
 public class TestDraftController(IMediator mediator) : BaseApiController
 {
+    // ====================================
+    // === GET
+    // ====================================
+
     // GET /api/test-draft/{id}
-    [Cache(600)]
     [HttpGet("{id}")]
     public async Task<ActionResult<TestDraft>> GetTestDraftById([FromRoute] string id)
     {
         var testDraft = await mediator.Send(new GetTestDraftByIdQuery(id));
         return Ok(testDraft);
     }
+
+    // ==============================
+    // === POST, PUT, DELETE, PATCH
+    // ==============================
 
     // DELETE /api/test-draft/{id}
     [HttpDelete("{id}")]

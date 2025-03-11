@@ -66,10 +66,11 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     }
 
     // ====================================
-    // === CREATE, PATCH, DELETE
+    // === CREATE, PATCH, DELETE, PUT
     // ====================================
 
     // POST /api/supporting-programs
+    [InvalidateCache("/api/supporting-programs|")]
     [HttpPost]
     public async Task<ActionResult> CreateSupportingProgram(
         [FromBody] CreateSupportingProgramCommand newSP)
@@ -79,10 +80,11 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     }
 
     // PATCH /api/supporting-programs/{id}
+    [InvalidateCache("/api/supporting-programs|")]
     [HttpPatch("{id:int}")]
     public async Task<ActionResult> PatchSupportingProgram(
-        [FromRoute] int id,
-        [FromBody] PatchSupportingProgramCommand updatedSP)
+       [FromRoute] int id,
+       [FromBody] PatchSupportingProgramCommand updatedSP)
     {
         updatedSP.Id = id;
         await mediator.Send(updatedSP);

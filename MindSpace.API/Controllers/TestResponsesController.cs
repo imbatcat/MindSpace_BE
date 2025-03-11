@@ -12,6 +12,10 @@ namespace MindSpace.API.Controllers;
 [Route("api/v{version:apiVersion}/test-responses")]
 public class TestResponsesController(IMediator mediator) : BaseApiController
 {
+    // ====================================
+    // === GET
+    // ====================================
+
     // GET /api/test-responses
     [Cache(30000)]
     [HttpGet]
@@ -35,7 +39,12 @@ public class TestResponsesController(IMediator mediator) : BaseApiController
         return Ok(testResponse);
     }
 
+    // ==============================
+    // === POST, PUT, DELETE, PATCH
+    // ==============================
+
     // POST /api/test-responses
+    [InvalidateCache("/api/test-responses|")]
     [HttpPost]
     public async Task<ActionResult> CreateTestResponse([FromBody] CreateTestResponseCommand command)
     {
