@@ -33,6 +33,11 @@ namespace MindSpace.API.Middlewares
                 // In here, if error occurs, then short-circuiting the middleware
                 // and catch the exception
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                await WriteToResponse(context, StatusCodes.Status400BadRequest, ex.Message);
+            }
             catch (AuthorizationFailedException ex)
             {
                 _logger.LogError(ex, ex.Message);

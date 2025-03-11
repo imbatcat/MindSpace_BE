@@ -2,6 +2,8 @@ using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.BackgroundJobs;
+using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.DTOs.Notifications;
 using MindSpace.Application.Interfaces.Repos;
@@ -12,6 +14,7 @@ using MindSpace.Application.Specifications.PsychologistScheduleSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Exceptions;
+using static MindSpace.Application.Commons.Constants.BusinessCts.StripePayment;
 
 namespace MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment;
 
@@ -20,7 +23,7 @@ public class ConfirmBookingAppointmentCommandHandler(
     ILogger<ConfirmBookingAppointmentCommandHandler> logger,
     INotificationService notificationService,
     IStripePaymentService stripePaymentService,
-    IConfiguration configuration,
+    IBackgroundJobService backgroundJobService,
     IMapper mapper) : IRequestHandler<ConfirmBookingAppointmentCommand, ConfirmBookingAppointmentResultDTO>
 {
     public async Task<ConfirmBookingAppointmentResultDTO> Handle(ConfirmBookingAppointmentCommand request, CancellationToken cancellationToken)
@@ -35,7 +38,6 @@ public class ConfirmBookingAppointmentCommandHandler(
                 return new ConfirmBookingAppointmentResultDTO
                 {
                     SessionId = appointment.SessionId,
-                    SessionUrl = "placeholder, this does nothing"
                 };
             }
             var scheduleWithPsychologist = await GetScheduleWithPsychologistAsync();
@@ -47,11 +49,15 @@ public class ConfirmBookingAppointmentCommandHandler(
                 throw new UnauthorizedAccessException($"Schedule {request.ScheduleId} does not belong to psychologist {request.PsychologistId}");
             }
 
-            var (sessionId, sessionUrl) = stripePaymentService.CreateCheckoutSession(psychologist.SessionPrice, psychologist.ComissionRate);
+            var sessionId = stripePaymentService.CreateCheckoutSession(psychologist.SessionPrice, psychologist.ComissionRate);
 
-            logger.LogInformation("Successfully created checkout session");
+            await ScheduleSessionExpirationJob(sessionId);
 
-            await UpdateAppointemntAndScheduleAsync(sessionId, scheduleWithPsychologist);
+            logger.LogInformation("Successfully created checkout session for student {}", request.StudentId);
+
+            await UpdateAppointmentAndScheduleAsync(sessionId, scheduleWithPsychologist);
+
+            logger.LogInformation("Successfully inserted new appointment with sessionId {}, and updated schedule", sessionId);
 
             // Notify student and psychologist to lock the schedule
             await notificationService.NotifyPsychologistScheduleLocked(UserRoles.Student, mapper.Map<PsychologistScheduleNotificationResponseDTO>(scheduleWithPsychologist));
@@ -60,7 +66,6 @@ public class ConfirmBookingAppointmentCommandHandler(
             return new ConfirmBookingAppointmentResultDTO
             {
                 SessionId = sessionId,
-                SessionUrl = sessionUrl
             };
         }
         catch (Exception ex)
@@ -79,18 +84,17 @@ public class ConfirmBookingAppointmentCommandHandler(
 
         async Task<Appointment?> TryGetAppointmentAsync()
         {
-            var sessionExpirationMinutes = configuration.GetValue<int>("Stripe:SessionExpirationMinutes");
-            var appointmentSpecification = new AppointmentSpecification(request.StudentId, request.PsychologistId, request.ScheduleId, sessionExpirationMinutes);
+            var appointmentSpecification = new AppointmentSpecification(request.StudentId, request.PsychologistId, request.ScheduleId, CheckoutSessionExpireTimeInMinutes);
             var appointment = await unitOfWork.Repository<Appointment>().GetBySpecAsync(appointmentSpecification);
             return appointment;
         }
 
-        async Task UpdateAppointemntAndScheduleAsync(string sessionId, PsychologistSchedule psychologistSchedule)
+        async Task UpdateAppointmentAndScheduleAsync(string sessionId, PsychologistSchedule psychologistSchedule)
         {
             var newAppointment = new Appointment
             {
-                CreateAt = DateTime.UtcNow.ToLocalTime(),
-                UpdateAt = DateTime.UtcNow.ToLocalTime(),
+                CreateAt = DateTime.UtcNow,
+                UpdateAt = DateTime.UtcNow,
                 Status = AppointmentStatus.Pending,
                 StudentId = request.StudentId,
                 PsychologistId = request.PsychologistId,
@@ -101,9 +105,14 @@ public class ConfirmBookingAppointmentCommandHandler(
             };
             psychologistSchedule.Status = PsychologistScheduleStatus.Locked;
             unitOfWork.Repository<Appointment>().Insert(newAppointment);
-            logger.LogInformation("Successfully inserted new appointment");
             unitOfWork.Repository<PsychologistSchedule>().Update(psychologistSchedule);
             await unitOfWork.CompleteAsync();
         }
+
+        async Task ScheduleSessionExpirationJob(string sessionId)
+        {
+            await backgroundJobService.ScheduleJobWithFireOnce<ExpireStripeCheckoutSessionJob>(sessionId, BusinessCts.StripePayment.CheckoutSessionExpireTimeInMinutes);
+        }
     }
+
 }

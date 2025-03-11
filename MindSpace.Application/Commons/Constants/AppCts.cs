@@ -4,6 +4,11 @@ namespace MindSpace.Application.Commons.Constants
 {
     public static class AppCts
     {
+        public static class CheckoutSession
+        {
+            public static readonly int CheckoutSessionExpireTimeInMinutes = 15;
+        }
+
         /// <summary>
         /// All file path
         /// </summary>
@@ -44,10 +49,5 @@ namespace MindSpace.Application.Commons.Constants
         /// Default password for all registered users
         /// </summary>
         public static string DefaultPassword = "Password1!";
-
-        /// <summary>
-        /// Default currency for payments 
-        /// </summary>
-        public static string Currency = "VND";
     }
 }
