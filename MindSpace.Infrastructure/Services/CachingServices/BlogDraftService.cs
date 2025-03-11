@@ -1,26 +1,19 @@
-﻿using MindSpace.Application.Interfaces.Services;
+﻿using MindSpace.Application.Commons.Constants;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Domain.Entities.Drafts.Blogs;
 using StackExchange.Redis;
 using System.Text.Json;
 
 namespace MindSpace.Infrastructure.Services.CachingServices
 {
-    public class BlogDraftService : IBlogDraftService
+    public class BlogDraftService(IConnectionMultiplexer redisMul) : IBlogDraftService
     {
         // ====================================
         // === Props & Fields
         // ====================================
 
-        private readonly IDatabase _database;
-
-        // ====================================
-        // === Constructors
-        // ====================================
-
-        public BlogDraftService(IConnectionMultiplexer redis)
-        {
-            _database = redis.GetDatabase();
-        }
+        private readonly IDatabase _redisDb = redisMul.GetDatabase(AppCts.Redis.DatabaseNo_Blog);
+        private const int EXPIRATION_DAYS = 2;
 
         // ====================================
         // === Methods
@@ -28,20 +21,20 @@ namespace MindSpace.Infrastructure.Services.CachingServices
 
         public async Task<bool> DeleteBlogDraftAsync(string blogDraftId)
         {
-            return await _database.KeyDeleteAsync(blogDraftId);
+            return await _redisDb.KeyDeleteAsync(blogDraftId);
         }
 
         public async Task<BlogDraft?> GetBlogDraftAsync(string blogDraftId)
         {
-            var blogDraft = await _database.StringGetAsync(blogDraftId);
+            var blogDraft = await _redisDb.StringGetAsync(blogDraftId);
             return blogDraft.IsNullOrEmpty ? null : JsonSerializer.Deserialize<BlogDraft>(blogDraft);
         }
 
         public async Task<BlogDraft?> SetBlogDraftAsync(BlogDraft blogDraft)
         {
-            var IsSetSuccessful = await _database.StringSetAsync(blogDraft.Id,
+            var IsSetSuccessful = await _redisDb.StringSetAsync(blogDraft.Id,
                 JsonSerializer.Serialize(blogDraft),
-                TimeSpan.FromHours(2));
+                TimeSpan.FromDays(EXPIRATION_DAYS));
 
             return !IsSetSuccessful ? null : await GetBlogDraftAsync(blogDraft.Id);
         }

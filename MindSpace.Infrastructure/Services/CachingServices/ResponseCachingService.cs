@@ -1,12 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.Interfaces.Services;
 using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace MindSpace.Infrastructure.Services.CachingServices
 {
@@ -22,9 +17,8 @@ namespace MindSpace.Infrastructure.Services.CachingServices
         // === Fields & Props
         // ==============================
 
-        // Using database no.1 for isolation
-        private const int DATABASE_NO = 1;
-        private readonly IDatabase _cacheDatabase = redisConn.GetDatabase(DATABASE_NO);
+        // Using database no.3 for isolation
+        private readonly IDatabase _cacheDatabase = redisConn.GetDatabase(AppCts.Redis.DatabaseNo_Response);
 
         // ==============================
         // === Constructors
@@ -61,7 +55,7 @@ namespace MindSpace.Infrastructure.Services.CachingServices
 
             // Find all keys having the same pattern
             var cacheKeys = server.Keys(
-                database: DATABASE_NO,
+                database: AppCts.Redis.DatabaseNo_Response,
                 pattern: $"*{pattern}*").ToArray();
 
             if (cacheKeys.Length != 0)

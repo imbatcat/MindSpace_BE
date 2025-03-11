@@ -49,5 +49,15 @@ namespace MindSpace.Application.Commons.Constants
         /// Default currency for payments 
         /// </summary>
         public static string Currency = "VND";
+
+        /// <summary>
+        /// Database sharding for 1 instance
+        /// </summary>
+        public static class Redis
+        {
+            public static int DatabaseNo_Blog = 1; // For Blog Draft
+            public static int DatabaseNo_Test = 2; // For Test Draft
+            public static int DatabaseNo_Response = 3; // For Caching Response
+        }
     }
 }

@@ -17,6 +17,7 @@ using MindSpace.Infrastructure.Repositories;
 using MindSpace.Infrastructure.Seeders;
 using MindSpace.Infrastructure.Services;
 using MindSpace.Infrastructure.Services.AuthenticationServices;
+using MindSpace.Infrastructure.Services.CachingServices;
 using MindSpace.Infrastructure.Services.ChatServices;
 using MindSpace.Infrastructure.Services.EmailServices;
 using MindSpace.Infrastructure.Services.FileReaderServices;
