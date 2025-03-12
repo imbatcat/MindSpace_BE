@@ -1,6 +1,9 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.DTOs.Notifications;
 using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
@@ -11,8 +14,10 @@ using Stripe.Checkout;
 namespace MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
 
 internal class HandleWebhookCommandHandler(
-    IUnitOfWork unitOfWork,
-    ILogger<HandleWebhookCommandHandler> logger) : IRequestHandler<HandleWebhookCommand>
+    IUnitOfWork _unitOfWork,
+    INotificationService _notificationService,
+    ILogger<HandleWebhookCommandHandler> _logger,
+    IMapper _mapper) : IRequestHandler<HandleWebhookCommand>
 {
     public async Task Handle(HandleWebhookCommand request, CancellationToken cancellationToken)
     {
@@ -24,13 +29,13 @@ internal class HandleWebhookCommandHandler(
             {
                 case EventTypes.CheckoutSessionCompleted:
                     var session = stripeEvent.Data.Object as Session;
-                    logger.LogInformation("Checkout session completed: {0}", session);
-                    // await HandleCompletedSessionAsync(session!.Id);
+                    await HandleCompletedSessionAsync(session!.Id);
+                    _logger.LogInformation("Checkout session completed: {0}", session);
                     break;
                 case EventTypes.CheckoutSessionExpired:
                     var expiredSession = stripeEvent.Data.Object as Session;
                     await HandleExpiredSessionAsync(expiredSession!.Id);
-                    //Call SignalR to notify the client that the session has expired
+                    _logger.LogInformation("Checkout session expired: {0}", expiredSession);
                     break;
                 default:
                     // Unexpected event type
@@ -40,36 +45,42 @@ internal class HandleWebhookCommandHandler(
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error handling webhook event: {0}", ex.Message);
+            _logger.LogError(ex, "Error handling webhook event: {0}", ex.Message);
             throw;
         }
 
         async Task HandleExpiredSessionAsync(string sessionId)
         {
             var specification = new AppointmentSpecification(sessionId);
-            var appointment = await unitOfWork.Repository<Appointment>().GetBySpecAsync(specification)
+            var appointment = await _unitOfWork.Repository<Appointment>().GetBySpecAsync(specification)
                 ?? throw new NotFoundException(nameof(Appointment), sessionId);
 
             appointment.Status = AppointmentStatus.Failed;
             appointment.PsychologistSchedule.Status = PsychologistScheduleStatus.Free;
 
-            unitOfWork.Repository<Appointment>().Update(appointment);
-            unitOfWork.Repository<PsychologistSchedule>().Update(appointment.PsychologistSchedule);
-            await unitOfWork.CompleteAsync();
+            _unitOfWork.Repository<Appointment>().Update(appointment);
+            _unitOfWork.Repository<PsychologistSchedule>().Update(appointment.PsychologistSchedule);
+
+            await _notificationService.NotifyPsychologistScheduleFree(UserRoles.Psychologist, _mapper.Map<PsychologistScheduleNotificationResponseDTO>(appointment.PsychologistSchedule));
+            await _notificationService.NotifyPsychologistScheduleFree(UserRoles.Student, _mapper.Map<PsychologistScheduleNotificationResponseDTO>(appointment.PsychologistSchedule));
+            await _unitOfWork.CompleteAsync();
         }
 
         async Task HandleCompletedSessionAsync(string sessionId)
         {
             var specification = new AppointmentSpecification(sessionId);
-            var appointment = await unitOfWork.Repository<Appointment>().GetBySpecAsync(specification)
+            var appointment = await _unitOfWork.Repository<Appointment>().GetBySpecAsync(specification)
                 ?? throw new NotFoundException(nameof(Appointment), sessionId);
 
             appointment.Status = AppointmentStatus.Success;
             appointment.PsychologistSchedule.Status = PsychologistScheduleStatus.Booked;
 
-            unitOfWork.Repository<Appointment>().Update(appointment);
-            unitOfWork.Repository<PsychologistSchedule>().Update(appointment.PsychologistSchedule);
-            await unitOfWork.CompleteAsync();
+            _unitOfWork.Repository<Appointment>().Update(appointment);
+            _unitOfWork.Repository<PsychologistSchedule>().Update(appointment.PsychologistSchedule);
+
+            await _notificationService.NotifyPsychologistScheduleBooked(UserRoles.Psychologist, _mapper.Map<PsychologistScheduleNotificationResponseDTO>(appointment.PsychologistSchedule));
+            await _notificationService.NotifyPsychologistScheduleBooked(UserRoles.Student, _mapper.Map<PsychologistScheduleNotificationResponseDTO>(appointment.PsychologistSchedule));
+            await _unitOfWork.CompleteAsync();
         }
     }
 }
