@@ -49,5 +49,36 @@ namespace MindSpace.Application.Commons.Constants
         /// Default password for all registered users
         /// </summary>
         public static string DefaultPassword = "Password1!";
+
+        /// <summary>
+        /// Database sharding for 1 instance (1 server)
+        /// </summary>
+        public static class Redis
+        {
+            public static int DatabaseNo_Blog = 1; // For Blog Draft
+            public static int DatabaseNo_Test = 2; // For Test Draft
+            public static int DatabaseNo_Response = 3; // For Caching Response
+        }
+        public static class StripePayment
+        {
+            /// <summary>
+            /// The time in minutes before a checkout session expires
+            /// </summary>
+            public static readonly int CheckoutSessionExpireTimeInMinutes = 15;
+
+            /// <summary>
+            /// The currency used for payment processing
+            /// </summary>
+            public static readonly string PaymentCurrency = "VND";
+
+
+            public enum StripeCheckoutSessionStatus
+            {
+                open,
+                expired,
+                completed
+            }
+        }
+
     }
 }

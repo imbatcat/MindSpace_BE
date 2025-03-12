@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.Tests;
 using MindSpace.Application.Features.Tests.Commands.CreateTestImport;
 using MindSpace.Application.Features.Tests.Commands.CreateTestManual;
@@ -11,7 +12,12 @@ namespace MindSpace.API.Controllers;
 
 public class TestsController(IMediator mediator) : BaseApiController
 {
+    // ====================================
+    // === GET
+    // ====================================
+
     // GET /api/tests
+    [Cache(30000)]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<TestOverviewResponseDTO>>> GetTests(
         [FromQuery] TestSpecParams specParams)
@@ -27,6 +33,7 @@ public class TestsController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/tests/{id}
+    [Cache(600)]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<TestResponseDTO>> GetTestById(int id)
     {
@@ -34,7 +41,12 @@ public class TestsController(IMediator mediator) : BaseApiController
         return Ok(test);
     }
 
+    // ==============================
+    // === POST, PUT, DELETE, PATCH
+    // ==============================
+
     // POST /api/tests/import
+    [InvalidateCache("/api/tests|")]
     [HttpPost("import")]
     public async Task<IActionResult> CreateTestWithImport([FromForm] CreateTestImportCommand command)
     {
@@ -48,6 +60,7 @@ public class TestsController(IMediator mediator) : BaseApiController
     }
 
     // POST /api/tests/manual
+    [InvalidateCache("/api/tests|")]
     [HttpPost("manual")]
     public async Task<IActionResult> CreateTestManual([FromBody] CreateTestManualCommand command)
     {

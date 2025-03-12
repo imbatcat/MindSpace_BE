@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MindSpace.API.RequestHelpers;
 using MindSpace.Application.Features.Appointments.Commands.CancelBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
@@ -9,6 +10,10 @@ namespace MindSpace.API.Controllers;
 
 public class AppointmentsController(IMediator mediator) : BaseApiController
 {
+    // ==============================
+    // === POST, PUT, DELETE, PATCH
+    // ==============================
+
     // POST /api/appointments/booking/confirm
     [HttpPost("booking/confirm")]
     public async Task<IActionResult> ConfirmBookingAppointment([FromBody] ConfirmBookingAppointmentCommand command)
@@ -38,7 +43,12 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         return Ok();
     }
 
+    // ==============================
+    // === GET
+    // ==============================
+
     // GET /api/appointments/booking/expire-session/{sessionId}
+    [Cache(600)]
     [HttpGet("booking/expire-session/{sessionId}")]
     public async Task<IActionResult> ExpireSession([FromRoute] string sessionId)
     {

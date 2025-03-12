@@ -13,10 +13,10 @@ namespace MindSpace.API.Controllers
         ) : BaseApiController
     {
         // ==============================
-        // === Methods
+        // === POST, PUT, DELETE, PATCH
         // ==============================
 
-        // POST api/v1/chat-agents/generate
+        // POST /api/v1/chat-agents/generate
         [HttpPost("generate")]
         public async Task<ActionResult<ChatResponseDTO>> GenerateContentAsync(
             [FromBody] GenerateChatContentCommand chatAgentCommand)

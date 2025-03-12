@@ -10,6 +10,10 @@ namespace MindSpace.API.Controllers;
 [Route("api/v{v:apiVersion}/blog-draft")]
 public class BlogDraftController(IMediator mediator) : BaseApiController
 {
+    // ==============================
+    // === GET
+    // ==============================
+
     // GET /api/blog-draft/{id}
     [HttpGet("{id}")]
     public async Task<ActionResult<BlogDraft>> GetBlogDraftById([FromRoute] string id)
@@ -17,6 +21,10 @@ public class BlogDraftController(IMediator mediator) : BaseApiController
         var blogDraft = await mediator.Send(new GetBlogDraftByIdQuery(id));
         return Ok(blogDraft);
     }
+
+    // ==============================
+    // === POST, PUT, DELETE, PATCH
+    // ==============================
 
     // DELETE /api/blog-draft/{id}
     [HttpDelete("{id:int}")]

@@ -14,7 +14,12 @@ namespace MindSpace.API.Controllers;
 
 public class ResourcesController(IMediator mediator) : BaseApiController
 {
+    // ====================================
+    // === GET
+    // ====================================
+
     // GET /api/resources/articles/{id}
+    [Cache(600)]
     [HttpGet("articles/{id:int}")]
     public async Task<ActionResult<ArticleResponseDTO>> GetResourceAsArticleById(
         [FromRoute] int id)
@@ -24,6 +29,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/resources/blogs/{id}
+    [Cache(600)]
     [HttpGet("blogs/{id:int}")]
     public async Task<ActionResult<BlogResponseDTO>> GetResourceAsBlogById(
         [FromRoute] int id)
@@ -33,6 +39,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/resources/articles
+    [Cache(30000)]
     [HttpGet("articles")]
     public async Task<ActionResult<Pagination<ArticleResponseDTO>>> GetAllArticles(
         [FromQuery] ResourceSpecificationSpecParams specParams)
@@ -42,6 +49,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/resources/blogs
+    [Cache(30000)]
     [HttpGet("blogs")]
     public async Task<ActionResult<Pagination<BlogResponseDTO>>> GetAllBlogs(
         [FromQuery] ResourceSpecificationSpecParams specParams)
@@ -50,7 +58,12 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return PaginationOkResult(blogs.Data, blogs.Count, specParams.PageIndex, specParams.PageSize);
     }
 
+    // ==============================
+    // === POST, PUT, DELETE, PATCH
+    // ==============================
+
     // POST /api/resources/blogs
+    [InvalidateCache("/api/resources/blogs|")]
     [HttpPost("blogs")]
     public async Task<ActionResult> CreateBlog(
         [FromBody] CreateResourceAsBlogCommand command)
@@ -60,6 +73,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     }
 
     // POST /api/resources/articles
+    [InvalidateCache("/api/resources/blogs|")]
     [HttpPost("articles")]
     public async Task<ActionResult> CreateArticle(
         [FromBody] CreatedResourceAsArticleCommand command)

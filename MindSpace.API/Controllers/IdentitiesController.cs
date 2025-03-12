@@ -33,6 +33,10 @@ namespace MindSpace.API.Controllers
         IMediator mediator,
         UserManager<ApplicationUser> userManager) : BaseApiController
     {
+        // ==============================
+        // === POST, PUT, DELETE, PATCH
+        // ==============================
+
         // POST /api/identities/register
         [HttpPost("register")]
         [AllowAnonymous]
@@ -187,25 +191,8 @@ namespace MindSpace.API.Controllers
             return BadRequest("Password reset failed");
         }
 
-        // GET /api/identities/profile
-        [HttpGet("profile")]
-        [Authorize]
-        public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfile()
-        {
-            var result = await mediator.Send(new ViewProfileQuery());
-            return Ok(result);
-        }
-
-        // GET /api/identities/profile/{id}
-        [HttpGet("profile/{id}")]
-        [Authorize(Roles = UserRoles.Admin)]
-        public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfileById(int id)
-        {
-            var result = await mediator.Send(new ViewProfileByIdQuery { UserId = id });
-            return Ok(result);
-        }
-
         // PUT /api/identities/profile/{id}
+        [InvalidateCache("/api/identities|")]
         [HttpPut("profile/{id}")]
         [Authorize]
         public async Task<ActionResult<ApplicationUserProfileDTO>> UpdateProfile([FromBody] UpdateProfileCommand command, [FromRoute] int id)
@@ -215,7 +202,42 @@ namespace MindSpace.API.Controllers
             return Ok(result);
         }
 
+        // PUT /api/identities/accounts/{id}/toggle-status
+        [InvalidateCache("/api/identities/accounts|")]
+        [HttpPut("accounts/{id}/toggle-status")]
+        [Authorize(Roles = UserRoles.Admin)]
+        public async Task<IActionResult> ToggleAccountStatus([FromRoute] int id)
+        {
+            await mediator.Send(new ToggleAccountStatusCommand { UserId = id });
+            return NoContent();
+        }
+
+        // ==============================
+        // === GET
+        // ==============================
+
+        // GET /api/identities/profile
+        [Cache(600)]
+        [HttpGet("profile")]
+        [Authorize]
+        public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfile()
+        {
+            var result = await mediator.Send(new ViewProfileQuery());
+            return Ok(result);
+        }
+
+        // GET /api/identities/profile/{id}
+        [Cache(600)]
+        [HttpGet("profile/{id}")]
+        [Authorize(Roles = UserRoles.Admin)]
+        public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfileById(int id)
+        {
+            var result = await mediator.Send(new ViewProfileByIdQuery { UserId = id });
+            return Ok(result);
+        }
+
         // GET /api/identities/accounts
+        [Cache(30000)]
         [HttpGet("accounts")]
         [Authorize(Roles = UserRoles.Admin)]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllAccounts([FromQuery] ApplicationUserSpecParams specParams)
@@ -230,6 +252,7 @@ namespace MindSpace.API.Controllers
         }
 
         // GET /api/identities/accounts/students
+        [Cache(30000)]
         [HttpGet("accounts/students")]
         [Authorize(Roles = UserRoles.SchoolManager)]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllStudents([FromQuery] ApplicationUserSpecParams specParams)
@@ -241,15 +264,6 @@ namespace MindSpace.API.Controllers
                 specParams.PageIndex,
                 specParams.PageSize
             );
-        }
-
-        // PUT /api/identities/accounts/{id}/toggle-status
-        [HttpPut("accounts/{id}/toggle-status")]
-        [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> ToggleAccountStatus([FromRoute] int id)
-        {
-            await mediator.Send(new ToggleAccountStatusCommand { UserId = id });
-            return NoContent();
         }
     }
 }
