@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.Interfaces.Services.PaymentServices;
 using Stripe.Checkout;
-using static MindSpace.Application.Commons.Constants.BusinessCts.StripePayment;
+using static MindSpace.Application.Commons.Constants.AppCts.StripePayment;
 
 namespace MindSpace.Infrastructure.Services.PaymentServices
 {
@@ -17,7 +17,7 @@ namespace MindSpace.Infrastructure.Services.PaymentServices
         {
             var priceData = new SessionLineItemPriceDataOptions()
             {
-                Currency = BusinessCts.StripePayment.PaymentCurrency,
+                Currency = AppCts.StripePayment.PaymentCurrency,
                 UnitAmount = (long)(sessionPrice * commissionRate),
                 ProductData = new SessionLineItemPriceDataProductDataOptions
                 {

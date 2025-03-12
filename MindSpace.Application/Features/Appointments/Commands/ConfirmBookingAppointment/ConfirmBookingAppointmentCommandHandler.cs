@@ -14,7 +14,7 @@ using MindSpace.Application.Specifications.PsychologistScheduleSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Exceptions;
-using static MindSpace.Application.Commons.Constants.BusinessCts.StripePayment;
+using static MindSpace.Application.Commons.Constants.AppCts.StripePayment;
 
 namespace MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment;
 
@@ -53,14 +53,15 @@ public class ConfirmBookingAppointmentCommandHandler(
 
             await ScheduleSessionExpirationJob(sessionId);
 
-            logger.LogInformation("Successfully created checkout session for student {}", request.StudentId);
+            logger.LogInformation("Successfully created checkout session for student {StudentId}", request.StudentId);
 
             await UpdateAppointmentAndScheduleAsync(sessionId, scheduleWithPsychologist);
 
-            logger.LogInformation("Successfully inserted new appointment with sessionId {}, and updated schedule", sessionId);
+            logger.LogInformation("Successfully inserted new appointment with sessionId {SessionId}, and updated schedule", sessionId);
 
             // Notify student and psychologist to lock the schedule
             await notificationService.NotifyPsychologistScheduleLocked(UserRoles.Student, mapper.Map<PsychologistScheduleNotificationResponseDTO>(scheduleWithPsychologist));
+
             await notificationService.NotifyPsychologistScheduleLocked(UserRoles.Psychologist, mapper.Map<PsychologistScheduleNotificationResponseDTO>(scheduleWithPsychologist));
 
             return new ConfirmBookingAppointmentResultDTO
@@ -111,7 +112,7 @@ public class ConfirmBookingAppointmentCommandHandler(
 
         async Task ScheduleSessionExpirationJob(string sessionId)
         {
-            await backgroundJobService.ScheduleJobWithFireOnce<ExpireStripeCheckoutSessionJob>(sessionId, BusinessCts.StripePayment.CheckoutSessionExpireTimeInMinutes);
+            await backgroundJobService.ScheduleJobWithFireOnce<ExpireStripeCheckoutSessionJob>(sessionId, CheckoutSessionExpireTimeInMinutes);
         }
     }
 
