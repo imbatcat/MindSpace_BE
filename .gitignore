@@ -422,3 +422,5 @@ tools/llm_api.py
 tools/screenshot_utils.py
 tools/search_engine.py
 tools/web_scraper.py
+ACTION_PLAN.md
+PROTOCOL.md

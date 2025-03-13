@@ -4,6 +4,7 @@ using Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MindSpace.Application.BackgroundJobs;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.AuthenticationServices;
@@ -17,12 +18,14 @@ using MindSpace.Infrastructure.Repositories;
 using MindSpace.Infrastructure.Seeders;
 using MindSpace.Infrastructure.Services;
 using MindSpace.Infrastructure.Services.AuthenticationServices;
+using MindSpace.Infrastructure.Services.BackgroundServices;
 using MindSpace.Infrastructure.Services.CachingServices;
 using MindSpace.Infrastructure.Services.ChatServices;
 using MindSpace.Infrastructure.Services.EmailServices;
 using MindSpace.Infrastructure.Services.FileReaderServices;
 using MindSpace.Infrastructure.Services.PaymentServices;
 using MindSpace.Infrastructure.Services.SignalR;
+using Quartz;
 using StackExchange.Redis;
 
 public static partial class ServiceCollectionExtensions
@@ -63,6 +66,21 @@ public static partial class ServiceCollectionExtensions
         services.AddSignalR();
         services.AddSingleton<INotificationService, NotificationService>();
 
+        // Add Quartz services
+        services.AddQuartz(q =>
+        {
+            // Configure Quartz settings
+            q.UseSimpleTypeLoader();
+            q.UseInMemoryStore();
+            q.UseDefaultThreadPool(tp =>
+            {
+                tp.MaxConcurrency = 10;
+            });
+        });
+
+        // Add the Quartz.NET hosted service
+        services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+
         // Add Authentication Services 
         services.AddScoped<IUserTokenService, UserTokenService>();
         services.AddScoped<IUserContext, UserContext>();
@@ -91,5 +109,8 @@ public static partial class ServiceCollectionExtensions
         services.AddScoped<IIdentitySeeder, IdentitySeeder>();
         services.AddScoped<IDataCleaner, DatabaseCleaner>();
         services.AddScoped<ApplicationDbContextSeeder>();
+
+        // Add Background Job Service
+        services.AddScoped<IBackgroundJobService, BackgroundJobService>();
     }
 }

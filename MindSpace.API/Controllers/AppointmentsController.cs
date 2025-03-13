@@ -57,4 +57,13 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
 
         return Ok("Session expired");
     }
+
+    // GET /api/appointments/booking/session-status/{sessionId}
+    [HttpGet("booking/session-status/{sessionId}")]
+    public async Task<IActionResult> GetSessionStatus([FromRoute] string sessionId)
+    {
+        var sessionService = new SessionService();
+        var session = await sessionService.GetAsync(sessionId);
+        return Ok(new { Status = session.Status, PaymentStatus = session.PaymentStatus });
+    }
 }
