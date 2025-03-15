@@ -20,7 +20,7 @@ namespace MindSpace.Application.BackgroundJobs
         {
             try
             {
-                var sessionId = context.JobDetail.JobDataMap.GetString("SessionId");
+                var sessionId = context.JobDetail.JobDataMap.GetString("referenceId");
                 _logger.LogInformation("Expiring Stripe checkout session: {SessionId}", sessionId);
                 await _stripePaymentService.ExpireStripeCheckoutSession(sessionId!);
                 var appointment = await GetAppointment(sessionId!);

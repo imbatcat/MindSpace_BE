@@ -48,6 +48,7 @@ app.MapGroup("api/identities")
 app.UseAuthorization();
 app.MapControllers();
 app.MapHub<NotificationHub>("/hub/notifications");
+app.MapHub<WebRTCHub>("/hub/webrtc");
 
 // ===================================================
 // === Create a scope and call the service manually

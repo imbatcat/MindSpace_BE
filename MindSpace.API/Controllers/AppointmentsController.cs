@@ -31,7 +31,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     }
 
     // POST /api/appointments/booking/webhook/{link}
-    [HttpPost("bookings/webhook/{link}")]
+    [HttpPost("booking/webhook/{link}")]
     public async Task<IActionResult> HandleWebhook(string link)
     {
         var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();

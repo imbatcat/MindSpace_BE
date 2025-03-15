@@ -8,7 +8,7 @@
 POST {{MindSpace.API_HostAddress}}/api/v1/identity/register 
 Content-Type: application/json
 
-{
+
   "email": "ptdat04@gmail.com",
   "password": "Password1!",
   "Username": "ptdat",

@@ -80,5 +80,18 @@ namespace MindSpace.Application.Commons.Constants
             }
         }
 
+        public static class WebRTC
+        {
+            /// <summary>
+            /// The extra duration of the room in minutes, the room will be created before the meeting start time by 10 minutes, an extra 5 minutes in case that the client join the meeting late
+            /// </summary>
+            public static readonly int ExtraRoomDurationInMinutes = 15;
+
+            /// <summary>
+            /// The extra lifetime of the room in minutes in case the client request to extend the room lifetime, the room will be deleted after the meeting end time by 20 minutes
+            /// </summary>
+            public static readonly int ExtraRoomLifetimeInMinutes = 20;
+        }
+
     }
 }

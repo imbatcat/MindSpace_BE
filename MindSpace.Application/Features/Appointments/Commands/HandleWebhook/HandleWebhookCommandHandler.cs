@@ -82,5 +82,10 @@ internal class HandleWebhookCommandHandler(
             await _notificationService.NotifyPsychologistScheduleBooked(UserRoles.Student, _mapper.Map<PsychologistScheduleNotificationResponseDTO>(appointment.PsychologistSchedule));
             await _unitOfWork.CompleteAsync();
         }
+
+        async Task ScheduleCreateMeetingRoom()
+        {
+
+        }
     }
 }
