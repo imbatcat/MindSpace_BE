@@ -1,9 +1,7 @@
 using AutoMapper;
 using MediatR;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.BackgroundJobs.Payments;
-using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.DTOs.Notifications;
 using MindSpace.Application.Interfaces.Repos;
