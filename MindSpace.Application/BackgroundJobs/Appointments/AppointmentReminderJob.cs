@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Services.EmailServices;
 using Quartz;
 
-namespace MindSpace.Application.BackgroundJobs
+namespace MindSpace.Application.BackgroundJobs.Appointments
 {
     [DisallowConcurrentExecution]
     public class AppointmentReminderJob(

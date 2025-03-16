@@ -9,18 +9,33 @@ namespace MindSpace.Infrastructure.Services.BackgroundServices
         ILogger<BackgroundJobService> _logger
     ) : IBackgroundJobService
     {
-        public async Task ScheduleJobWithFireOnce<T>(string referenceId, int minutesFromNow) where T : IJob
+        public async Task ScheduleJobWithFireOnce<T>(
+            string referenceId,
+            int minutesFromNow,
+            Dictionary<string, object> jobDatas = null
+            ) where T : IJob
         {
             // Create Scheduler
             var scheduler = await _schedulerFactory.GetScheduler();
 
-            // Configure a job
-            var job = JobBuilder.Create<T>()
+            // Configure a jobBuilder
+            var jobBuilder = JobBuilder.Create<T>()
                 .WithIdentity(referenceId)
-                .UsingJobData(nameof(referenceId), referenceId)
-                .Build();
+                .UsingJobData(nameof(referenceId), referenceId);
 
-            // Schedule a job with trigger
+            // Add extra jobBuilder data
+            if (jobDatas != null)
+            {
+                foreach (KeyValuePair<string, object> data in jobDatas)
+                {
+                    jobBuilder = jobBuilder.UsingJobData(data.Key, data.Value.ToString());
+                }
+            }
+
+            // Build a Job
+            var job = jobBuilder.Build();
+
+            // Schedule a jobBuilder with simple trigger
             var trigger = TriggerBuilder.Create()
                 .WithIdentity($"{referenceId}.trigger")
                 .StartAt(DateBuilder.FutureDate(minutesFromNow, IntervalUnit.Minute))
@@ -31,9 +46,41 @@ namespace MindSpace.Infrastructure.Services.BackgroundServices
             _logger.LogInformation($"Job {referenceId} scheduled successfully");
         }
 
-        public Task ScheuleJobWithFireOnDate<T>(string referenceId, TimeSpan timeSpan) where T : IJob
+        public async Task ScheduleJobWithFireOnce<T>(
+            string referenceId,
+            DateTime dateTime,
+            Dictionary<string, object> jobDatas = null) where T : IJob
         {
-            throw new NotImplementedException();
+            // Create scheduler
+            var scheduler = await _schedulerFactory.GetScheduler();
+
+            // Configure a jobBuilder
+            var jobBuilder = JobBuilder.Create<T>()
+                .WithIdentity(referenceId)
+                .UsingJobData(nameof(referenceId), referenceId);
+
+            // Add extra jobBuilder data
+            if (jobDatas != null)
+            {
+                foreach (KeyValuePair<string, object> data in jobDatas)
+                {
+                    jobBuilder = jobBuilder.UsingJobData(data.Key, data.Value.ToString());
+                }
+            }
+
+            // Build a Job
+            var job = jobBuilder.Build();
+
+            // Schedule a jobBuilder with simple trigger
+            var trigger = TriggerBuilder.Create()
+                .WithIdentity($"{referenceId}.trigger")
+                .StartAt(dateTime)
+                .ForJob(referenceId)
+                .Build();
+
+            await scheduler.ScheduleJob(job, trigger);
+            _logger.LogInformation($"Job {referenceId} scheduled successfully");
         }
+
     }
 }

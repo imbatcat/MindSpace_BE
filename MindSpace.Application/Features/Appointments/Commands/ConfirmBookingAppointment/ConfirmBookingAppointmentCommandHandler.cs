@@ -2,7 +2,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.BackgroundJobs;
+using MindSpace.Application.BackgroundJobs.Payments;
 using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.DTOs.Notifications;
@@ -112,9 +112,8 @@ public class ConfirmBookingAppointmentCommandHandler(
 
         async Task ScheduleSessionExpirationJob(string sessionId)
         {
-            var jobKey = $"stripe-{sessionId}";
+            var jobKey = $"{nameof(ExpireStripeCheckoutSessionJob)}-{sessionId}";
             await backgroundJobService.ScheduleJobWithFireOnce<ExpireStripeCheckoutSessionJob>(jobKey, CheckoutSessionExpireTimeInMinutes);
         }
     }
-
 }

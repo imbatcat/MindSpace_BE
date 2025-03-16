@@ -7,7 +7,7 @@ using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
 using Quartz;
 
-namespace MindSpace.Application.BackgroundJobs
+namespace MindSpace.Application.BackgroundJobs.Payments
 {
     [DisallowConcurrentExecution]
     public class ExpireStripeCheckoutSessionJob(
