@@ -7,8 +7,9 @@ using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
 using Quartz;
 
-namespace MindSpace.Application.BackgroundJobs
+namespace MindSpace.Application.BackgroundJobs.Payments
 {
+    [DisallowConcurrentExecution]
     public class ExpireStripeCheckoutSessionJob(
         ILogger<ExpireStripeCheckoutSessionJob> _logger,
         IUnitOfWork _unitOfWork,
@@ -32,7 +33,6 @@ namespace MindSpace.Application.BackgroundJobs
 
                 await UpdateAppointmentAndScheduleStatus(appointment);
 
-                //TODO: add signalr here
                 _logger.LogInformation("Stripe checkout session expired: {SessionId}", sessionId);
             }
             catch (Exception ex)

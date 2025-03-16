@@ -2,8 +2,9 @@ using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Services.EmailServices;
 using Quartz;
 
-namespace MindSpace.Application.BackgroundJobs
+namespace MindSpace.Application.BackgroundJobs.Appointments
 {
+    [DisallowConcurrentExecution]
     public class AppointmentReminderJob(
         ILogger<AppointmentReminderJob> _logger,
         IEmailService _emailService
@@ -13,7 +14,7 @@ namespace MindSpace.Application.BackgroundJobs
         {
             try
             {
-                _logger.LogInformation($"Appointment reminder job started at: {DateTime.UtcNow}");
+                _logger.LogInformation($"Appointment reminder job started at: {DateTime.Now}");
 
                 // Get job data from the context
                 var dataMap = context.JobDetail.JobDataMap;

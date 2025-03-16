@@ -83,7 +83,7 @@ namespace MindSpace.API.Controllers
             var handler = new JwtSecurityTokenHandler();
             var jwtToken = handler.ReadJwtToken(refreshToken);
             // 3 seconds clock skew, this is to account for the time it takes for the token to reach the server
-            if (jwtToken.ValidTo < DateTime.UtcNow.AddSeconds(3))
+            if (jwtToken.ValidTo < DateTime.Now.AddSeconds(3))
             {
                 return Unauthorized("Expired refresh token");
             }
