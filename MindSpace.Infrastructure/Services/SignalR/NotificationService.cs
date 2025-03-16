@@ -38,7 +38,6 @@ namespace MindSpace.Infrastructure.Services.SignalR
         public async Task NotifyAppointmentSuccess(string groupRole, AppointmentNotificationResponseDTO payload)
         {
             await _hubContext.Clients.Group(groupRole).NotifyAppointmentSuccess(payload);
-
         }
 
         public async Task NotifyPsychologistScheduleBooked(string groupRole, PsychologistScheduleNotificationResponseDTO payload)

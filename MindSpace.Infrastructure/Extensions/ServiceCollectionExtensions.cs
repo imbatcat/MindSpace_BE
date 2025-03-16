@@ -80,6 +80,7 @@ public static partial class ServiceCollectionExtensions
 
         // Add the Quartz.NET hosted service
         services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+        services.AddScoped<IBackgroundJobService, BackgroundJobService>();
 
         // Add Authentication Services 
         services.AddScoped<IUserTokenService, UserTokenService>();
@@ -109,8 +110,5 @@ public static partial class ServiceCollectionExtensions
         services.AddScoped<IIdentitySeeder, IdentitySeeder>();
         services.AddScoped<IDataCleaner, DatabaseCleaner>();
         services.AddScoped<ApplicationDbContextSeeder>();
-
-        // Add Background Job Service
-        services.AddScoped<IBackgroundJobService, BackgroundJobService>();
     }
 }

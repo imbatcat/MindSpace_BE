@@ -7,12 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Features\Authentications\Profiles\**" />
-	  <Compile Remove="Features\Payment\**" />
-	  <EmbeddedResource Remove="Features\Authentications\Profiles\**" />
-	  <EmbeddedResource Remove="Features\Payment\**" />
-	  <None Remove="Features\Authentications\Profiles\**" />
-	  <None Remove="Features\Payment\**" />
+		<Compile Remove="Features\Authentications\Profiles\**" />
+		<Compile Remove="Features\Payment\**" />
+		<EmbeddedResource Remove="Features\Authentications\Profiles\**" />
+		<EmbeddedResource Remove="Features\Payment\**" />
+		<None Remove="Features\Authentications\Profiles\**" />
+		<None Remove="Features\Payment\**" />
 	</ItemGroup>
 
 	<ItemGroup>
