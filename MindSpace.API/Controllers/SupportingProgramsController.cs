@@ -55,7 +55,7 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     }
 
     // GET /api/supporting-programs/{id}
-    [Cache(300)]
+    [Cache(30000)]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<SupportingProgramWithStudentsResponseDTO>> GetSupportingProgramById(
         [FromRoute] int id)

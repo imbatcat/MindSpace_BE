@@ -1,12 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services.EmailServices;
 using Quartz;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.BackgroundJobs.SupportingPrograms
 {
@@ -19,7 +13,7 @@ namespace MindSpace.Application.BackgroundJobs.SupportingPrograms
         {
             try
             {
-                logger.LogInformation("NotifyRegisteredUserJob started at: {DateTime}", DateTime.UtcNow);
+                logger.LogInformation("NotifyRegisteredUserJob started at: {DateTime}", DateTime.Now);
 
                 // Get User and Supporting Program Information
                 var dataMap = context.JobDetail.JobDataMap;

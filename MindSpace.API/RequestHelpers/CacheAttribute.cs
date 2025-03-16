@@ -1,8 +1,6 @@
-﻿using Bogus.DataSets;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using MindSpace.Application.Interfaces.Services;
-using System.Drawing;
 using System.Text;
 using System.Text.RegularExpressions;
 
