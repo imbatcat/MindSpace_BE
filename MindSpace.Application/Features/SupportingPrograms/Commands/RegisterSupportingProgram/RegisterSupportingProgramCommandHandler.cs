@@ -34,7 +34,7 @@ public class RegisterSupportingProgramCommandHandler(
         {
             SupportingProgramId = existingSupportingProgram.Id,
             StudentId = existingStudent.Id,
-            JoinedAt = DateTime.UtcNow,
+            JoinedAt = DateTime.Now,
         };
 
         // Check if student already register this supporting program or not 
@@ -49,10 +49,10 @@ public class RegisterSupportingProgramCommandHandler(
         await unitOfWork.CompleteAsync();
 
         // Set the job to notify the starting date of supporting program for registered user
-        await SetReminderForSuppotringProgram(existingSupportingProgram, existingStudent);
+        await SetReminderForSupportingProgram(existingSupportingProgram, existingStudent);
     }
 
-    private async Task SetReminderForSuppotringProgram(SupportingProgram sp, ApplicationUser student)
+    private async Task SetReminderForSupportingProgram(SupportingProgram sp, ApplicationUser student)
     {
         // Extra information for email service
         Dictionary<string, object> jobDatas = new Dictionary<string, object>();

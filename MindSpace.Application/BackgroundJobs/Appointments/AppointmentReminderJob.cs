@@ -14,7 +14,7 @@ namespace MindSpace.Application.BackgroundJobs.Appointments
         {
             try
             {
-                _logger.LogInformation($"Appointment reminder job started at: {DateTime.UtcNow}");
+                _logger.LogInformation($"Appointment reminder job started at: {DateTime.Now}");
 
                 // Get job data from the context
                 var dataMap = context.JobDetail.JobDataMap;

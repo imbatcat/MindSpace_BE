@@ -86,14 +86,14 @@ namespace MindSpace.Infrastructure.Persistence
                     modelBuilder.Entity(entityType.ClrType)
                         .Property(nameof(BaseEntity.CreateAt))
                         .IsRequired()
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasDefaultValue(DateTime.Now)
                         .ValueGeneratedOnAdd();
 
                     // Configure UpdatedAt
                     modelBuilder.Entity(entityType.ClrType)
                         .Property(nameof(BaseEntity.UpdateAt))
                         .IsRequired()
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasDefaultValue(DateTime.Now)
                         .ValueGeneratedOnAddOrUpdate();
                 }
             }

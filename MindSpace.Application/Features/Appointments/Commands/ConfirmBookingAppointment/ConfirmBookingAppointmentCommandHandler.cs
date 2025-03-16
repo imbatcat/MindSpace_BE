@@ -94,8 +94,8 @@ public class ConfirmBookingAppointmentCommandHandler(
         {
             var newAppointment = new Appointment
             {
-                CreateAt = DateTime.UtcNow,
-                UpdateAt = DateTime.UtcNow,
+                CreateAt = DateTime.Now,
+                UpdateAt = DateTime.Now,
                 Status = AppointmentStatus.Pending,
                 StudentId = request.StudentId,
                 PsychologistId = request.PsychologistId,

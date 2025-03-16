@@ -41,7 +41,7 @@ public class CancelPaymentCommandHandler(
             .FirstOrDefault()
             ?? throw new NotFoundException(nameof(Invoice), paymentId.ToString());
 
-        payment.UpdateAt = DateTime.UtcNow;
+        payment.UpdateAt = DateTime.Now;
 
         unitOfWork.Repository<Invoice>().Update(payment);
         await unitOfWork.CompleteAsync();

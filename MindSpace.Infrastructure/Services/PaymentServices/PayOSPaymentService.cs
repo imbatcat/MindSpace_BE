@@ -87,8 +87,8 @@ public class PayOSPaymentService : IPaymentService
             Provider = "payOS",
             PaymentMethod = PaymentMethod.MOMO,
             PaymentDescription = description,
-            CreateAt = DateTime.UtcNow,
-            UpdateAt = DateTime.UtcNow,
+            CreateAt = DateTime.Now,
+            UpdateAt = DateTime.Now,
             PaymentType = PaymentType.Purchase,
             TransactionTime = null
         };
@@ -114,7 +114,7 @@ public class PayOSPaymentService : IPaymentService
     public async Task UpdatePaymentFromWebhookAsync(Invoice payment, PaymentWebhookResponseDTO webhookData)
     {
         payment.TransactionTime = webhookData.TransactionTime;
-        payment.UpdateAt = DateTime.UtcNow;
+        payment.UpdateAt = DateTime.Now;
 
         _unitOfWork.Repository<Invoice>().Update(payment);
         await _unitOfWork.CompleteAsync();
