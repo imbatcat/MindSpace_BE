@@ -112,7 +112,8 @@ public class ConfirmBookingAppointmentCommandHandler(
 
         async Task ScheduleSessionExpirationJob(string sessionId)
         {
-            await backgroundJobService.ScheduleJobWithFireOnce<ExpireStripeCheckoutSessionJob>(sessionId, CheckoutSessionExpireTimeInMinutes);
+            var jobKey = $"stripe-{sessionId}";
+            await backgroundJobService.ScheduleJobWithFireOnce<ExpireStripeCheckoutSessionJob>(jobKey, CheckoutSessionExpireTimeInMinutes);
         }
     }
 

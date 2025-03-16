@@ -4,6 +4,7 @@ using Quartz;
 
 namespace MindSpace.Application.BackgroundJobs
 {
+    [DisallowConcurrentExecution]
     public class AppointmentReminderJob(
         ILogger<AppointmentReminderJob> _logger,
         IEmailService _emailService

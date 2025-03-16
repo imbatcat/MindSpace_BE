@@ -69,12 +69,11 @@ public static partial class ServiceCollectionExtensions
         // Add Quartz services
         services.AddQuartz(q =>
         {
-            // Configure Quartz settings
-            q.UseSimpleTypeLoader();
-            q.UseInMemoryStore();
+            q.UseSimpleTypeLoader();      // Load all jobs in current assembly
+            q.UseInMemoryStore();         // Use in-memory storage for job and trigger
             q.UseDefaultThreadPool(tp =>
             {
-                tp.MaxConcurrency = 10;
+                tp.MaxConcurrency = 10;    // Set max concurrency to 10
             });
         });
 

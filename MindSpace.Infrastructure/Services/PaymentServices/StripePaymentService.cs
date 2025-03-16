@@ -50,7 +50,7 @@ namespace MindSpace.Infrastructure.Services.PaymentServices
         public async Task ExpireStripeCheckoutSession(string sessionId)
         {
             var service = new SessionService();
-            
+
             var session = await service.GetAsync(sessionId);
             _logger.LogInformation("Stripe session status: {Status}", session.Status);
             if (session.Status == StripeCheckoutSessionStatus.open.ToString())
