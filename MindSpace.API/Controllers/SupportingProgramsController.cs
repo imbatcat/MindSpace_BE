@@ -44,7 +44,6 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         [FromQuery] SupportingProgramHistorySpecParams specParams)
     {
         // Get from the Table Supporting Program History to track number of SP by Student Id
-
         var pagedResultDTO = await mediator.Send(new GetSupportingProgramByHistoryQuery(specParams));
 
         return PaginationOkResult<SupportingProgramResponseDTO>(
@@ -92,6 +91,7 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     }
 
     // POST /api/supporting-programs/register
+    [InvalidateCache("/api/supporting-programs/history|")]
     [HttpPost("register")]
     public async Task<ActionResult> RegisterSupportingProgram(
         [FromBody] RegisterSupportingProgramCommand registerSP)
