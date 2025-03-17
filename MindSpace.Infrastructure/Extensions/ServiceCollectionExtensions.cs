@@ -4,7 +4,6 @@ using Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MindSpace.Application.BackgroundJobs;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.AuthenticationServices;
@@ -71,17 +70,17 @@ public static partial class ServiceCollectionExtensions
         // Add Quartz services
         services.AddQuartz(q =>
         {
-            // Configure Quartz settings
-            q.UseSimpleTypeLoader();
-            q.UseInMemoryStore();
+            q.UseSimpleTypeLoader();      // Load all jobs in current assembly
+            q.UseInMemoryStore();         // Use in-memory storage for job and trigger
             q.UseDefaultThreadPool(tp =>
             {
-                tp.MaxConcurrency = 10;
+                tp.MaxConcurrency = 10;    // Set max concurrency to 10
             });
         });
 
         // Add the Quartz.NET hosted service
         services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+        services.AddScoped<IBackgroundJobService, BackgroundJobService>();
 
         // Add Authentication Services 
         services.AddScoped<IUserTokenService, UserTokenService>();
@@ -118,8 +117,5 @@ public static partial class ServiceCollectionExtensions
         services.AddScoped<IIdentitySeeder, IdentitySeeder>();
         services.AddScoped<IDataCleaner, DatabaseCleaner>();
         services.AddScoped<ApplicationDbContextSeeder>();
-
-        // Add Background Job Service
-        services.AddScoped<IBackgroundJobService, BackgroundJobService>();
     }
 }

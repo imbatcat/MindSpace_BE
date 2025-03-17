@@ -1,8 +1,6 @@
-﻿using Bogus.DataSets;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using MindSpace.Application.Interfaces.Services;
-using System.Drawing;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -55,12 +53,13 @@ namespace MindSpace.API.RequestHelpers
         }
 
         // First Request
-        // Request: GET /api/products? page = 1 & size = 10 & sort = name
+        // Request: GET /api/v1/products? page = 1 & size = 10 & sort = name
         // Cache Key: "/api/products|page-1|size-10|sort-name"
 
         // Second Request
-        // Request: GET /api/products? categories = 1 & categories = 2
+        // Request: GET /api/v1/products? categories = 1 & categories = 2
         // Cache Key: "/api/products|categories-1|categories-2"
+
         private string GenerateCacheKeyFromRequest(HttpRequest request)
         {
             var keyBuilder = new StringBuilder();

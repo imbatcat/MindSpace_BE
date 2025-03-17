@@ -58,7 +58,12 @@ namespace MindSpace.Application.Commons.Constants
             public static int DatabaseNo_Blog = 1; // For Blog Draft
             public static int DatabaseNo_Test = 2; // For Test Draft
             public static int DatabaseNo_Response = 3; // For Caching Response
+            public static int DatabaseNo_Job = 4; // For Caching Job
         }
+
+        /// <summary>
+        /// Stripe Payment Constants
+        /// </summary>
         public static class StripePayment
         {
             /// <summary>

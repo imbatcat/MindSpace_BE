@@ -14,7 +14,7 @@ public class BlogDraftController(IMediator mediator) : BaseApiController
     // === GET
     // ==============================
 
-    // GET /api/blog-draft/{id}
+    // GET /api/v1/blog-draft/{id}
     [HttpGet("{id}")]
     public async Task<ActionResult<BlogDraft>> GetBlogDraftById([FromRoute] string id)
     {
@@ -26,8 +26,8 @@ public class BlogDraftController(IMediator mediator) : BaseApiController
     // === POST, PUT, DELETE, PATCH
     // ==============================
 
-    // DELETE /api/blog-draft/{id}
-    [HttpDelete("{id:int}")]
+    // DELETE /api/v1/blog-draft/{id}
+    [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteBlogDraft(
         [FromRoute] string id)
     {
@@ -35,7 +35,7 @@ public class BlogDraftController(IMediator mediator) : BaseApiController
         return NoContent();
     }
 
-    // POST /api/blog-draft
+    // POST /api/v1/blog-draft
     [HttpPost]
     public async Task<ActionResult<BlogDraft>> UpdateBlogDraft(
         [FromBody] BlogDraft blogDraft)

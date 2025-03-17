@@ -10,6 +10,9 @@ namespace MindSpace.Infrastructure.Services.CachingServices
 
          Application ─► ConnectionMultiplexer ─► Single Redis Server
                                              └── Database 1
+                                             └── Database 2
+                                             └── Database 3 // Caching Responses
+                                             └── Database 4
      */
     public class ResponseCachingService(IConnectionMultiplexer redisConn) : IResponseCachingService
     {

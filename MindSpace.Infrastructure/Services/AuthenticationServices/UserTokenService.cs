@@ -31,7 +31,7 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
                         new Claim(ClaimTypes.Email, user.Email),
                         new Claim(ClaimTypes.Role, role),
                     ]),
-                Expires = DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("JwtAccessTokenSettings:ExpirationInMinutes")),
+                Expires = DateTime.Now.AddMinutes(configuration.GetValue<int>("JwtAccessTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
                 Issuer = jwtSettings["Issuer"]!,
                 Audience = jwtSettings["Audience"]
@@ -62,7 +62,7 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
                         new Claim("username", user.UserName!),
                         new Claim("role", role)
                     ]),
-                Expires = DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("JwtIDTokenSettings:ExpirationInMinutes")),
+                Expires = DateTime.Now.AddMinutes(configuration.GetValue<int>("JwtIDTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
                 Issuer = jwtSettings["Issuer"]!,
                 Audience = jwtSettings["Audience"]
@@ -91,7 +91,7 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
                     {
                         { JwtRegisteredClaimNames.Sub, user.Id.ToString() }
                     },
-                Expires = DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("JwtRefreshTokenSettings:ExpirationInMinutes")),
+                Expires = DateTime.Now.AddMinutes(configuration.GetValue<int>("JwtRefreshTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
                 Issuer = jwtSettings["Issuer"]!,
             };
