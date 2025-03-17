@@ -10,6 +10,7 @@ using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Application.Interfaces.Services.EmailServices;
 using MindSpace.Application.Interfaces.Services.FileReaderServices;
 using MindSpace.Application.Interfaces.Services.PaymentServices;
+using MindSpace.Application.Interfaces.Services.VideoCallServices;
 using MindSpace.Application.Interfaces.Utilities;
 using MindSpace.Application.Interfaces.Utilities.Seeding;
 using MindSpace.Infrastructure.Persistence;
@@ -24,6 +25,7 @@ using MindSpace.Infrastructure.Services.EmailServices;
 using MindSpace.Infrastructure.Services.FileReaderServices;
 using MindSpace.Infrastructure.Services.PaymentServices;
 using MindSpace.Infrastructure.Services.SignalR;
+using MindSpace.Infrastructure.Services.VideoCallServices;
 using Quartz;
 using StackExchange.Redis;
 
@@ -93,9 +95,16 @@ public static partial class ServiceCollectionExtensions
         // Add Caching Service
         services.AddSingleton<IResponseCachingService, ResponseCachingService>();
 
-        // Add Class Services
+        // Add Caching Service
+        services.AddSingleton<IResponseCachingService, ResponseCachingService>();
+
+        // Add Payment Services
         services.AddScoped<IPaymentService, PayOSPaymentService>();
         services.AddScoped<IStripePaymentService, StripePaymentService>();
+
+        // Add Video Call Services
+        services.AddScoped<IWebRTCService, WebRTCService>();
+
         services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
         services.AddScoped<IResourcesService, ResourcesService>();
         services.AddSingleton<IExcelReaderService, ExcelReaderService>();

@@ -85,5 +85,23 @@ namespace MindSpace.Application.Commons.Constants
             }
         }
 
+        public static class WebRTC
+        {
+            /// <summary>
+            /// The actual time in minutes to create the room, the room will be created 10 minutes before the appointment actually starts
+            /// </summary>
+            public static readonly int RoomCreationActualTimeInMinutes = 10;
+
+            /// <summary>
+            /// The actual time in minutes to remove the room, the room will be removed 5 minutes after the appointment actually ends
+            /// </summary>
+            public static readonly int RoomRemovalActualTimeInMinutes = 5;
+
+            /// <summary>
+            /// The extra lifetime of the room in minutes in case the client request to extend the room lifetime, the room will be deleted after the meeting end time by 20 minutes
+            /// </summary>
+            public static readonly int ExtraRoomLifetimeInMinutes = 20;
+        }
+
     }
 }

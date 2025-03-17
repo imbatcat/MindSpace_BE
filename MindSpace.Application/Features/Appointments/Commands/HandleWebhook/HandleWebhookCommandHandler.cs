@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.BackgroundJobs.MeetingRooms;
+using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.DTOs.Notifications;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
@@ -17,6 +19,7 @@ internal class HandleWebhookCommandHandler(
     IUnitOfWork _unitOfWork,
     INotificationService _notificationService,
     ILogger<HandleWebhookCommandHandler> _logger,
+    IBackgroundJobService _backgroundJobService,
     IMapper _mapper) : IRequestHandler<HandleWebhookCommand>
 {
     public async Task Handle(HandleWebhookCommand request, CancellationToken cancellationToken)
@@ -81,6 +84,22 @@ internal class HandleWebhookCommandHandler(
             await _notificationService.NotifyPsychologistScheduleBooked(UserRoles.Psychologist, _mapper.Map<PsychologistScheduleNotificationResponseDTO>(appointment.PsychologistSchedule));
             await _notificationService.NotifyPsychologistScheduleBooked(UserRoles.Student, _mapper.Map<PsychologistScheduleNotificationResponseDTO>(appointment.PsychologistSchedule));
             await _unitOfWork.CompleteAsync();
+
+            await ScheduleCreateMeetingRoom(appointment);
+        }
+
+        async Task ScheduleCreateMeetingRoom(Appointment appointment)
+        {
+            var startDate = appointment.PsychologistSchedule.Date;
+            var startTime = appointment.PsychologistSchedule.StartTime;
+
+            // Calculate the start time for the meeting room, the room will be created 10 minutes before the appointment actually starts
+            var startDateTime = startDate.ToDateTime(startTime.AddMinutes(-AppCts.WebRTC.RoomCreationActualTimeInMinutes));
+
+            await _backgroundJobService.ScheduleJobWithFireOnce<CreateMeetingRoomJob>(
+                appointment.Id.ToString(),
+                startDateTime
+            );
         }
     }
 }
