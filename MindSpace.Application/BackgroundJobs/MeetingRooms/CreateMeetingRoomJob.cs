@@ -8,7 +8,7 @@ using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Exceptions;
 using Quartz;
 
-namespace MindSpace.Application.BackgroundJobs;
+namespace MindSpace.Application.BackgroundJobs.MeetingRooms;
 
 public class CreateMeetingRoomJob(
     ILogger<CreateMeetingRoomJob> _logger,

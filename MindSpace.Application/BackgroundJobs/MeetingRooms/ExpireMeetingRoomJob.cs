@@ -3,7 +3,7 @@ using MindSpace.Application.Interfaces.Services.VideoCallServices;
 using Quartz;
 using System;
 
-namespace MindSpace.Application.BackgroundJobs;
+namespace MindSpace.Application.BackgroundJobs.MeetingRooms;
 
 public class ExpireMeetingRoomJob(
     ILogger<ExpireMeetingRoomJob> _logger,
