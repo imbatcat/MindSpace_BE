@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.VideoCallServices;
@@ -6,7 +7,6 @@ using MindSpace.Application.Specifications.AppointmentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Exceptions;
 using Quartz;
-using System;
 
 namespace MindSpace.Application.BackgroundJobs;
 
@@ -32,7 +32,7 @@ public class CreateMeetingRoomJob(
 
         _logger.LogInformation("Finished {bgJob}", nameof(CreateMeetingRoomJob));
 
-        
+
         #region Helper Methods
         async Task<Appointment> GetAppointment(string sessionId)
         {
@@ -45,9 +45,11 @@ public class CreateMeetingRoomJob(
         {
             var endDate = appointment.PsychologistSchedule.Date;
             var endTime = appointment.PsychologistSchedule.EndTime;
-            var endDateTime = endDate.ToDateTime(endTime).AddMinutes(5);
 
-            return (int)(endDateTime - DateTime.UtcNow).TotalMinutes;
+            // Calculate the end time for the meeting room, the room will be removed 5 minutes after the appointment actually ends
+            var endDateTime = endDate.ToDateTime(endTime).AddMinutes(AppCts.WebRTC.RoomRemovalActualTimeInMinutes);
+
+            return (int)(endDateTime - DateTime.Now).TotalMinutes;
         }
         #endregion
     }

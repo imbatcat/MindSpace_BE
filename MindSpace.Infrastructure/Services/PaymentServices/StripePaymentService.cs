@@ -13,12 +13,12 @@ namespace MindSpace.Infrastructure.Services.PaymentServices
     ) : IStripePaymentService
     {
 
-        public string CreateCheckoutSession(decimal sessionPrice, decimal commissionRate)
+        public string CreateCheckoutSession(decimal sessionPrice)
         {
             var priceData = new SessionLineItemPriceDataOptions()
             {
                 Currency = AppCts.StripePayment.PaymentCurrency,
-                UnitAmount = (long)(sessionPrice * commissionRate),
+                UnitAmount = (long)(sessionPrice),
                 ProductData = new SessionLineItemPriceDataProductDataOptions
                 {
                     Name = "Appointment",

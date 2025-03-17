@@ -47,7 +47,7 @@ public class ConfirmBookingAppointmentCommandHandler(
                 throw new UnauthorizedAccessException($"Schedule {request.ScheduleId} does not belong to psychologist {request.PsychologistId}");
             }
 
-            var sessionId = stripePaymentService.CreateCheckoutSession(psychologist.SessionPrice, psychologist.ComissionRate);
+            var sessionId = stripePaymentService.CreateCheckoutSession(psychologist.SessionPrice);
 
             await ScheduleSessionExpirationJob(sessionId);
 

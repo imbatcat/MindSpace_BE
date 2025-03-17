@@ -12,7 +12,7 @@ namespace MindSpace.Infrastructure.Services.BackgroundServices
         public async Task ScheduleJobWithFireOnce<T>(
             string referenceId,
             int minutesFromNow,
-            Dictionary<string, object> jobDatas = null
+            Dictionary<string, object>? jobDatas = null
             ) where T : IJob
         {
             // Create Scheduler
@@ -49,7 +49,7 @@ namespace MindSpace.Infrastructure.Services.BackgroundServices
         public async Task ScheduleJobWithFireOnce<T>(
             string referenceId,
             DateTime dateTime,
-            Dictionary<string, object> jobDatas = null) where T : IJob
+            Dictionary<string, object>? jobDatas = null) where T : IJob
         {
             // Create scheduler
             var scheduler = await _schedulerFactory.GetScheduler();
