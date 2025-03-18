@@ -12,6 +12,8 @@ using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Exceptions;
 using Stripe;
 using Stripe.Checkout;
+using Invoice = MindSpace.Domain.Entities.Appointments.Invoice;
+using PaymentMethod = MindSpace.Domain.Entities.Constants.PaymentMethod;
 
 namespace MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
 
@@ -32,7 +34,7 @@ internal class HandleWebhookCommandHandler(
             {
                 case EventTypes.CheckoutSessionCompleted:
                     var session = stripeEvent.Data.Object as Session;
-                    await HandleCompletedSessionAsync(session!.Id);
+                    await HandleCompletedSessionAsync(session);
                     _logger.LogInformation("Checkout session completed: {0}", session);
                     break;
                 case EventTypes.CheckoutSessionExpired:
@@ -69,8 +71,10 @@ internal class HandleWebhookCommandHandler(
             await _unitOfWork.CompleteAsync();
         }
 
-        async Task HandleCompletedSessionAsync(string sessionId)
+        async Task HandleCompletedSessionAsync(Session session)
         {
+            var sessionId = session.Id;
+
             var specification = new AppointmentSpecification(sessionId);
             var appointment = await _unitOfWork.Repository<Appointment>().GetBySpecAsync(specification)
                 ?? throw new NotFoundException(nameof(Appointment), sessionId);
@@ -85,6 +89,7 @@ internal class HandleWebhookCommandHandler(
             await _notificationService.NotifyPsychologistScheduleBooked(UserRoles.Student, _mapper.Map<PsychologistScheduleNotificationResponseDTO>(appointment.PsychologistSchedule));
             await _unitOfWork.CompleteAsync();
 
+            await CreateInvoice(appointment, session);
             await ScheduleCreateMeetingRoom(appointment);
         }
 
@@ -100,6 +105,26 @@ internal class HandleWebhookCommandHandler(
                 appointment.Id.ToString(),
                 startDateTime
             );
+        }
+
+        async Task CreateInvoice(Appointment appointment, Session session)
+        {
+            _logger.LogInformation("Creating invoice for appointment: {0}", appointment.Id);
+            Invoice invoice = new()
+            {
+                AppointmentId = appointment.Id,
+                TransactionCode = session.Id,
+                PaymentType = PaymentType.Purchase,
+                Provider = AppCts.StripePayment.Provider,
+                PaymentMethod = PaymentMethod.STRIPE,
+                PaymentDescription = "Payment for appointment",
+                Amount = appointment.Psychologist.SessionPrice,
+                AccountId = appointment.StudentId,
+                TransactionTime = DateTime.Now
+            };
+            _unitOfWork.Repository<Invoice>().Insert(invoice);
+            await _unitOfWork.CompleteAsync();
+            _logger.LogInformation("Invoice created for appointment: {0}", appointment.Id);
         }
     }
 }
