@@ -32,6 +32,11 @@ namespace MindSpace.Application.Specifications.AppointmentSpecifications
         {
         }
 
+        public AppointmentSpecification(int appointmentId)
+            : base(a => a.Id == appointmentId)
+        {
+        }
+
         public AppointmentSpecification(int studentId, int psychologistId, int scheduleId)
     : base(
         a => a.StudentId == studentId &&
