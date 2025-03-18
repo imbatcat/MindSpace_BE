@@ -17,6 +17,5 @@ namespace MindSpace.API.Controllers
             var schools = await mediator.Send(new ViewAllSchoolsQuery());
             return Ok(schools);
         }
-
     }
 }
