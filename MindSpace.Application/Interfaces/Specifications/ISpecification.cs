@@ -12,6 +12,8 @@ namespace MindSpace.Application.Interfaces.Specifications
         public Expression<Func<IGrouping<object, T>, bool>>? Having { get; } // HAVING ...
         public Expression<Func<IGrouping<object, T>, T>>? Select { get; } // SELECT x, avg(x)
 
+        public int? Top { get; }  // TOP(5)
+
         public int Skip { get; } // OFFSET 10 ROWS
         public int Take { get; } // FETCH NEXT 10 ROWS ONLY
         public bool IsPagingEnabled { get; }
