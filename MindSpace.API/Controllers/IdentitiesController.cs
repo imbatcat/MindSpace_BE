@@ -239,7 +239,7 @@ namespace MindSpace.API.Controllers
         // GET /api/identities/accounts
         [Cache(30000)]
         [HttpGet("accounts")]
-        [Authorize(Roles = UserRoles.Admin)]
+        [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllAccounts([FromQuery] ApplicationUserSpecParams specParams)
         {
             var result = await mediator.Send(new ViewAllAccountsQuery(specParams));
