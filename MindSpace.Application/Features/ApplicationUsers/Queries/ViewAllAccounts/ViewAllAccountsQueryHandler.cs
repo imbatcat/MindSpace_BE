@@ -22,17 +22,17 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccount
         public async Task<PagedResultDTO<ApplicationUserResponseDTO>> Handle(ViewAllAccountsQuery request, CancellationToken cancellationToken)
         {
             List<ApplicationUser> users;
-            if (string.IsNullOrEmpty(request.SpecParams.RoleId))
+            if (string.IsNullOrEmpty(request.SpecParams.Role))
             {
                 var specification = new ApplicationUserSpecification(request.SpecParams);
                 users = (List<ApplicationUser>)await applicationUserService.GetAllUsersWithSpecAsync(specification);
             }
             else
             {
-                var role = UserRoles.RoleMap[request.SpecParams.RoleId];
-                users = await applicationUserService.FilterUserByRoleAsync(role, request.SpecParams);
+                users = await applicationUserService.FilterUserByRoleAsync(request.SpecParams.Role, request.SpecParams);
             }
             int count = users.Count;
+
             var userDtos = mapper.Map<List<ApplicationUserResponseDTO>>(users);
             foreach (var userDto in userDtos)
             {
