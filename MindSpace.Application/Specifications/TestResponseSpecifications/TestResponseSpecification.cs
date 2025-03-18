@@ -36,5 +36,19 @@ namespace MindSpace.Application.Specifications.TestResponseSpecifications
             }
         }
 
+        public TestResponseSpecification(int testId, DateTime? startDate, DateTime? endDate, int? schoolId, bool getStatisticForItems) : base(tr =>
+        (tr.TestId == testId && tr.TotalScore.HasValue)
+        && (!startDate.HasValue || startDate <= tr.CreateAt.Date)
+        && (!endDate.HasValue || endDate >= tr.CreateAt.Date)
+        && (!schoolId.HasValue || (tr.Student != null && schoolId == tr.Student.SchoolId)))
+        {
+            AddInclude(tr => tr.Student);
+            if (getStatisticForItems)
+            {
+                AddInclude(tr => tr.TestResponseItems);
+            }
+            AddOrderBy(s => s.CreateAt.ToString());
+        }
+
     }
 }
