@@ -43,6 +43,5 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccount
             return new PagedResultDTO<ApplicationUserResponseDTO>(count, userDtos);
         }
 
-
     }
 }

@@ -1,8 +1,6 @@
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.Features.WebRTC.Queries;
-using MindSpace.Application.Interfaces.Services.VideoCallServices;
 
 namespace MindSpace.API.Controllers
 {

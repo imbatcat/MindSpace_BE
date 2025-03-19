@@ -35,10 +35,15 @@ public class ConfirmBookingAppointmentCommandHandler(
             {
                 logger.LogInformation("Appointment already existing {appId}", appointment.Id);
                 var existingSessionUrl = await stripePaymentService.RetrieveSessionUrlAsync(appointment.SessionId);
-                return new ConfirmBookingAppointmentResultDTO
+                /// TO-REMOVED: THIS IF BLOCK IS FOR TESTING PURPOSES, IF THE URL IS NULL THEN THE SCHEDULE IS ALSO LOCKED
+                if (existingSessionUrl != null) // if the url is null and the appointment has not been expired, then user has finished their payment
                 {
-                    SessionUrl = existingSessionUrl,
-                };
+                    return new ConfirmBookingAppointmentResultDTO
+                    {
+                        SessionUrl = existingSessionUrl,
+                        SessionId = appointment.SessionId
+                    };
+                }
             }
             logger.LogInformation("No appointments found matching with given records, creating new appointment...");
             var scheduleWithPsychologist = await GetScheduleWithPsychologistAsync();
@@ -68,6 +73,7 @@ public class ConfirmBookingAppointmentCommandHandler(
             return new ConfirmBookingAppointmentResultDTO
             {
                 SessionUrl = createdSessionUrl,
+                SessionId = createdSessionId
             };
         }
         catch (Exception ex)

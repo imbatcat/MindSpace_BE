@@ -37,9 +37,7 @@ namespace MindSpace.Infrastructure.Services.PaymentServices
                 },
                 Mode = "payment",
                 SuccessUrl = _configuration["Stripe:SuccessUrl"],
-                CancelUrl = _configuration["Stripe:CancelUrl"],
             };
-
             var service = new SessionService();
             Session session = service.Create(options);
 

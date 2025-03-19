@@ -12,6 +12,8 @@ namespace MindSpace.Application.Specifications.AppointmentSpecifications
         public AppointmentSpecification(string sessionId) : base(a => a.SessionId == sessionId)
         {
             AddInclude(a => a.PsychologistSchedule);
+            AddInclude(a => a.Psychologist);
+            AddInclude(a => a.Student);
         }
 
         /// <summary>
