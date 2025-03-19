@@ -3,7 +3,7 @@ using MindSpace.Application.DTOs.SupportingPrograms;
 
 namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById
 {
-    public class GetSupportingProgramByIdQuery : IRequest<SupportingProgramWithStudentsResponseDTO>
+    public class GetSupportingProgramByIdQuery : IRequest<SupportingProgramResponseDTO>
     {
         // ================================
         // === Fields & Props
