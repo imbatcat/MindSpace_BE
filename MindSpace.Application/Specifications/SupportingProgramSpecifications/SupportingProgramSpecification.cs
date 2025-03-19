@@ -15,6 +15,7 @@ namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
         public SupportingProgramSpecification(int programId)
             : base(x => x.Id.Equals(programId))
         {
+            AddInclude(x => x.Psychologist);
         }
 
         /// <summary>

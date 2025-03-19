@@ -1,4 +1,7 @@
-﻿namespace MindSpace.Application.DTOs.SupportingPrograms
+﻿using MindSpace.Domain.Entities.Identity;
+using System.ComponentModel;
+
+namespace MindSpace.Application.DTOs.SupportingPrograms
 {
     public class SupportingProgramResponseDTO
     {
@@ -13,6 +16,8 @@
         public string? Province { get; set; }
         public string? PostalCode { get; set; }
         public bool IsActive { get; set; }
-        public DateTime StartDateAt { get; set; }
+        public int PsychologistId { get; set; }
+        public string PsychologistName { get; set; }
+        public string StartDateAt { get; set; }
     }
 }
