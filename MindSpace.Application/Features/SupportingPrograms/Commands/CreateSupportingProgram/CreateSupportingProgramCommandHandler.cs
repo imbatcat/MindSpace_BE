@@ -5,7 +5,9 @@ using MindSpace.Application.BackgroundJobs.SupportingPrograms;
 using MindSpace.Application.DTOs.SupportingPrograms;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
+using MindSpace.Application.Specifications.SchoolSpecifications;
 using MindSpace.Application.Specifications.SupportingProgramSpecifications;
+using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Exceptions;
 
@@ -34,6 +36,12 @@ namespace MindSpace.Application.Features.SupportingPrograms.Commands.CreateSuppo
 
             // Update or throw exception
             var spToCreate = mapper.Map<SupportingProgram>(request);
+
+            // Get School from schoolManagerId
+            var school = await unitOfWork.Repository<School>().GetBySpecAsync(new SchoolSpecifications(spToCreate.SchoolManagerId));
+            spToCreate.SchoolId = school.Id;
+
+            // Add to the database
             var addedSP = unitOfWork.Repository<SupportingProgram>().Insert(spToCreate)
                 ?? throw new UpdateFailedException(nameof(SupportingProgram));
 
