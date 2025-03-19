@@ -19,12 +19,18 @@ namespace MindSpace.Application.BackgroundJobs.Appointments
                 // Get job data from the context
                 var dataMap = context.JobDetail.JobDataMap;
                 var appointmentId = dataMap.GetString("AppointmentId");
-                var userEmail = dataMap.GetString("UserEmail");
+                var studentEmail = dataMap.GetString("StudentEmail");
+                var psychologistEmail = dataMap.GetString("PsychologistEmail");
                 var appointmentTime = dataMap.GetDateTime("AppointmentTime");
 
                 // Send reminder email
                 await _emailService.SendEmailAsync(
-                    userEmail,
+                    studentEmail,
+                    "Appointment Reminder",
+                    $"This is a reminder for your appointment scheduled at {appointmentTime:g}");
+
+                await _emailService.SendEmailAsync(
+                    psychologistEmail,
                     "Appointment Reminder",
                     $"This is a reminder for your appointment scheduled at {appointmentTime:g}");
 

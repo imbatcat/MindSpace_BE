@@ -13,7 +13,7 @@ namespace MindSpace.Infrastructure.Services.PaymentServices
     ) : IStripePaymentService
     {
 
-        public string CreateCheckoutSession(decimal sessionPrice)
+        public (string, string) CreateCheckoutSession(decimal sessionPrice)
         {
             var priceData = new SessionLineItemPriceDataOptions()
             {
@@ -37,14 +37,12 @@ namespace MindSpace.Infrastructure.Services.PaymentServices
                 },
                 Mode = "payment",
                 SuccessUrl = _configuration["Stripe:SuccessUrl"],
-                CancelUrl = _configuration["Stripe:CancelUrl"],
             };
-
             var service = new SessionService();
             Session session = service.Create(options);
 
             _logger.LogInformation("Stripe session created: {SessionId}, Status: {Status}", session.Id, session.Status);
-            return session.Id;
+            return (session.Id, session.Url);
         }
 
         public async Task ExpireStripeCheckoutSession(string sessionId)
@@ -57,6 +55,13 @@ namespace MindSpace.Infrastructure.Services.PaymentServices
             {
                 await service.ExpireAsync(sessionId);
             }
+        }
+
+        public async Task<string> RetrieveSessionUrlAsync(string sessionId)
+        {
+            var service = new SessionService();
+            var checkoutSession = await service.GetAsync(sessionId);
+            return checkoutSession.Url;
         }
     }
 }

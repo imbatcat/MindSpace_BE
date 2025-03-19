@@ -76,7 +76,7 @@ namespace MindSpace.Application.Commons.Constants
             /// </summary>
             public static readonly string PaymentCurrency = "VND";
 
-
+            public static string Provider = "Stripe";
             public enum StripeCheckoutSessionStatus
             {
                 open,

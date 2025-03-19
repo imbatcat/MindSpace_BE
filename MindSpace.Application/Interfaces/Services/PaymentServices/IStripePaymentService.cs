@@ -2,7 +2,8 @@
 {
     public interface IStripePaymentService
     {
-        public string CreateCheckoutSession(decimal sessionPrice);
+        public (string, string) CreateCheckoutSession(decimal sessionPrice);
         public Task ExpireStripeCheckoutSession(string sessionId);
+        public Task<string> RetrieveSessionUrlAsync(string sessionId);
     }
 }

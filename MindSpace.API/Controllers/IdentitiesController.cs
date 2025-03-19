@@ -1,8 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
+using MindSpace.Application.DTOs;
 using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
 using MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile;
@@ -22,9 +24,11 @@ using MindSpace.Application.Features.Authentications.Commands.ResetPassword;
 using MindSpace.Application.Features.Authentications.Commands.RevokeUser;
 using MindSpace.Application.Features.Authentications.Commands.SendEmailConfirmation;
 using MindSpace.Application.Features.Authentications.Commands.SendResetPasswordEmail;
+using MindSpace.Application.Features.Schools.Queries.ViewAllSchools;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Exceptions;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace MindSpace.API.Controllers
@@ -51,7 +55,14 @@ namespace MindSpace.API.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<LoginResponseDTO>> Login([FromBody] LoginUserCommand command)
         {
-            var response = await mediator.Send(command);
+            LoginResponseDTO response;
+            try
+            {
+                response = await mediator.Send(command);
+            } catch (DuplicateUserException ex)
+            {
+                return BadRequest(ex.Message);
+            }
             return Ok(response);
         }
 
