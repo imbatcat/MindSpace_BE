@@ -1,9 +1,12 @@
-﻿using MindSpace.Domain.Entities.Identity;
-using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MindSpace.Application.DTOs.SupportingPrograms
 {
-    public class SupportingProgramResponseDTO
+    public class SupportingProgramSingleResponseDTO
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -16,6 +19,8 @@ namespace MindSpace.Application.DTOs.SupportingPrograms
         public string? Province { get; set; }
         public string? PostalCode { get; set; }
         public bool IsActive { get; set; }
+        public int PsychologistId { get; set; }
+        public string PsychologistName { get; set; }
         public string StartDateAt { get; set; }
     }
 }

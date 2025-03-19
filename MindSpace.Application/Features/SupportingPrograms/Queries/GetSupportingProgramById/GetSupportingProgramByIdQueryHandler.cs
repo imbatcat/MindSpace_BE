@@ -12,9 +12,9 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
 public class GetSupportingProgramByIdQueryHandler(
     ILogger<GetSupportingProgramByIdQueryHandler> logger,
     IUnitOfWork unitOfWork,
-    IMapper mapper) : IRequestHandler<GetSupportingProgramByIdQuery, SupportingProgramResponseDTO>
+    IMapper mapper) : IRequestHandler<GetSupportingProgramByIdQuery, SupportingProgramSingleResponseDTO>
 {
-    public async Task<SupportingProgramResponseDTO> Handle(GetSupportingProgramByIdQuery request, CancellationToken cancellationToken)
+    public async Task<SupportingProgramSingleResponseDTO> Handle(GetSupportingProgramByIdQuery request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Get Supporting Program By Id: {@Id}", request.Id);
 
@@ -23,7 +23,7 @@ public class GetSupportingProgramByIdQueryHandler(
         var spFromDb = await unitOfWork.Repository<SupportingProgram>().GetBySpecAsync(spec)
             ?? throw new NotFoundException(nameof(SupportingProgram), request.Id.ToString());
 
-        var result = mapper.Map<SupportingProgram, SupportingProgramResponseDTO>(spFromDb);
+        var result = mapper.Map<SupportingProgram, SupportingProgramSingleResponseDTO>(spFromDb);
 
         return result;
     }

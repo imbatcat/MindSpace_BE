@@ -20,6 +20,15 @@ namespace MindSpace.Application.Profiles
                 .ForMember(dest => dest.Ward, opt => opt.MapFrom(src => src.Address.Ward))
                 .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.Address.Province))
                 .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.Address.PostalCode))
+                .ForMember(dest => dest.StartDateAt, opt => opt.MapFrom(src => src.StartDateAt.ToString("dd/MM/yyyy")));
+
+
+            CreateMap<SupportingProgram, SupportingProgramSingleResponseDTO>()
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
+                .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Address.Street))
+                .ForMember(dest => dest.Ward, opt => opt.MapFrom(src => src.Address.Ward))
+                .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.Address.Province))
+                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.Address.PostalCode))
                 .ForMember(dest => dest.PsychologistId, opt => opt.MapFrom(src => src.Psychologist.Id))
                 .ForMember(dest => dest.PsychologistName, opt => opt.MapFrom(src => src.Psychologist.UserName))
                 .ForMember(dest => dest.StartDateAt, opt => opt.MapFrom(src => src.StartDateAt.ToString("dd/MM/yyyy")));
