@@ -8,6 +8,12 @@ namespace MindSpace.Application.Specifications.SchoolSpecifications
         {
 
         }
+
+        public SchoolSpecifications(int schoolManagerId) : base(x => x.SchoolManagerId == schoolManagerId)
+        {
+            AddInclude(x => x.SchoolManager);
+        }
+
         public SchoolSpecifications(string schoolName) :
             base(x =>
                 x.SchoolName.ToLower() == schoolName.ToLower()
