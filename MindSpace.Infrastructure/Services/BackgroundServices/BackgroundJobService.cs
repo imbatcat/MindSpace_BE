@@ -82,5 +82,11 @@ namespace MindSpace.Infrastructure.Services.BackgroundServices
             _logger.LogInformation($"Job {referenceId} scheduled successfully");
         }
 
+        public async Task UnscheduleJob(string referenceId)
+        {
+            var scheduler = await _schedulerFactory.GetScheduler();
+            await scheduler.UnscheduleJob(new TriggerKey($"{referenceId}.trigger"));
+            _logger.LogInformation($"Job {referenceId} unscheduled successfully");
+        }
     }
 }

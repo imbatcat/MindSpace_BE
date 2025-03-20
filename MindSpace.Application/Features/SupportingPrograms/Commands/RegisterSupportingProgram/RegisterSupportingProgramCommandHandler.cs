@@ -62,7 +62,7 @@ public class RegisterSupportingProgramCommandHandler(
 
         // Configure the job
         await backgroundJobService.ScheduleJobWithFireOnce<NotifyRegisteredUserJob>(
-            $"NotifyRegisteredUserJob-{Guid.NewGuid()}",
+            $"NotifyRegisteredUserJob-{sp.Id}-{student.Id}",
             sp.StartDateAt,
             jobDatas
         );

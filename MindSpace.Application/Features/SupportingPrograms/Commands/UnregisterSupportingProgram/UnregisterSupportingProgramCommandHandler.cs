@@ -5,6 +5,7 @@ using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Application.Specifications.SupportingProgramHistorySpecifications;
 using MindSpace.Application.Specifications.SupportingProgramSpecifications;
+using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Exceptions;
 using System;
@@ -17,7 +18,8 @@ namespace MindSpace.Application.Features.SupportingPrograms.Commands.UnregisterS
 {
     public class UnregisterSupportingProgramCommandHandler(
         IUnitOfWork unitOfWork,
-        IApplicationUserRepository userService
+        IApplicationUserRepository userService,
+        IBackgroundJobService backgroundJobService
     ) : IRequestHandler<UnregisterSupportingProgramCommand>
     {
         public async Task Handle(UnregisterSupportingProgramCommand request, CancellationToken cancellationToken)
@@ -32,6 +34,12 @@ namespace MindSpace.Application.Features.SupportingPrograms.Commands.UnregisterS
             await unitOfWork.CompleteAsync();
 
             // Remove the background job that assign to reminder user
+            await UnassignReminderForThisStudent(request.SupportingProgramId, request.StudentId);
+        }
+
+        private async Task UnassignReminderForThisStudent(int supportingProgramId, int studentId)
+        {
+            await backgroundJobService.UnscheduleJob($"NotifyRegisteredUserJob-{supportingProgramId}-{studentId}");
         }
     }
 }
