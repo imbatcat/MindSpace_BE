@@ -12,23 +12,19 @@ namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportin
 public class GetSupportingProgramByIdQueryHandler(
     ILogger<GetSupportingProgramByIdQueryHandler> logger,
     IUnitOfWork unitOfWork,
-    IMapper mapper) : IRequestHandler<GetSupportingProgramByIdQuery, SupportingProgramWithStudentsResponseDTO>
+    IMapper mapper) : IRequestHandler<GetSupportingProgramByIdQuery, SupportingProgramSingleResponseDTO>
 {
-    public async Task<SupportingProgramWithStudentsResponseDTO> Handle(GetSupportingProgramByIdQuery request, CancellationToken cancellationToken)
+    public async Task<SupportingProgramSingleResponseDTO> Handle(GetSupportingProgramByIdQuery request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Get Supporting Program By Id: {@Id}", request.Id);
 
         var spec = new SupportingProgramSpecification(request.Id);
 
-        var dataDto = await unitOfWork
-            .Repository<SupportingProgram>()
-            .GetBySpecProjectedAsync<SupportingProgramWithStudentsResponseDTO>(spec, mapper.ConfigurationProvider);
+        var spFromDb = await unitOfWork.Repository<SupportingProgram>().GetBySpecAsync(spec)
+            ?? throw new NotFoundException(nameof(SupportingProgram), request.Id.ToString());
 
-        if (dataDto == null)
-        {
-            throw new NotFoundException(nameof(SupportingProgram), request.Id.ToString());
-        }
+        var result = mapper.Map<SupportingProgram, SupportingProgramSingleResponseDTO>(spFromDb);
 
-        return dataDto;
+        return result;
     }
 }

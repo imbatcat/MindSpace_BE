@@ -4,7 +4,7 @@ namespace MindSpace.Application.Specifications.PaymentSpecifications;
 
 public class PaymentSpecification : BaseSpecification<Invoice>
 {
-    public PaymentSpecification(int paymentId) : base(p => p.TransactionCode == paymentId)
+    public PaymentSpecification(int paymentId) : base(p=>p.Id != 0)
     {
     }
 }

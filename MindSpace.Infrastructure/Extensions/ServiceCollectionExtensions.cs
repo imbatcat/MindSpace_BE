@@ -66,6 +66,7 @@ public static partial class ServiceCollectionExtensions
         // Add SignalR Services
         services.AddSignalR();
         services.AddSingleton<INotificationService, NotificationService>();
+        services.AddSingleton<IPaymentNotificationService, PaymentNotificationService>();
 
         // Add Quartz services
         services.AddQuartz(q =>

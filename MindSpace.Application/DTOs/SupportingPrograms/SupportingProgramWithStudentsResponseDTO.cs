@@ -5,6 +5,7 @@ namespace MindSpace.Application.DTOs.SupportingPrograms
     public class SupportingProgramWithStudentsResponseDTO
     {
         public int Id { get; set; }
+        public string Title { get; set; }
         public string ThumbnailUrl { get; set; }
         public string PdffileUrl { get; set; }
         public int MaxQuantity { get; set; }

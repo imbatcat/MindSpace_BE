@@ -49,11 +49,16 @@ namespace MindSpace.Application.Specifications
                 query = spec.Includes.Aggregate(query, (curr, include) => curr.Include(include));
             }
 
-
             // Include and ThenInclude
             if (spec.IncludeStrings.Count > 0)
             {
                 query = spec.IncludeStrings.Aggregate(query, (curr, include) => curr.Include(include));
+            }
+
+            // TOP
+            if (spec.Top != null)
+            {
+                query = query.Take(spec.Top.Value);
             }
 
             return query;

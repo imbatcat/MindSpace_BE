@@ -49,6 +49,7 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapHub<NotificationHub>("/hub/notifications");
 app.MapHub<WebRTCHub>("/hub/webrtc");
+app.MapHub<PaymentHub>("/hub/payment");
 
 // ===================================================
 // === Create a scope and call the service manually

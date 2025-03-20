@@ -16,16 +16,15 @@ namespace MindSpace.Application.Specifications
         public Expression<Func<IGrouping<object, T>, bool>> Having { get; private set; }
         public Expression<Func<IGrouping<object, T>, T>> Select { get; private set; }
 
-
+        public int? Top { get; private set; }
         public int Skip { get; private set; }
         public int Take { get; private set; }
         public bool IsPagingEnabled { get; private set; }
         public bool IsDistinct { get; private set; }
 
-
         public List<Expression<Func<T, object>>> Includes { get; } = new();
         public List<string> IncludeStrings { get; } = new();
-
+        
         // =====================================
         // === Constructors
         // =====================================
@@ -84,12 +83,12 @@ namespace MindSpace.Application.Specifications
         }
 
         /// <summary>
-        /// Add a single take
+        /// Add a single take as Top query
         /// </summary>
         /// <param name="take"></param>
-        protected void AddTake(int take)
+        protected void AddTop(int take)
         {
-            Take = take;
+            Top = take;
         }
 
         /// <summary>

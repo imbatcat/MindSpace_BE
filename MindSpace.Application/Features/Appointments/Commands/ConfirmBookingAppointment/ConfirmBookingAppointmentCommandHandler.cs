@@ -33,11 +33,19 @@ public class ConfirmBookingAppointmentCommandHandler(
             var appointment = await TryGetAppointmentAsync();
             if (appointment != null)
             {
-                return new ConfirmBookingAppointmentResultDTO
+                logger.LogInformation("Appointment already existing {appId}", appointment.Id);
+                var existingSessionUrl = await stripePaymentService.RetrieveSessionUrlAsync(appointment.SessionId);
+                /// TO-REMOVED: THIS IF BLOCK IS FOR TESTING PURPOSES, IF THE URL IS NULL THEN THE SCHEDULE IS ALSO LOCKED
+                if (existingSessionUrl != null) // if the url is null and the appointment has not been expired, then user has finished their payment
                 {
-                    SessionId = appointment.SessionId,
-                };
+                    return new ConfirmBookingAppointmentResultDTO
+                    {
+                        SessionUrl = existingSessionUrl,
+                        SessionId = appointment.SessionId
+                    };
+                }
             }
+            logger.LogInformation("No appointments found matching with given records, creating new appointment...");
             var scheduleWithPsychologist = await GetScheduleWithPsychologistAsync();
             var psychologist = scheduleWithPsychologist.Psychologist;
 
@@ -47,15 +55,15 @@ public class ConfirmBookingAppointmentCommandHandler(
                 throw new UnauthorizedAccessException($"Schedule {request.ScheduleId} does not belong to psychologist {request.PsychologistId}");
             }
 
-            var sessionId = stripePaymentService.CreateCheckoutSession(psychologist.SessionPrice);
+            var (createdSessionId, createdSessionUrl) = stripePaymentService.CreateCheckoutSession(psychologist.SessionPrice);
 
-            await ScheduleSessionExpirationJob(sessionId);
+            await ScheduleSessionExpirationJob(createdSessionId);
 
             logger.LogInformation("Successfully created checkout session for student {StudentId}", request.StudentId);
 
-            await UpdateAppointmentAndScheduleAsync(sessionId, scheduleWithPsychologist);
+            await UpdateAppointmentAndScheduleAsync(createdSessionId, scheduleWithPsychologist);
 
-            logger.LogInformation("Successfully inserted new appointment with sessionId {SessionId}, and updated schedule", sessionId);
+            logger.LogInformation("Successfully inserted new appointment with sessionId {SessionId}, and updated schedule", createdSessionId);
 
             // Notify student and psychologist to lock the schedule
             await notificationService.NotifyPsychologistScheduleLocked(UserRoles.Student, mapper.Map<PsychologistScheduleNotificationResponseDTO>(scheduleWithPsychologist));
@@ -64,7 +72,8 @@ public class ConfirmBookingAppointmentCommandHandler(
 
             return new ConfirmBookingAppointmentResultDTO
             {
-                SessionId = sessionId,
+                SessionUrl = createdSessionUrl,
+                SessionId = createdSessionId
             };
         }
         catch (Exception ex)

@@ -11,7 +11,6 @@ namespace MindSpace.Application.Features.SupportingPrograms.Commands.CreateSuppo
         public int MaxQuantity { get; set; }
         public int SchoolManagerId { get; set; }
         public int PsychologistId { get; set; }
-        public int SchoolId { get; set; }
         public string? City { get; set; }
         public string? Street { get; set; }
         public string? Ward { get; set; }

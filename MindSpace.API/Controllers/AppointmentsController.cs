@@ -4,6 +4,7 @@ using MindSpace.API.RequestHelpers;
 using MindSpace.Application.Features.Appointments.Commands.CancelBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
+using MindSpace.Application.Features.Appointments.Queries.GetSessionUrl;
 using Stripe.Checkout;
 
 namespace MindSpace.API.Controllers;
@@ -48,6 +49,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     // ==============================
 
     // GET /api/appointments/booking/expire-session/{sessionId}
+    // API FOR TESTING: CHECKING SESSION STATUS
     [Cache(600)]
     [HttpGet("booking/expire-session/{sessionId}")]
     public async Task<IActionResult> ExpireSession([FromRoute] string sessionId)
@@ -59,11 +61,20 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/appointments/booking/session-status/{sessionId}
+    // API FOR TESTING: CHECKING SESSION STATUS
     [HttpGet("booking/session-status/{sessionId}")]
     public async Task<IActionResult> GetSessionStatus([FromRoute] string sessionId)
     {
         var sessionService = new SessionService();
         var session = await sessionService.GetAsync(sessionId);
         return Ok(new { Status = session.Status, PaymentStatus = session.PaymentStatus });
+    }
+
+    // GET /api/appointments/booking/session-url/{sessionId}
+    [HttpGet("booking/session-url/{sessionId}")]
+    public async Task<IActionResult> GetSessionUrl([FromRoute] string sessionId)
+    {
+        var result = await mediator.Send(new GetSessionUrlQuery() { SessionId = sessionId });
+        return Ok(result);
     }
 }

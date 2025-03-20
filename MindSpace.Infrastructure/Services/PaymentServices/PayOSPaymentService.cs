@@ -83,7 +83,7 @@ public class PayOSPaymentService : IPaymentService
             AppointmentId = appointmentId,
             AccountId = accountId,
             Amount = amount,
-            TransactionCode = transactionCode,
+            TransactionCode = "",
             Provider = "payOS",
             PaymentMethod = PaymentMethod.MOMO,
             PaymentDescription = description,

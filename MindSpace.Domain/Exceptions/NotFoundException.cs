@@ -19,5 +19,10 @@
             ResourceIdentifier = resourceIdentifier;
             ResourceType = resourceType;
         }
+
+        public NotFoundException(string message)
+            : base(message)
+        {
+        }
     }
 }
