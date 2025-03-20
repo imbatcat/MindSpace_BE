@@ -26,7 +26,7 @@ public class CreateMeetingRoomJob(
 
         var (roomId, roomUrl) = _webRTCService.CreateRoom(appointment);
 
-        var totalMinutes = await GetMeetingEndTimeInMinutes(appointment);
+        var totalMinutes = GetMeetingEndTimeInMinutes(appointment);
 
         await _backgroundJobService.ScheduleJobWithFireOnce<ExpireMeetingRoomJob>(roomId, totalMinutes);
 
@@ -41,7 +41,7 @@ public class CreateMeetingRoomJob(
                 throw new NotFoundException(typeof(Appointment).Name, sessionId);
         }
 
-        async Task<int> GetMeetingEndTimeInMinutes(Appointment appointment)
+        int GetMeetingEndTimeInMinutes(Appointment appointment)
         {
             var endDate = appointment.PsychologistSchedule.Date;
             var endTime = appointment.PsychologistSchedule.EndTime;

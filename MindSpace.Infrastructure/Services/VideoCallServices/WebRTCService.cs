@@ -19,6 +19,7 @@ public class WebRTCService(
     private readonly string _frontendUrl = _configuration.GetValue<string>("FrontendUrl") ?? throw new InvalidOperationException("FrontendUrl is not configured");
     private readonly int _roomExpirationMinutes = _configuration.GetValue<int>("RoomExpirationMinutes");
 
+    public static ConcurrentDictionary<string, DateTime> ActiveRooms => _activeRooms;
     public (string roomId, string roomUrl) CreateRoom(Appointment appointment)
     {
         _logger.LogInformation("Creating room for appointment {AppointmentId}", appointment.Id);
@@ -29,7 +30,7 @@ public class WebRTCService(
 
         _logger.LogInformation("Room created successfully. Room URL: {RoomUrl}", roomUrl);
 
-        _activeRooms.TryAdd(roomId, DateTime.UtcNow.AddMinutes(_roomExpirationMinutes));
+        _activeRooms.TryAdd(roomId, DateTime.Now.AddMinutes(_roomExpirationMinutes));
 
         return (roomId, roomUrl);
     }
@@ -59,7 +60,7 @@ public class WebRTCService(
         try
         {
             _logger.LogInformation("Checking if room {RoomId} is active", roomId);
-            return _activeRooms.TryGetValue(roomId, out var expirationTime) && expirationTime > DateTime.UtcNow;
+            return _activeRooms.TryGetValue(roomId, out var expirationTime) && expirationTime > DateTime.Now;
         }
         catch (NullReferenceException ex)
         {
