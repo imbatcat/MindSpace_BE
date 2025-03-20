@@ -13,5 +13,7 @@ namespace MindSpace.Application.Interfaces.Services
         public Task ScheduleJobWithFireOnce<T>(string referenceId,
             DateTime dateTime,
             Dictionary<string, object>? jobDatas = null) where T : IJob;
+
+        public Task UnscheduleJob(string referenceId);
     }
 }
