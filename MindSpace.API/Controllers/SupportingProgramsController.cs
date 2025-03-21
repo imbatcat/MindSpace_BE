@@ -5,6 +5,7 @@ using MindSpace.Application.DTOs.SupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Commands.CreateSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Commands.PatchSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Commands.RegisterSupportingProgram;
+using MindSpace.Application.Features.SupportingPrograms.Commands.UnregisterSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramByHistory;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
@@ -97,6 +98,16 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         [FromBody] RegisterSupportingProgramCommand registerSP)
     {
         await mediator.Send(registerSP);
+        return NoContent();
+    }
+
+    // POST /api/supporting-programs/unregister
+    [InvalidateCache("/api/supporting-programs/history|")]
+    [HttpPost("unregister")]
+    public async Task<ActionResult> UnregisterSupportingProgram(
+        [FromBody] UnregisterSupportingProgramCommand unregisterSP)
+    {
+        await mediator.Send(unregisterSP);
         return NoContent();
     }
 }
