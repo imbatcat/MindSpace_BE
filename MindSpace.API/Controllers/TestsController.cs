@@ -4,6 +4,7 @@ using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.Tests;
 using MindSpace.Application.Features.Tests.Commands.CreateTestImport;
 using MindSpace.Application.Features.Tests.Commands.CreateTestManual;
+using MindSpace.Application.Features.Tests.Queries.GetMostRecentTests;
 using MindSpace.Application.Features.Tests.Queries.GetTestById;
 using MindSpace.Application.Features.Tests.Queries.GetTests;
 using MindSpace.Application.Specifications.TestSpecifications;
@@ -38,6 +39,14 @@ public class TestsController(IMediator mediator) : BaseApiController
     public async Task<ActionResult<TestResponseDTO>> GetTestById(int id)
     {
         var test = await mediator.Send(new GetTestByIdQuery(id));
+        return Ok(test);
+    }
+
+    [Cache(600)]
+    [HttpGet("most-recent-test")]
+    public async Task<ActionResult<TestResponseDTO>> GetMostRecentTest([FromQuery]GetMostRecentTestsQuery query)
+    {
+        var test = await mediator.Send(query);
         return Ok(test);
     }
 

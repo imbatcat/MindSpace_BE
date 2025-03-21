@@ -41,5 +41,15 @@ namespace MindSpace.Application.Specifications.ResourceSpecifications
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
             AddOrderByDescending(x => x.Id);
         }
+
+        public ResourceSpecification(int schoolId, DateTime? startDate, DateTime? endDate) : base(
+            a => a.SchoolManager.SchoolId == schoolId
+            && (!startDate.HasValue || a.CreateAt >= startDate)
+            && (!endDate.HasValue || a.CreateAt <= endDate)
+            )
+        {
+
+            AddInclude(a => a.SchoolManager);
+        }
     }
 }

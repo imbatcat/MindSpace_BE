@@ -21,12 +21,12 @@ namespace MindSpace.Application.Features.Statistics.Query.GetTestQuestionRespons
 
             var testResponses = await unitOfWork.Repository<TestResponse>().GetAllWithSpecAsync(specification);
 
+            // get flatten list of all test response items
             var testResponseItems = testResponses
                 .SelectMany(tr => tr.TestResponseItems)
-                .Where(item => !string.IsNullOrEmpty(item.AnswerText))
                 .ToList();
 
-            // Group by QuestionContent and AnswerText
+            // Group test response items by QuestionContent and AnswerText
             var groupedByQuestion = GroupByQuestionAndAnswer(testResponseItems);
 
             // Transform into TestQuestionResponseStatisticsDto

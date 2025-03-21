@@ -60,5 +60,13 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
                 }
             }
         }
+
+        public ApplicationUserSpecification(int schoolId, DateTime? startDate, DateTime? endDate) : base(
+            a => (a.Student != null && a.Student.SchoolId == schoolId)
+            && (!startDate.HasValue || a.CreatedAt >= startDate)
+            && (!endDate.HasValue || a.CreatedAt <= endDate)
+        )
+        {
+        }
     }
 }

@@ -41,7 +41,7 @@ namespace MindSpace.Application.Features.Statistics.Query.GetTestResponseRankAna
                 TotalResponses = totalTestResponsesCount,
                 StartDate = request.StartDate,
                 EndDate = request.EndDate,
-                RankGroups = rankGroups.OrderByDescending(r => r.AverageScore).ToList()
+                RankGroups = rankGroups.OrderByDescending(r => r.MinScore).ToList()
             };
 
             return result;
