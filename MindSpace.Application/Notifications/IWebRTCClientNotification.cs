@@ -17,7 +17,6 @@ public interface IWebRTCClientNotification
     /// <param name="answer">The SDP answer</param>
     /// <param name="fromConnectionId">The connection ID of the sender</param>
     Task ReceiveAnswer(string answer, string fromConnectionId);
-
     /// <summary>
     /// Receives an ICE candidate from a peer
     /// </summary>
@@ -36,8 +35,7 @@ public interface IWebRTCClientNotification
     /// Notifies when a user leaves the WebRTC session
     /// </summary>
     /// <param name="connectionId">The connection ID of the user</param>
-    /// <param name="username">The username of the user</param>
-    Task UserLeft(string connectionId, string username);
+    Task UserLeft(string connectionId);
 
     /// <summary>
     /// Receives an ICE candidate from a peer
@@ -45,4 +43,10 @@ public interface IWebRTCClientNotification
     /// <param name="iceCandidate">The ICE candidate</param>
     /// <param name="connectionId">The connection ID of the sender</param>
     Task ReceiveIceCandidate(string iceCandidate, string connectionId);
+
+    /// <summary>
+    /// Notifies when a room does not exist
+    /// </summary>
+    /// <param name="roomId">The ID of the room</param>
+    Task RoomDoesNotExist(string roomId);
 }

@@ -24,7 +24,9 @@ namespace MindSpace.Domain.Entities.Appointments
         // 1 Appointment - M Payments
         public virtual ICollection<Invoice> Invoices { get; set; } = new HashSet<Invoice>();
 
-        public string MeetURL { get; set; }
+        // 1 Appointment - 1 MeetingRoom
+        public int? MeetingRoomId { get; set; }
+        public virtual MeetingRoom? MeetingRoom { get; set; }
 
         public string SessionId { get; set; }
         public AppointmentStatus Status { get; set; }

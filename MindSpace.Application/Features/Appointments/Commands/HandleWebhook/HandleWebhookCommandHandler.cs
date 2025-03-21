@@ -69,7 +69,7 @@ internal class HandleWebhookCommandHandler(
             // 7. Update the appointment and psychologist schedule in the repository.
             // 8. Complete the unit of work to save changes.
 
-            var specification = new AppointmentSpecification(sessionId);
+            var specification = new AppointmentSpecification(sessionId, AppointmentSpecification.StringParameterType.SessionId);
             var appointment = await _unitOfWork.Repository<Appointment>().GetBySpecAsync(specification)
                 ?? throw new NotFoundException(nameof(Appointment), sessionId);
 
@@ -98,7 +98,7 @@ internal class HandleWebhookCommandHandler(
 
             var sessionId = session.Id;
 
-            var specification = new AppointmentSpecification(sessionId);
+            var specification = new AppointmentSpecification(sessionId, AppointmentSpecification.StringParameterType.SessionId);
             var appointment = await _unitOfWork.Repository<Appointment>().GetBySpecAsync(specification)
                 ?? throw new NotFoundException(nameof(Appointment), sessionId);
 
@@ -124,24 +124,27 @@ internal class HandleWebhookCommandHandler(
             var startDate = appointment.PsychologistSchedule.Date;
             var startTime = appointment.PsychologistSchedule.StartTime;
 
-            // Calculate the start time for the meeting room, the room will be created 10 minutes before the appointment actually starts
-            var startDateTime = startDate.ToDateTime(startTime.AddMinutes(-AppCts.WebRTC.RoomCreationActualTimeInMinutes));
+            var startDateTime = startDate.ToDateTime(startTime);
 
+            Dictionary<string, object> createMeetingRoomJobData = new() {
+                { "AppointmentTime", startDateTime }
+            };
             await _backgroundJobService.ScheduleJobWithFireOnce<CreateMeetingRoomJob>(
                 $"create_room-{appointment.SessionId}",
-                startDateTime
+                startDateTime,
+                createMeetingRoomJobData
             );
 
-            Dictionary<string, object> jobData = new() {
+            Dictionary<string, object> reminderAppointmentJobData = new() {
                 { "AppointmentId", appointment.Id },
                 { "StudentEmail", appointment.Student.Email! },
                 { "PsychologistEmail", appointment.Psychologist.Email! },
                 { "AppointmentTime", startDateTime }
             };
             await _backgroundJobService.ScheduleJobWithFireOnce<AppointmentReminderJob>(
-                $"reminder-appointment.SessionId",
-                startDateTime,
-                jobData
+                $"reminder-appointment-{appointment.SessionId}",
+                0,
+                reminderAppointmentJobData
             );
         }
 

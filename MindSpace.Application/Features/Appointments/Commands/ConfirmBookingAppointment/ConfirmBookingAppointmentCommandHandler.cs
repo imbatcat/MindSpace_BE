@@ -108,7 +108,6 @@ public class ConfirmBookingAppointmentCommandHandler(
                 PsychologistId = request.PsychologistId,
                 PsychologistScheduleId = request.ScheduleId,
                 SpecializationId = request.SpecializationId,
-                MeetURL = String.Empty,
                 SessionId = sessionId
             };
             psychologistSchedule.Status = PsychologistScheduleStatus.Locked;

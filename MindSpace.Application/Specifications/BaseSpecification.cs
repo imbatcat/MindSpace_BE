@@ -1,10 +1,13 @@
 ﻿using MindSpace.Application.Interfaces.Specifications;
+using MindSpace.Domain.Entities.Appointments;
 using System.Linq.Expressions;
 
 namespace MindSpace.Application.Specifications
 {
     public class BaseSpecification<T> : ISpecification<T>
     {
+        private BaseSpecification<Appointment> _spec;
+
         // =====================================
         // === Fields & Props
         // =====================================
@@ -37,6 +40,11 @@ namespace MindSpace.Application.Specifications
             Expression<Func<T, bool>>? criteria)
         {
             Criteria = criteria;
+        }
+
+        public BaseSpecification(BaseSpecification<Appointment> spec)
+        {
+            _spec = spec;
         }
 
         // =====================================

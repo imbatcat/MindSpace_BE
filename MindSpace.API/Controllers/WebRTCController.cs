@@ -1,29 +1,32 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MindSpace.Application.Features.WebRTC.Queries;
+using MindSpace.Application.Features.MeetingRooms.Commands.CreateMeetingRoom;
+using MindSpace.Application.Features.MeetingRooms.Commands.DeleteMeetingRoom;
+using MindSpace.Application.Features.MeetingRooms.Queries.CheckIsRoomExists;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
-using MindSpace.Application.Interfaces.Services.VideoCallServices;
+using MindSpace.Application.Interfaces.Services.EmailServices;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
+using MindSpace.Application.Specifications.MeetingRoomSpecifications;
 using MindSpace.Domain.Entities.Appointments;
-using MindSpace.Infrastructure.Services.VideoCallServices;
 using Quartz;
 
 namespace MindSpace.API.Controllers
 {
+    // TESTING CONTROLLER FOR WEB RTC WILL BE REMOVED IN THE FUTURE
     public class WebRTCController(
         IMediator _mediator,
-        IWebRTCService _webRTCService,
         IBackgroundJobService _backgroundJobService,
-        IUnitOfWork UnitOfWork
+        IUnitOfWork UnitOfWork,
+        IEmailService _emailService
     ) : BaseApiController
     {
-        [HttpGet("rooms/{roomId}/validate")]
-        public async Task<IActionResult> ValidateRoom([FromRoute] string roomId)
+        [HttpGet("rooms/{roomId}/exists")]
+        public async Task<IActionResult> CheckIsRoomExists([FromRoute] string roomId)
         {
             try
             {
-                var isActive = await _mediator.Send(new ValidateRoomQuery { RoomId = roomId });
+                var isActive = await _mediator.Send(new CheckIsRoomExistsQuery() { RoomId = roomId });
 
                 return Ok(new { IsActive = isActive });
             }
@@ -33,10 +36,32 @@ namespace MindSpace.API.Controllers
             }
         }
 
-        [HttpPost("rooms/{id}")]
-        public async Task<IActionResult> CreateRoom([FromRoute] int id)
+        [HttpDelete("rooms/{roomId}")]
+        public async Task<IActionResult> DeleteRoom([FromRoute] string roomId)
         {
-            var spec = new AppointmentSpecification(id);
+            try
+            {
+                var isRoomExists = await _mediator.Send(new CheckIsRoomExistsQuery() { RoomId = roomId });
+
+                if (!isRoomExists)
+                {
+                    return NotFound(new { Message = $"Room {roomId} does not exist." });
+                }
+
+                await _mediator.Send(new DeleteMeetingRoomCommand { RoomIdsToDelete = new List<string> { roomId } });
+
+                return NoContent(); // Successfully deleted
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while deleting the room.");
+            }
+        }
+
+        [HttpPost("rooms/{id}")]
+        public async Task<IActionResult> CreateRoom([FromRoute] int id, [FromQuery] string studentEmail)
+        {
+            var spec = new AppointmentSpecification(id, AppointmentSpecification.IntParameterType.AppointmentId);
             var appointment = await UnitOfWork.Repository<Appointment>().GetBySpecAsync(spec);
             if (appointment == null)
             {
@@ -44,43 +69,23 @@ namespace MindSpace.API.Controllers
             }
             try
             {
-                var (roomId, roomUrl) = _webRTCService.CreateRoom(appointment);
-                await _backgroundJobService.ScheduleJobWithFireOnce<ExpireMeetingRoomJob>(roomId, 10);
+                var newMeetingRoom = await _mediator.Send(new CreateMeetingRoomCommand()
+                {
+                    Appointment = appointment,
+                    StartDate = DateTime.Now
+                });
 
-                return Created(roomUrl, new { RoomId = roomId, RoomUrl = roomUrl });
+                appointment.MeetingRoomId = newMeetingRoom.Id;
+                UnitOfWork.Repository<Appointment>().Update(appointment);
+                await UnitOfWork.CompleteAsync();
+
+                await _emailService.SendEmailAsync(studentEmail, "Meeting Room Created", $"Meeting Room Created {newMeetingRoom.MeetUrl}");
+
+                return Created(newMeetingRoom.MeetUrl, new { RoomId = newMeetingRoom.MeetUrl });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while creating the room.");
-            }
-        }
-
-        [HttpGet("rooms/active")]
-        public IActionResult GetActiveRooms()
-        {
-            var activeRooms = WebRTCService.ActiveRooms;
-            return Ok(activeRooms);
-        }
-
-
-        class ExpireMeetingRoomJob(
-            ILogger<ExpireMeetingRoomJob> _logger,
-            IWebRTCService _webRTCService
-        ) : IJob
-        {
-            public Task Execute(IJobExecutionContext context)
-            {
-                var roomId = context.JobDetail.JobDataMap.GetString("referenceId");
-                var isRoomActive = _webRTCService.IsRoomActive(roomId);
-                if (!isRoomActive)
-                {
-                    _logger.LogInformation("Room {RoomId} is not active", roomId);
-                    _webRTCService.DeleteRoom(roomId);
-                    _logger.LogInformation("Room {RoomId} deleted", roomId);
-                }
-                else _logger.LogInformation("Room {RoomId} is active", roomId);
-
-                return Task.CompletedTask;
             }
         }
     }

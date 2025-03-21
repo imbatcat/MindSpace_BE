@@ -1,5 +1,8 @@
+using Bogus;
+using MediatR;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Features.MeetingRooms.Queries.CheckIsRoomExists;
 using MindSpace.Application.Notifications;
 using System.Collections.Concurrent;
 using System.Security.Claims;
@@ -7,7 +10,8 @@ using System.Security.Claims;
 namespace MindSpace.Infrastructure.Services.SignalR;
 
 public class WebRTCHub(
-    ILogger<WebRTCHub> _logger
+    ILogger<WebRTCHub> _logger,
+    IMediator _mediator
     ) : Hub<IWebRTCClientNotification>
 {
     // ConcurrentDictionary is used here because:
@@ -18,6 +22,7 @@ public class WebRTCHub(
     // 5. Inner dictionary: connectionId -> username
     private static readonly ConcurrentDictionary<string, ConcurrentDictionary<string, string>> _rooms = new();
 
+
     /// <summary>
     /// Adds a user to a WebRTC room and notifies other participants
     /// </summary>
@@ -27,6 +32,15 @@ public class WebRTCHub(
     {
         var connectionId = Context.ConnectionId;
         var username = Context.User?.FindFirst(ClaimTypes.Name)?.Value ?? "Anonymous";
+
+        var isRoomExists = await _mediator.Send(new CheckIsRoomExistsQuery() { RoomId = roomId });
+
+        if (!isRoomExists)
+        {
+            _logger.LogInformation("Room {RoomId} does not exist", roomId);
+            await Clients.Caller.RoomDoesNotExist(roomId);
+            return;
+        }
 
         await Groups.AddToGroupAsync(connectionId, roomId);
 
@@ -49,14 +63,14 @@ public class WebRTCHub(
     /// <param name="roomId">The ID of the room to leave</param>
     /// <param name="username">The username of the user leaving the room</param>
     /// <returns>A task representing the asynchronous operation</returns>
-    public async Task LeaveRoom(string roomId, string username)
+    public async Task LeaveRoom(string roomId)
     {
         var connectionId = Context.ConnectionId;
 
-        _logger.LogInformation("Removing user {Username} from group {RoomId}", username, roomId);
+        _logger.LogInformation("Removing user {connectionId} from group {RoomId}", connectionId, roomId);
         await Groups.RemoveFromGroupAsync(connectionId, roomId);
 
-        _logger.LogInformation("Removing user {Username} from room {RoomId}", username, roomId);
+        _logger.LogInformation("Removing user {connectionId} from room {RoomId}", connectionId, roomId);
         if (_rooms.TryGetValue(roomId, out var room))
         {
             room.TryRemove(connectionId, out _);
@@ -66,8 +80,8 @@ public class WebRTCHub(
                 _rooms.TryRemove(roomId, out _);
             }
         }
-        _logger.LogInformation("Notifying other users in room {RoomId} that user {Username} has left", roomId, username);
-        await Clients.OthersInGroup(roomId).UserLeft(connectionId, username);
+        _logger.LogInformation("Notifying other users in room {RoomId} that user {connectionId} has left", roomId, connectionId);
+        await Clients.OthersInGroup(roomId).UserLeft(connectionId);
     }
 
     /// <summary>
@@ -127,7 +141,7 @@ public class WebRTCHub(
 
         foreach (var room in _rooms.Where(r => r.Value.ContainsKey(connectionId)))
         {
-            await LeaveRoom(room.Key, room.Value[connectionId]);
+            await LeaveRoom(room.Key);
         }
         await base.OnDisconnectedAsync(exception);
     }

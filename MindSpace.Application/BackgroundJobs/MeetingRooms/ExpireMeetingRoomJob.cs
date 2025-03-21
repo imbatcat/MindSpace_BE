@@ -1,31 +1,28 @@
+using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Interfaces.Services.VideoCallServices;
+using MindSpace.Application.Features.MeetingRooms.Commands.DeleteMeetingRoom;
+using MindSpace.Application.Features.MeetingRooms.Queries.GetMeetingRooms;
 using Quartz;
-using System;
 
 namespace MindSpace.Application.BackgroundJobs.MeetingRooms;
 
 public class ExpireMeetingRoomJob(
     ILogger<ExpireMeetingRoomJob> _logger,
-    IWebRTCService _webRTCService
+    IMediator _mediator
 ) : IJob
 {
-    public Task Execute(IJobExecutionContext context)
+    public async Task Execute(IJobExecutionContext context)
     {
-        var roomId = context.JobDetail.JobDataMap.GetString("referenceId");
-        var isRoomActive = _webRTCService.IsRoomActive(roomId);
-        if (!isRoomActive)
+        _logger.LogInformation("Deleting rooms");
+
+        var roomsToDelete = await _mediator.Send(new GetMeetingRoomsQuery()
         {
-            _logger.LogInformation("Room {RoomId} is not active", roomId);
-            return Task.CompletedTask;
-        }
+            Date = DateTime.Now.AddSeconds(-10)
+        });
 
-        _logger.LogInformation("Room {RoomId} is active", roomId);
-
-        _webRTCService.DeleteRoom(roomId);
-
-        _logger.LogInformation("Room {RoomId} deleted", roomId);
-
-        return Task.CompletedTask;
+        await _mediator.Send(new DeleteMeetingRoomCommand
+        {
+            RoomIdsToDelete = roomsToDelete.Select(room => room.Id.ToString()).ToList()
+        });
     }
 }

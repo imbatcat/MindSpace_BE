@@ -43,7 +43,7 @@ namespace MindSpace.Application.BackgroundJobs.Payments
 
             async Task<Appointment> GetAppointment(string sessionId)
             {
-                var specification = new AppointmentSpecification(sessionId: sessionId!);
+                var specification = new AppointmentSpecification(sessionId!, AppointmentSpecification.StringParameterType.SessionId);
                 var appointment = await _unitOfWork.Repository<Appointment>().GetBySpecAsync(specification);
                 return appointment;
             }
