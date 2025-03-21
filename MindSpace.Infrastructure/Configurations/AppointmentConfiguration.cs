@@ -11,6 +11,9 @@ internal class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
     {
         builder.ToTable("Appointments", "dbo");
 
+        builder.HasIndex(a => a.SessionId)
+            .IsUnique();
+
         // 1 Student - M Appointments
         builder.HasOne(a => a.Student)
             .WithMany(s => s.Appointments)
@@ -33,12 +36,19 @@ internal class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
             .WithMany(ps => ps.Appointments)
             .HasForeignKey(a => a.PsychologistScheduleId);
 
-        builder.Property(a => a.MeetURL).HasMaxLength(255);
-
         builder.Property(a => a.Status)
             .HasConversion(
             convertToProviderExpression: s => s.ToString(),
             convertFromProviderExpression: s => Enum.Parse<AppointmentStatus>(s))
             .HasDefaultValue(AppointmentStatus.Pending);
+
+        // 1 Appointment - 1 MeetingRoom
+        builder.HasOne(a => a.MeetingRoom)
+            .WithOne()
+            .HasForeignKey<Appointment>(a => a.MeetingRoomId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        builder.Property(a => a.MeetingRoomId)
+            .IsRequired(false);
     }
 }

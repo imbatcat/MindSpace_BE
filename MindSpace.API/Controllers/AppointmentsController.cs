@@ -4,6 +4,7 @@ using MindSpace.API.RequestHelpers;
 using MindSpace.Application.Features.Appointments.Commands.CancelBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
+using MindSpace.Application.Features.Appointments.Queries.GetAppointmentsWithUserId;
 using MindSpace.Application.Features.Appointments.Queries.GetSessionUrl;
 using Stripe.Checkout;
 
@@ -75,6 +76,14 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     public async Task<IActionResult> GetSessionUrl([FromRoute] string sessionId)
     {
         var result = await mediator.Send(new GetSessionUrlQuery() { SessionId = sessionId });
+        return Ok(result);
+    }
+
+    // GET /api/appointments/booking/user/{userEmail}
+    [HttpGet("user/{userEmail}")]
+    public async Task<IActionResult> GetAppointmentsWithUserEmail([FromRoute] string userEmail)
+    {
+        var result = await mediator.Send(new GetAppointmentsWithUserEmailQuery() { UserEmail = userEmail });
         return Ok(result);
     }
 }

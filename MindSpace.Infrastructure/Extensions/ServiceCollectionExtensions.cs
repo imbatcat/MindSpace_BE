@@ -4,13 +4,13 @@ using Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MindSpace.Application.BackgroundJobs.MeetingRooms;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Application.Interfaces.Services.EmailServices;
 using MindSpace.Application.Interfaces.Services.FileReaderServices;
 using MindSpace.Application.Interfaces.Services.PaymentServices;
-using MindSpace.Application.Interfaces.Services.VideoCallServices;
 using MindSpace.Application.Interfaces.Utilities;
 using MindSpace.Application.Interfaces.Utilities.Seeding;
 using MindSpace.Infrastructure.Persistence;
@@ -25,7 +25,6 @@ using MindSpace.Infrastructure.Services.EmailServices;
 using MindSpace.Infrastructure.Services.FileReaderServices;
 using MindSpace.Infrastructure.Services.PaymentServices;
 using MindSpace.Infrastructure.Services.SignalR;
-using MindSpace.Infrastructure.Services.VideoCallServices;
 using Quartz;
 using StackExchange.Redis;
 
@@ -77,10 +76,21 @@ public static partial class ServiceCollectionExtensions
             {
                 tp.MaxConcurrency = 10;    // Set max concurrency to 10
             });
+
+            // TO BE REFACTORED
+            // Schedule removing meeting rooms 
+            q.AddJob<ExpireMeetingRoomJob>(opts => opts.WithIdentity("ExpireMeetingRoomJob"))
+                .AddTrigger(opts => opts
+                    .ForJob("ExpireMeetingRoomJob")
+                    .WithIdentity("ExpireMeetingRoomJobTrigger")
+                    .StartNow()
+                    .WithSimpleSchedule(opts => opts.WithIntervalInMinutes(1)));
+                    //.WithCronSchedule("59 59 23 * * ?")); // Runs every day at 23:59:59
         });
 
         // Add the Quartz.NET hosted service
         services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+
         services.AddScoped<IBackgroundJobService, BackgroundJobService>();
 
         // Add Authentication Services 
@@ -102,9 +112,6 @@ public static partial class ServiceCollectionExtensions
         // Add Payment Services
         services.AddScoped<IPaymentService, PayOSPaymentService>();
         services.AddScoped<IStripePaymentService, StripePaymentService>();
-
-        // Add Video Call Services
-        services.AddScoped<IWebRTCService, WebRTCService>();
 
         services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
         services.AddScoped<IResourcesService, ResourcesService>();
