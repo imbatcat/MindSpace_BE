@@ -92,5 +92,17 @@ namespace MindSpace.Application.Specifications.AppointmentSpecifications
                 _ => throw new ArgumentException($"Unsupported parameter type: {parameterType}", nameof(parameterType))
             };
         }
+
+        public AppointmentSpecification(int schoolId, DateOnly? startDate, DateOnly? endDate) : base (
+            a => a.Student.SchoolId == schoolId 
+            &&(!startDate.HasValue || a.PsychologistSchedule.Date >= startDate) 
+            &&(!endDate.HasValue || a.PsychologistSchedule.Date <= endDate)
+            )
+        {
+            
+            AddInclude(a => a.Specialization);
+            AddInclude(a => a.PsychologistSchedule);
+            AddInclude(a => a.Student);
+        }
     }
 }

@@ -68,5 +68,21 @@ namespace MindSpace.Application.Specifications.TestSpecifications
                 }
             }
         }
+
+        /// <summary>
+        /// Constructor for 
+        /// </summary>
+        /// <param name="specParams"></param>
+        public TestSpecification(int schoolId, int? top, DateTime? startDate, DateTime? endDate)
+            : base
+            (
+                  t => (t.Author.SchoolManager == null || t.Author.SchoolManager.SchoolId == schoolId) 
+                  && (!startDate.HasValue || t.CreateAt >= startDate) 
+                  && (!endDate.HasValue || t.CreateAt <= endDate)
+            )
+        {
+            if (top.HasValue) AddTop(top.Value);
+            AddOrderByDescending(x => x.CreateAt.ToString());
+        }
     }
 }

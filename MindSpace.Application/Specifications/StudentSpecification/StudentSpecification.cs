@@ -10,5 +10,7 @@ namespace MindSpace.Application.Specifications.StudentSpecification
                  s.Status == UserStatus.Enabled)
         {
         }
+
+
     }
 }

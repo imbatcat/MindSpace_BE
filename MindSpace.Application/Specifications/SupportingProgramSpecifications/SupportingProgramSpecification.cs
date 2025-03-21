@@ -68,5 +68,14 @@ namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
                 }
             }
         }
+
+        public SupportingProgramSpecification(int schoolId, DateTime? startDate, DateTime? endDate) : base(
+            a => a.SchoolId == schoolId
+            && (!startDate.HasValue || a.CreateAt >= startDate)
+            && (!endDate.HasValue || a.CreateAt <= endDate)
+            )
+        {
+            AddInclude(a => a.Psychologist);
+        }
     }
 }
