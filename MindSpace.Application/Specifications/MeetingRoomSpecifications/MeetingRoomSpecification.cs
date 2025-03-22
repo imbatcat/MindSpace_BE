@@ -19,7 +19,7 @@ namespace MindSpace.Application.Specifications.MeetingRoomSpecifications
         }
 
         public MeetingRoomSpecification(string roomId) :
-            base(x => string.Compare(roomId, x.RoomId, StringComparison.OrdinalIgnoreCase) == 0)
+            base(x => roomId.ToLower().Trim().Equals(x.RoomId.ToLower().Trim()))
         {
         }
     }
