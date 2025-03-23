@@ -1,5 +1,3 @@
-using System;
-
 namespace MindSpace.Application.Notifications;
 
 public interface IWebRTCClientNotification

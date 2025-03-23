@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.DTOs.Statistics.TestResponseStatistics;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.TestResponseSpecifications;
 using MindSpace.Domain.Entities.Tests;
-using MindSpace.Application.DTOs.Statistics.TestResponseStatistics;
 
 namespace MindSpace.Application.Features.Statistics.Query.GetTestResponseTimeAnalysisStatistics
 {

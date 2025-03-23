@@ -2,18 +2,18 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.ApplicationUsers;
-using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Domain.Entities.Identity;
 
-namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfileById
+namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetProfileById
 {
-    public class ViewProfileByIdQueryHandler(
-        ILogger<ViewProfileByIdQueryHandler> logger,
-        IApplicationUserRepository applicationUserService,
+    public class GetProfileByIdQueryHandler(
+        ILogger<GetProfileByIdQueryHandler> logger,
+        IApplicationUserService<ApplicationUser> applicationUserService,
         IMapper mapper
-    ) : IRequestHandler<ViewProfileByIdQuery, ApplicationUserProfileDTO>
+    ) : IRequestHandler<GetProfileByIdQuery, ApplicationUserProfileDTO>
     {
-        public async Task<ApplicationUserProfileDTO> Handle(ViewProfileByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ApplicationUserProfileDTO> Handle(GetProfileByIdQuery request, CancellationToken cancellationToken)
         {
             logger.LogInformation("Getting user profile for user ID: {UserId}", request.UserId);
             var user = await applicationUserService.GetByIdAsync(request.UserId);
@@ -24,6 +24,7 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfileByI
                 return null!;
             }
 
+            // If user is the psychologist
             if (user is Psychologist psychologist)
             {
                 logger.LogInformation("Mapping psychologist profile for user {Email}", user.Email);

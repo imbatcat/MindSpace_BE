@@ -3,7 +3,7 @@ using MindSpace.Application.DTOs;
 using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 
-namespace MindSpace.Application.Features.Appointments.Queries.GetAppointmentsWithUserId;
+namespace MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryByUser;
 
 public class GetAppointmentHistoryByUserQuery : IRequest<PagedResultDTO<AppointmentHistoryDTO>>
 {

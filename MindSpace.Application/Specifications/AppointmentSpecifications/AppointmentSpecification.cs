@@ -1,6 +1,5 @@
 ﻿using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
-using System;
 using System.Linq.Expressions;
 
 namespace MindSpace.Application.Specifications.AppointmentSpecifications
@@ -93,23 +92,23 @@ namespace MindSpace.Application.Specifications.AppointmentSpecifications
             };
         }
 
-        public AppointmentSpecification(int schoolId, DateOnly? startDate, DateOnly? endDate) : base (
-            a => a.Student.SchoolId == schoolId 
-            &&(!startDate.HasValue || a.PsychologistSchedule.Date >= startDate) 
-            &&(!endDate.HasValue || a.PsychologistSchedule.Date <= endDate)
+        public AppointmentSpecification(int schoolId, DateOnly? startDate, DateOnly? endDate) : base(
+            a => a.Student.SchoolId == schoolId
+            && (!startDate.HasValue || a.PsychologistSchedule.Date >= startDate)
+            && (!endDate.HasValue || a.PsychologistSchedule.Date <= endDate)
             )
         {
-            
+
             AddInclude(a => a.Specialization);
             AddInclude(a => a.PsychologistSchedule);
             AddInclude(a => a.Student);
         }
 
-        public AppointmentSpecification(AppointmentSpecParams specParams, string userEmail) : base (
+        public AppointmentSpecification(AppointmentSpecParams specParams, string userEmail) : base(
             x => (
                 x.Student!.Email.Equals(userEmail)
-            && (String.IsNullOrEmpty(specParams.PsychologistName) || x.Psychologist.FullName.ToLower().Contains(specParams.PsychologistName.ToLower().Trim())) 
-            &&      (specParams.StartDate.CompareTo(x.PsychologistSchedule.Date) <= 0 && specParams.EndDate.CompareTo(x.PsychologistSchedule.Date) >= 0)
+            && (String.IsNullOrEmpty(specParams.PsychologistName) || x.Psychologist.FullName.ToLower().Contains(specParams.PsychologistName.ToLower().Trim()))
+            && (specParams.StartDate.CompareTo(x.PsychologistSchedule.Date) <= 0 && specParams.EndDate.CompareTo(x.PsychologistSchedule.Date) >= 0)
             && x.Status.Equals(AppointmentStatus.Success)
             )
         )

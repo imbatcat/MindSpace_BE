@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.DTOs.Statistics.TestResponseStatistics;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.TestResponseSpecifications;
 using MindSpace.Domain.Entities.Tests;
-using MindSpace.Application.DTOs.Statistics.TestResponseStatistics;
 using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.Application.Features.Statistics.Query.GetTestResponseRankAnalysisStatistics
@@ -25,12 +25,12 @@ namespace MindSpace.Application.Features.Statistics.Query.GetTestResponseRankAna
             int totalTestResponsesCount = testResponses.Count;
 
             IEnumerable<IGrouping<string, TestResponse>> groupedData = testResponses.GroupBy(tr => tr.TestScoreRankResult ?? throw new NotFoundException("This test does not contain score rank criteria!"));
-            
+
             var rankGroups = new List<RankGroupDto>();
             foreach (var group in groupedData)
             {
                 var rankGroup = RankGroupDto.MapToRankGroupDto(group);
-                rankGroup.Percentage = Math.Round(((double)rankGroup.ResponseCount / (double)totalTestResponsesCount) * 100,2);
+                rankGroup.Percentage = Math.Round(((double)rankGroup.ResponseCount / (double)totalTestResponsesCount) * 100, 2);
                 rankGroups.Add(rankGroup);
             }
 

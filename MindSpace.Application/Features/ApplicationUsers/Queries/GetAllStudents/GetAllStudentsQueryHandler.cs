@@ -3,24 +3,24 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
 using MindSpace.Application.DTOs.ApplicationUsers;
-using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
 
-namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllStudents
+namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetAllStudents
 {
-    public class ViewAllStudentsQueryHandler(
-        ILogger<ViewAllStudentsQueryHandler> logger,
-        IApplicationUserRepository applicationUserService,
+    public class GetAllStudentsQueryHandler(
+        ILogger<GetAllStudentsQueryHandler> logger,
+        IApplicationUserService<ApplicationUser> applicationUserService,
         IMapper mapper,
         IUserContext userContext
-    ) : IRequestHandler<ViewAllStudentsQuery, PagedResultDTO<ApplicationUserResponseDTO>>
+    ) : IRequestHandler<GetAllStudentsQuery, PagedResultDTO<ApplicationUserResponseDTO>>
     {
 
-        public async Task<PagedResultDTO<ApplicationUserResponseDTO>> Handle(ViewAllStudentsQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResultDTO<ApplicationUserResponseDTO>> Handle(GetAllStudentsQuery request, CancellationToken cancellationToken)
         {
             logger.LogInformation("Getting all student accounts");
             var userClaims = userContext.GetCurrentUser();
@@ -29,6 +29,7 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllStudent
             {
                 throw new AuthorizationFailedException("You are not authorized to view students of this school!");
             }
+
             var specification = new ApplicationUserSpecification(request.SpecParams, isOnlyStudent: true);
             var users = await applicationUserService.GetAllUsersWithSpecAsync(specification);
 

@@ -14,7 +14,7 @@ namespace MindSpace.Application.Features.SupportingPrograms.Commands.RegisterSup
 
 public class RegisterSupportingProgramCommandHandler(
     IUnitOfWork unitOfWork,
-    IApplicationUserRepository userService,
+    IApplicationUserService<ApplicationUser> userService,
     IBackgroundJobService backgroundJobService,
     ILogger<RegisterSupportingProgramCommandHandler> logger) : IRequestHandler<RegisterSupportingProgramCommand>
 {

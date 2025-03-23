@@ -2,7 +2,6 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Domain.Entities.Appointments;
-using System;
 
 namespace MindSpace.Application.Features.MeetingRooms.Commands.UpdateMeetingRoom;
 

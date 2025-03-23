@@ -17,7 +17,7 @@ namespace MindSpace.Application.Features.Statistics.Query.GetTestQuestionRespons
         public async Task<TestQuestionResponseStatisticsAnalysisDto> Handle(GetTestQuestionResponseStatisticsQuery request, CancellationToken cancellationToken)
         {
             logger.LogInformation("Get statistics of Test Responses with Spec: {@Spec}", request);
-            var specification = new TestResponseSpecification(request.TestId, request.StartDate, request.EndDate, request.SchoolId,  true);
+            var specification = new TestResponseSpecification(request.TestId, request.StartDate, request.EndDate, request.SchoolId, true);
 
             var testResponses = await unitOfWork.Repository<TestResponse>().GetAllWithSpecAsync(specification);
 

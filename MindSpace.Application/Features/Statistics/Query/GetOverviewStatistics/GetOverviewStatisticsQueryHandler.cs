@@ -3,9 +3,9 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Statistics;
 using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Application.Specifications.ResourceSpecifications;
-using MindSpace.Application.Specifications.StudentSpecification;
 using MindSpace.Application.Specifications.SupportingProgramSpecifications;
 using MindSpace.Application.Specifications.TestSpecifications;
 using MindSpace.Domain.Entities.Identity;
@@ -18,7 +18,7 @@ namespace MindSpace.Application.Features.Statistics.Query.GetOverviewStatistics
     public class GetOverviewStatisticsQueryHandler(ILogger<GetOverviewStatisticsQueryHandler> logger,
             IUnitOfWork unitOfWork,
             IMapper mapper,
-            IApplicationUserRepository applicationUserRepository) : IRequestHandler<GetOverviewStatisticsQuery, CountOverviewDTO>
+            IApplicationUserService<ApplicationUser> applicationUserRepository) : IRequestHandler<GetOverviewStatisticsQuery, CountOverviewDTO>
     {
         public async Task<CountOverviewDTO> Handle(GetOverviewStatisticsQuery request, CancellationToken cancellationToken)
         {

@@ -2,24 +2,25 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.ApplicationUsers;
-using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
 
-namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfile
+namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetMyProfile
 {
-    internal class ViewProfileQueryHandler
-    (ILogger<ViewProfileQueryHandler> logger,
-    IApplicationUserRepository applicationUserService,
+    internal class GetMyProfileQueryHandler
+    (ILogger<GetMyProfileQueryHandler> logger,
+    IApplicationUserService<ApplicationUser> applicationUserService,
     IMapper mapper,
-    IUserContext userContext) : IRequestHandler<ViewProfileQuery, ApplicationUserProfileDTO>
+    IUserContext userContext) : IRequestHandler<GetMyProfileQuery, ApplicationUserProfileDTO>
     {
-        public async Task<ApplicationUserProfileDTO> Handle(ViewProfileQuery request, CancellationToken cancellationToken)
+        public async Task<ApplicationUserProfileDTO> Handle(GetMyProfileQuery request, CancellationToken cancellationToken)
         {
             var userClaims = userContext.GetCurrentUser();
             var user = await applicationUserService.GetUserByEmailAsync(userClaims!.Email);
             logger.LogInformation("Viewing profile for user {Email}", user!.Email);
+
             if (user == null)
             {
                 logger.LogError("User not found");

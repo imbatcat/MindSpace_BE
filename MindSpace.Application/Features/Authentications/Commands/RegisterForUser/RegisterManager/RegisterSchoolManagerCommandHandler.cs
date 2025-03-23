@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.FileReaderServices;
 using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Constants;
@@ -12,7 +13,7 @@ namespace MindSpace.Application.Features.Authentications.Commands.RegisterForUse
 {
     public class RegisterSchoolManagerCommandHandler
         (ILogger<RegisterSchoolManagerCommandHandler> logger,
-        IApplicationUserRepository applicationUserService,
+        IApplicationUserService<ApplicationUser> applicationUserService,
         IExcelReaderService excelReaderService,
         IUnitOfWork unitOfWork) : IRequestHandler<RegisterSchoolManagerCommand>
     {

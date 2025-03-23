@@ -1,4 +1,5 @@
-﻿using MindSpace.Domain.Entities.Constants;
+﻿using MindSpace.Application.Specifications.PsychologistsSpecifications;
+using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
@@ -42,6 +43,39 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
         {
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
 
+
+            // Add Sorting
+            if (!string.IsNullOrEmpty(specParams.Sort))
+            {
+                switch (specParams.Sort)
+                {
+                    case "dobAsc":
+                        AddOrderBy(x => x.DateOfBirth.ToString()!); break;
+                    case "dobDesc":
+                        AddOrderByDescending(x => x.DateOfBirth.ToString()!); break;
+                    case "nameAsc":
+                        AddOrderBy(x => x.FullName!); break;
+                    case "nameDesc":
+                        AddOrderByDescending(x => x.FullName!); break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Specification for Psychologists
+        /// </summary>
+        /// <param name="specParams"></param>
+        public ApplicationUserSpecification(PsychologistSpecParams specParams) :
+            base(s =>
+                (string.IsNullOrEmpty(specParams.SearchName) ||
+                s.Email!.ToLower().Contains(specParams.SearchName.ToLower()) ||
+                s.UserName!.ToLower().Contains(specParams.SearchName.ToLower()) ||
+                s.FullName!.ToLower().Contains(specParams.SearchName.ToLower())) &&
+                (specParams.Status!.Equals("All") || s.Status == Enum.Parse<UserStatus>(specParams.Status))
+            )
+        {
+            AddInclude(x => x.Psychologist);
+            AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
 
             // Add Sorting
             if (!string.IsNullOrEmpty(specParams.Sort))

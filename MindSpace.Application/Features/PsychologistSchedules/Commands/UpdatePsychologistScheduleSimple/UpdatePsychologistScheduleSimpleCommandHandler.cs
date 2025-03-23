@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Application.Specifications.PsychologistScheduleSpecifications;
 using MindSpace.Domain.Entities.Appointments;
@@ -18,14 +19,19 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Commands.UpdatePs
         private readonly IMapper _mapper;
         private readonly ILogger<UpdatePsychologistScheduleSimpleCommandHandler> _logger;
         private readonly IUserContext _userContext;
-        private readonly IApplicationUserRepository _applicationUserRepository;
-        public UpdatePsychologistScheduleSimpleCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ILogger<UpdatePsychologistScheduleSimpleCommandHandler> logger, IUserContext userContext, IApplicationUserRepository applicationUserRepository)
+        private readonly IApplicationUserService<ApplicationUser> _applicationUserService;
+        public UpdatePsychologistScheduleSimpleCommandHandler(
+            IUnitOfWork unitOfWork,
+            IMapper mapper,
+            ILogger<UpdatePsychologistScheduleSimpleCommandHandler> logger,
+            IUserContext userContext,
+            IApplicationUserService<ApplicationUser> applicationUserRepository)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _logger = logger;
             _userContext = userContext;
-            _applicationUserRepository = applicationUserRepository;
+            _applicationUserService = applicationUserRepository;
         }
 
         public async Task Handle(UpdatePsychologistScheduleSimpleCommand request, CancellationToken cancellationToken)
@@ -33,7 +39,7 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Commands.UpdatePs
             // check only current user can update his/her own schedules
 
             var userClaims = _userContext.GetCurrentUser();
-            ApplicationUser? currentUser = _applicationUserRepository.GetUserByEmailAsync(userClaims!.Email).Result;
+            ApplicationUser? currentUser = _applicationUserService.GetUserByEmailAsync(userClaims!.Email).Result;
             if (currentUser == null || currentUser.Id != request.PsychologistId)
             {
                 throw new AuthorizationFailedException("You are not authorized to update schedule of this psychologist!");

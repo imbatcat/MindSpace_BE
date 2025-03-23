@@ -1,6 +1,7 @@
 ﻿namespace MindSpace.Infrastructure.Extensions;
 
 using Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,7 @@ using MindSpace.Infrastructure.Services.PaymentServices;
 using MindSpace.Infrastructure.Services.SignalR;
 using Quartz;
 using StackExchange.Redis;
+using System;
 
 public static partial class ServiceCollectionExtensions
 {
@@ -111,7 +113,8 @@ public static partial class ServiceCollectionExtensions
         services.AddScoped<IPaymentService, PayOSPaymentService>();
         services.AddScoped<IStripePaymentService, StripePaymentService>();
 
-        services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+        services.AddScoped(typeof(UserManager<>));
+        services.AddScoped(typeof(IApplicationUserService<>), typeof(ApplicationUserService<>));
         services.AddScoped<IResourcesService, ResourcesService>();
         services.AddSingleton<IExcelReaderService, ExcelReaderService>();
         services.AddScoped<ITestDraftService, TestDraftService>();

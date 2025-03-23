@@ -8,7 +8,7 @@ using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 
-namespace MindSpace.Application.Features.Appointments.Queries.GetAppointmentsWithUserId;
+namespace MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryByUser;
 
 internal class GetAppointmentsWithUserEmailQueryHandler(
     IUnitOfWork _unitOfWork,
@@ -31,7 +31,7 @@ internal class GetAppointmentsWithUserEmailQueryHandler(
             {
                 var dateCompareResult = x.Date.CompareTo(DateOnly.FromDateTime(DateTime.Now));
 
-                if ((dateCompareResult == 0 && x.EndTime > TimeOnly.FromDateTime(DateTime.Now)) || (dateCompareResult > 0))
+                if (dateCompareResult == 0 && x.EndTime > TimeOnly.FromDateTime(DateTime.Now) || dateCompareResult > 0)
                 {
                     x.IsUpcoming = true;
                 }

@@ -1,15 +1,14 @@
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Features.Appointments.Commands.UpdateBookingAppointment;
+using MindSpace.Application.Features.MeetingRooms.Commands.CreateMeetingRoom;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services.EmailServices;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Exceptions;
 using Quartz;
-using MediatR;
-using MindSpace.Application.Features.MeetingRooms.Commands.CreateMeetingRoom;
-using MindSpace.Application.Features.MeetingRooms.Commands.UpdateMeetingRoom;
-using MindSpace.Application.Features.Appointments.Commands.UpdateBookingAppointment;
 
 namespace MindSpace.Application.BackgroundJobs.MeetingRooms;
 

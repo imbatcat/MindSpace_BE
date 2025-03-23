@@ -1,5 +1,4 @@
 ﻿using MindSpace.Domain.Entities.Tests;
-using System.Globalization;
 
 namespace MindSpace.Application.DTOs.Statistics.TestResponseStatistics
 {
@@ -18,7 +17,7 @@ namespace MindSpace.Application.DTOs.Statistics.TestResponseStatistics
             string key = group.Key;
             var responses = group.ToList();
             var responseCount = responses.Count;
-            var averageScore = responseCount > 0 ? Math.Round(responses.Average(x => x.TotalScore ?? 0),2) : 0;
+            var averageScore = responseCount > 0 ? Math.Round(responses.Average(x => x.TotalScore ?? 0), 2) : 0;
             var minScore = responseCount > 0 ? responses.Min(x => x.TotalScore ?? 0) : 0;
             var maxScore = responseCount > 0 ? responses.Max(x => x.TotalScore ?? 0) : 0;
             var medianScore = responseCount > 0 ? CalculateMedian(responses) : 0;
@@ -43,7 +42,7 @@ namespace MindSpace.Application.DTOs.Statistics.TestResponseStatistics
             double result = count % 2 == 0
                 ? (((double)(sortedValues[midIndex - 1].TotalScore ?? 0) + (double)(sortedValues[midIndex].TotalScore ?? 0)) / 2.0)
                 : sortedValues[midIndex].TotalScore ?? 0;
-            return Math.Round(result,2);
+            return Math.Round(result, 2);
         }
     }
 

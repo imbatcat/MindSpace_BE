@@ -2,14 +2,14 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.ApplicationUsers;
-using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile
 {
     internal class UpdateProfileCommandHandler(
         ILogger<UpdateProfileCommandHandler> logger,
-        IApplicationUserRepository applicationUserService,
+        IApplicationUserService<ApplicationUser> applicationUserService,
         IMapper mapper) : IRequestHandler<UpdateProfileCommand, ApplicationUserProfileDTO>
     {
         public async Task<ApplicationUserProfileDTO> Handle(UpdateProfileCommand request, CancellationToken cancellationToken)

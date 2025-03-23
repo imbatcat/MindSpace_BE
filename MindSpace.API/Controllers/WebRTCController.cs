@@ -7,9 +7,7 @@ using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.EmailServices;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
-using MindSpace.Application.Specifications.MeetingRoomSpecifications;
 using MindSpace.Domain.Entities.Appointments;
-using Quartz;
 
 namespace MindSpace.API.Controllers
 {
