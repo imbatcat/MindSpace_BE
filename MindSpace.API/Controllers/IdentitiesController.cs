@@ -9,6 +9,7 @@ using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
 using MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile;
 using MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccounts;
+using MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllPsychologists;
 using MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllStudents;
 using MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfile;
 using MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfileById;
@@ -26,6 +27,7 @@ using MindSpace.Application.Features.Authentications.Commands.SendEmailConfirmat
 using MindSpace.Application.Features.Authentications.Commands.SendResetPasswordEmail;
 using MindSpace.Application.Features.Schools.Queries.ViewAllSchools;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
+using MindSpace.Application.Specifications.AppointmentSpecifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
@@ -275,6 +277,17 @@ namespace MindSpace.API.Controllers
                 specParams.PageIndex,
                 specParams.PageSize
             );
+        }
+
+
+        // GET /api/identities/accounts/psychologists
+        [Cache(30000)]
+        [HttpGet("accounts/psychologists")]
+        [Authorize]
+        public async Task<ActionResult<List<string>>> GetPsychologistsNames()
+        {
+            var result = await mediator.Send(new ViewAllPsychologistsQuery());
+            return result;
         }
     }
 }

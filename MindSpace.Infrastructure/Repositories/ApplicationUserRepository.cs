@@ -4,6 +4,7 @@ using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Specifications;
 using MindSpace.Application.Specifications;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
+using MindSpace.Application.Specifications.AppointmentSpecifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
