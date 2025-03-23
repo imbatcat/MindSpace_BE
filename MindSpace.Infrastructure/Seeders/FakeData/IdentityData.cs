@@ -94,6 +94,9 @@ internal static class IdentityData
                 NormalizedEmail = "PSYCHOLOGIST1@EXAMPLE.COM",
                 FullName = "Psychologist One",
                 Bio = "Hi, I like cats and doraemon",
+                AverageRating = 4.8f,
+                SessionPrice = 500000,
+                ComissionRate = 0.1m,
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
@@ -108,6 +111,9 @@ internal static class IdentityData
                 NormalizedEmail = "PSYCHOLOGIST2@EXAMPLE.COM",
                 FullName = "Psychologist Two",
                 Bio = "Hi, I like cats and doraemon",
+                AverageRating = 4.7f,
+                SessionPrice = 600000,
+                ComissionRate = 0.15m,
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
@@ -122,6 +128,9 @@ internal static class IdentityData
                 NormalizedEmail = "PSYCHOLOGIST3@EXAMPLE.COM",
                 FullName = "Psychologist Three",
                 Bio = "Hi, I like cats and doraemon",
+                AverageRating = 4.9f,
+                SessionPrice = 700000,
+                ComissionRate = 0.12m,
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
@@ -174,12 +183,12 @@ internal static class IdentityData
             }
         };
 
-        return users;
+return users;
     }
 
     public static IEnumerable<ApplicationRole> GetRoles()
-    {
-        List<ApplicationRole> roles = new List<ApplicationRole>
+{
+    List<ApplicationRole> roles = new List<ApplicationRole>
         {
             new(UserRoles.Student)
             {
@@ -203,6 +212,6 @@ internal static class IdentityData
             }
         };
 
-        return roles;
-    }
+    return roles;
+}
 }

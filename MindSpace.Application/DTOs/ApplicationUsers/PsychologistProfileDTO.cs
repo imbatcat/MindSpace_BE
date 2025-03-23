@@ -8,6 +8,6 @@ namespace MindSpace.Application.DTOs.ApplicationUsers
         public float AverageRating { get; set; }
         public decimal SessionPrice { get; set; }
         public decimal ComissionRate { get; set; }
-        public virtual ICollection<Feedback> Feedbacks { get; set; } = new HashSet<Feedback>();
+        public virtual ICollection<FeedbackDTO> Feedbacks { get; set; } = new HashSet<FeedbackDTO>();
     }
 }

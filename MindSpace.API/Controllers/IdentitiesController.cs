@@ -281,7 +281,7 @@ namespace MindSpace.API.Controllers
         [Cache(30000)]
         [HttpGet("accounts/psychologists")]
         [Authorize]
-        public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllPsychologists([FromQuery] PsychologistSpecParams specParams)
+        public async Task<ActionResult<Pagination<PsychologistProfileDTO>>> GetAllPsychologists([FromQuery] PsychologistSpecParams specParams)
         {
             var result = await mediator.Send(new GetAllPsychologistsQuery(specParams));
             return PaginationOkResult(

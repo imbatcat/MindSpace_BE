@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Specifications;
 using MindSpace.Application.Specifications;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
@@ -8,7 +8,7 @@ using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
 
-namespace MindSpace.Infrastructure.Repositories
+namespace MindSpace.Infrastructure.Services
 {
     public class ApplicationUserService<T> : IApplicationUserService<T> where T : ApplicationUser
     {

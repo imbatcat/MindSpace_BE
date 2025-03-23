@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
 using MindSpace.Application.DTOs.ApplicationUsers;
-using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.PsychologistsSpecifications;
 using MindSpace.Domain.Entities.Identity;
 
@@ -19,12 +19,12 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetAllPsycholo
         {
             logger.LogInformation("Getting all Psychologists accounts");
 
-            var specification = new PsychologistSpecification(request.SpecParams, false);
-            var psychologists = await applicationUserService.GetAllUsersWithSpecAsync(specification);
+            var spec = new PsychologistSpecification(request.SpecParams);
+            var psychologists = await applicationUserService.GetAllUsersWithSpecAsync(spec);
 
             logger.LogInformation("Found {Count} student users", psychologists.Count);
-            var psychologistsDtos = mapper.Map<List<PsychologistProfileDTO>>(psychologists);
 
+            var psychologistsDtos = mapper.Map<List<PsychologistProfileDTO>>(psychologists);
             return new PagedResultDTO<PsychologistProfileDTO>(psychologistsDtos.Count, psychologistsDtos);
         }
     }

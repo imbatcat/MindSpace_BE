@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Repos;
+using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.FileReaderServices;
 using MindSpace.Application.Specifications.SchoolSpecifications;
 using MindSpace.Domain.Entities;

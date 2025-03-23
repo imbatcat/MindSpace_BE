@@ -2,7 +2,7 @@
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Domain.Entities.Identity;
 
-namespace MindSpace.Application.Interfaces.Repos
+namespace MindSpace.Application.Interfaces.Services
 {
     public interface IApplicationUserService<T>
     {

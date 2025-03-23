@@ -7,19 +7,13 @@ namespace MindSpace.Application.Specifications.PsychologistsSpecifications
         public PsychologistSpecification(int psychologistId) : base(x => x.Id == psychologistId)
         {
             AddInclude(x => x.Feedbacks);
-            AddInclude("Feedbacks.Students");
         }
 
-        public PsychologistSpecification(PsychologistSpecParams specParams, bool isIncludeFeedbacks) : base(
+        public PsychologistSpecification(PsychologistSpecParams specParams) : base(
             x =>
             (string.IsNullOrEmpty(specParams.SearchName) || x.FullName.ToLower().Contains(specParams.SearchName.ToLower())))
         {
-            if (isIncludeFeedbacks)
-            {
-                AddInclude(x => x.Feedbacks);
-                AddInclude("Feedbacks.Students");
-            }
-
+            AddInclude(x => x.Feedbacks);
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
         }
     }
