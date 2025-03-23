@@ -11,6 +11,7 @@ using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllPsychologist
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllStudents;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetMyProfile;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetProfileById;
+using MindSpace.Application.Features.ApplicationUsers.Queries.GetPsychologistById;
 using MindSpace.Application.Features.Authentications.Commands.ConfirmEmail;
 using MindSpace.Application.Features.Authentications.Commands.LoginUser;
 using MindSpace.Application.Features.Authentications.Commands.LogoutUser;
@@ -290,6 +291,16 @@ namespace MindSpace.API.Controllers
                 specParams.PageIndex,
                 specParams.PageSize
             );
+        }
+
+        // GET /api/identities/accounts/psychologists/:id
+        [Cache(30000)]
+        [HttpGet("accounts/psychologists/{id}")]
+        [Authorize]
+        public async Task<ActionResult<PsychologistProfileDTO>> GetPsychologistById([FromRoute] int id)
+        {
+            var result = await mediator.Send(new GetPsychologistByIdQuery(id));
+            return Ok(result);
         }
     }
 }

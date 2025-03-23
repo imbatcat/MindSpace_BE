@@ -27,15 +27,18 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.Status, a => a.MapFrom(u => u.Status));
 
             CreateMap<ApplicationUser, ApplicationUserProfileDTO>();
-            //CreateMap<ApplicationUser, PsychologistProfileDTO>();
+
             CreateMap<Psychologist, PsychologistProfileDTO>();
 
             CreateMap<ApplicationUser, ApplicationUserResponseDTO>()
                  .Include<SchoolManager, ApplicationUserResponseDTO>();
+
             CreateMap<Student, ApplicationUserResponseDTO>();
             CreateMap<SchoolManager, ApplicationUserResponseDTO>();
-            //CreateMap<Psychologist, ApplicationUserResponseDTO>();
             CreateMap<Parent, ApplicationUserResponseDTO>();
+
+            //CreateMap<Psychologist, ApplicationUserResponseDTO>();
+            //CreateMap<ApplicationUser, PsychologistProfileDTO>();
         }
     }
 }

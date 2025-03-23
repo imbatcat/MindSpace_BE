@@ -19,11 +19,13 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetAllPsycholo
         {
             logger.LogInformation("Getting all Psychologists accounts");
 
+            // Get Specs
             var spec = new PsychologistSpecification(request.SpecParams);
             var psychologists = await applicationUserService.GetAllUsersWithSpecAsync(spec);
 
             logger.LogInformation("Found {Count} student users", psychologists.Count);
 
+            // Mapping
             var psychologistsDtos = mapper.Map<List<PsychologistProfileDTO>>(psychologists);
             return new PagedResultDTO<PsychologistProfileDTO>(psychologistsDtos.Count, psychologistsDtos);
         }
