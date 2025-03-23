@@ -9,17 +9,17 @@ using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 
-namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccounts
+namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetAllAccounts
 {
-    public class ViewAllAccountsQueryHandler(
-        ILogger<ViewAllAccountsQueryHandler> logger,
-        IApplicationUserRepository applicationUserService,
+    public class GetAllAccountsQueryHandler(
+        ILogger<GetAllAccountsQueryHandler> logger,
+        IApplicationUserService<ApplicationUser> applicationUserService,
         RoleManager<ApplicationRole> roleManager,
         UserManager<ApplicationUser> userManager,
         IMapper mapper
-    ) : IRequestHandler<ViewAllAccountsQuery, PagedResultDTO<ApplicationUserResponseDTO>>
+    ) : IRequestHandler<GetAllAccountsQuery, PagedResultDTO<ApplicationUserResponseDTO>>
     {
-        public async Task<PagedResultDTO<ApplicationUserResponseDTO>> Handle(ViewAllAccountsQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResultDTO<ApplicationUserResponseDTO>> Handle(GetAllAccountsQuery request, CancellationToken cancellationToken)
         {
             List<ApplicationUser> users;
             if (string.IsNullOrEmpty(request.SpecParams.RoleId))

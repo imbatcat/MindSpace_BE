@@ -2,12 +2,12 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
-using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.DTOs.Statistics.SupportingProgramStatistics;
-using MindSpace.Application.Specifications.SupportingProgramSpecifications;
-using MindSpace.Domain.Entities.SupportingPrograms;
-using MindSpace.Domain.Entities;
+using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.SpecializationSpecifications;
+using MindSpace.Application.Specifications.SupportingProgramSpecifications;
+using MindSpace.Domain.Entities;
+using MindSpace.Domain.Entities.SupportingPrograms;
 
 namespace MindSpace.Application.Features.Statistics.Query.GetSupportingProgramGroupBySpecialization
 {

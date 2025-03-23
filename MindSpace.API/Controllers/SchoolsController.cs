@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using MindSpace.Application.Features.Schools.Queries.ViewAllSchools;
-using MindSpace.Application.DTOs;
+using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
+using MindSpace.Application.DTOs;
+using MindSpace.Application.Features.Schools.Queries.ViewAllSchools;
 
 namespace MindSpace.API.Controllers
 {

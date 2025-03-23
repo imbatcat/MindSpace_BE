@@ -1,4 +1,3 @@
-using Bogus;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;

@@ -1,7 +1,7 @@
 using MediatR;
 using MindSpace.Application.DTOs.Appointments;
 
-namespace MindSpace.Application.Features.Appointments.Queries.GetAppointmentsWithUserId;
+namespace MindSpace.Application.Features.Appointments.Queries.GetAppointmentsWithUserEmail;
 
 public class GetAppointmentsWithUserEmailQuery : IRequest<List<AppointmentHistoryDTO>>
 {

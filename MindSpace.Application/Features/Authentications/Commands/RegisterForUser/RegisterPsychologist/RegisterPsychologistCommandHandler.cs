@@ -12,7 +12,7 @@ namespace MindSpace.Application.Features.Authentications.Commands.RegisterForUse
 {
     public class RegisterPsychologistCommandHandler(
         ILogger<RegisterPsychologistCommandHandler> logger,
-        IApplicationUserRepository applicationUserService,
+        IApplicationUserService<ApplicationUser> applicationUserService,
         IExcelReaderService excelReaderService,
         IUnitOfWork unitOfWork) : IRequestHandler<RegisterPsychologistCommand>
     {

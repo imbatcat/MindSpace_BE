@@ -1,5 +1,3 @@
-using System;
-
 namespace MindSpace.Application.DTOs.Appointments;
 
 public class AppointmentHistoryDTO

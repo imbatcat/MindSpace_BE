@@ -1,17 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.DTOs.SupportingPrograms;
 using MindSpace.Application.DTOs;
-using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
 using MindSpace.Application.Interfaces.Repos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MindSpace.Application.Specifications.SupportingProgramSpecifications;
-using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Application.Specifications.SpecializationSpecifications;
 using MindSpace.Domain.Entities;
 

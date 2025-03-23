@@ -4,13 +4,13 @@ using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Application.Interfaces.Repos
 {
-    public interface IApplicationUserRepository
+    public interface IApplicationUserService<T>
     {
         /// <summary>
         /// Retrieves all users asynchronously.
         /// </summary>
         /// <returns>A read-only list of all users.</returns>
-        Task<IReadOnlyList<ApplicationUser>> GetAllUsersAsync();
+        Task<IReadOnlyList<T>> GetAllUsersAsync();
 
         /// <summary>
         /// Retrieves users by their role asynchronously.
@@ -24,21 +24,21 @@ namespace MindSpace.Application.Interfaces.Repos
         /// </summary>
         /// <param name="spec">The specification to filter users.</param>
         /// <returns>A read-only list of users that match the specification.</returns>
-        Task<IReadOnlyList<ApplicationUser>> GetAllUsersWithSpecAsync(ISpecification<ApplicationUser> spec);
+        Task<IReadOnlyList<T>> GetAllUsersWithSpecAsync(ISpecification<T> spec);
 
         /// <summary>
         /// Retrieves a single user that matches a given specification asynchronously.
         /// </summary>
         /// <param name="spec">The specification to filter the user.</param>
         /// <returns>The user that matches the specification, or null if no user matches.</returns>
-        Task<ApplicationUser?> GetUserWithSpec(ISpecification<ApplicationUser> spec);
+        Task<T?> GetUserWithSpec(ISpecification<T> spec);
 
         /// <summary>
         /// Counts the number of users that match a given specification asynchronously.
         /// </summary>
         /// <param name="spec">The specification to filter users.</param>
         /// <returns>The count of users that match the specification.</returns>
-        Task<int> CountAsync(ISpecification<ApplicationUser> spec);
+        Task<int> CountAsync(ISpecification<T> spec);
 
         /// <summary>
         /// Inserts a new user with the specified password asynchronously.
@@ -58,7 +58,7 @@ namespace MindSpace.Application.Interfaces.Repos
         /// </summary>
         /// <param name="user">The user to assign the role to.</param>
         /// <param name="role">The role to assign.</param>
-        Task AssignRoleAsync(ApplicationUser user, string role);
+        Task AssignRoleAsync(T user, string role);
 
         /// <summary>
         /// Updates an existing user's information asynchronously.
@@ -78,7 +78,7 @@ namespace MindSpace.Application.Interfaces.Repos
         /// </summary>
         /// <param name="user">The user whose role to retrieve.</param>
         /// <returns>The role of the user.</returns>
-        Task<string> GetUserRoleAsync(ApplicationUser user);
+        Task<string> GetUserRoleAsync(T user);
 
         /// <summary>
         /// Retrieves a user by their ID asynchronously.

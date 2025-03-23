@@ -27,7 +27,7 @@ namespace MindSpace.Application.Specifications
 
         public List<Expression<Func<T, object>>> Includes { get; } = new();
         public List<string> IncludeStrings { get; } = new();
-        
+
         // =====================================
         // === Constructors
         // =====================================

@@ -1,5 +1,3 @@
-using System;
-
 namespace MindSpace.Application.Interfaces.Services;
 
 public interface IPaymentNotificationService

@@ -76,8 +76,8 @@ namespace MindSpace.Application.Specifications.TestSpecifications
         public TestSpecification(int schoolId, int? top, DateTime? startDate, DateTime? endDate)
             : base
             (
-                  t => (t.Author.SchoolManager == null || t.Author.SchoolManager.SchoolId == schoolId) 
-                  && (!startDate.HasValue || t.CreateAt >= startDate) 
+                  t => (t.Author.SchoolManager == null || t.Author.SchoolManager.SchoolId == schoolId)
+                  && (!startDate.HasValue || t.CreateAt >= startDate)
                   && (!endDate.HasValue || t.CreateAt <= endDate)
             )
         {

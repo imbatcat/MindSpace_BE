@@ -12,7 +12,7 @@ namespace MindSpace.Application.Features.Authentications.Commands.RegisterForUse
 {
     public class RegisterStudentsCommandHandler(
         ILogger<RegisterStudentsCommandHandler> logger,
-        IApplicationUserRepository applicationUserService,
+        IApplicationUserService<ApplicationUser> applicationUserService,
         IExcelReaderService excelReaderService,
         IUnitOfWork unitOfWork) : IRequestHandler<RegisterStudentsCommand>
     {

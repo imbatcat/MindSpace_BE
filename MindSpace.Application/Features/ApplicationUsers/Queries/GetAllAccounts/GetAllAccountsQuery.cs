@@ -3,13 +3,13 @@ using MindSpace.Application.DTOs;
 using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 
-namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccounts
+namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetAllAccounts
 {
-    public class ViewAllAccountsQuery : IRequest<PagedResultDTO<ApplicationUserResponseDTO>>
+    public class GetAllAccountsQuery : IRequest<PagedResultDTO<ApplicationUserResponseDTO>>
     {
         public ApplicationUserSpecParams SpecParams { get; private set; }
 
-        public ViewAllAccountsQuery(ApplicationUserSpecParams specParams)
+        public GetAllAccountsQuery(ApplicationUserSpecParams specParams)
         {
             SpecParams = specParams;
         }

@@ -1,6 +1,5 @@
 using MediatR;
 using MindSpace.Domain.Entities.Appointments;
-using System;
 
 namespace MindSpace.Application.Features.MeetingRooms.Commands.CreateMeetingRoom;
 

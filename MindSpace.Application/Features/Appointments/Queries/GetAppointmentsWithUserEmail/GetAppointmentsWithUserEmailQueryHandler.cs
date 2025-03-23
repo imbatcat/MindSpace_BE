@@ -6,7 +6,7 @@ using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 
-namespace MindSpace.Application.Features.Appointments.Queries.GetAppointmentsWithUserId;
+namespace MindSpace.Application.Features.Appointments.Queries.GetAppointmentsWithUserEmail;
 
 internal class GetAppointmentsWithUserEmailQueryHandler(
     IUnitOfWork _unitOfWork,

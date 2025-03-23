@@ -10,7 +10,7 @@ using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.Infrastructure.Repositories
 {
-    public class ApplicationUserRepository : IApplicationUserRepository
+    public class ApplicationUserService<T> : IApplicationUserService<T> where T : ApplicationUser
     {
         // ================================
         // === Fields & Props
@@ -23,7 +23,7 @@ namespace MindSpace.Infrastructure.Repositories
         // === Constructors
         // ================================
 
-        public ApplicationUserRepository(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
+        public ApplicationUserService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -33,9 +33,9 @@ namespace MindSpace.Infrastructure.Repositories
         // === Methods
         // ================================
 
-        public async Task<IReadOnlyList<ApplicationUser>> GetAllUsersAsync()
+        public async Task<IReadOnlyList<T>> GetAllUsersAsync()
         {
-            return await _userManager.Users.ToListAsync();
+            return await _userManager.Users.OfType<T>().ToListAsync();
         }
 
         public async Task<IList<ApplicationUser>> GetUsersByRoleAsync(string role)
@@ -43,25 +43,25 @@ namespace MindSpace.Infrastructure.Repositories
             return await _userManager.GetUsersInRoleAsync(role);
         }
 
-        public async Task<IReadOnlyList<ApplicationUser>> GetAllUsersWithSpecAsync(ISpecification<ApplicationUser> spec)
+        public async Task<IReadOnlyList<T>> GetAllUsersWithSpecAsync(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).ToListAsync();
         }
-        public async Task<ApplicationUser?> GetUserWithSpec(ISpecification<ApplicationUser> spec)
+        public async Task<T?> GetUserWithSpec(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).FirstOrDefaultAsync();
         }
 
-        public async Task<int> CountAsync(ISpecification<ApplicationUser> spec)
+        public async Task<int> CountAsync(ISpecification<T> spec)
         {
-            var query = _userManager.Users.AsQueryable();
-            return await SpecificationQueryBuilder<ApplicationUser>.BuildCountQuery(query, spec).CountAsync();
+            var query = _userManager.Users.OfType<T>().AsQueryable();
+            return await SpecificationQueryBuilder<T>.BuildCountQuery(query, spec).CountAsync();
         }
 
-        private IQueryable<ApplicationUser> ApplySpecification(ISpecification<ApplicationUser> spec)
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
-            var query = _userManager.Users.AsQueryable();
-            return SpecificationQueryBuilder<ApplicationUser>.BuildQuery(query, spec);
+            var query = _userManager.Users.OfType<T>().AsQueryable();
+            return SpecificationQueryBuilder<T>.BuildQuery(query, spec);
         }
 
         public Task InsertBulkAsync(IEnumerable<(ApplicationUser user, string password)> usersWithPassword)
@@ -97,7 +97,7 @@ namespace MindSpace.Infrastructure.Repositories
             }
         }
 
-        public async Task AssignRoleAsync(ApplicationUser user, string role)
+        public async Task AssignRoleAsync(T user, string role)
         {
             await _userManager.AddToRoleAsync(user, role);
         }
@@ -107,7 +107,7 @@ namespace MindSpace.Infrastructure.Repositories
             return await _userManager.FindByEmailAsync(email);
         }
 
-        public async Task<string> GetUserRoleAsync(ApplicationUser user)
+        public async Task<string> GetUserRoleAsync(T user)
         {
             return (await _userManager.GetRolesAsync(user)).FirstOrDefault() ?? string.Empty;
         }
@@ -122,7 +122,7 @@ namespace MindSpace.Infrastructure.Repositories
             var user = await GetByIdAsync(userId);
             if (user == null)
             {
-                throw new NotFoundException(nameof(ApplicationUser), userId.ToString());
+                throw new NotFoundException(nameof(T), userId.ToString());
             }
 
             user.Status = user.Status == UserStatus.Enabled ? UserStatus.Disabled : UserStatus.Enabled;

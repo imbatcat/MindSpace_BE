@@ -1,7 +1,4 @@
-﻿using MindSpace.Domain.Entities.Identity;
-using System.ComponentModel;
-
-namespace MindSpace.Application.DTOs.SupportingPrograms
+﻿namespace MindSpace.Application.DTOs.SupportingPrograms
 {
     public class SupportingProgramResponseDTO
     {

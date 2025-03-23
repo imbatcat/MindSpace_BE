@@ -44,7 +44,7 @@ public class TestsController(IMediator mediator) : BaseApiController
 
     [Cache(600)]
     [HttpGet("most-recent-test")]
-    public async Task<ActionResult<TestResponseDTO>> GetMostRecentTest([FromQuery]GetMostRecentTestsQuery query)
+    public async Task<ActionResult<TestResponseDTO>> GetMostRecentTest([FromQuery] GetMostRecentTestsQuery query)
     {
         var test = await mediator.Send(query);
         return Ok(test);

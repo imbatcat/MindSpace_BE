@@ -1,15 +1,14 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
-using MindSpace.Application.DTOs;
 using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
 using MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile;
-using MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccounts;
-using MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllStudents;
+using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllAccounts;
+using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllPsychologists;
+using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllStudents;
 using MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfile;
 using MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfileById;
 using MindSpace.Application.Features.Authentications.Commands.ConfirmEmail;
@@ -24,8 +23,8 @@ using MindSpace.Application.Features.Authentications.Commands.ResetPassword;
 using MindSpace.Application.Features.Authentications.Commands.RevokeUser;
 using MindSpace.Application.Features.Authentications.Commands.SendEmailConfirmation;
 using MindSpace.Application.Features.Authentications.Commands.SendResetPasswordEmail;
-using MindSpace.Application.Features.Schools.Queries.ViewAllSchools;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
+using MindSpace.Application.Specifications.PsychologistsSpecifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
@@ -59,7 +58,8 @@ namespace MindSpace.API.Controllers
             try
             {
                 response = await mediator.Send(command);
-            } catch (DuplicateUserException ex)
+            }
+            catch (DuplicateUserException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -233,7 +233,7 @@ namespace MindSpace.API.Controllers
         [Authorize]
         public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfile()
         {
-            var result = await mediator.Send(new ViewProfileQuery());
+            var result = await mediator.Send(new GetMyProfileQuery());
             return Ok(result);
         }
 
@@ -243,7 +243,7 @@ namespace MindSpace.API.Controllers
         [Authorize(Roles = UserRoles.Admin)]
         public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfileById(int id)
         {
-            var result = await mediator.Send(new ViewProfileByIdQuery { UserId = id });
+            var result = await mediator.Send(new GetProfileByIdQuery { UserId = id });
             return Ok(result);
         }
 
@@ -253,7 +253,7 @@ namespace MindSpace.API.Controllers
         [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllAccounts([FromQuery] ApplicationUserSpecParams specParams)
         {
-            var result = await mediator.Send(new ViewAllAccountsQuery(specParams));
+            var result = await mediator.Send(new GetAllAccountsQuery(specParams));
             return PaginationOkResult(
                 result.Data,
                 result.Count,
@@ -268,7 +268,22 @@ namespace MindSpace.API.Controllers
         [Authorize(Roles = UserRoles.SchoolManager)]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllStudents([FromQuery] ApplicationUserSpecParams specParams)
         {
-            var result = await mediator.Send(new ViewAllStudentsQuery(specParams));
+            var result = await mediator.Send(new GetAllStudentsQuery(specParams));
+            return PaginationOkResult(
+                result.Data,
+                result.Count,
+                specParams.PageIndex,
+                specParams.PageSize
+            );
+        }
+
+        // GET /api/identities/accounts/psychologists
+        [Cache(30000)]
+        [HttpGet("accounts/psychologists")]
+        [Authorize]
+        public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllPsychologists([FromQuery] PsychologistSpecParams specParams)
+        {
+            var result = await mediator.Send(new GetAllPsychologistsQuery(specParams));
             return PaginationOkResult(
                 result.Data,
                 result.Count,

@@ -4,7 +4,7 @@ using MindSpace.API.RequestHelpers;
 using MindSpace.Application.Features.Appointments.Commands.CancelBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
-using MindSpace.Application.Features.Appointments.Queries.GetAppointmentsWithUserId;
+using MindSpace.Application.Features.Appointments.Queries.GetAppointmentsWithUserEmail;
 using MindSpace.Application.Features.Appointments.Queries.GetSessionUrl;
 using Stripe.Checkout;
 

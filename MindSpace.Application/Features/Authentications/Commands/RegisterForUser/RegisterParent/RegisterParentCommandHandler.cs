@@ -8,7 +8,7 @@ namespace MindSpace.Application.Features.Authentications.Commands.RegisterForUse
 {
     internal class RegisterParentCommandHandler
             (ILogger<RegisterParentCommandHandler> logger,
-            IApplicationUserRepository applicationUserService) : IRequestHandler<RegisterParentCommand>
+            IApplicationUserService<ApplicationUser> applicationUserService) : IRequestHandler<RegisterParentCommand>
     {
         public async Task Handle(RegisterParentCommand request, CancellationToken cancellationToken)
         {

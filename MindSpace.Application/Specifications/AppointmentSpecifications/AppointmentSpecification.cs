@@ -1,6 +1,5 @@
 ﻿using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
-using System;
 using System.Linq.Expressions;
 
 namespace MindSpace.Application.Specifications.AppointmentSpecifications
@@ -93,13 +92,13 @@ namespace MindSpace.Application.Specifications.AppointmentSpecifications
             };
         }
 
-        public AppointmentSpecification(int schoolId, DateOnly? startDate, DateOnly? endDate) : base (
-            a => a.Student.SchoolId == schoolId 
-            &&(!startDate.HasValue || a.PsychologistSchedule.Date >= startDate) 
-            &&(!endDate.HasValue || a.PsychologistSchedule.Date <= endDate)
+        public AppointmentSpecification(int schoolId, DateOnly? startDate, DateOnly? endDate) : base(
+            a => a.Student.SchoolId == schoolId
+            && (!startDate.HasValue || a.PsychologistSchedule.Date >= startDate)
+            && (!endDate.HasValue || a.PsychologistSchedule.Date <= endDate)
             )
         {
-            
+
             AddInclude(a => a.Specialization);
             AddInclude(a => a.PsychologistSchedule);
             AddInclude(a => a.Student);
