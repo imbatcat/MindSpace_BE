@@ -1,11 +1,14 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
+using MindSpace.Application.Features.ApplicationUsers.Queries.ViewAllAccounts;
 using MindSpace.Application.Features.Appointments.Commands.CancelBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
 using MindSpace.Application.Features.Appointments.Queries.GetAppointmentsWithUserId;
 using MindSpace.Application.Features.Appointments.Queries.GetSessionUrl;
+using MindSpace.Application.Specifications.AppointmentSpecifications;
 using Stripe.Checkout;
 
 namespace MindSpace.API.Controllers;
@@ -79,11 +82,18 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         return Ok(result);
     }
 
-    // GET /api/appointments/booking/user/{userEmail}
-    [HttpGet("user/{userEmail}")]
-    public async Task<IActionResult> GetAppointmentsWithUserEmail([FromRoute] string userEmail)
+    // GET /api/appointments/booking/user
+    [Cache(30000)]
+    [HttpGet("user")]
+    [Authorize]
+    public async Task<IActionResult> GetAppointmentsHistoryByUser([FromQuery] AppointmentSpecParams specParams)
     {
-        var result = await mediator.Send(new GetAppointmentsWithUserEmailQuery() { UserEmail = userEmail });
-        return Ok(result);
+        var result = await mediator.Send(new GetAppointmentHistoryByUserQuery(specParams));
+        return PaginationOkResult(
+            result.Data,
+            result.Count,
+            specParams.PageIndex,
+            specParams.PageSize
+        );
     }
 }

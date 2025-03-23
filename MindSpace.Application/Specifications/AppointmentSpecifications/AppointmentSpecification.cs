@@ -104,5 +104,28 @@ namespace MindSpace.Application.Specifications.AppointmentSpecifications
             AddInclude(a => a.PsychologistSchedule);
             AddInclude(a => a.Student);
         }
+
+        public AppointmentSpecification(AppointmentSpecParams specParams, string userEmail) : base (
+            x => (
+                x.Student!.Email.Equals(userEmail)
+            && (String.IsNullOrEmpty(specParams.PsychologistName) || x.Psychologist.FullName.ToLower().Contains(specParams.PsychologistName.ToLower().Trim())) 
+            &&      (specParams.StartDate.CompareTo(x.PsychologistSchedule.Date) <= 0 && specParams.EndDate.CompareTo(x.PsychologistSchedule.Date) >= 0)
+            && x.Status.Equals(AppointmentStatus.Success)
+            )
+        )
+        {
+            AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+
+            if (!string.IsNullOrEmpty(specParams.Sort))
+            {
+                switch (specParams.Sort)
+                {
+                    case "dateAsc":
+                        AddOrderBy(x => x.PsychologistSchedule.Date); break;
+                    case "dateDesc":
+                        AddOrderByDescending(x => x.PsychologistSchedule.Date); break;
+                }
+            }
+        }
     }
 }
