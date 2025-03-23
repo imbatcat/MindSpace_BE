@@ -2,7 +2,6 @@
 
 using Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -86,9 +85,7 @@ public static partial class ServiceCollectionExtensions
                 .AddTrigger(opts => opts
                     .ForJob("ExpireMeetingRoomJob")
                     .WithIdentity("ExpireMeetingRoomJobTrigger")
-                    .StartNow()
-                    .WithSimpleSchedule(opts => opts.WithIntervalInMinutes(1)));
-            //.WithCronSchedule("59 59 23 * * ?")); // Runs every day at 23:59:59
+                    .WithCronSchedule("59 59 23 * * ?")); // Runs every day at 23:59:59
         });
 
         // Add the Quartz.NET hosted service

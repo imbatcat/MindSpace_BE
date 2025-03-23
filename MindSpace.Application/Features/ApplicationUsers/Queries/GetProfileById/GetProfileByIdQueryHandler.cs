@@ -5,7 +5,7 @@ using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Domain.Entities.Identity;
 
-namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfileById
+namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetProfileById
 {
     public class GetProfileByIdQueryHandler(
         ILogger<GetProfileByIdQueryHandler> logger,

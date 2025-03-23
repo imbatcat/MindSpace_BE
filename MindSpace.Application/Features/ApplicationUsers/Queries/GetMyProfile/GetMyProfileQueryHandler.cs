@@ -7,7 +7,7 @@ using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
 
-namespace MindSpace.Application.Features.ApplicationUsers.Queries.ViewProfile
+namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetMyProfile
 {
     internal class GetMyProfileQueryHandler
     (ILogger<GetMyProfileQueryHandler> logger,
