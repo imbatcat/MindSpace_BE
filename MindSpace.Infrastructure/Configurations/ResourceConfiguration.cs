@@ -1,9 +1,9 @@
 ﻿namespace MindSpace.Infrastructure.Configurations;
 
 using Domain.Entities.Constants;
-using Domain.Entities.SupportingPrograms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MindSpace.Domain.Entities.Resources;
 
 internal class ResourceConfiguration : IEntityTypeConfiguration<Resource>
 {
@@ -21,7 +21,7 @@ internal class ResourceConfiguration : IEntityTypeConfiguration<Resource>
 
         builder.Property(r => r.ArticleUrl)
             .HasMaxLength(500)
-            .IsRequired();
+            .IsRequired(false);
 
         builder.Property(r => r.Title)
             .HasMaxLength(200)
@@ -35,9 +35,18 @@ internal class ResourceConfiguration : IEntityTypeConfiguration<Resource>
         builder.Property(r => r.ThumbnailUrl)
             .HasMaxLength(500);
 
+        builder.Property(r => r.isActive)
+            .HasDefaultValue(true)
+            .IsRequired();
+
         // 1 SchoolManager - M Resources
         builder.HasOne(r => r.SchoolManager)
             .WithMany(sm => sm.Resources)
             .HasForeignKey(r => r.SchoolManagerId);
+
+        // 1 Specialization - M Resources
+        builder.HasOne(r => r.Specialization)
+            .WithMany(s => s.Resources)
+            .HasForeignKey(r => r.SpecializationId);
     }
 }

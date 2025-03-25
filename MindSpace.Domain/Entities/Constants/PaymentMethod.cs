@@ -7,6 +7,8 @@ namespace MindSpace.Domain.Entities.Constants
         [EnumMember(Value = "MOMO")]
         MOMO,
         [EnumMember(Value = "VNPAY")]
-        VNPAY
+        VNPAY,
+        [EnumMember(Value = "STRIPE")]
+        STRIPE
     }
 }

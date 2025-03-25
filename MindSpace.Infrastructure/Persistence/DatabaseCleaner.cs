@@ -1,8 +1,8 @@
 ﻿namespace MindSpace.Infrastructure.Persistence;
 
-using Application.Commons.Utilities.Seeding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Interfaces.Utilities.Seeding;
 
 internal class DatabaseCleaner : IDataCleaner
 {

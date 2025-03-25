@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Identity;
+using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Entities.Tests;
 
@@ -33,7 +34,7 @@ namespace MindSpace.Infrastructure.Persistence
         // Appointments
         private DbSet<PsychologistSchedule> PsychologistSchedules { get; set; }
         private DbSet<Appointment> Appointments { get; set; }
-        private DbSet<Payment> Payments { get; set; }
+        private DbSet<Invoice> Invoices { get; set; }
 
         // Tests
         private DbSet<TestCategory> TestCategories { get; set; }
@@ -43,7 +44,6 @@ namespace MindSpace.Infrastructure.Persistence
         private DbSet<QuestionOption> QuestionOptions { get; set; }
         private DbSet<TestScoreRank> TestScoreRanks { get; set; }
         private DbSet<TestQuestion> TestQuestions { get; set; }
-        private DbSet<TestPublication> TestPublications { get; set; }
         private DbSet<TestResponse> TestResponses { get; set; }
         private DbSet<TestResponseItem> TestResponseItems { get; set; }
 

@@ -5,15 +5,22 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MindSpace.API.Middlewares;
 using Serilog;
+using Stripe;
 using System.Text;
 
 namespace MindSpace.API.Extensions
 {
     public static class WebApplicationBuilderExtensions
     {
-        public static void AddPresentation(this WebApplicationBuilder builder)
+        public static void AddPresentation(this WebApplicationBuilder builder, IConfiguration configuration)
         {
+            // Configure Stripe API Key
+            StripeConfiguration.ApiKey = configuration["Stripe:SecretKey"];
+
+            // Add Controllers with Endpoints
             builder.Services.AddControllers();
+
+            // Add Authentication
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -28,6 +35,7 @@ namespace MindSpace.API.Extensions
                 };
             });
 
+            // Add Authorization
             builder.Services.AddAuthorization(options =>
             {
                 var requireAuthPolicy = new AuthorizationPolicyBuilder()
@@ -36,6 +44,7 @@ namespace MindSpace.API.Extensions
                 options.DefaultPolicy = requireAuthPolicy;
             });
 
+            // Config Routing on Urls
             builder.Services.AddRouting(options =>
             {
                 options.LowercaseUrls = true;
@@ -73,6 +82,37 @@ namespace MindSpace.API.Extensions
                 });
             });
 
+            // Add CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend", policy =>
+                {
+                    policy.WithOrigins(
+                        "http://localhost:3000",
+                        "http://localhost:5021",
+                        "http://localhost:5174",
+                        "http://localhost:5173",
+                        "https://localhost:5021",
+                        "https://localhost:3000",
+                        "http://localhost:8081",
+                        "http://192.168.1.2:19000"
+                    )
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .WithExposedHeaders("Location");
+                });
+
+                options.AddPolicy("AllowGemini", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .WithExposedHeaders("Content-Disposition");
+                });
+            });
+
+
             // tell swagger to support minimal apis, which the Identity apis are.
             builder.Services.AddEndpointsApiExplorer();
 
@@ -80,7 +120,7 @@ namespace MindSpace.API.Extensions
             builder.Services.AddScoped<ErrorHandlingMiddleware>();
             builder.Services.AddScoped<TimeLoggingMiddleware>();
 
-            // Add Log
+            // Add Serilogs
             builder.Host.UseSerilog((context, configuration) =>
             {
                 configuration.ReadFrom.Configuration(context.Configuration);

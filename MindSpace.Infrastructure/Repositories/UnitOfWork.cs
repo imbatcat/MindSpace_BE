@@ -1,8 +1,8 @@
 ﻿namespace MindSpace.Infrastructure.Repositories;
 
 using Domain.Entities;
-using Domain.Interfaces.Repos;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Interfaces.Repos;
 using Persistence;
 using System.Collections.Concurrent;
 

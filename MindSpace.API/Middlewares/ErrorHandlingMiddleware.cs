@@ -31,7 +31,12 @@ namespace MindSpace.API.Middlewares
                 await next.Invoke(context);
 
                 // In here, if error occurs, then short-circuiting the middleware
-                // and catch the exeception
+                // and catch the exception
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                await WriteToResponse(context, StatusCodes.Status400BadRequest, ex.Message);
             }
             catch (AuthorizationFailedException ex)
             {
@@ -43,7 +48,12 @@ namespace MindSpace.API.Middlewares
                 _logger.LogError(ex, ex.Message);
                 await WriteToResponse(context, StatusCodes.Status400BadRequest, ex.Message);
             }
-            catch (CreateUserFailedException ex)
+            catch (CreateFailedException ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                await WriteToResponse(context, StatusCodes.Status400BadRequest, ex.Message);
+            }
+            catch (UpdateFailedException ex)
             {
                 _logger.LogError(ex, ex.Message);
                 await WriteToResponse(context, StatusCodes.Status400BadRequest, ex.Message);
@@ -67,6 +77,16 @@ namespace MindSpace.API.Middlewares
             {
                 _logger.LogWarning(ex, ex.Message);
                 await WriteToResponse(context, StatusCodes.Status404NotFound, ex.Message);
+            }
+            catch (DuplicateObjectException ex)
+            {
+                _logger.LogWarning(ex, ex.Message);
+                await WriteToResponse(context, StatusCodes.Status409Conflict, ex.Message);
+            }
+            catch (InvalidFileFormatException ex)
+            {
+                _logger.LogWarning(ex, ex.Message);
+                await WriteToResponse(context, StatusCodes.Status400BadRequest, ex.Message);
             }
             catch (Exception ex)
             {

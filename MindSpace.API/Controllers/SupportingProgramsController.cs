@@ -1,92 +1,113 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MindSpace.Application.DTOs;
+using MindSpace.API.RequestHelpers;
+using MindSpace.Application.DTOs.SupportingPrograms;
+using MindSpace.Application.Features.SupportingPrograms.Commands.CreateSupportingProgram;
+using MindSpace.Application.Features.SupportingPrograms.Commands.PatchSupportingProgram;
+using MindSpace.Application.Features.SupportingPrograms.Commands.RegisterSupportingProgram;
+using MindSpace.Application.Features.SupportingPrograms.Commands.UnregisterSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramByHistory;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
 using MindSpace.Application.Specifications.SupportingProgramHistorySpecifications;
 using MindSpace.Application.Specifications.SupportingProgramSpecifications;
 
-namespace MindSpace.API.Controllers
+namespace MindSpace.API.Controllers;
+
+//[Authorize]
+[Route("api/v{version:apiVersion}/supporting-programs")]
+public class SupportingProgramsController(IMediator mediator) : BaseApiController
 {
-    //[Authorize]
-    [Route("api/v{version:apiVersion}/supporting-programs")]
-    public class SupportingProgramsController : BaseApiController
+    // ====================================
+    // === GET
+    // ====================================
+
+    // GET /api/supporting-programs
+    [Cache(30000)]
+    [HttpGet]
+    public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingPrograms(
+        [FromQuery] SupportingProgramSpecParams specParams)
     {
-        // ====================================
-        // === Props & Fields
-        // ====================================
+        var pagedResultDTO = await mediator.Send(new GetSupportingProgramsQuery(specParams));
 
-        private readonly IMediator _mediator;
+        return PaginationOkResult<SupportingProgramResponseDTO>(
+            pagedResultDTO.Data,
+            pagedResultDTO.Count,
+            specParams.PageIndex,
+            specParams.PageSize
+        );
+    }
 
-        // ====================================
-        // === Constructors
-        // ====================================
+    // GET /api/supporting-programs/history?studentId=2
+    [Cache(30000)]
+    [HttpGet("history")]
+    public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingProgramsHistory(
+        [FromQuery] SupportingProgramHistorySpecParams specParams)
+    {
+        // Get from the Table Supporting Program History to track number of SP by Student Id
+        var pagedResultDTO = await mediator.Send(new GetSupportingProgramByHistoryQuery(specParams));
 
-        public SupportingProgramsController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        return PaginationOkResult<SupportingProgramResponseDTO>(
+            pagedResultDTO.Data,
+            pagedResultDTO.Count,
+            specParams.PageIndex,
+            specParams.PageSize
+        );
+    }
 
-        // ====================================
-        // === GET
-        // ====================================
+    // GET /api/supporting-programs/{id}
+    [Cache(30000)]
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<SupportingProgramSingleResponseDTO>> GetSupportingProgramById(
+        [FromRoute] int id)
+    {
+        var supportProgram = await mediator.Send(new GetSupportingProgramByIdQuery(id));
+        return Ok(supportProgram);
+    }
 
-        /// <summary>
-        /// Get Supporting Programs By Params and Support Pagination
-        /// </summary>
-        /// <param name="specParams"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingPrograms(
-            [FromQuery] SupportingProgramSpecParams specParams)
-        {
-            var pagedResultDTO = await _mediator.Send(new GetSupportingProgramsQuery(specParams));
+    // ====================================
+    // === CREATE, PATCH, DELETE, PUT
+    // ====================================
 
-            return PaginationOkResult<SupportingProgramResponseDTO>(
-                pagedResultDTO.Data,
-                pagedResultDTO.Count,
-                specParams.PageIndex,
-                specParams.PageSize
-            );
-        }
+    // POST /api/supporting-programs
+    [InvalidateCache("/api/supporting-programs|")]
+    [HttpPost]
+    public async Task<ActionResult> CreateSupportingProgram(
+        [FromBody] CreateSupportingProgramCommand newSP)
+    {
+        var createdSP = await mediator.Send(newSP);
+        return CreatedAtAction(nameof(GetSupportingProgramById), new { createdSP.Id }, null);
+    }
 
-        /// <summary>
-        /// Get the supporting program at the history registration 
-        /// </summary>
-        /// <param name="specParams"></param>
-        /// <returns></returns>
-        [HttpGet("history")]
-        public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingProgramsHistory(
-            [FromQuery] SupportingProgramHistorySpecParams specParams)
-        {
-            // Get from the Table Supporting Program History to track number of SP by Student Id
+    // PATCH /api/supporting-programs/{id}
+    [InvalidateCache("/api/supporting-programs|")]
+    [HttpPatch("{id:int}")]
+    public async Task<ActionResult> PatchSupportingProgram(
+       [FromRoute] int id,
+       [FromBody] PatchSupportingProgramCommand updatedSP)
+    {
+        updatedSP.Id = id;
+        await mediator.Send(updatedSP);
+        return NoContent();
+    }
 
-            var pagedResultDTO = await _mediator.Send(new GetSupportingProgramHistoryQuery(specParams));
+    // POST /api/supporting-programs/register
+    [InvalidateCache("/api/supporting-programs/history|")]
+    [HttpPost("register")]
+    public async Task<ActionResult> RegisterSupportingProgram(
+        [FromBody] RegisterSupportingProgramCommand registerSP)
+    {
+        await mediator.Send(registerSP);
+        return NoContent();
+    }
 
-            return PaginationOkResult<SupportingProgramResponseDTO>(
-                pagedResultDTO.Data,
-                pagedResultDTO.Count,
-                specParams.PageIndex,
-                specParams.PageSize
-            );
-        }
-
-        /// <summary>
-        /// Get Supporting Program By Id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<SupportingProgramWithStudentsResponseDTO>> GetSupportingProgramById(
-            [FromRoute] int id)
-        {
-            var supportProgram = await _mediator.Send(new GetSupportingProgramByIdQuery(id));
-            return Ok(supportProgram);
-        }
-
-        // ====================================
-        // === CREATE, PATCH, DELETE
-        // ====================================
+    // POST /api/supporting-programs/unregister
+    [InvalidateCache("/api/supporting-programs/history|")]
+    [HttpPost("unregister")]
+    public async Task<ActionResult> UnregisterSupportingProgram(
+        [FromBody] UnregisterSupportingProgramCommand unregisterSP)
+    {
+        await mediator.Send(unregisterSP);
+        return NoContent();
     }
 }

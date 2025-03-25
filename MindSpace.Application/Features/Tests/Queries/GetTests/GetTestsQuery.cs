@@ -5,7 +5,7 @@ using MindSpace.Application.Specifications.TestSpecifications;
 
 namespace MindSpace.Application.Features.Tests.Queries.GetTests
 {
-    public class GetTestsQuery : IRequest<PagedResultDTO<TestResponseDTO>>
+    public class GetTestsQuery : IRequest<PagedResultDTO<TestOverviewResponseDTO>>
     {
         public TestSpecParams SpecParams { get; private set; }
 

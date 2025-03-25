@@ -4,10 +4,24 @@ namespace MindSpace.Application.Specifications.SupportingProgramHistorySpecifica
 {
     public class SupportingProgramHistorySpecification : BaseSpecification<SupportingProgramHistory>
     {
+        /// <summary>
+        /// Filter by Student Id
+        /// </summary>
+        /// <param name="studentId"></param>
         public SupportingProgramHistorySpecification(int studentId)
             : base(h => (h.StudentId.Equals(studentId)))
         {
             AddOrderByDescending(x => x.JoinedAt);
+        }
+
+        /// <summary>
+        /// Filter by Student Id and Supporting Program Id
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <param name="supportingProgramId"></param>
+        public SupportingProgramHistorySpecification(int studentId, int supportingProgramId)
+            : base(h => (h.StudentId == studentId && h.SupportingProgramId == supportingProgramId))
+        {
         }
 
         /// <summary>
@@ -42,5 +56,7 @@ namespace MindSpace.Application.Specifications.SupportingProgramHistorySpecifica
                     break;
             }
         }
+
+
     }
 }

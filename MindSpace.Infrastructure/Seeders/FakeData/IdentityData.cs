@@ -17,8 +17,8 @@ internal static class IdentityData
                 NormalizedEmail = "STUDENT1@EXAMPLE.COM",
                 FullName = "Student One",
                 Status = UserStatus.Enabled,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
                 SchoolId = 1,
                 DateOfBirth = new DateTime(2000, 1, 1)
             },
@@ -30,8 +30,8 @@ internal static class IdentityData
                 NormalizedEmail = "STUDENT2@EXAMPLE.COM",
                 FullName = "Student Two",
                 Status = UserStatus.Enabled,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
                 SchoolId = 1,
                 DateOfBirth = new DateTime(2000, 2, 2)
             },
@@ -43,8 +43,8 @@ internal static class IdentityData
                 NormalizedEmail = "STUDENT3@EXAMPLE.COM",
                 FullName = "Student Three",
                 Status = UserStatus.Enabled,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
                 SchoolId = 1,
                 DateOfBirth = new DateTime(2000, 3, 3)
             },
@@ -56,8 +56,8 @@ internal static class IdentityData
                 NormalizedEmail = "STUDENT4@EXAMPLE.COM",
                 FullName = "Student Four",
                 Status = UserStatus.Enabled,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
                 SchoolId = 2,
                 DateOfBirth = new DateTime(2000, 4, 4)
             },
@@ -69,8 +69,8 @@ internal static class IdentityData
                 NormalizedEmail = "STUDENT5@EXAMPLE.COM",
                 FullName = "Student Five",
                 Status = UserStatus.Enabled,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
                 SchoolId = 2,
                 DateOfBirth = new DateTime(2000, 5, 5)
             },
@@ -82,8 +82,9 @@ internal static class IdentityData
                 NormalizedEmail = "ADMIN1@EXAMPLE.COM",
                 FullName = "Admin One",
                 Status = UserStatus.Enabled,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                DateOfBirth = new DateTime(1990, 1, 1)
             },
             new Psychologist
             {
@@ -93,9 +94,12 @@ internal static class IdentityData
                 NormalizedEmail = "PSYCHOLOGIST1@EXAMPLE.COM",
                 FullName = "Psychologist One",
                 Bio = "Hi, I like cats and doraemon",
+                AverageRating = 4.8f,
+                SessionPrice = 500000,
+                ComissionRate = 0.1m,
                 Status = UserStatus.Enabled,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
                 DateOfBirth = new DateTime(1980, 1, 1),
                 SpecializationId = 1
             },
@@ -107,9 +111,12 @@ internal static class IdentityData
                 NormalizedEmail = "PSYCHOLOGIST2@EXAMPLE.COM",
                 FullName = "Psychologist Two",
                 Bio = "Hi, I like cats and doraemon",
+                AverageRating = 4.7f,
+                SessionPrice = 600000,
+                ComissionRate = 0.15m,
                 Status = UserStatus.Enabled,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
                 DateOfBirth = new DateTime(1982, 2, 2),
                 SpecializationId = 2
             },
@@ -121,9 +128,12 @@ internal static class IdentityData
                 NormalizedEmail = "PSYCHOLOGIST3@EXAMPLE.COM",
                 FullName = "Psychologist Three",
                 Bio = "Hi, I like cats and doraemon",
+                AverageRating = 4.9f,
+                SessionPrice = 700000,
+                ComissionRate = 0.12m,
                 Status = UserStatus.Enabled,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
                 DateOfBirth = new DateTime(1985, 3, 3),
                 SpecializationId = 3
             },
@@ -131,50 +141,54 @@ internal static class IdentityData
             {
                 UserName = "manager1",
                 NormalizedUserName = "MANAGER1",
-                Email = "Manager1@example.com",
+                Email = "manager1@example.com",
                 NormalizedEmail = "Manager1@EXAMPLE.COM",
                 FullName = "SchoolManager One",
                 Status = UserStatus.Enabled,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
-                SchoolId = 1
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                SchoolId = 1,
+                DateOfBirth = new DateTime(1975, 1, 1)
             },
             new SchoolManager
             {
                 UserName = "manager2",
                 NormalizedUserName = "MANAGER2",
-                Email = "Manager2@example.com",
+                Email = "manager2@example.com",
                 NormalizedEmail = "Manager2@EXAMPLE.COM",
                 FullName = "SchoolManager Two",
                 Status = UserStatus.Enabled,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
-                SchoolId = 2
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                SchoolId = 2,
+                DateOfBirth = new DateTime(1978, 2, 2)
             },
-            new()
+            new Parent()
             {
                 UserName = "parent1",
                 NormalizedUserName = "PARENT1",
                 Email = "parent1@example.com",
                 NormalizedEmail = "PARENT1@EXAMPLE.COM",
-                FullName = "Parent One"
+                FullName = "Parent One",
+                DateOfBirth = new DateTime(1970, 1, 1)
             },
-            new()
+            new Parent()
             {
                 UserName = "parent2",
                 NormalizedUserName = "PARENT2",
                 Email = "parent2@example.com",
                 NormalizedEmail = "PARENT2@EXAMPLE.COM",
-                FullName = "Parent Two"
+                FullName = "Parent Two",
+                DateOfBirth = new DateTime(1972, 2, 2)
             }
         };
 
-        return users;
+return users;
     }
 
     public static IEnumerable<ApplicationRole> GetRoles()
-    {
-        List<ApplicationRole> roles = new List<ApplicationRole>
+{
+    List<ApplicationRole> roles = new List<ApplicationRole>
         {
             new(UserRoles.Student)
             {
@@ -198,6 +212,6 @@ internal static class IdentityData
             }
         };
 
-        return roles;
-    }
+    return roles;
+}
 }

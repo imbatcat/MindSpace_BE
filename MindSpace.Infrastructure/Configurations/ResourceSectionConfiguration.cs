@@ -1,8 +1,8 @@
 ﻿namespace MindSpace.Infrastructure.Configurations;
 
-using Domain.Entities.SupportingPrograms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MindSpace.Domain.Entities.Resources;
 
 internal class ResourceSectionConfiguration : IEntityTypeConfiguration<ResourceSection>
 {
@@ -18,13 +18,14 @@ internal class ResourceSectionConfiguration : IEntityTypeConfiguration<ResourceS
             .IsRequired();
 
         builder.Property(rs => rs.HtmlContent)
-            .HasMaxLength(255)
+            .HasMaxLength(2000)
             .IsRequired()
             .IsUnicode();
 
         // 1 Resource - M ResourceSection
         builder.HasOne(rs => rs.Resource)
             .WithMany(r => r.ResourceSections)
-            .HasForeignKey(rs => rs.ResourceId);
+            .HasForeignKey(rs => rs.ResourceId)
+            .OnDelete(DeleteBehavior.ClientCascade);
     }
 }

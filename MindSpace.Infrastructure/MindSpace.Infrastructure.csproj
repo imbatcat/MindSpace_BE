@@ -1,99 +1,101 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Bogus" Version="35.6.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Bogus" Version="35.6.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Quartz" Version="3.14.0" />
+		<PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.14.0" />
+		<PackageReference Include="Quartz.Extensions.Hosting" Version="3.14.0" />
+		<PackageReference Include="StackExchange.Redis" Version="2.8.31" />
+		<PackageReference Include="Google.Apis.Calendar.v3" Version="1.69.0.3667" />
+	</ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\MindSpace.Application\MindSpace.Application.csproj">
-            <Private>True</Private>
-        </ProjectReference>
-    </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\MindSpace.Application\MindSpace.Application.csproj">
+			<Private>True</Private>
+		</ProjectReference>
+	</ItemGroup>
 
-    <ItemGroup>
-        <None Update="Seeders\FakeData\Appointment.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\Feedback.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\Payment.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\PsychologistSchedule.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\Question.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\TestPublication.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\QuestionOption.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\Resource.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\ResourceSections.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\School.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\Specialization.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\SupportingProgram.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\SupportingProgramHistory.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\Test.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\TestCategory.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\TestQuestion.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\TestResponse.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\TestResponseItem.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Seeders\FakeData\TestScoreRank.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
+	<ItemGroup>
+		<None Update="Seeders\FakeData\Appointment.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\Feedback.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\Payment.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\PsychologistSchedule.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\Question.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\QuestionOption.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\Resource.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\ResourceSections.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\School.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\Specialization.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\SupportingProgram.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\SupportingProgramHistory.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\Test.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\TestCategory.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\TestQuestion.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\TestResponse.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\TestResponseItem.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Seeders\FakeData\TestScoreRank.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<None Update="Seeders\FakeData\PsychologyTestOption.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-    </ItemGroup>
+	</ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Migrations\" />
-    </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Migrations\" />
+	</ItemGroup>
 
-    <ProjectExtensions>
-        <VisualStudio>
-            <UserProperties />
-        </VisualStudio>
-    </ProjectExtensions>
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties seeders_4fakedata_4resourcesections_1json__JsonSchema="json" />
+		</VisualStudio>
+	</ProjectExtensions>
 </Project>

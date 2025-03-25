@@ -1,56 +1,30 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.SupportingPrograms;
+using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.SupportingProgramSpecifications;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Exceptions;
-using MindSpace.Domain.Interfaces.Repos;
 
-namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById
+namespace MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
+
+public class GetSupportingProgramByIdQueryHandler(
+    ILogger<GetSupportingProgramByIdQueryHandler> logger,
+    IUnitOfWork unitOfWork,
+    IMapper mapper) : IRequestHandler<GetSupportingProgramByIdQuery, SupportingProgramSingleResponseDTO>
 {
-    public class GetSupportingProgramByIdQueryHandler : IRequestHandler<GetSupportingProgramByIdQuery, SupportingProgramWithStudentsResponseDTO>
+    public async Task<SupportingProgramSingleResponseDTO> Handle(GetSupportingProgramByIdQuery request, CancellationToken cancellationToken)
     {
-        // ================================
-        // === Fields & Props
-        // ================================
+        logger.LogInformation("Get Supporting Program By Id: {@Id}", request.Id);
 
-        private readonly ILogger<GetSupportingProgramByIdQueryHandler> _logger;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        var spec = new SupportingProgramSpecification(request.Id);
 
-        // ================================
-        // === Constructors
-        // ================================
-        public GetSupportingProgramByIdQueryHandler(
-            ILogger<GetSupportingProgramByIdQueryHandler> logger,
-            IUnitOfWork unitOfWork,
-            IMapper mapper)
-        {
-            _logger = logger;
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
-        }
+        var spFromDb = await unitOfWork.Repository<SupportingProgram>().GetBySpecAsync(spec)
+            ?? throw new NotFoundException(nameof(SupportingProgram), request.Id.ToString());
 
-        // ================================
-        // === Methods
-        // ================================
-        public async Task<SupportingProgramWithStudentsResponseDTO> Handle(GetSupportingProgramByIdQuery request, CancellationToken cancellationToken)
-        {
-            _logger.LogInformation("Get Supporting Program By Id: {@Id}", request.Id);
+        var result = mapper.Map<SupportingProgram, SupportingProgramSingleResponseDTO>(spFromDb);
 
-            var spec = new SupportingProgramSpecification(request.Id);
-
-            var dataDto = await _unitOfWork
-                .Repository<SupportingProgram>()
-                .GetBySpecProjectedAsync<SupportingProgramWithStudentsResponseDTO>(spec, _mapper.ConfigurationProvider);
-
-            if (dataDto == null)
-            {
-                throw new NotFoundException(nameof(SupportingProgram), request.Id.ToString());
-            }
-
-            return dataDto;
-        }
+        return result;
     }
 }

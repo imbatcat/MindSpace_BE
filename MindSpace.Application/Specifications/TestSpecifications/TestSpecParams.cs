@@ -10,6 +10,7 @@ namespace MindSpace.Application.Specifications.TestSpecifications
         public decimal? MinPrice { get; set; }
         public decimal? MaxPrice { get; set; }
         public int? TestCategoryId { get; set; }
+        public int? AuthorId { get; set; }
         public int? SpecializationId { get; set; }
         public string? Sort { get; set; }
     }

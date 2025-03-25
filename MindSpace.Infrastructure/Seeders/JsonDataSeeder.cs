@@ -1,10 +1,10 @@
 ﻿namespace MindSpace.Infrastructure.Seeders;
 
 using Application.Commons.Constants;
-using Application.Commons.Utilities;
-using Application.Commons.Utilities.Seeding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Interfaces.Utilities;
+using MindSpace.Application.Interfaces.Utilities.Seeding;
 using Newtonsoft.Json;
 using Persistence;
 

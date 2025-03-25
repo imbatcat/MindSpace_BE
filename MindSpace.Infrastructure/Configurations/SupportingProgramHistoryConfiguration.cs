@@ -9,6 +9,7 @@ internal class SupportingProgramHistoryConfiguration : IEntityTypeConfiguration<
     public void Configure(EntityTypeBuilder<SupportingProgramHistory> builder)
     {
         builder.ToTable("SupportingProgramHistories", "dbo");
+
         // M Supporting Program - M Student
         builder.HasKey(spd => new { spd.StudentId, spd.SupportingProgramId });
 

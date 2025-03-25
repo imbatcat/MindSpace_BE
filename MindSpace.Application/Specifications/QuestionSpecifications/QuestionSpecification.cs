@@ -4,8 +4,25 @@ namespace MindSpace.Application.Specifications.QuestionSpecifications
 {
     public class QuestionSpecification : BaseSpecification<Question>
     {
+        /// <summary>
+        /// Filter by Question Id
+        /// </summary>
+        /// <param name="questionId"></param>
+        public QuestionSpecification(int questionId)
+            : base(x => x.Id.Equals(questionId))
+        {
+        }
+
+        /// <summary>
+        /// 
+        /// Constructor for General Filter and Pagination
+        /// </summary>
+        /// <param name="specParams"></param>
         public QuestionSpecification(QuestionSpecParams specParams)
-            : base(q => string.IsNullOrEmpty(specParams.SearchQuestionContent) || q.Content.ToLower().Contains(specParams.SearchQuestionContent.ToLower()))
+            : base(q => (string.IsNullOrEmpty(specParams.SearchQuestionContent)
+                            || q.Content.ToLower().Contains(specParams.SearchQuestionContent.ToLower()))
+                            && (specParams.IsOnlyGetQuestionsWithOptions == false
+                            || q.QuestionOptions.Any()))
         {
 
             // Add Paging

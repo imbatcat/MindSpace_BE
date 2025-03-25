@@ -1,14 +1,19 @@
 ﻿@MindSpace.API_HostAddress = https://localhost:7096
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3NTAzL2FwaS8iLCJpc3MiOiJyZXN0YXVyYW50cyIsImV4cCI6MTczODkzNzI4Nywic3ViIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlN0dWRlbnQiLCJpYXQiOjE3Mzg5MzcyMjcsIm5iZiI6MTczODkzNzIyN30.e-qr-WLYcPb2PGVbvLNpIEShlnMTn0wLvNtf72btOcM
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3NTAzL2FwaS8iLCJpc3MiOiJNaW5kc3BhY2VBdXRob3JpemF0aW9uIiwiZXhwIjoxNzM5Mzg2NDk1LCJzdWIiOiIxNCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlBhcmVudCIsImlhdCI6MTczOTM4NTU5NSwibmJmIjoxNzM5Mzg1NTk1fQ.STEisBzVeAl8GSdvWOOs1VdITxOjFYbwF0q3nlAKkWI
+ 
+
 
 @refreshToken = eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpc3MiOiJyZXN0YXVyYW50cyIsImV4cCI6MTczODg2MzM2NSwiaWF0IjoxNzM4ODYzMjQ1LCJuYmYiOjE3Mzg4NjMyNDV9.
  
-POST {{MindSpace.API_HostAddress}}/api/identity/register 
+POST {{MindSpace.API_HostAddress}}/api/v1/identity/register 
 Content-Type: application/json
 
-{
-  "email": "user@gmail.com",
-  "password": "Password1!"
+
+  "email": "ptdat04@gmail.com",
+  "password": "Password1!",
+  "Username": "ptdat",
+  "Birthdate": "12/12/2004",
+  "PhoneNumber": "0937649700"
 }
 
 ###
@@ -16,7 +21,7 @@ POST {{MindSpace.API_HostAddress}}/api/v1/Identity/login
 Content-Type: application/json
 
 {
-  "email": "student1@example.com",
+  "email": "ptdat04@gmail.com",
   "password": "Password1!"
 }
 
@@ -63,5 +68,39 @@ GET {{MindSpace.API_HostAddress}}/api/v1/supportingprogramhistories
 ###
 
 GET {{MindSpace.API_HostAddress}}/api/v1/supportingprograms
+
+###
+
+POST {{MindSpace.API_HostAddress}}/api/v1/Identity/logout
+Authorization: Bearer {{token}}
+###
+
+GET {{MindSpace.API_HostAddress}}/api/v1/testapi
+Authorization: Bearer {{token}}
+###
+
+POST {{MindSpace.API_HostAddress}}/api/v1/identity/revoke/{{id}}
+Authorization: Bearer {{token}}
+
+###
+
+POST {{MindSpace.API_HostAddress}}/api/v1/identity/revoke/{{id}}
+
+###
+
+POST {{MindSpace.API_HostAddress}}/api/v1/identity/send-email-confirmation
+Authorization: Bearer {{token}}
+###
+
+POST {{MindSpace.API_HostAddress}}/api/v1/identity/send-email-confirmation
+Authorization: Bearer {{token}}
+
+###
+
+GET https://localhost:7096/api/v1/identity/confirm-email?token=Q2ZESjhMQ0ZQcVVwMmZOTm5iZzVsMzV5aVM4MGtYVEd6VXp5enFnZWNWK1ZFMk96T0ErUmpIK3NpcWRsaWQ4TXVxbm9KYVoyUnM0NTVYOWtjL1JhbGFnWWQyY2FEZ0tjK3M4d3VUTC9YaG0wdVN4ZXpERlhEUTNuTHdPTnYzMU1iZ3B4T1BaZGFhTFRDK2lwNFBhcVpMWkZRRXZ0T08weUFHcHphdWJZNC9TQ2dkaTR1ZExlOXp2Y1dWaVpyUDA2UUhmd1BnPT0=&email=ptdat04@gmail.com
+
+###
+
+POST {{MindSpace.API_HostAddress}}/api/v1/payment/webhook
 
 ###

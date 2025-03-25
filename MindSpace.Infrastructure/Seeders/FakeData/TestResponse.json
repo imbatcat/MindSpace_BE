@@ -3,7 +3,7 @@
     "TotalScore": 12,
     "TestScoreRankResult": "Lo âu trung bình",
     "StudentId": 1,
-    "TestPublicationId": 1,
+    "TestId": 1,
     "CreateAt": "2024-01-01T08:00:00Z",
     "UpdateAt": "2024-01-29T10:00:00Z"
   },
@@ -11,23 +11,23 @@
     "TotalScore": 11,
     "TestScoreRankResult": "Trầm cảm trung bình",
     "StudentId": 1,
-    "TestPublicationId": 2,
+    "TestId": 2,
     "CreateAt": "2024-05-16T15:00:00Z",
     "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
     "TotalScore": 15,
     "TestScoreRankResult": "Mức độ kỷ luật tích cực trung bình",
-    "StudentId": 1,
-    "TestPublicationId": 3,
+    "ParentId": 12,
+    "TestId": 3,
     "CreateAt": "2024-05-22T10:00:00Z",
     "UpdateAt": "2024-05-22T10:00:00Z"
   },
   {
-    "TotalScore": null,
+    "TotalScore": 15,
     "TestScoreRankResult": null,
     "StudentId": 1,
-    "TestPublicationId": 4,
+    "TestId": 4,
     "CreateAt": "2024-05-17T14:00:00Z",
     "UpdateAt": "2024-05-17T14:00:00Z"
   }

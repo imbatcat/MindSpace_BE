@@ -1,17 +1,13 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MindSpace.Application.Services;
-using MindSpace.Application.Services.AuthenticationServices;
-using MindSpace.Application.UserContext;
-using MindSpace.Domain.Interfaces.Services;
-using MindSpace.Domain.Interfaces.Services.Authentication;
 
 namespace MindSpace.Application.Extensions
 {
-    public static class ServiceCollectionExtensions
+    public static partial class ServiceCollectionExtensions
     {
-        public static void AddApplications(this IServiceCollection services)
+        public static void AddApplications(this IServiceCollection services, IConfiguration configuration)
         {
             // Application assembly
             var applicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
@@ -25,21 +21,6 @@ namespace MindSpace.Application.Extensions
             // Add Fluent Validation
             services.AddValidatorsFromAssembly(applicationAssembly)
                 .AddFluentValidationAutoValidation();
-
-            // Add User Context
-            services.AddScoped<IUserContext, UserContext.UserContext>();
-
-            // Add Token Providers
-            services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();
-            services.AddScoped<IIDTokenProvider, IdTokenProvider>();
-            services.AddScoped<IRefreshTokenProvider, RefreshTokenProvider>();
-            services.AddSingleton<IExcelReaderService, ExcelReaderService>();
-
-            // Add HttpContextAccessor
-            services.AddHttpContextAccessor();
-
-            // Add Services
-            services.AddScoped<IApplicationUserService, ApplicationUserService>();
         }
     }
 }

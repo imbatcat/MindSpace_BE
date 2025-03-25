@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using MindSpace.API.Extensions;
 using MindSpace.API.Middlewares;
-using MindSpace.Application.Commons.Utilities.Seeding;
 using MindSpace.Application.Extensions;
+using MindSpace.Application.Interfaces.Utilities.Seeding;
 using MindSpace.Infrastructure.Extensions;
 using MindSpace.Infrastructure.Persistence;
+using MindSpace.Infrastructure.Services.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 // === Add services to the container
 // ====================================
 
-builder.AddPresentation();
+builder.AddPresentation(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddApplications();
+builder.Services.AddApplications(builder.Configuration);
 
 // ====================================
 // === Build the application
@@ -29,10 +30,9 @@ var app = builder.Build();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseMiddleware<TimeLoggingMiddleware>();
 
-// Configure CORS 
-app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
-.WithOrigins("http://localhost:4200", "https://localhost:4200"));
-
+// Configure CORS
+app.UseCors("AllowFrontend");
+app.UseCors("AllowGemini");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -46,8 +46,11 @@ app.MapGroup("api/identities")
     .WithTags("Identities");
 
 app.UseAuthorization();
-
 app.MapControllers();
+app.MapHub<NotificationHub>("/hub/notifications");
+app.MapHub<WebRTCHub>("/hub/webrtc");
+app.MapHub<PaymentHub>("/hub/payment");
+app.MapFallbackToController("Index", "Fallback");
 
 // ===================================================
 // === Create a scope and call the service manually
@@ -60,6 +63,7 @@ var dataCleaner = scope.ServiceProvider.GetRequiredService<IDataCleaner>();
 var applicationDbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
 var IsClearAndReseedData = app.Configuration.GetValue<bool>("ClearAndReseedData");
+
 if (IsClearAndReseedData)
 {
     try

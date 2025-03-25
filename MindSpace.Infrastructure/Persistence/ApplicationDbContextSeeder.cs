@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using MindSpace.Application.Commons.Constants;
-using MindSpace.Application.Commons.Utilities;
-using MindSpace.Application.Commons.Utilities.Seeding;
+using MindSpace.Application.Interfaces.Utilities;
+using MindSpace.Application.Interfaces.Utilities.Seeding;
 using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Appointments;
+using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Entities.SupportingPrograms;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Infrastructure.Seeders;
@@ -80,10 +81,6 @@ namespace MindSpace.Infrastructure.Persistence
             await new JsonDataSeeder<TestQuestion>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestQuestion>>(), _dbContext)
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestQuestionSeeder)
                 .SeedAsync();
-
-            await new JsonDataSeeder<TestPublication>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestPublication>>(), _dbContext)
-                .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestPublicationSeeder)
-                .SeedAsync();
             await new JsonDataSeeder<TestResponse>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<TestResponse>>(), _dbContext)
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.TestResponseSeeder)
                 .SeedAsync();
@@ -100,12 +97,9 @@ namespace MindSpace.Infrastructure.Persistence
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.AppointmentSeeder)
                 .SeedAsync();
 
-            await new JsonDataSeeder<Payment>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<Payment>>(), _dbContext)
+            await new JsonDataSeeder<Invoice>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<Invoice>>(), _dbContext)
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.PaymentSeeder)
                 .SeedAsync();
-
-
-
 
             await new JsonDataSeeder<SupportingProgram>(_fileReader, _loggerFactory.CreateLogger<JsonDataSeeder<SupportingProgram>>(), _dbContext)
                 .AddRelativeFilePath(AppCts.Locations.RelativeFilePath.SupportingProgramSeeder)

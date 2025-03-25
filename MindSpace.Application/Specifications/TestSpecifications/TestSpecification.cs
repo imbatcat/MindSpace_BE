@@ -4,6 +4,29 @@ namespace MindSpace.Application.Specifications.TestSpecifications
 {
     public class TestSpecification : BaseSpecification<Test>
     {
+        /// <summary>
+        /// Filter by Test Id
+        /// </summary>
+        /// <param name="testId"></param>
+        public TestSpecification(int testId)
+            : base(x => x.Id.Equals(testId))
+        {
+        }
+
+
+        public TestSpecification(string testCode)
+        : base(
+            x =>
+                 x.TestCode.ToLower().Equals(testCode.ToLower())
+            )
+        {
+        }
+
+
+        /// <summary>
+        /// Constructor for General Filter and Pagination
+        /// </summary>
+        /// <param name="specParams"></param>
         public TestSpecification(TestSpecParams specParams)
             : base
             (
@@ -22,6 +45,7 @@ namespace MindSpace.Application.Specifications.TestSpecifications
                    && (!specParams.MaxPrice.HasValue || t.Price <= specParams.MaxPrice)
                    && (!specParams.TestCategoryId.HasValue || t.TestCategoryId == specParams.TestCategoryId)
                    && (!specParams.SpecializationId.HasValue || t.SpecializationId == specParams.SpecializationId)
+                   && (!specParams.AuthorId.HasValue || t.AuthorId == specParams.AuthorId)
             )
         {
 
@@ -43,6 +67,22 @@ namespace MindSpace.Application.Specifications.TestSpecifications
                         AddOrderBy(x => x.Id.ToString()); break;
                 }
             }
+        }
+
+        /// <summary>
+        /// Constructor for 
+        /// </summary>
+        /// <param name="specParams"></param>
+        public TestSpecification(int schoolId, int? top, DateTime? startDate, DateTime? endDate)
+            : base
+            (
+                  t => (t.Author.SchoolManager == null || t.Author.SchoolManager.SchoolId == schoolId)
+                  && (!startDate.HasValue || t.CreateAt >= startDate)
+                  && (!endDate.HasValue || t.CreateAt <= endDate)
+            )
+        {
+            if (top.HasValue) AddTop(top.Value);
+            AddOrderByDescending(x => x.CreateAt.ToString());
         }
     }
 }

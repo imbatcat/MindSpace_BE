@@ -4,6 +4,11 @@ namespace MindSpace.Application.Commons.Constants
 {
     public static class AppCts
     {
+        public static class CheckoutSession
+        {
+            public static readonly int CheckoutSessionExpireTimeInMinutes = 15;
+        }
+
         /// <summary>
         /// All file path
         /// </summary>
@@ -25,7 +30,6 @@ namespace MindSpace.Application.Commons.Constants
                 public static string QuestionOptionSeeder = Path.Combine(PathToFakeDataFolder, "QuestionOption.json");
                 public static string TestQuestionSeeder = Path.Combine(PathToFakeDataFolder, "TestQuestion.json");
                 public static string PsychologyTestOptionSeeder = Path.Combine(PathToFakeDataFolder, "PsychologyTestOption.json");
-                public static string TestPublicationSeeder = Path.Combine(PathToFakeDataFolder, "TestPublication.json");
                 public static string TestResponseSeeder = Path.Combine(PathToFakeDataFolder, "TestResponse.json");
                 public static string TestResponseItemSeeder = Path.Combine(PathToFakeDataFolder, "TestResponseItem.json");
 
@@ -45,5 +49,51 @@ namespace MindSpace.Application.Commons.Constants
         /// Default password for all registered users
         /// </summary>
         public static string DefaultPassword = "Password1!";
+
+        /// <summary>
+        /// Database sharding for 1 instance (1 server)
+        /// </summary>
+        public static class Redis
+        {
+            public static int DatabaseNo_Blog = 1; // For Blog Draft
+            public static int DatabaseNo_Test = 2; // For Test Draft
+            public static int DatabaseNo_Response = 3; // For Caching Response
+            public static int DatabaseNo_Job = 4; // For Caching Job
+        }
+
+        /// <summary>
+        /// Stripe Payment Constants
+        /// </summary>
+        public static class StripePayment
+        {
+            /// <summary>
+            /// The time in minutes before a checkout session expires
+            /// </summary>
+            public static readonly int CheckoutSessionExpireTimeInMinutes = 15;
+
+            /// <summary>
+            /// The currency used for payment processing
+            /// </summary>
+            public static readonly string PaymentCurrency = "VND";
+
+            public static readonly string Provider = "Stripe";
+
+            public enum StripeCheckoutSessionStatus
+            {
+                open,
+                expired,
+                completed
+            }
+        }
+
+        public static class WebRTC
+        {
+            /// <summary>
+            /// The extra lifetime of the room in minutes in case the client request to extend the room lifetime, the room will be deleted after the meeting end time by 20 minutes
+            /// </summary>
+            /// NOT YET DEVELOPED
+            public static readonly int ExtraRoomLifetimeInMinutes = 20;
+        }
+
     }
 }

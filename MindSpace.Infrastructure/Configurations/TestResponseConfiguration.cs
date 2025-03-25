@@ -21,12 +21,19 @@ internal class TestResponseConfiguration : IEntityTypeConfiguration<TestResponse
         //Relationships
         builder
             .HasOne(tr => tr.Student)
-            .WithMany(st => st.TestResponses)
-            .HasForeignKey(tr => tr.StudentId);
+            .WithMany(s => s.TestResponses)
+            .HasForeignKey(tr => tr.StudentId)
+            .IsRequired(false);
 
         builder
-            .HasOne(tr => tr.TestPublication)
-            .WithMany(tp => tp.TestResponses)
-            .HasForeignKey(tr => tr.TestPublicationId);
+            .HasOne(tr => tr.Parent)
+            .WithMany(s => s.TestResponses)
+            .HasForeignKey(tr => tr.ParentId)
+            .IsRequired(false);
+
+        builder
+            .HasOne(tr => tr.Test)
+            .WithMany(t => t.TestResponses)
+            .HasForeignKey(tr => tr.TestId);
     }
 }

@@ -7,6 +7,6 @@ namespace MindSpace.Domain.Entities.Constants
         [EnumMember(Value = "Purchase")]
         Purchase,
         [EnumMember(Value = "Refund")]
-        Refund
+        Refund,
     }
 }

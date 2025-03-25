@@ -12,11 +12,11 @@ internal class TestConfiguration : IEntityTypeConfiguration<Test>
         builder.ToTable("Tests", "dbo");
 
         //Indexing
-        builder.HasIndex(t => t.Title).IsUnique();
+        builder.HasIndex(t => new { t.TestCode }).IsUnique();
 
         //Properties
         builder.Property(t => t.Title).IsUnicode().IsRequired().HasMaxLength(150);
-        builder.Property(t => t.TestCode).IsRequired(false).HasMaxLength(20);
+        builder.Property(t => t.TestCode).IsRequired().HasMaxLength(20);
         builder.Property(t => t.TargetUser)
             .HasConversion(
             convertToProviderExpression: v => v.ToString(),
