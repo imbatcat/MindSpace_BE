@@ -23,8 +23,6 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-            var audiences = jwtSettings.GetSection("Audience").Get<string[]>() ?? [];
-
             var tokenDescriptior = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(
@@ -35,16 +33,13 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
                     ]),
                 Expires = DateTime.Now.AddMinutes(configuration.GetValue<int>("JwtAccessTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
+                Audience = jwtSettings["Audience"],
                 Issuer = jwtSettings["Issuer"]!,
-                AdditionalHeaderClaims = new Dictionary<string, object>
-                {
-                    { "audiences", audiences}
-                }
-                //Audience = jwtSettings["Audience"] // comment since configure at TokenValidationParameters
             };
 
             var handler = new JsonWebTokenHandler();
 
+            var let = tokenDescriptior.Audiences;
             string token = handler.CreateToken(tokenDescriptior);
 
             return token;
@@ -68,16 +63,14 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
                         new Claim(JwtRegisteredClaimNames.Email, user.Email!),
                         new Claim(JwtRegisteredClaimNames.Birthdate, user.DateOfBirth.ToString()!),
                         new Claim("username", user.UserName!),
-                        new Claim("role", role)
+                        new Claim("role", role),
+                        new Claim("aud", audiences[0].ToString()),
+                        new Claim("aud", audiences[1].ToString()),
+                        new Claim("aud", audiences[2].ToString()),
                     ]),
                 Expires = DateTime.Now.AddMinutes(configuration.GetValue<int>("JwtIDTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
                 Issuer = jwtSettings["Issuer"]!,
-                AdditionalHeaderClaims = new Dictionary<string, object>
-                {
-                    { "audiences", audiences } // Embed multiple audiences
-                }
-                //Audience = jwtSettings["Audience"]
             };
 
             var handler = new JsonWebTokenHandler();

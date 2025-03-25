@@ -30,7 +30,7 @@ namespace MindSpace.API.Extensions
                 {
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtAccessTokenSettings:Secret"]!)),
                     ValidIssuer = builder.Configuration["JwtAccessTokenSettings:Issuer"],
-                    ValidAudiences = builder.Configuration.GetSection("JwtAccessTokenSettings:Audience").Get<string[]>(),
+                    ValidAudience = builder.Configuration["JwtAccessTokenSettings:Audience"],
                     ClockSkew = TimeSpan.FromSeconds(3) //Validator will still consider the token validate if it has expired 3 seconds ago, this is to prevent in case the request takes some time to reach to the api
                 };
             });
