@@ -54,19 +54,28 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
 
             var audiences = jwtSettings.GetSection("Audience").Get<string[]>() ?? [];
 
+            var claimsList = new List<Claim>()
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email!),
+                new Claim(JwtRegisteredClaimNames.Birthdate, user.DateOfBirth.ToString()!),
+                new Claim("username", user.UserName!),
+                new Claim("role", role),
+                new Claim("aud", audiences[0].ToString()),
+                new Claim("aud", audiences[1].ToString()),
+                new Claim("aud", audiences[2].ToString()),
+            };
+
+            if (user is SchoolManager || user is Student)
+            {
+                var schoolIdClaim = new Claim("schoolId", user.SchoolManager.SchoolId.ToString());
+                claimsList.Add(schoolIdClaim);
+            }
+            ;
+
             var tokenDescriptior = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(
-                    [
-                        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                        new Claim(JwtRegisteredClaimNames.Email, user.Email!),
-                        new Claim(JwtRegisteredClaimNames.Birthdate, user.DateOfBirth.ToString()!),
-                        new Claim("username", user.UserName!),
-                        new Claim("role", role),
-                        new Claim("aud", audiences[0].ToString()),
-                        new Claim("aud", audiences[1].ToString()),
-                        new Claim("aud", audiences[2].ToString()),
-                    ]),
+                Subject = new ClaimsIdentity(claimsList),
                 Expires = DateTime.Now.AddMinutes(configuration.GetValue<int>("JwtIDTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
                 Issuer = jwtSettings["Issuer"]!,
