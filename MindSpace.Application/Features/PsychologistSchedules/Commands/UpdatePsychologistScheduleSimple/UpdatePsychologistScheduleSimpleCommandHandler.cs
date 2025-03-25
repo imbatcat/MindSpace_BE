@@ -39,6 +39,10 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Commands.UpdatePs
             // check only current user can update his/her own schedules
 
             var userClaims = _userContext.GetCurrentUser();
+            if (userClaims == null)
+            {
+                throw new AuthorizationFailedException("You must login to do this action!");
+            }
             ApplicationUser? currentUser = _applicationUserService.GetUserByEmailAsync(userClaims!.Email).Result;
             if (currentUser == null || currentUser.Id != request.PsychologistId)
             {
@@ -55,9 +59,12 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Commands.UpdatePs
             var existedSlots = _unitOfWork.Repository<PsychologistSchedule>()
                                 .GetAllWithSpecAsync(new PsychologistScheduleSpecification(specParams))
                                 .Result;
-            foreach (var slot in existedSlots)
+            if (existedSlots.Count > 0)
             {
-                _unitOfWork.Repository<PsychologistSchedule>().Delete(slot.Id);
+                foreach (var slot in existedSlots)
+                {
+                    _unitOfWork.Repository<PsychologistSchedule>().Delete(slot.Id);
+                }
             }
 
             foreach (TimeSlotDTO slot in request.Timeslots)
