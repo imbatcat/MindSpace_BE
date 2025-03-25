@@ -50,6 +50,7 @@ app.MapControllers();
 app.MapHub<NotificationHub>("/hub/notifications");
 app.MapHub<WebRTCHub>("/hub/webrtc");
 app.MapHub<PaymentHub>("/hub/payment");
+app.MapFallbackToController("Index", "Fallback");
 
 // ===================================================
 // === Create a scope and call the service manually
