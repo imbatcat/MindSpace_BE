@@ -39,7 +39,6 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
 
             var handler = new JsonWebTokenHandler();
 
-            var let = tokenDescriptior.Audiences;
             string token = handler.CreateToken(tokenDescriptior);
 
             return token;
