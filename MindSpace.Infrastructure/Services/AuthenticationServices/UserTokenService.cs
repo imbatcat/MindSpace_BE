@@ -33,8 +33,8 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
                     ]),
                 Expires = DateTime.Now.AddMinutes(configuration.GetValue<int>("JwtAccessTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
+                Audience = jwtSettings["Audience"],
                 Issuer = jwtSettings["Issuer"]!,
-                Audience = jwtSettings["Audience"]
             };
 
             var handler = new JsonWebTokenHandler();
@@ -51,20 +51,27 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var audiences = jwtSettings.GetSection("Audience").Get<string[]>() ?? [];
+
             var claimsList = new List<Claim>()
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email!),
                 new Claim(JwtRegisteredClaimNames.Birthdate, user.DateOfBirth.ToString()!),
                 new Claim("username", user.UserName!),
-                new Claim("role", role)
+                new Claim("role", role),
+                new Claim("aud", audiences[0].ToString()),
+                new Claim("aud", audiences[1].ToString()),
+                new Claim("aud", audiences[2].ToString()),
             };
 
             if (user is SchoolManager || user is Student)
             {
                 var schoolIdClaim = new Claim("schoolId", user.SchoolManager.SchoolId.ToString());
                 claimsList.Add(schoolIdClaim);
-            };
+            }
+            ;
 
             var tokenDescriptior = new SecurityTokenDescriptor
             {
@@ -72,7 +79,6 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
                 Expires = DateTime.Now.AddMinutes(configuration.GetValue<int>("JwtIDTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
                 Issuer = jwtSettings["Issuer"]!,
-                Audience = jwtSettings["Audience"]
             };
 
             var handler = new JsonWebTokenHandler();
