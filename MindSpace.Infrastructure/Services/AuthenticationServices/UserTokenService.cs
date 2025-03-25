@@ -68,7 +68,16 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
 
             if (user is SchoolManager || user is Student)
             {
-                var schoolIdClaim = new Claim("schoolId", user.SchoolManager.SchoolId.ToString());
+                Claim schoolIdClaim = null;
+                if (user is SchoolManager)
+                {
+                    schoolIdClaim = new Claim("schoolId", user.SchoolManager.SchoolId.ToString());
+                }
+                else
+                {
+                    schoolIdClaim = new Claim("schoolId", user.Student.SchoolId.ToString());
+                }
+
                 claimsList.Add(schoolIdClaim);
             }
             ;
