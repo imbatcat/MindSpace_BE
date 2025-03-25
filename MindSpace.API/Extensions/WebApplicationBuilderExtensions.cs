@@ -95,7 +95,10 @@ namespace MindSpace.API.Extensions
                         "https://localhost:5021",
                         "https://localhost:3000",
                         "http://localhost:8081",
-                        "http://192.168.1.2:19000"
+                        "http://192.168.1.2:19000",
+                        "https://usefully-electric-termite.ngrok-free.app",
+                        "https://seemingly-expert-macaque.ngrok-free.app",
+                        "https://pleased-asp-kindly.ngrok-free.app"
                     )
                     .AllowAnyHeader()
                     .AllowAnyMethod()
