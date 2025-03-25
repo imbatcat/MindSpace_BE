@@ -25,10 +25,11 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetAllStudents
             logger.LogInformation("Getting all student accounts");
             var userClaims = userContext.GetCurrentUser();
             ApplicationUser? currentUser = applicationUserService.GetUserByEmailAsync(userClaims!.Email).Result;
-            if (currentUser == null || currentUser.SchoolManager == null || request.SpecParams.SchoolId == null || currentUser.SchoolManager.SchoolId != request.SpecParams.SchoolId)
-            {
-                throw new AuthorizationFailedException("You are not authorized to view students of this school!");
-            }
+
+            //if (currentUser == null || currentUser.SchoolManager == null || request.SpecParams.SchoolId == null || currentUser.SchoolManager.SchoolId != request.SpecParams.SchoolId)
+            //{
+            //    throw new AuthorizationFailedException("You are not authorized to view students of this school!");
+            //}
 
             var specification = new ApplicationUserSpecification(request.SpecParams, isOnlyStudent: true);
             var users = await applicationUserService.GetAllUsersWithSpecAsync(specification);
