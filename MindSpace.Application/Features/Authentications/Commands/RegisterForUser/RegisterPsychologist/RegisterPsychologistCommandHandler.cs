@@ -27,6 +27,7 @@ namespace MindSpace.Application.Features.Authentications.Commands.RegisterForUse
                 {
                     Email = result["Email"],
                     UserName = result["Username"],
+                    FullName = result["FullName"]
                 };
 
                 var specializationSpecification = new SpecializationSpecifications(new SpecializationSpecParams()

@@ -2,7 +2,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
-using MindSpace.Application.Features.Appointments.Commands.CancelBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
 using MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryByUser;
@@ -20,28 +19,23 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
 
     // POST /api/appointments/booking/confirm
     [HttpPost("booking/confirm")]
+    [InvalidateCache("/api/appointments/booking/user|")]
     public async Task<IActionResult> ConfirmBookingAppointment([FromBody] ConfirmBookingAppointmentCommand command)
     {
         var result = await mediator.Send(command);
         return Ok(result);
     }
 
-    // POST /api/appointments/booking/cancel
-    [HttpPost("booking/cancel")]
-    public async Task<IActionResult> CancelBookingAppointment([FromBody] CancelBookingAppointmentCommand command)
-    {
-        await mediator.Send(command);
-        return NoContent();
-    }
-
-    // POST /api/appointments/booking/webhook/{link}
-    [HttpPost("booking/webhook/{link}")]
-    public async Task<IActionResult> HandleWebhook(string link)
+    // POST /api/appointments/booking/webhook
+    [HttpPost("booking/webhook")]
+    [InvalidateCache("/api/appointments/booking/user|")]
+    public async Task<IActionResult> HandleWebhook()
     {
         var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
         var command = new HandleWebhookCommand
         {
-            StripeEventJson = json
+            StripeEventJson = json,
+            StripeSignature = Request.Headers["Stripe-Signature"]!
         };
         await mediator.Send(command);
         return Ok();

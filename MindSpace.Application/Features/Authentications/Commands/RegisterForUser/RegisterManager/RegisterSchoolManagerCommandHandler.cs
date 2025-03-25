@@ -27,6 +27,7 @@ namespace MindSpace.Application.Features.Authentications.Commands.RegisterForUse
                 {
                     Email = result["Email"],
                     UserName = result["Username"],
+                    FullName = result["FullName"]
                 };
 
                 Address newSchoolAddress = new Address()
