@@ -23,6 +23,8 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
+            var audiences = jwtSettings.GetSection("Audience").Get<string[]>() ?? [];
+
             var tokenDescriptior = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(
@@ -34,7 +36,11 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
                 Expires = DateTime.Now.AddMinutes(configuration.GetValue<int>("JwtAccessTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
                 Issuer = jwtSettings["Issuer"]!,
-                Audience = jwtSettings["Audience"]
+                AdditionalHeaderClaims = new Dictionary<string, object>
+                {
+                    { "audiences", audiences}
+                }
+                //Audience = jwtSettings["Audience"] // comment since configure at TokenValidationParameters
             };
 
             var handler = new JsonWebTokenHandler();
@@ -52,6 +58,8 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
+            var audiences = jwtSettings.GetSection("Audience").Get<string[]>() ?? [];
+
             var tokenDescriptior = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(
@@ -65,7 +73,11 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
                 Expires = DateTime.Now.AddMinutes(configuration.GetValue<int>("JwtIDTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
                 Issuer = jwtSettings["Issuer"]!,
-                Audience = jwtSettings["Audience"]
+                AdditionalHeaderClaims = new Dictionary<string, object>
+                {
+                    { "audiences", audiences } // Embed multiple audiences
+                }
+                //Audience = jwtSettings["Audience"]
             };
 
             var handler = new JsonWebTokenHandler();
