@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.BackgroundJobs.Appointments;
 using MindSpace.Application.BackgroundJobs.MeetingRooms;
@@ -13,6 +14,7 @@ using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Exceptions;
 using Stripe;
 using Stripe.Checkout;
+using Stripe.Forwarding;
 using Invoice = MindSpace.Domain.Entities.Appointments.Invoice;
 using PaymentMethod = MindSpace.Domain.Entities.Constants.PaymentMethod;
 
@@ -24,14 +26,16 @@ internal class HandleWebhookCommandHandler(
         ILogger<HandleWebhookCommandHandler> _logger,
         IBackgroundJobService _backgroundJobService,
         IMapper _mapper,
-        IPaymentNotificationService _paymentNotificationService
+        IPaymentNotificationService _paymentNotificationService,
+        IConfiguration _configuration
     ) : IRequestHandler<HandleWebhookCommand>
 {
     public async Task Handle(HandleWebhookCommand request, CancellationToken cancellationToken)
     {
+        var webhookSecret = _configuration["Stripe:WebhookSecret"];
         try
         {
-            var stripeEvent = EventUtility.ParseEvent(request.StripeEventJson);
+            var stripeEvent = EventUtility.ConstructEvent(request.StripeEventJson, request.StripeSignature, webhookSecret);
 
             switch (stripeEvent.Type)
             {
