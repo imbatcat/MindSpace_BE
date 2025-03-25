@@ -8,6 +8,7 @@ using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStat
 using MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllAccounts;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllPsychologists;
+using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllPsychologistsNames;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllStudents;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetMyProfile;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetProfileById;
@@ -128,6 +129,7 @@ namespace MindSpace.API.Controllers
 
         // POST /api/identities/register-for/manager
         [HttpPost("register-for/manager")]
+        [InvalidateCache("/api/identities/accounts|")]
         public async Task<IActionResult> RegisterSchoolManager([FromForm] RegisterSchoolManagerCommand command)
         {
             await mediator.Send(command);
@@ -137,6 +139,7 @@ namespace MindSpace.API.Controllers
         // POST /api/identities/register-for/psychologist
         [HttpPost("register-for/psychologist")]
         [Authorize(Roles = UserRoles.Admin)]
+        [InvalidateCache("/api/identities/accounts|")]
         public async Task<IActionResult> RegisterPsychologist([FromForm] RegisterPsychologistCommand command)
         {
             await mediator.Send(command);
@@ -145,6 +148,7 @@ namespace MindSpace.API.Controllers
 
         // POST /api/identities/register-for/student
         [HttpPost("register-for/student")]
+        [InvalidateCache("/api/identities/accounts|")]
         [Authorize(Roles = UserRoles.SchoolManager)]
         public async Task<IActionResult> RegisterStudent([FromForm] RegisterStudentsCommand command)
         {
@@ -291,6 +295,16 @@ namespace MindSpace.API.Controllers
                 specParams.PageIndex,
                 specParams.PageSize
             );
+        }
+
+        // GET /api/identities/accounts/psychologists/names
+        [Cache(30000)]
+        [HttpGet("accounts/psychologists/names")]
+        [Authorize]
+        public async Task<ActionResult<List<string>>> GetAllPsychologistsNames()
+        {
+            var result = await mediator.Send(new GetAllPsychologistsNamesQuery());
+            return Ok(result);
         }
 
         // GET /api/identities/accounts/psychologists/:id
