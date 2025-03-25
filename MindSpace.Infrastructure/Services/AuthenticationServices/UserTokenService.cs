@@ -51,17 +51,24 @@ namespace MindSpace.Infrastructure.Services.AuthenticationServices
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var claimsList = new List<Claim>()
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email!),
+                new Claim(JwtRegisteredClaimNames.Birthdate, user.DateOfBirth.ToString()!),
+                new Claim("username", user.UserName!),
+                new Claim("role", role)
+            };
+
+            if (user is SchoolManager || user is Student)
+            {
+                var schoolIdClaim = new Claim("schoolId", user.SchoolManager.SchoolId.ToString());
+                claimsList.Add(schoolIdClaim);
+            };
 
             var tokenDescriptior = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(
-                    [
-                        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                        new Claim(JwtRegisteredClaimNames.Email, user.Email!),
-                        new Claim(JwtRegisteredClaimNames.Birthdate, user.DateOfBirth.ToString()!),
-                        new Claim("username", user.UserName!),
-                        new Claim("role", role)
-                    ]),
+                Subject = new ClaimsIdentity(claimsList),
                 Expires = DateTime.Now.AddMinutes(configuration.GetValue<int>("JwtIDTokenSettings:ExpirationInMinutes")),
                 SigningCredentials = credentials,
                 Issuer = jwtSettings["Issuer"]!,
