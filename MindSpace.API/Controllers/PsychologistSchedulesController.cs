@@ -25,6 +25,7 @@ public class PsychologistSchedulesController(IMediator mediator) : BaseApiContro
     [HttpPost]
     public async Task<ActionResult> UpdatePsychologistSchedule([FromBody] UpdatePsychologistScheduleSimpleCommand command)
     {
+
         await mediator.Send(command);
         return CreatedAtAction(nameof(GetPsychologistSchedules), new { psychologistId = command.PsychologistId, minDate = command.StartDate, maxDate = command.EndDate }, null);
     }

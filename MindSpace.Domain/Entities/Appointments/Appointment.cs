@@ -30,5 +30,12 @@ namespace MindSpace.Domain.Entities.Appointments
 
         public string SessionId { get; set; }
         public AppointmentStatus Status { get; set; }
+
+        // Notes field
+        public string? NotesTitle { get; set; }
+        public string? KeyIssues { get; set; }
+        public string? Suggestions { get; set; }
+        public string? OtherNotes { get; set; }
+        public bool? IsNoteShown { get; set; }
     }
 }

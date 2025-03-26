@@ -31,7 +31,21 @@ namespace MindSpace.Application.Specifications.AppointmentSpecifications
             AddInclude(a => a.Student);
         }
 
+        public AppointmentSpecification(int appointmentId)
+            : base(x => x.Id.Equals(appointmentId))
+        {
+        }
 
+        public AppointmentSpecification(AppointmentNotesSpecParams specParams)
+            : base(x =>
+                (x.StudentId.Equals(specParams.AccountId) || x.PsychologistId.Equals(specParams.AccountId))
+                && (!specParams.IsNoteShown.HasValue || x.IsNoteShown == specParams.IsNoteShown)
+                && (x.Status == AppointmentStatus.Success)
+                && (!string.IsNullOrEmpty(x.NotesTitle))
+            )
+        {
+            AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+        }
 
         /// <summary>
         /// Specification for filtering appointments by student, psychologist and schedule IDs.

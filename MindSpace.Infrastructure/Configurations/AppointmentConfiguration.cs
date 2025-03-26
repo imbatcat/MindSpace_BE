@@ -50,5 +50,21 @@ internal class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
 
         builder.Property(a => a.MeetingRoomId)
             .IsRequired(false);
+
+        builder.Property(a => a.NotesTitle)
+            .IsRequired(false);
+
+        builder.Property(a => a.KeyIssues)
+            .IsRequired(false);
+
+        builder.Property(a => a.Suggestions)
+            .IsRequired(false);
+
+        builder.Property(a => a.OtherNotes)
+            .IsRequired(false);
+
+        builder.Property(a => a.IsNoteShown)
+            .IsRequired(false);
+
     }
 }
