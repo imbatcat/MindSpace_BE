@@ -43,6 +43,13 @@ namespace MindSpace.Application.Features.AppointmentNotes.Queries.GetAppointment
                     Suggestions = appointment.Suggestions,
                     OtherNotes = appointment.OtherNotes,
                     IsNoteShown = appointment.IsNoteShown,
+                    PsychologistName = appointment.Psychologist.FullName,
+                    PsychologistId = appointment.PsychologistId,
+                    StudentId = appointment.StudentId,
+                    StudentName = appointment.Student.FullName,
+                    PsychologistImageUrl = appointment.Psychologist.ImageUrl,
+                    StudentImageUrl = appointment.Student.ImageUrl
+
                 };
                 dtos.Add(dto);
             }

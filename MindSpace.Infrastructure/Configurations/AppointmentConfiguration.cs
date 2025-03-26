@@ -52,19 +52,24 @@ internal class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
             .IsRequired(false);
 
         builder.Property(a => a.NotesTitle)
-            .IsRequired(false);
+            .IsRequired(false)
+            .IsUnicode();
 
         builder.Property(a => a.KeyIssues)
-            .IsRequired(false);
+            .IsRequired(false)
+            .IsUnicode();
 
         builder.Property(a => a.Suggestions)
-            .IsRequired(false);
+            .IsRequired(false)
+            .IsUnicode();
 
         builder.Property(a => a.OtherNotes)
-            .IsRequired(false);
+            .IsRequired(false)
+            .IsUnicode();
 
         builder.Property(a => a.IsNoteShown)
-            .IsRequired(false);
+            .IsRequired(false)
+            .IsUnicode();
 
     }
 }
