@@ -28,7 +28,7 @@ namespace MindSpace.Application.Features.Statistics.Query.GetSupportingProgramGr
             List<SupportingProgramPairDTO> keyValuePairs = new();
             foreach (var group in groupedData)
             {
-                Specialization? specializationEntity = await unitOfWork.Repository<Specialization>().GetBySpecAsync(new SpecializationSpecifications(group.Key));
+                Specialization? specializationEntity = await unitOfWork.Repository<Specialization>().GetBySpecAsync(new SpecializationSpecification(group.Key));
                 SpecializationDTO specialization = mapper.Map<SpecializationDTO>(specializationEntity);
                 keyValuePairs.Add(new SupportingProgramPairDTO { Specialization = specialization, SupportingProgramCount = group.ToList().Count });
             }

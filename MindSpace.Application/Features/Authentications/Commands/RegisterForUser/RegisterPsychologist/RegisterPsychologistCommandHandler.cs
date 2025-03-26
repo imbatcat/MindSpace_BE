@@ -31,7 +31,7 @@ namespace MindSpace.Application.Features.Authentications.Commands.RegisterForUse
                     DateOfBirth = string.IsNullOrEmpty(result["DoB"]) ? null : DateTime.Parse(result["DoB"])
                 };
 
-                var specializationSpecification = new SpecializationSpecifications(new SpecializationSpecParams()
+                var specializationSpecification = new SpecializationSpecification(new SpecializationSpecParams()
                 {
                     Name = result["Specialization"]
                 });

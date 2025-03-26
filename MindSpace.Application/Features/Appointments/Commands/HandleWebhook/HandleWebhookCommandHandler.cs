@@ -14,7 +14,6 @@ using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Exceptions;
 using Stripe;
 using Stripe.Checkout;
-using Stripe.Forwarding;
 using Invoice = MindSpace.Domain.Entities.Appointments.Invoice;
 using PaymentMethod = MindSpace.Domain.Entities.Constants.PaymentMethod;
 

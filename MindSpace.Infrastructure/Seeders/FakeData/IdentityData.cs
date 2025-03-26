@@ -183,12 +183,12 @@ internal static class IdentityData
             }
         };
 
-return users;
+        return users;
     }
 
     public static IEnumerable<ApplicationRole> GetRoles()
-{
-    List<ApplicationRole> roles = new List<ApplicationRole>
+    {
+        List<ApplicationRole> roles = new List<ApplicationRole>
         {
             new(UserRoles.Student)
             {
@@ -212,6 +212,6 @@ return users;
             }
         };
 
-    return roles;
-}
+        return roles;
+    }
 }

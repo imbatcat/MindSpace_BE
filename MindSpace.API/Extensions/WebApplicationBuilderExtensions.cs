@@ -100,6 +100,7 @@ namespace MindSpace.API.Extensions
                         "https://seemingly-expert-macaque.ngrok-free.app",
                         "https://pleased-asp-kindly.ngrok-free.app"
                     )
+
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials()
