@@ -2,6 +2,7 @@ namespace MindSpace.Application.DTOs.Appointments;
 
 public class AppointmentHistoryDTO
 {
+    public int Id { get; set; }
     public required DateOnly Date { get; set; }
     public required TimeOnly StartTime { get; set; }
     public required TimeOnly EndTime { get; set; }

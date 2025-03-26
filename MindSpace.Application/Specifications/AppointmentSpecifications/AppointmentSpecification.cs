@@ -34,6 +34,8 @@ namespace MindSpace.Application.Specifications.AppointmentSpecifications
         public AppointmentSpecification(int appointmentId)
             : base(x => x.Id.Equals(appointmentId))
         {
+            AddInclude(a => a.Student);
+            AddInclude(a => a.Psychologist);
         }
 
         public AppointmentSpecification(AppointmentNotesSpecParams specParams)
@@ -44,6 +46,8 @@ namespace MindSpace.Application.Specifications.AppointmentSpecifications
                 && (!string.IsNullOrEmpty(x.NotesTitle))
             )
         {
+            AddInclude(a => a.Student);
+            AddInclude(a => a.Psychologist);
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
         }
 
