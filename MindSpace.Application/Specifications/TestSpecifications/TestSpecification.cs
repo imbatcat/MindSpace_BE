@@ -81,6 +81,8 @@ namespace MindSpace.Application.Specifications.TestSpecifications
                   && (!endDate.HasValue || t.CreateAt <= endDate)
             )
         {
+            AddInclude(t => t.Author);
+            AddInclude(t => t.Specialization);
             if (top.HasValue) AddTop(top.Value);
             AddOrderByDescending(x => x.CreateAt.ToString());
         }
