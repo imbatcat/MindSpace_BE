@@ -13,7 +13,6 @@ namespace MindSpace.Application.Specifications.TestSpecifications
         {
         }
 
-
         public TestSpecification(string testCode)
         : base(
             x =>
