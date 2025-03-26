@@ -16,6 +16,13 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.Date, opt => opt.MapFrom(s => s.PsychologistSchedule!.Date))
                 .ForMember(d => d.StartTime, opt => opt.MapFrom(s => s.PsychologistSchedule!.StartTime))
                 .ForMember(d => d.EndTime, opt => opt.MapFrom(s => s.PsychologistSchedule!.EndTime));
+
+            CreateMap<Appointment, PsychologistAppointmentHistoryDTO>()
+                .ForMember(d => d.MeetUrl, opt => opt.MapFrom(s => s.MeetingRoom!.MeetUrl))
+                .ForMember(d => d.StudentName, opt => opt.MapFrom(s => s.Student!.FullName))
+                .ForMember(d => d.Date, opt => opt.MapFrom(s => s.PsychologistSchedule!.Date))
+                .ForMember(d => d.StartTime, opt => opt.MapFrom(s => s.PsychologistSchedule!.StartTime))
+                .ForMember(d => d.EndTime, opt => opt.MapFrom(s => s.PsychologistSchedule!.EndTime));
         }
     }
 }

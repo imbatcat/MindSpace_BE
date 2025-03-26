@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
 using MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
+using MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryByPsychologist;
 using MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryByUser;
 using MindSpace.Application.Features.Appointments.Queries.GetSessionUrl;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
@@ -82,6 +83,21 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     public async Task<IActionResult> GetAppointmentsHistoryByUser([FromQuery] AppointmentSpecParams specParams)
     {
         var result = await mediator.Send(new GetAppointmentHistoryByUserQuery(specParams));
+        return PaginationOkResult(
+            result.Data,
+            result.Count,
+            specParams.PageIndex,
+            specParams.PageSize
+        );
+    }
+
+    // GET /api/appointments/booking/psychologist
+    [Cache(30000)]
+    [HttpGet("psychologist")]
+    [Authorize]
+    public async Task<IActionResult> GetAppointmentsHistoryByPsychologist([FromQuery] AppointmentSpecParamsForPsychologist specParams)
+    {
+        var result = await mediator.Send(new GetAppointmentHistoryByPsychologistQuery(specParams));
         return PaginationOkResult(
             result.Data,
             result.Count,

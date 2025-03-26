@@ -24,6 +24,7 @@ internal class GetAppointmentsWithUserEmailQueryHandler(
         var specification = new AppointmentSpecification(request.SpecParams, userClaims!.Email);
         try
         {
+            var tpm = await _unitOfWork.Repository<Appointment>().GetAllWithSpecAsync(specification);
             var appointmentDTOs = await _unitOfWork.Repository<Appointment>().GetAllWithSpecProjectedAsync<AppointmentHistoryDTO>(specification, _mapper.ConfigurationProvider);
 
             var count = await _unitOfWork.Repository<Appointment>().CountAsync(specification);
