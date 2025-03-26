@@ -4,6 +4,12 @@ namespace MindSpace.Application.Specifications.SpecializationSpecifications
 {
     public class SpecializationSpecification : BaseSpecification<Specialization>
     {
+        public SpecializationSpecification() :
+            base(x => true)
+        {
+        }
+
+
         public SpecializationSpecification(int id) :
             base(x => x.Id.Equals(id))
         {

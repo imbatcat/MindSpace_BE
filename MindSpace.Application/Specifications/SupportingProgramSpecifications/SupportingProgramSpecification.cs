@@ -8,6 +8,14 @@ namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
         // === Constructors
         // =====================================
 
+
+        /// <summary>
+        /// Get all supporting programs
+        /// </summary>
+        public SupportingProgramSpecification() : base(x => true)
+        {
+        }
+
         /// <summary>
         /// Filter by Program Id
         /// </summary>
