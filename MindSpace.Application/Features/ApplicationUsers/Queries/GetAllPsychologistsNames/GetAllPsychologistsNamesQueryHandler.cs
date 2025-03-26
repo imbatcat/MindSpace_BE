@@ -1,15 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
-using MindSpace.Application.Specifications.PsychologistsSpecifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetAllPsychologistsNames
 {
@@ -27,7 +20,7 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetAllPsycholo
 
             _logger.LogInformation("Total psychologists {count}.", allPsychologistsNames.Count);
 
-            return allPsychologistsNames!; 
+            return allPsychologistsNames!;
         }
     }
 }

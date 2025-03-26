@@ -17,7 +17,7 @@ namespace MindSpace.Application.Features.ChatAgents.Commands
         public async Task<ChatResponseDTO> Handle(GenerateChatContentCommand request, CancellationToken cancellationToken)
         {
             // Get all specializations
-            var specSpec = new SpecializationSpecifications(new SpecializationSpecParams());
+            var specSpec = new SpecializationSpecification(new SpecializationSpecParams());
             var specializations = await unitOfWork.Repository<Specialization>().GetAllWithSpecAsync(specSpec);
             var specializationNames = specializations.Select(x => x.Name);
 

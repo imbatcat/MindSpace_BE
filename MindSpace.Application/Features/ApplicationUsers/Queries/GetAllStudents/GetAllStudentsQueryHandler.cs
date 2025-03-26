@@ -8,7 +8,6 @@ using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
 using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
-using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetAllStudents
 {

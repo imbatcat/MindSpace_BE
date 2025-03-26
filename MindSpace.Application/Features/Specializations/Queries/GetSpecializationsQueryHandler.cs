@@ -17,7 +17,7 @@ namespace MindSpace.Application.Features.Specializations.Queries
         {
             logger.LogInformation("Get list of Specializations with Spec: {@Spec}", request.SpecParams);
 
-            var spec = new SpecializationSpecifications(request.SpecParams);
+            var spec = new SpecializationSpecification(request.SpecParams);
 
             // Use Projection
             var listDto = await unitOfWork
