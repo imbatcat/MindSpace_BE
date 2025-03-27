@@ -1,13 +1,17 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.Tests;
+using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
 using MindSpace.Application.Features.Tests.Commands.CreateTestImport;
 using MindSpace.Application.Features.Tests.Commands.CreateTestManual;
+using MindSpace.Application.Features.Tests.Commands.ToggleTestStatus;
 using MindSpace.Application.Features.Tests.Queries.GetMostRecentTests;
 using MindSpace.Application.Features.Tests.Queries.GetTestById;
 using MindSpace.Application.Features.Tests.Queries.GetTests;
 using MindSpace.Application.Specifications.TestSpecifications;
+using MindSpace.Domain.Entities.Constants;
 
 namespace MindSpace.API.Controllers;
 
@@ -18,7 +22,7 @@ public class TestsController(IMediator mediator) : BaseApiController
     // ====================================
 
     // GET /api/tests
-    [Cache(30000)]
+    //[Cache(30000)]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<TestOverviewResponseDTO>>> GetTests(
         [FromQuery] TestSpecParams specParams)
@@ -75,5 +79,15 @@ public class TestsController(IMediator mediator) : BaseApiController
     {
         var result = await mediator.Send(command);
         return CreatedAtAction(nameof(GetTestById), new { result.Id }, null);
+    }
+
+    // PUT /api/tests/toggle-status
+    [InvalidateCache("/api/tests|")]
+    [HttpPut("{id}/toggle-status")]
+    [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
+    public async Task<IActionResult> ToggleTestStatus([FromRoute] int id)
+    {
+        await mediator.Send(new ToggleTestStatusCommand { TestId = id });
+        return NoContent();
     }
 }

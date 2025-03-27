@@ -27,6 +27,15 @@ namespace MindSpace.Application.Specifications.ResourceSpecifications
         }
 
         /// <summary>
+        /// Filter by Id and Type
+        /// </summary>
+        /// <param name="id"></param>
+        public ResourceSpecification(int id)
+            : base(x => x.Id == id)
+        {
+        }
+
+        /// <summary>
         /// General Filter
         /// </summary>
         /// <param name="specParams"></param>
