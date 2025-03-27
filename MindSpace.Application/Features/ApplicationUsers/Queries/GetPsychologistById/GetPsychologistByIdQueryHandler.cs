@@ -6,12 +6,6 @@ using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.PsychologistsSpecifications;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
-using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetPsychologistById
 {

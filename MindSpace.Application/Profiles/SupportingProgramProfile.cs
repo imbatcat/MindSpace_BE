@@ -53,7 +53,9 @@ namespace MindSpace.Application.Profiles
                 .ForMember(dest => dest.Ward, opt => opt.MapFrom(src => src.SupportingProgram.Address.Ward))
                 .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.SupportingProgram.Address.Province))
                 .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.SupportingProgram.Address.PostalCode))
-                .ForMember(dest => dest.StartDateAt, opt => opt.MapFrom(src => src.SupportingProgram.StartDateAt));
+                .ForMember(dest => dest.StartDateAt, opt => opt.MapFrom(src => src.SupportingProgram.StartDateAt))
+                .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => src.SupportingProgram.IsActive));
+
 
             // =============================
             // === PATCH, POST

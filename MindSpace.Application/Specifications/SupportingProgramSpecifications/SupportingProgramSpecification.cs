@@ -8,6 +8,14 @@ namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
         // === Constructors
         // =====================================
 
+
+        /// <summary>
+        /// Get all supporting programs
+        /// </summary>
+        public SupportingProgramSpecification() : base(x => true)
+        {
+        }
+
         /// <summary>
         /// Filter by Program Id
         /// </summary>
@@ -45,7 +53,8 @@ namespace MindSpace.Application.Specifications.SupportingProgramSpecifications
                 (!specParams.SchoolManagerId.HasValue || x.SchoolManagerId.Equals(specParams.SchoolManagerId)) &&
                 (!specParams.SchoolId.HasValue || x.SchoolId.Equals(specParams.SchoolId)) &&
                 (!specParams.PsychologistId.HasValue || x.PsychologistId.Equals(specParams.PsychologistId)) &&
-                (!specParams.StartDateAt.HasValue || x.StartDateAt.Equals(specParams.StartDateAt)))
+                (!specParams.StartDateAt.HasValue || x.StartDateAt.Equals(specParams.StartDateAt)) &&
+                (!specParams.IsActive.HasValue || x.IsActive == specParams.IsActive))
         {
             // Add Paging
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);

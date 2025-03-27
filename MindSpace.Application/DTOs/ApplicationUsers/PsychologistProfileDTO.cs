@@ -1,6 +1,4 @@
-﻿using MindSpace.Domain.Entities;
-
-namespace MindSpace.Application.DTOs.ApplicationUsers
+﻿namespace MindSpace.Application.DTOs.ApplicationUsers
 {
     public class PsychologistProfileDTO : ApplicationUserProfileDTO
     {

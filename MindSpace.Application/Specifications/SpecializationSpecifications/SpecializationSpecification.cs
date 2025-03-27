@@ -2,14 +2,20 @@
 
 namespace MindSpace.Application.Specifications.SpecializationSpecifications
 {
-    public class SpecializationSpecifications : BaseSpecification<Specialization>
+    public class SpecializationSpecification : BaseSpecification<Specialization>
     {
-        public SpecializationSpecifications(int id) :
+        public SpecializationSpecification() :
+            base(x => true)
+        {
+        }
+
+
+        public SpecializationSpecification(int id) :
             base(x => x.Id.Equals(id))
         {
         }
 
-        public SpecializationSpecifications(SpecializationSpecParams specParams) : base(
+        public SpecializationSpecification(SpecializationSpecParams specParams) : base(
             x => string.IsNullOrEmpty(specParams.Name) || x.Name.ToLower().Equals(specParams.Name!.ToLower()))
         {
         }

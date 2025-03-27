@@ -16,6 +16,8 @@ namespace MindSpace.Application.Specifications.MeetingRoomSpecifications
         public MeetingRoomSpecification(string roomId) :
             base(x => roomId.ToLower().Trim().Equals(x.RoomId.ToLower().Trim()))
         {
+            AddInclude(x => x.Appointment);
+            AddInclude("Appointment.Psychologist");
         }
     }
 }
