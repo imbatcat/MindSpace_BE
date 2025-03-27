@@ -94,5 +94,55 @@ namespace MindSpace.Application.Commons.Constants
             /// NOT YET DEVELOPED
             public static readonly int ExtraRoomLifetimeInMinutes = 20;
         }
+
+        public static class AiChatKeywords
+        {
+            // Spec Keywords
+            public static string[] SpecificationsKeywords = {
+                // Vietnamese
+                "Tâm lý", "Chuyên ngành tâm lý", "Tư vấn tâm lý", "Trị liệu tâm lý",
+                "Hành vi", "Cảm xúc", "Sức khỏe tâm thần", "Tâm lý học lâm sàng",
+                "Tâm lý học trẻ em", "Tâm lý học xã hội", "Tâm lý học nhận thức",
+                "Trầm cảm", "Lo âu", "Rối loạn tâm lý", "Phát triển tâm lý",
+                "Tự kỷ", "Giới tính", "Tình yêu", "Mối quan hệ", "Đánh giá tâm lý",
+                
+                // English
+                "Psychology", "Psychological Specialization", "Psychological Counseling", "Psychological Therapy",
+                "Behavior", "Emotion", "Mental Health", "Clinical Psychology",
+                "Child Psychology", "Social Psychology", "Cognitive Psychology",
+                "Depression", "Anxiety", "Psychological Disorders", "Psychological Development",
+                "Autism", "Gender Psychology", "Love Psychology", "Relationship Psychology", "Psychological Assessment"
+            };
+
+            public static string[] PsychologicalKeywords =
+            {
+                // Vietnamese Names
+                "Bài kiểm tra IQ", "Bài kiểm tra cảm xúc", "Bài kiểm tra trí tuệ cảm xúc",
+                "Bài kiểm tra rối loạn lo âu", "Bài kiểm tra trầm cảm", "Bài kiểm tra nhân cách",
+                "Bài kiểm tra hành vi", "Bài kiểm tra tự kỷ", "Bài kiểm tra tâm lý học phát triển",
+                "Bài kiểm tra", "Kiểm tra",
+    
+                // English Names
+                "Psychology Test", "Emotional Test", "Emotional Intelligence Test",
+                "Anxiety Disorder Test", "Depression Test", "Personality Test",
+                "Behavior Test", "Autism Test", "Developmental Psychology Test",
+                "Test", "Periodict Test", "Periodic", "GPD7", "MMPI-2", "CPI", "Rorschach", "WAIS", "Bender-Gestalt",
+                "SAT", "TAT", "MCMI", "Raven's Progressive Matrices", "Beck Depression Inventory",
+                "Minnesota Multiphasic Personality Inventory", "WISC", "Piers-Harris",
+                "DASS-21", "HADS", "Zung Self-Rating Depression Scale", "Hamilton Anxiety Scale",
+                "Wechsler Memory Scale", "Test of Variables of Attention (TOVA)", "Cattell's 16PF"
+            };
+
+            public static string[] SupportingPrograms =
+            {
+                // Vietnamese Program Names
+                "Chương trình tư vấn tâm lý", "Hỗ trợ sức khỏe tinh thần", "Tư vấn hôn nhân", "Chương trình quản lý stress",
+                "Hỗ trợ trẻ em", "Chương trình phục hồi chức năng tâm lý", "Tư vấn nhóm", "Tư vấn trực tuyến",
+                "Chương trình tâm lý học lâm sàng", "Hỗ trợ cộng đồng", "Chương trình ngừng sử dụng chất kích thích",
+                "Hỗ trợ tâm lý sau chấn thương", "Tư vấn trị liệu hành vi nhận thức", "Chương trình rối loạn lo âu",
+                "Chương trình rối loạn trầm cảm", "Chương trình cho phụ nữ mang thai", "Chương trình hỗ trợ nhân viên",
+                "Chương trình tư vấn cho người cao tuổi", "Tư vấn cho người bị tổn thương tâm lý", "Chương trình phòng chống bạo lực gia đình"
+            };
+        }
     }
 }
