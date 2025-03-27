@@ -1,4 +1,5 @@
 ﻿using MindSpace.Domain.Entities.Identity;
+using System.Security.Cryptography.Xml;
 
 namespace MindSpace.Application.Specifications.PsychologistsSpecifications
 {
@@ -12,11 +13,33 @@ namespace MindSpace.Application.Specifications.PsychologistsSpecifications
 
         public PsychologistSpecification(PsychologistSpecParams specParams) : base(
             x =>
-            (string.IsNullOrEmpty(specParams.SearchName) || x.FullName.ToLower().Contains(specParams.SearchName.ToLower())))
+            (string.IsNullOrEmpty(specParams.SearchName) || x.FullName.ToLower().Contains(specParams.SearchName.ToLower())) 
+            && (specParams.SpecializationId == null || x.SpecializationId == specParams.SpecializationId)
+            && (specParams.SessionPriceFrom == null  || x.SessionPrice >= specParams.SessionPriceFrom)
+            && (specParams.SessionPriceTo == null || x.SessionPrice <= specParams.SessionPriceTo)
+            && (specParams.RatingFrom == null || x.AverageRating >= specParams.RatingFrom)
+            && (specParams.RatingTo == null || x.AverageRating <= specParams.RatingTo)
+            )
         {
             AddInclude(x => x.Feedbacks);
             AddInclude(x => x.Specialization);
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+
+            switch (specParams.Sort)
+            {
+                case "ratingAsc":
+                    AddOrderBy(x => x.AverageRating);
+                    break;
+                case "ratingDesc":
+                    AddOrderByDescending(x => x.AverageRating);
+                    break;
+                case "priceAsc":
+                    AddOrderBy(x => x.SessionPrice);
+                    break;
+                case "priceDesc":
+                    AddOrderByDescending(x => x.SessionPrice);
+                    break;
+            }
         }
     }
 }
