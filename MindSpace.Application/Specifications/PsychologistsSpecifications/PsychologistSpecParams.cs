@@ -14,7 +14,6 @@
         public decimal? SessionPriceFrom { get; set; }
         public decimal? SessionPriceTo { get; set; }
         public float? RatingFrom {  get; set; }
-        public float? RatingTo {  get; set; }
         public string? Sort { get; set; }
     }
 }

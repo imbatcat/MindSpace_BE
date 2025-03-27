@@ -1,11 +1,12 @@
-﻿using MindSpace.Domain.Entities.Identity;
+﻿using MindSpace.Domain.Entities.Constants;
+using MindSpace.Domain.Entities.Identity;
 using System.Security.Cryptography.Xml;
 
 namespace MindSpace.Application.Specifications.PsychologistsSpecifications
 {
     public class PsychologistSpecification : BaseSpecification<Psychologist>
     {
-        public PsychologistSpecification() : base(x => true) 
+        public PsychologistSpecification() : base(x => true)
         {
             AddInclude(x => x.Specialization);
         }
@@ -18,12 +19,12 @@ namespace MindSpace.Application.Specifications.PsychologistsSpecifications
 
         public PsychologistSpecification(PsychologistSpecParams specParams) : base(
             x =>
-            (string.IsNullOrEmpty(specParams.SearchName) || x.FullName.ToLower().Contains(specParams.SearchName.ToLower())) 
+            (string.IsNullOrEmpty(specParams.SearchName) || x.FullName.ToLower().Contains(specParams.SearchName.ToLower()))
             && (specParams.SpecializationId == null || x.SpecializationId == specParams.SpecializationId)
-            && (specParams.SessionPriceFrom == null  || x.SessionPrice >= specParams.SessionPriceFrom)
+            && (specParams.SessionPriceFrom == null || x.SessionPrice >= specParams.SessionPriceFrom)
             && (specParams.SessionPriceTo == null || x.SessionPrice <= specParams.SessionPriceTo)
             && (specParams.RatingFrom == null || x.AverageRating >= specParams.RatingFrom)
-            && (specParams.RatingTo == null || x.AverageRating <= specParams.RatingTo)
+            && (specParams.Status == "All" || x.Status == Enum.Parse<UserStatus>(specParams.Status))
             )
         {
             AddInclude(x => x.Feedbacks);

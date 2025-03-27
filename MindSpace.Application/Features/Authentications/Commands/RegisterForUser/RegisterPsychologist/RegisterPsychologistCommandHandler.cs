@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.FileReaderServices;
@@ -28,7 +29,8 @@ namespace MindSpace.Application.Features.Authentications.Commands.RegisterForUse
                     Email = result["Email"],
                     UserName = result["Username"],
                     FullName = result["FullName"],
-                    DateOfBirth = string.IsNullOrEmpty(result["DoB"]) ? null : DateTime.Parse(result["DoB"])
+                    DateOfBirth = string.IsNullOrEmpty(result["DoB"]) ? null : DateTime.Parse(result["DoB"]),
+                    ComissionRate = string.IsNullOrEmpty(result["CommissionRate"]) ? 0m : decimal.Parse(result["CommissionRate"])
                 };
 
                 var specializationSpecification = new SpecializationSpecification(new SpecializationSpecParams()
