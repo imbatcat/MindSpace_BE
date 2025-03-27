@@ -232,7 +232,7 @@ namespace MindSpace.API.Controllers
         // PUT /api/identities/accounts/{id}/toggle-status
         [InvalidateCache("/api/identities/accounts|")]
         [HttpPut("accounts/{id}/toggle-status")]
-        [Authorize(Roles = UserRoles.Admin)]
+        [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
         public async Task<IActionResult> ToggleAccountStatus([FromRoute] int id)
         {
             await mediator.Send(new ToggleAccountStatusCommand { UserId = id });
@@ -264,7 +264,7 @@ namespace MindSpace.API.Controllers
         }
 
         // GET /api/identities/accounts
-        [Cache(30000)]
+        //[Cache(30000)]
         [HttpGet("accounts")]
         [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllAccounts([FromQuery] ApplicationUserSpecParams specParams)
@@ -279,7 +279,7 @@ namespace MindSpace.API.Controllers
         }
 
         // GET /api/identities/accounts/students
-        [Cache(30000)]
+        //[Cache(30000)]
         [HttpGet("accounts/students")]
         [Authorize(Roles = UserRoles.SchoolManager)]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllStudents([FromQuery] ApplicationUserSpecParams specParams)
@@ -294,7 +294,7 @@ namespace MindSpace.API.Controllers
         }
 
         // GET /api/identities/accounts/psychologists
-        [Cache(30000)]
+        //[Cache(30000)]
         [HttpGet("accounts/psychologists")]
         [Authorize]
         public async Task<ActionResult<Pagination<PsychologistProfileDTO>>> GetAllPsychologists([FromQuery] PsychologistSpecParams specParams)
