@@ -15,6 +15,7 @@ namespace MindSpace.Application.DTOs.Tests
         public decimal Price { get; set; }
         public string? StartDate { get; set; }
         public string? EndDate { get; set; }
+        public string? TestStatus { get; set; }
         public ApplicationUserResponseDTO Author { get; set; }
 
     }

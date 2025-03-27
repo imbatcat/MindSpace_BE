@@ -1,16 +1,20 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.SupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Commands.CreateSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Commands.PatchSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Commands.RegisterSupportingProgram;
+using MindSpace.Application.Features.SupportingPrograms.Commands.ToggleSupportingProgramStatus;
 using MindSpace.Application.Features.SupportingPrograms.Commands.UnregisterSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramByHistory;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
+using MindSpace.Application.Features.Tests.Commands.ToggleTestStatus;
 using MindSpace.Application.Specifications.SupportingProgramHistorySpecifications;
 using MindSpace.Application.Specifications.SupportingProgramSpecifications;
+using MindSpace.Domain.Entities.Constants;
 
 namespace MindSpace.API.Controllers;
 
@@ -24,7 +28,7 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
 
     // GET /api/supporting-programs
     [Cache(30000)]
-    [HttpGet]
+    //[HttpGet]
     public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingPrograms(
         [FromQuery] SupportingProgramSpecParams specParams)
     {
@@ -108,6 +112,16 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         [FromBody] UnregisterSupportingProgramCommand unregisterSP)
     {
         await mediator.Send(unregisterSP);
+        return NoContent();
+    }
+
+    // PUT /api/supporting-programs/toggle-status
+    [InvalidateCache("/api/supporting-programs|")]
+    [HttpPut("{id}/toggle-status")]
+    [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
+    public async Task<IActionResult> ToggleSupportingProgramStatus([FromRoute] int id)
+    {
+        await mediator.Send(new ToggleSupportingProgramStatusCommand { Id = id });
         return NoContent();
     }
 }

@@ -1,14 +1,18 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.Resources;
 using MindSpace.Application.Features.Resources.Commands.CreateResourceAsArticle;
 using MindSpace.Application.Features.Resources.Commands.CreateResourceAsBlog;
+using MindSpace.Application.Features.Resources.Commands.ToggleResourceStatus;
 using MindSpace.Application.Features.Resources.Queries.GetArticles;
 using MindSpace.Application.Features.Resources.Queries.GetBlogs;
 using MindSpace.Application.Features.Resources.Queries.GetResourceAsArticleById;
 using MindSpace.Application.Features.Resources.Queries.GetResourceAsBlogById;
+using MindSpace.Application.Features.SupportingPrograms.Commands.ToggleSupportingProgramStatus;
 using MindSpace.Application.Specifications.ResourceSpecifications;
+using MindSpace.Domain.Entities.Constants;
 
 namespace MindSpace.API.Controllers;
 
@@ -39,7 +43,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/resources/articles
-    [Cache(30000)]
+    //[Cache(30000)]
     [HttpGet("articles")]
     public async Task<ActionResult<Pagination<ArticleResponseDTO>>> GetAllArticles(
         [FromQuery] ResourceSpecificationSpecParams specParams)
@@ -49,7 +53,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/resources/blogs
-    [Cache(30000)]
+    //[Cache(30000)]
     [HttpGet("blogs")]
     public async Task<ActionResult<Pagination<BlogResponseDTO>>> GetAllBlogs(
         [FromQuery] ResourceSpecificationSpecParams specParams)
@@ -80,5 +84,14 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     {
         var result = await mediator.Send(command);
         return CreatedAtAction(nameof(GetResourceAsArticleById), new { result.Id }, null);
+    }
+
+    [InvalidateCache("/api/resources|")]
+    [HttpPut("{id}/toggle-status")]
+    [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
+    public async Task<IActionResult> ToggleResourceStatus([FromRoute] int id)
+    {
+        await mediator.Send(new ToggleResourceStatusCommand { Id = id });
+        return NoContent();
     }
 }

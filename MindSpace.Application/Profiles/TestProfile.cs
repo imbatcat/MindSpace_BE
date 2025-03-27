@@ -19,6 +19,7 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.Author, a => a.MapFrom(t => t.Author))
                 .ForMember(d => d.TestCategory, a => a.MapFrom(t => t.TestCategory))
                 .ForMember(d => d.Specialization, a => a.MapFrom(t => t.Specialization))
+                .ForMember(d => d.TestStatus, a => a.MapFrom(t => t.TestStatus))
                 .ForMember(d => d.Questions, a => a.MapFrom(t => t.TestQuestions.Select(tq => tq.Question))) // get questions from TestQuestions
                 .ForMember(d => d.PsychologyTestOptions, a => a.MapFrom(t => t.PsychologyTestOptions.Select(pto => pto))) // get psychology test options from PsychologyTestOptions
                 .ForMember(d => d.TestScoreRanks, a => a.MapFrom(t => t.TestScoreRanks.Select(tsr => tsr))); // get test score ranks from TestScoreRanks
@@ -31,7 +32,8 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.Price, a => a.MapFrom(t => t.Price))
                 .ForMember(d => d.Author, a => a.MapFrom(t => t.Author))
                 .ForMember(d => d.TestCategory, a => a.MapFrom(t => t.TestCategory))
-                .ForMember(d => d.Specialization, a => a.MapFrom(t => t.Specialization));
+                .ForMember(d => d.Specialization, a => a.MapFrom(t => t.Specialization))
+                .ForMember(d => d.TestStatus, a => a.MapFrom(t => t.TestStatus));
 
             // Maps
             CreateMap<CreateTestWithoutQuestionsDTO, Test>()
@@ -51,6 +53,7 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.Description, a => a.MapFrom(t => t.Description))
                 .ForMember(d => d.Price, a => a.MapFrom(t => t.Price))
                 .ForMember(d => d.Author, a => a.MapFrom(t => t.Author))
+                .ForMember(d => d.TestStatus, a => a.MapFrom(t => t.TestStatus))
                 .ForMember(d => d.TestCategory, a => a.MapFrom(t => t.TestCategory))
                 .ForMember(d => d.Specialization, a => a.MapFrom(t => t.Specialization));
 
