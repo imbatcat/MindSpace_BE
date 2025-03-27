@@ -7,7 +7,7 @@ namespace MindSpace.API.Controllers
 {
     public class FeedbacksController(IMediator mediator) : BaseApiController
     {
-        // POST: /feedbacks
+        // POST: api/v1/feedbacks
         [HttpPost]
         public async Task<ActionResult> CreateFeedBackForPsychologist(
             [FromBody] CreateFeedbackForPsychologistCommand createFeedbackForPsychologistCommand)

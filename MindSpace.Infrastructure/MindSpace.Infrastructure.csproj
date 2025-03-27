@@ -89,10 +89,6 @@
 		</None>
 	</ItemGroup>
 
-	<ItemGroup>
-		<Folder Include="Migrations\" />
-	</ItemGroup>
-
 	<ProjectExtensions>
 		<VisualStudio>
 			<UserProperties seeders_4fakedata_4resourcesections_1json__JsonSchema="json" />

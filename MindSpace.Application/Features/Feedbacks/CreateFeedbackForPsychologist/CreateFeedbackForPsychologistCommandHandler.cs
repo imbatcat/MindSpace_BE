@@ -4,8 +4,10 @@ using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.FeedbackSpecifications;
+using MindSpace.Application.Specifications.MeetingRoomSpecifications;
 using MindSpace.Application.Specifications.PsychologistsSpecifications;
 using MindSpace.Domain.Entities;
+using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
 using System;
@@ -25,9 +27,14 @@ namespace MindSpace.Application.Features.Feedbacks.CreateFeedbackForPsychologist
     {
         public async Task Handle(CreateFeedbackForPsychologistCommand request, CancellationToken cancellationToken)
         {
+            // Get the psychologistId and StudentId
+            var spec = new MeetingRoomSpecification(request.RoomId);
+            var meetingRoom = await unitOfWork.Repository<MeetingRoom>().GetBySpecAsync(spec)
+                ?? throw new NotFoundException($"Meeting Room with id {request.RoomId} not found");
+
             // Get psychologist, count number of rating
-            var psychologist = await applicationUserService.GetUserWithSpec(new PsychologistSpecification(request.PsychologistId))
-                ?? throw new NotFoundException($"Psycholigist with id {request.PsychologistId} not found");
+            var psychologist = meetingRoom.Appointment.Psychologist;
+            var studentId = meetingRoom.Appointment.StudentId;
 
             // List of feedbacks 
             var feedBacks = await unitOfWork.Repository<Feedback>().GetAllWithSpecAsync(new FeedbackSpecification(psychologist.Id));
@@ -39,7 +46,14 @@ namespace MindSpace.Application.Features.Feedbacks.CreateFeedbackForPsychologist
             await applicationUserService.UpdateAsync(psychologist);
 
             // Add new feedback to the table
-            var feedbackToCreate = mapper.Map<Feedback>(request);
+            var feedbackToCreate = new Feedback()
+            {
+                PsychologistId = psychologist.Id,
+                StudentId = studentId,
+                Rating = request.Rating,
+                FeedbackContent = request.FeedbackContent
+            };
+
             var createdFeedback = unitOfWork.Repository<Feedback>().Insert(feedbackToCreate)
                 ?? throw new CreateFailedException("Create feedback failed.");
 
