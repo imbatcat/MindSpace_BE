@@ -135,6 +135,7 @@ namespace MindSpace.Infrastructure.Services.ChatServices
                 - Your response must be **strictly limited** to these psychology specializations.
                 - If the user’s query is **outside these topics**, politely decline and request a refined query.
                 - Keep your response **concise (max 3-4 sentences)** while ensuring clarity.
+                - Your reponses must be in Vietnamese. Not matter the prompting using Vietnamese or English.
                 - Avoid unnecessary details and stay relevant.
 
                 **User Query:** {prompt}
