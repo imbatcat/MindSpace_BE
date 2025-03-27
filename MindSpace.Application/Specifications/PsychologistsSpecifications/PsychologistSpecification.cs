@@ -22,8 +22,8 @@ namespace MindSpace.Application.Specifications.PsychologistsSpecifications
             && (specParams.SpecializationId == null || x.SpecializationId == specParams.SpecializationId)
             && (specParams.SessionPriceFrom == null  || x.SessionPrice >= specParams.SessionPriceFrom)
             && (specParams.SessionPriceTo == null || x.SessionPrice <= specParams.SessionPriceTo)
-            && (specParams.RatingFrom == null || x.AverageRating >= specParams.RatingFrom)
-            && (specParams.RatingTo == null || x.AverageRating <= specParams.RatingTo)
+            && (specParams.RatingFrom == null || x.AverageRating >= specParams.RatingFrom 
+            && (specParams.Status!.Equals(x.Status)))
             )
         {
             AddInclude(x => x.Feedbacks);
