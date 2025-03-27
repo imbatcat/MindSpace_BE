@@ -1,6 +1,7 @@
 ﻿namespace MindSpace.Infrastructure.Extensions;
 
 using Domain.Entities.Identity;
+using FUNewsManagement.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +12,7 @@ using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Application.Interfaces.Services.EmailServices;
 using MindSpace.Application.Interfaces.Services.FileReaderServices;
+using MindSpace.Application.Interfaces.Services.ImageServices;
 using MindSpace.Application.Interfaces.Services.PaymentServices;
 using MindSpace.Application.Interfaces.Utilities;
 using MindSpace.Application.Interfaces.Utilities.Seeding;
@@ -99,6 +101,9 @@ public static partial class ServiceCollectionExtensions
 
         // Add HttpClient Services
         services.AddHttpClient();
+
+        // Add Image Service
+        services.AddSingleton<IImageService, ImageService>();
 
         // Add Chat Agent Service
         services.AddSingleton<IAgentChatService, GeminiAgentChatService>();
