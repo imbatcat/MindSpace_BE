@@ -94,6 +94,5 @@ namespace MindSpace.Application.Commons.Constants
             /// NOT YET DEVELOPED
             public static readonly int ExtraRoomLifetimeInMinutes = 20;
         }
-
     }
 }

@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
-using MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile;
+using MindSpace.Application.Features.ApplicationUsers.Commands.UpdatePsychologistCommissionRate;
+using MindSpace.Application.Features.ApplicationUsers.Commands.UserUpdateProfile;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllAccounts;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllPsychologists;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllPsychologistsNames;
@@ -207,15 +208,25 @@ namespace MindSpace.API.Controllers
             return BadRequest("Password reset failed");
         }
 
-        // PUT /api/identities/profile/{id}
+        // PUT /api/identities/profile
         [InvalidateCache("/api/identities|")]
-        [HttpPut("profile/{id}")]
+        [HttpPut("profile")]
         [Authorize]
-        public async Task<ActionResult<ApplicationUserProfileDTO>> UpdateProfile([FromBody] UpdateProfileCommand command, [FromRoute] int id)
+        public async Task<ActionResult<ApplicationUserProfileDTO>> UserUpdateProfile([FromForm] UserUpdateProfileCommand command)
         {
-            command.UserId = id;
             var result = await mediator.Send(command);
             return Ok(result);
+        }
+
+        // PUT /api/identities/psychologists/:id/commission-rate
+        [InvalidateCache("/api/identities|")]
+        [HttpPut("psychologists/{id}/commission-rate")]
+        [Authorize]
+        public async Task<ActionResult<ApplicationUserProfileDTO>> UpdatePsychologistCommissionRate([FromRoute] int id, [FromBody] UpdatePsychologistCommissionRateCommand command)
+        {
+            command.PsychologistId = id;
+            await mediator.Send(command);
+            return NoContent();
         }
 
         // PUT /api/identities/accounts/{id}/toggle-status
