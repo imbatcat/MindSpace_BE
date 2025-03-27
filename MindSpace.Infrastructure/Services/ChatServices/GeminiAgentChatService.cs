@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.DTOs.Chat;
 using MindSpace.Application.Interfaces.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Collections.Concurrent;
 
 namespace MindSpace.Infrastructure.Services.ChatServices
 {
@@ -93,54 +95,37 @@ namespace MindSpace.Infrastructure.Services.ChatServices
             IEnumerable<(string psychologistName, string specializationName)> psychologists,
             string prompt)
         {
-            if (string.IsNullOrWhiteSpace(prompt)) return "Invalid query. Please provide a valid question.";
-
-            var focusAreas = new List<string>();
-
-            // Check if the prompt contains keywords from specializations
-            var matchedSpecializations = listOfSpecialization
-                .Where(spec => prompt.Contains(spec, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            if (matchedSpecializations.Any())
-                focusAreas.Add($"Specialization Areas: {string.Join(", ", matchedSpecializations)}");
-
-            // Check if the prompt contains keywords from test categories
-            var matchedTestCategories = listOfTestCategory
-                .Where(test => prompt.Contains(test, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            if (matchedTestCategories.Any())
-                focusAreas.Add($"Psychological Tests: {string.Join(", ", matchedTestCategories)}");
-
-            // Check if the prompt contains keywords from supporting programs
-            var matchedSupportingPrograms = listOfSupportingPrograms
-                .Where(prog => prompt.Contains(prog, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            if (matchedSupportingPrograms.Any())
-                focusAreas.Add($"Supporting Programs: {string.Join(", ", matchedSupportingPrograms)}");
-
-            // Build focus summary
-            string focusSummary = focusAreas.Any()
-                ? $"This response should focus on: {string.Join(" | ", focusAreas)}."
-                : "Ensure responses remain relevant to all psychology domains.";
+            if (string.IsNullOrWhiteSpace(prompt)) return "Câu trả lời không khả dụng. Hãy đặt câu hỏi cho tụi mình nhé.";
 
             // Impose some rules for agent
             string systemInstruction = $"""
-                You are an AI assistant specializing in the following psychology domains:
-                - {focusSummary}
+                Bạn là một trợ lý AI chuyên về tâm lý học. Câu trả lời của bạn phải tập trung vào các lĩnh vực sau:  
+                - **Chuyên ngành:** {string.Join(", ", AppCts.AiChatKeywords.SpecificationsKeywords)}  
+                - **Bài kiểm tra tâm lý:** {string.Join(", ", AppCts.AiChatKeywords.PsychologicalKeywords)}  
+                - **Chương trình hỗ trợ:** {string.Join(", ", AppCts.AiChatKeywords.SupportingPrograms)}  
 
-                **Response Guidelines:**
-                - Your response must be **strictly limited** to these psychology specializations.
-                - If the user’s query is **outside these topics**, politely decline and request a refined query.
-                - Keep your response **concise (max 3-4 sentences)** while ensuring clarity.
-                - Your reponses must be in Vietnamese. Not matter the prompting using Vietnamese or English.
-                - Avoid unnecessary details and stay relevant.
+                ### **Hướng dẫn trả lời:**  
+                **Chỉ tập trung vào chủ đề trên**  
+                   - Chỉ cung cấp thông tin về các lĩnh vực tâm lý học đã liệt kê.  
+                   - Nếu câu hỏi nằm ngoài phạm vi này, hãy lịch sự từ chối và yêu cầu người dùng đặt lại câu hỏi phù hợp.  
 
-                **User Query:** {prompt}
-                **Your concise response:** 
-               """;
+                **Ngắn gọn, rõ ràng**  
+                   - Giới hạn câu trả lời trong **3-4 câu**, đảm bảo súc tích nhưng đủ ý.  
+                   - Không lan man hoặc đề cập đến thông tin không liên quan.  
+
+                **Luôn trả lời bằng tiếng Việt**  
+                   - Bất kể câu hỏi bằng ngôn ngữ nào, câu trả lời luôn phải bằng tiếng Việt.
+                   - Luôn tìm top 3 đáp án trong danh sách dưới đây và gợi ý cho người dùng và liệt kê dưới dạng bulletpoint.
+
+                **Câu hỏi phải nằm trong câu trả lời sau đây**
+                   - Chuyên ngành: {string.Join(", ", listOfSpecialization)}
+                   - Bài kiểm tra tâm lý: {string.Join(", ", listOfTestCategory)}
+                   - Chương trình hỗ trợ: {string.Join(", ", listOfSupportingPrograms)}
+
+                **Câu hỏi của người dùng:** {prompt}  
+
+                **Trả lời súc tích:**
+            """;
 
             return systemInstruction;
         }
