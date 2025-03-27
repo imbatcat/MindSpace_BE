@@ -89,6 +89,7 @@ namespace MindSpace.API.Extensions
                 {
                     policy.WithOrigins(
                         "http://localhost:3000",
+                        "http://localhost:3001",
                         "http://localhost:5021",
                         "http://localhost:5174",
                         "http://localhost:5173",
