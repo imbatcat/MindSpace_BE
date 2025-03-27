@@ -6,6 +6,7 @@ using MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppoint
 using MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
 using MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryByPsychologist;
 using MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryByUser;
+using MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryList;
 using MindSpace.Application.Features.Appointments.Queries.GetSessionUrl;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 using Stripe.Checkout;
@@ -98,6 +99,18 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     public async Task<IActionResult> GetAppointmentsHistoryByPsychologist([FromQuery] AppointmentSpecParamsForPsychologist specParams)
     {
         var result = await mediator.Send(new GetAppointmentHistoryByPsychologistQuery(specParams));
+        return PaginationOkResult(
+            result.Data,
+            result.Count,
+            specParams.PageIndex,
+            specParams.PageSize
+        );
+    }
+
+    //[Cache(30000)]
+    [HttpGet("history")]
+    public async Task<IActionResult> GetAppointmentHistoryList([FromQuery] AppointmentSpecParams specParams) {
+        var result = await mediator.Send(new GetAppointmentHistoryListQuery(specParams));
         return PaginationOkResult(
             result.Data,
             result.Count,
