@@ -50,6 +50,7 @@ namespace MindSpace.Application.Features.ChatAgents.Commands
                 tuplePsychologists,
                 request.Prompt);
 
+            
             var result = await agentChatService.GenerateContentAsync(restrictedPrompt);
 
             // Return the response dto

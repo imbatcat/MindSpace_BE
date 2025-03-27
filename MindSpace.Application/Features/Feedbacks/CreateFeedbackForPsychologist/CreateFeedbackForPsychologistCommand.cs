@@ -10,8 +10,7 @@ namespace MindSpace.Application.Features.Feedbacks.CreateFeedbackForPsychologist
 {
     public class CreateFeedbackForPsychologistCommand : IRequest
     {
-        public int PsychologistId { get; set; }
-        public int StudentId { get; set; }
+        public string RoomId { get; set; }
         public decimal Rating { get; set; }
         public string FeedbackContent { get; set; }
     }

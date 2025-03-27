@@ -44,7 +44,7 @@ internal class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
 
         // 1 Appointment - 1 MeetingRoom
         builder.HasOne(a => a.MeetingRoom)
-            .WithOne()
+            .WithOne(r => r.Appointment)
             .HasForeignKey<Appointment>(a => a.MeetingRoomId)
             .OnDelete(DeleteBehavior.SetNull);
 
