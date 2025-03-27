@@ -256,7 +256,7 @@ namespace MindSpace.API.Controllers
         // GET /api/identities/profile/{id}
         [Cache(600)]
         [HttpGet("profile/{id}")]
-        [Authorize(Roles = UserRoles.Admin)]
+        [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
         public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfileById(int id)
         {
             var result = await mediator.Send(new GetProfileByIdQuery { UserId = id });
