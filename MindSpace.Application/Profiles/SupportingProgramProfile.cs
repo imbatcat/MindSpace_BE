@@ -45,6 +45,7 @@ namespace MindSpace.Application.Profiles
 
             CreateProjection<SupportingProgramHistory, SupportingProgramResponseDTO>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.SupportingProgram.Id))
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.SupportingProgram.Title))
                 .ForMember(dest => dest.ThumbnailUrl, opt => opt.MapFrom(src => src.SupportingProgram.ThumbnailUrl))
                 .ForMember(dest => dest.PdffileUrl, opt => opt.MapFrom(src => src.SupportingProgram.PdffileUrl))
                 .ForMember(dest => dest.MaxQuantity, opt => opt.MapFrom(src => src.SupportingProgram.MaxQuantity))
