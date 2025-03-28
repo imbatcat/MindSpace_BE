@@ -24,7 +24,18 @@ public class CreateTestImportCommandHandler(
         }
 
         // Insert test with overview data
-        var testInfo = request.TestInfo;
+        var testInfo = new CreateTestWithoutQuestionsDTO
+        {
+            Title = request.Title,
+            TestCode = request.TestCode,
+            TargetUser = request.TargetUser,
+            Description = request.Description,
+            Price = request.Price,
+            AuthorId = request.AuthorId,
+            SchoolId = request.SchoolId,
+            TestCategoryId = request.TestCategoryId,
+            SpecializationId = request.SpecializationId
+        };
         var testEntity = mapper.Map<Test>(testInfo);
 
         // Check existed test
