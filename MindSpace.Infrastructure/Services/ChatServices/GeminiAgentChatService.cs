@@ -41,26 +41,25 @@ namespace MindSpace.Infrastructure.Services.ChatServices
 
         public async Task<string> GenerateContentAsync(string prompt)
         {
-            string url = $"{_apiUrl}?key={_apiKey}";
 
-            // Fetch relevant a
+            string url = $"{_apiUrl}?key={_apiKey}";
 
             // Request Object for Gemini Prompting
             var request = new ContentRequest()
             {
                 contents = new[]
                 {
-                    new Content()
-                    {
-                        Parts = new[]
+                        new Content()
                         {
-                            new Part()
+                            Parts = new[]
                             {
-                                Text = prompt
+                                new Part()
+                                {
+                                    Text = prompt
+                                }
                             }
                         }
                     }
-                }
             };
 
             // Serialize the request object into prompt
@@ -97,37 +96,19 @@ namespace MindSpace.Infrastructure.Services.ChatServices
         {
             if (string.IsNullOrWhiteSpace(prompt)) return "Câu trả lời không khả dụng. Hãy đặt câu hỏi cho tụi mình nhé.";
 
-            // Impose some rules for agent
-            string systemInstruction = $"""
-                Bạn là một trợ lý AI chuyên về tâm lý học. Câu trả lời của bạn phải tập trung vào các lĩnh vực sau:  
-                - **Chuyên ngành:** {string.Join(", ", AppCts.AiChatKeywords.SpecificationsKeywords)}  
-                - **Bài kiểm tra tâm lý:** {string.Join(", ", AppCts.AiChatKeywords.PsychologicalKeywords)}  
-                - **Chương trình hỗ trợ:** {string.Join(", ", AppCts.AiChatKeywords.SupportingPrograms)}  
+            // Format the system prompt using the template
+            var systemPrompt = string.Format(
+                ChatTemplates.SystemPrompts.BasePrompt,
+                string.Join(", ", AppCts.AiChatKeywords.SpecificationsKeywords),
+                string.Join(", ", AppCts.AiChatKeywords.PsychologicalKeywords),
+                string.Join(", ", AppCts.AiChatKeywords.SupportingPrograms),
+                string.Join(", ", listOfSpecialization),
+                string.Join(", ", listOfTestCategory),
+                string.Join(", ", listOfSupportingPrograms),
+                prompt
+            );
 
-                ### **Hướng dẫn trả lời:**  
-                **Chỉ tập trung vào chủ đề trên**  
-                   - Chỉ cung cấp thông tin về các lĩnh vực tâm lý học đã liệt kê.  
-                   - Nếu câu hỏi nằm ngoài phạm vi này, hãy lịch sự từ chối và yêu cầu người dùng đặt lại câu hỏi phù hợp.  
-
-                **Ngắn gọn, rõ ràng**  
-                   - Giới hạn câu trả lời trong **3-4 câu**, đảm bảo súc tích nhưng đủ ý.  
-                   - Không lan man hoặc đề cập đến thông tin không liên quan.  
-
-                **Luôn trả lời bằng tiếng Việt**  
-                   - Bất kể câu hỏi bằng ngôn ngữ nào, câu trả lời luôn phải bằng tiếng Việt.
-                   - Luôn tìm top 3 đáp án trong danh sách dưới đây và gợi ý cho người dùng và liệt kê dưới dạng bulletpoint.
-
-                **Câu hỏi phải nằm trong câu trả lời sau đây**
-                   - Chuyên ngành: {string.Join(", ", listOfSpecialization)}
-                   - Bài kiểm tra tâm lý: {string.Join(", ", listOfTestCategory)}
-                   - Chương trình hỗ trợ: {string.Join(", ", listOfSupportingPrograms)}
-
-                **Câu hỏi của người dùng:** {prompt}  
-
-                **Trả lời súc tích:**
-            """;
-
-            return systemInstruction;
+            return systemPrompt;
         }
     }
 }
