@@ -19,6 +19,8 @@ namespace MindSpace.API.Controllers
         IEmailService _emailService
     ) : BaseApiController
     {
+        // GET /api/v1/webrtc/rooms/{roomId}/exists
+        // Check if a meeting room exists
         [HttpGet("rooms/{roomId}/exists")]
         public async Task<IActionResult> CheckIsRoomExists([FromRoute] string roomId)
         {
@@ -34,6 +36,8 @@ namespace MindSpace.API.Controllers
             }
         }
 
+        // DELETE /api/v1/webrtc/rooms/{roomId}
+        // Delete a meeting room
         [HttpDelete("rooms/{roomId}")]
         public async Task<IActionResult> DeleteRoom([FromRoute] string roomId)
         {
@@ -56,6 +60,8 @@ namespace MindSpace.API.Controllers
             }
         }
 
+        // POST /api/v1/webrtc/rooms/{id}?studentEmail={studentEmail}
+        // Create a new meeting room for an appointment
         [HttpPost("rooms/{id}")]
         public async Task<IActionResult> CreateRoom([FromRoute] int id, [FromQuery] string studentEmail)
         {

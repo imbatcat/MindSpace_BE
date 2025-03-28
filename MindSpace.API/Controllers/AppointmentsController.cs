@@ -19,7 +19,8 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     // === POST, PUT, DELETE, PATCH
     // ==============================
 
-    // POST /api/appointments/booking/confirm
+    // POST /api/v1/appointments/booking/confirm
+    // Confirm a booking appointment
     [HttpPost("booking/confirm")]
     //[InvalidateCache("/api/appointments/booking/user|")]
     public async Task<IActionResult> ConfirmBookingAppointment([FromBody] ConfirmBookingAppointmentCommand command)
@@ -28,7 +29,8 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         return Ok(result);
     }
 
-    // POST /api/appointments/booking/webhook
+    // POST /api/v1/appointments/booking/webhook
+    // Handle a webhook event
     [HttpPost("booking/webhook")]
     //[InvalidateCache("/api/appointments/booking/user|")]
     public async Task<IActionResult> HandleWebhook()
@@ -47,7 +49,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     // === GET
     // ==============================
 
-    // GET /api/appointments/booking/expire-session/{sessionId}
+    // GET /api/v1/appointments/booking/expire-session/{sessionId}
     // API FOR TESTING: CHECKING SESSION STATUS
     //[Cache(600)]
     [HttpGet("booking/expire-session/{sessionId}")]
@@ -59,7 +61,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         return Ok("Session expired");
     }
 
-    // GET /api/appointments/booking/session-status/{sessionId}
+    // GET /api/v1/appointments/booking/session-status/{sessionId}
     // API FOR TESTING: CHECKING SESSION STATUS
     [HttpGet("booking/session-status/{sessionId}")]
     public async Task<IActionResult> GetSessionStatus([FromRoute] string sessionId)
@@ -69,7 +71,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         return Ok(new { Status = session.Status, PaymentStatus = session.PaymentStatus });
     }
 
-    // GET /api/appointments/booking/session-url/{sessionId}
+    // GET /api/v1/appointments/booking/session-url/{sessionId}
     [HttpGet("booking/session-url/{sessionId}")]
     public async Task<IActionResult> GetSessionUrl([FromRoute] string sessionId)
     {
@@ -77,7 +79,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         return Ok(result);
     }
 
-    // GET /api/appointments/booking/user
+    // GET /api/v1/appointments/booking/user
     //[Cache(30000)]
     [HttpGet("user")]
     [Authorize]
@@ -92,7 +94,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         );
     }
 
-    // GET /api/appointments/booking/psychologist
+    // GET /api/v1/appointments/booking/psychologist
     //[Cache(30000)]
     [HttpGet("psychologist")]
     [Authorize]
@@ -107,9 +109,11 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         );
     }
 
+    // GET /api/v1/appointments/booking/history
     //[Cache(30000)]
     [HttpGet("history")]
-    public async Task<IActionResult> GetAppointmentHistoryList([FromQuery] AppointmentSpecParams specParams) {
+    public async Task<IActionResult> GetAppointmentHistoryList([FromQuery] AppointmentSpecParams specParams)
+    {
         var result = await mediator.Send(new GetAppointmentHistoryListQuery(specParams));
         return PaginationOkResult(
             result.Data,

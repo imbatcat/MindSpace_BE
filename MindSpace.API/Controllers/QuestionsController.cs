@@ -8,14 +8,15 @@ using MindSpace.Application.Specifications.QuestionSpecifications;
 
 namespace MindSpace.API.Controllers;
 
+[Route("api/v{version:apiVersion}/questions")]
 public class QuestionsController(IMediator mediator) : BaseApiController
 {
     // ====================================
     // === GET
     // ====================================
 
-    // GET /api/questions
-    //[Cache(30000)]
+    // GET /api/v1/questions
+    // Get all questions with pagination and filtering
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<QuestionResponseDTO>>> GetQuestions(
         [FromQuery] QuestionSpecParams specParams)
@@ -30,8 +31,8 @@ public class QuestionsController(IMediator mediator) : BaseApiController
         );
     }
 
-    // GET /api/questions/{id}
-    //[Cache(600)]
+    // GET /api/v1/questions/{id}
+    // Get a specific question by ID
     [HttpGet("{id:int}")]
     public async Task<ActionResult<QuestionResponseDTO>> GetQuestionById(int id)
     {

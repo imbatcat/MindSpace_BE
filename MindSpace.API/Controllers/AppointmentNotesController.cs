@@ -12,8 +12,8 @@ namespace MindSpace.API.Controllers
     [Route("api/v{version:apiVersion}/appointment-notes")]
     public class AppointmentNotesController(IMediator mediator) : BaseApiController
     {
-        // psy/student view appointment notes by appointment id
-        // GET /api/appointment-notes/{id}
+        // GET /api/v1/appointment-notes/{id}
+        // Get appointment notes by appointment ID
         [HttpGet("{id:int}")]
         public async Task<ActionResult<AppointmentNotesDTO>> GetAppointmentNotesById(int id)
         {
@@ -21,9 +21,10 @@ namespace MindSpace.API.Controllers
             return Ok(appointmentNotesResponse);
         }
 
-        // student/psy view all appointment notes by student/psy id
+        // GET /api/v1/appointment-notes?accountId={accountId}
+        // Get all appointment notes for a specific account (student/psychologist)
         [HttpGet()]
-        public async Task<ActionResult<IReadOnlyList<AppointmentNotesDTO>>> GetAppointmentNotesByAccount([FromQuery]AppointmentNotesSpecParams specParams)
+        public async Task<ActionResult<IReadOnlyList<AppointmentNotesDTO>>> GetAppointmentNotesByAccount([FromQuery] AppointmentNotesSpecParams specParams)
         {
             var appointmentNotesListResponse = await mediator.Send(new GetAppointmentNotesByAccountQuery(specParams));
             return Ok(appointmentNotesListResponse);
@@ -33,8 +34,8 @@ namespace MindSpace.API.Controllers
         // === POST, PUT, DELETE, PATCH
         // ==============================
 
-        // psychologist update appointment notes by appointment id
-        // PUT /api/appointment-notes
+        // PUT /api/v1/appointment-notes
+        // Update appointment notes for a specific appointment
         [InvalidateCache("/api/appointment-notes|")]
         [HttpPut]
         public async Task<ActionResult> UpdateAppointmentNotes([FromBody] UpdateAppointmentNotesCommand command)

@@ -19,12 +19,8 @@ namespace MindSpace.API.Controllers;
 
 public class TestsController(IMediator mediator) : BaseApiController
 {
-    // ====================================
-    // === GET
-    // ====================================
-
-    // GET /api/tests
-    //[Cache(30000)]
+    // GET /api/v1/tests
+    // Get all tests with pagination and filtering
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<TestOverviewResponseDTO>>> GetTests(
         [FromQuery] TestSpecParams specParams)
@@ -39,8 +35,8 @@ public class TestsController(IMediator mediator) : BaseApiController
         );
     }
 
-    // GET /api/tests/{id}
-    //[Cache(600)]
+    // GET /api/v1/tests/{id}
+    // Get a specific test by ID
     [HttpGet("{id:int}")]
     public async Task<ActionResult<TestResponseDTO>> GetTestById(int id)
     {
@@ -48,7 +44,8 @@ public class TestsController(IMediator mediator) : BaseApiController
         return Ok(test);
     }
 
-    //[Cache(600)]
+    // GET /api/v1/tests/most-recent-test
+    // Get the most recent test based on query parameters
     [HttpGet("most-recent-test")]
     public async Task<ActionResult<TestResponseDTO>> GetMostRecentTest([FromQuery] GetMostRecentTestsQuery query)
     {
@@ -56,12 +53,8 @@ public class TestsController(IMediator mediator) : BaseApiController
         return Ok(test);
     }
 
-    // ==============================
-    // === POST, PUT, DELETE, PATCH
-    // ==============================
-
-    // POST /api/tests/import
-    //[InvalidateCache("/api/tests|")]
+    // POST /api/v1/tests/import
+    // Create a new test by importing from Excel file
     [HttpPost("import")]
     public async Task<IActionResult> CreateTestWithImport([FromForm] CreateTestImportCommand command)
     {
@@ -74,8 +67,8 @@ public class TestsController(IMediator mediator) : BaseApiController
         return CreatedAtAction(nameof(GetTestById), new { result.Id }, null);
     }
 
-    // POST /api/tests/manual
-    //[InvalidateCache("/api/tests|")]
+    // POST /api/v1/tests/manual
+    // Create a new test manually
     [HttpPost("manual")]
     public async Task<IActionResult> CreateTestManual([FromBody] CreateTestManualCommand command)
     {
@@ -83,8 +76,8 @@ public class TestsController(IMediator mediator) : BaseApiController
         return CreatedAtAction(nameof(GetTestById), new { result.Id }, null);
     }
 
-    // PUT /api/tests/toggle-status
-    //[InvalidateCache("/api/tests|")]
+    // PUT /api/v1/tests/{id}/toggle-status
+    // Toggle the status of a test (Admin and SchoolManager only)
     [HttpPut("{id}/toggle-status")]
     [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
     public async Task<IActionResult> ToggleTestStatus([FromRoute] int id)
@@ -92,9 +85,10 @@ public class TestsController(IMediator mediator) : BaseApiController
         await mediator.Send(new ToggleTestStatusCommand { TestId = id });
         return Ok("The test status is toggled!");
     }
-    // PATCH /tests/id
+
+    // PATCH /api/v1/tests/{id}
+    // Update a test (only allowed for unpublished tests with no responses)
     [HttpPatch("{id:int}")]
-    // only allowed for tests is not published and has no response yet
     public async Task<IActionResult> UpdateTest(int id, [FromBody] UpdateTestCommand command)
     {
         command.TestId = id;
@@ -102,9 +96,8 @@ public class TestsController(IMediator mediator) : BaseApiController
         return Ok($"The test is updated!");
     }
 
-    // DELETE /tests/id
-    // only allowed for tests is not published and has no response yet
-    //[InvalidateCache("/api/tests|")]
+    // DELETE /api/v1/tests/{id}
+    // Delete a test (only allowed for unpublished tests with no responses)
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteTest(int id)
     {

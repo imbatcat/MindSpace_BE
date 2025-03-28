@@ -25,8 +25,8 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     // === GET
     // ====================================
 
-    // GET /api/supporting-programs
-    //[Cache(30000)]
+    // GET /api/v1/supporting-programs
+    // Get all supporting programs with pagination and filtering
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingPrograms(
         [FromQuery] SupportingProgramSpecParams specParams)
@@ -41,8 +41,8 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         );
     }
 
-    // GET /api/supporting-programs/history?studentId=2
-    //[Cache(30000)]
+    // GET /api/v1/supporting-programs/history?studentId={studentId}
+    // Get supporting program history for a specific student
     [HttpGet("history")]
     public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingProgramsHistory(
         [FromQuery] SupportingProgramHistorySpecParams specParams)
@@ -58,8 +58,8 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         );
     }
 
-    // GET /api/supporting-programs/{id}
-    //[Cache(30000)]
+    // GET /api/v1/supporting-programs/{id}
+    // Get a specific supporting program by ID
     [HttpGet("{id:int}")]
     public async Task<ActionResult<SupportingProgramSingleResponseDTO>> GetSupportingProgramById(
         [FromRoute] int id)
@@ -72,7 +72,8 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     // === CREATE, PATCH, DELETE, PUT
     // ====================================
 
-    // POST /api/supporting-programs
+    // POST /api/v1/supporting-programs
+    // Create a new supporting program
     //[InvalidateCache("/api/supporting-programs|")]
     [HttpPost]
     public async Task<ActionResult> CreateSupportingProgram(
@@ -82,7 +83,8 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         return CreatedAtAction(nameof(GetSupportingProgramById), new { createdSP.Id }, null);
     }
 
-    // PATCH /api/supporting-programs/{id}
+    // PATCH /api/v1/supporting-programs/{id}
+    // Update a supporting program
     //[InvalidateCache("/api/supporting-programs|")]
     [HttpPatch("{id:int}")]
     public async Task<ActionResult> PatchSupportingProgram(
@@ -94,7 +96,8 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         return NoContent();
     }
 
-    // POST /api/supporting-programs/register
+    // POST /api/v1/supporting-programs/register
+    // Register a student for a supporting program
     //[InvalidateCache("/api/supporting-programs/history|")]
     [HttpPost("register")]
     public async Task<ActionResult> RegisterSupportingProgram(
@@ -104,7 +107,8 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         return NoContent();
     }
 
-    // POST /api/supporting-programs/unregister
+    // POST /api/v1/supporting-programs/unregister
+    // Unregister a student from a supporting program
     //[InvalidateCache("/api/supporting-programs/history|")]
     [HttpPost("unregister")]
     public async Task<ActionResult> UnregisterSupportingProgram(
@@ -114,7 +118,8 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         return NoContent();
     }
 
-    // PUT /api/supporting-programs/toggle-status
+    // PUT /api/v1/supporting-programs/{id}/toggle-status
+    // Toggle the status of a supporting program (Admin and SchoolManager only)
     //[InvalidateCache("/api/supporting-programs|")]
     [HttpPut("{id}/toggle-status")]
     [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]

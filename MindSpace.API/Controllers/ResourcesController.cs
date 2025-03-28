@@ -16,14 +16,15 @@ using MindSpace.Domain.Entities.Constants;
 
 namespace MindSpace.API.Controllers;
 
+[Route("api/v{version:apiVersion}/resources")]
 public class ResourcesController(IMediator mediator) : BaseApiController
 {
     // ====================================
     // === GET
     // ====================================
 
-    // GET /api/resources/articles/{id}
-    //[Cache(600)]
+    // GET /api/v1/resources/articles/{id}
+    // Get a specific article by ID
     [HttpGet("articles/{id:int}")]
     public async Task<ActionResult<ArticleResponseDTO>> GetResourceAsArticleById(
         [FromRoute] int id)
@@ -32,8 +33,8 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return Ok(article);
     }
 
-    // GET /api/resources/blogs/{id}
-    //[Cache(600)]
+    // GET /api/v1/resources/blogs/{id}
+    // Get a specific blog by ID
     [HttpGet("blogs/{id:int}")]
     public async Task<ActionResult<BlogResponseDTO>> GetResourceAsBlogById(
         [FromRoute] int id)
@@ -42,8 +43,8 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return Ok(blog);
     }
 
-    // GET /api/resources/articles
-    //[Cache(30000)]
+    // GET /api/v1/resources/articles
+    // Get all articles with pagination and filtering
     [HttpGet("articles")]
     public async Task<ActionResult<Pagination<ArticleResponseDTO>>> GetAllArticles(
         [FromQuery] ResourceSpecificationSpecParams specParams)
@@ -52,8 +53,8 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return PaginationOkResult(articles.Data, articles.Count, specParams.PageIndex, specParams.PageSize);
     }
 
-    // GET /api/resources/blogs
-    //[Cache(30000)]
+    // GET /api/v1/resources/blogs
+    // Get all blogs with pagination and filtering
     [HttpGet("blogs")]
     public async Task<ActionResult<Pagination<BlogResponseDTO>>> GetAllBlogs(
         [FromQuery] ResourceSpecificationSpecParams specParams)
@@ -66,8 +67,8 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     // === POST, PUT, DELETE, PATCH
     // ==============================
 
-    // POST /api/resources/blogs
-    //[InvalidateCache("/api/resources/blogs|")]
+    // POST /api/v1/resources/blogs
+    // Create a new blog
     [HttpPost("blogs")]
     public async Task<ActionResult> CreateBlog(
         [FromBody] CreateResourceAsBlogCommand command)
@@ -76,8 +77,8 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return CreatedAtAction(nameof(GetResourceAsBlogById), new { result.Id }, null);
     }
 
-    // POST /api/resources/articles
-    //[InvalidateCache("/api/resources/blogs|")]
+    // POST /api/v1/resources/articles
+    // Create a new article
     [HttpPost("articles")]
     public async Task<ActionResult> CreateArticle(
         [FromBody] CreatedResourceAsArticleCommand command)
@@ -86,8 +87,9 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return CreatedAtAction(nameof(GetResourceAsArticleById), new { result.Id }, null);
     }
 
+    // PUT /api/v1/resources/{id}/toggle-status
+    // Toggle the status of a resource (Admin and SchoolManager only)
     [HttpPut("{id}/toggle-status")]
-    //[InvalidateCache("/api/resources|")]
     [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
     public async Task<IActionResult> ToggleResourceStatus([FromRoute] int id)
     {

@@ -16,9 +16,12 @@ using MindSpace.Application.Features.Tests.Queries.GetMostRecentTests;
 
 namespace MindSpace.API.Controllers
 {
+    [Route("api/v{version:apiVersion}/statistics")]
     public class StatisticsController
         (IMediator mediator) : BaseApiController
     {
+        // GET /api/v1/statistics/test-responses/time-analysis
+        // Get time-based analysis statistics for test responses
         [HttpGet("test-responses/time-analysis")]
         public async Task<ActionResult<TimeGroupAnalysisDto>> GetTestResponseTimeAnalysisStatistics(
             [FromQuery] GetTestResponseTimeAnalysisStatisticsQuery query)
@@ -27,6 +30,8 @@ namespace MindSpace.API.Controllers
             return result;
         }
 
+        // GET /api/v1/statistics/test-responses/score-rank-analysis
+        // Get rank-based analysis statistics for test responses
         [HttpGet("test-responses/score-rank-analysis")]
         public async Task<ActionResult<RankGroupAnalysisDto>> GetTestResponseRankAnalysisStatistics(
             [FromQuery] GetTestResponseRankAnalysisStatisticsQuery query)
@@ -35,6 +40,8 @@ namespace MindSpace.API.Controllers
             return result;
         }
 
+        // GET /api/v1/statistics/test-responses/question-responses-analysis
+        // Get analysis of question responses in tests
         [HttpGet("test-responses/question-responses-analysis")]
         public async Task<ActionResult<TestQuestionResponseStatisticsAnalysisDto>> GetTestQuestionResponseStatistics(
             [FromQuery] GetTestQuestionResponseStatisticsQuery query)
@@ -43,6 +50,8 @@ namespace MindSpace.API.Controllers
             return result;
         }
 
+        // GET /api/v1/statistics/top-recent-tests
+        // Get list of most recent tests
         [HttpGet("top-recent-tests")]
         public async Task<ActionResult<List<TestOverviewResponseDTO>>> GetTopRecentTests(
             [FromQuery] GetMostRecentTestsQuery query)
@@ -51,7 +60,8 @@ namespace MindSpace.API.Controllers
             return result;
         }
 
-        // appointment history statistics
+        // GET /api/v1/statistics/appointments
+        // Get appointment statistics grouped by specialization
         [HttpGet("appointments")]
         public async Task<ActionResult<AppointmentGroupBySpecializationDTO>> GetAppointmentCountBySpecialization(
             [FromQuery] GetAppointmentGroupBySpecializationQuery query)
@@ -60,7 +70,8 @@ namespace MindSpace.API.Controllers
             return result;
         }
 
-        // supporting program statistics
+        // GET /api/v1/statistics/supporting-programs
+        // Get supporting program statistics grouped by specialization
         [HttpGet("supporting-programs")]
         public async Task<ActionResult<SupportingProgramsGroupBySpecializationDTO>> GetSupportingProgramCountBySpecialization(
             [FromQuery] GetSupportingProgramGroupBySpecializationQuery query)
@@ -69,6 +80,8 @@ namespace MindSpace.API.Controllers
             return result;
         }
 
+        // GET /api/v1/statistics/count-overview-data
+        // Get overview statistics with counts
         [HttpGet("count-overview-data")]
         public async Task<ActionResult<CountOverviewDTO>> GetOverviewStatistics(
             [FromQuery] GetOverviewStatisticsQuery query)

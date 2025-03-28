@@ -11,7 +11,8 @@ namespace MindSpace.API.Controllers
     [Route("api/v{version:apiVersion}/invoices")]
     public class InvoicesController(IMediator mediator) : BaseApiController
     {
-        // GET /api/invoices/user
+        // GET /api/v1/invoices/user
+        // Get invoice history for the authenticated user
         [HttpGet("user")]
         [Authorize]
         public async Task<IActionResult> GetInvoiceHistoryByUser([FromQuery] InvoiceSpecParams specParams)
@@ -25,8 +26,8 @@ namespace MindSpace.API.Controllers
             );
         }
 
-        // get invoice list by params
-        // GET /api/invoices
+        // GET /api/v1/invoices
+        // Get all invoices with pagination and filtering
         [HttpGet()]
         public async Task<IActionResult> GetInvoiceList([FromQuery] InvoiceSpecParams specParams)
         {
@@ -38,6 +39,5 @@ namespace MindSpace.API.Controllers
                 specParams.PageSize
             );
         }
-
     }
 }
