@@ -21,7 +21,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
 
     // POST /api/appointments/booking/confirm
     [HttpPost("booking/confirm")]
-    [InvalidateCache("/api/appointments/booking/user|")]
+    //[InvalidateCache("/api/appointments/booking/user|")]
     public async Task<IActionResult> ConfirmBookingAppointment([FromBody] ConfirmBookingAppointmentCommand command)
     {
         var result = await mediator.Send(command);
@@ -30,7 +30,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
 
     // POST /api/appointments/booking/webhook
     [HttpPost("booking/webhook")]
-    [InvalidateCache("/api/appointments/booking/user|")]
+    //[InvalidateCache("/api/appointments/booking/user|")]
     public async Task<IActionResult> HandleWebhook()
     {
         var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
@@ -49,7 +49,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
 
     // GET /api/appointments/booking/expire-session/{sessionId}
     // API FOR TESTING: CHECKING SESSION STATUS
-    [Cache(600)]
+    //[Cache(600)]
     [HttpGet("booking/expire-session/{sessionId}")]
     public async Task<IActionResult> ExpireSession([FromRoute] string sessionId)
     {
@@ -78,7 +78,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/appointments/booking/user
-    [Cache(30000)]
+    //[Cache(30000)]
     [HttpGet("user")]
     [Authorize]
     public async Task<IActionResult> GetAppointmentsHistoryByUser([FromQuery] AppointmentSpecParams specParams)
@@ -93,7 +93,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/appointments/booking/psychologist
-    [Cache(30000)]
+    //[Cache(30000)]
     [HttpGet("psychologist")]
     [Authorize]
     public async Task<IActionResult> GetAppointmentsHistoryByPsychologist([FromQuery] AppointmentSpecParamsForPsychologist specParams)

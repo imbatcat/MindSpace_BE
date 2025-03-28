@@ -12,7 +12,7 @@ namespace MindSpace.API.Controllers;
 public class PsychologistSchedulesController(IMediator mediator) : BaseApiController
 {
     // GET /api/psychologist-schedules
-    [Cache(30000)]
+    //[Cache(30000)]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<PsychologistScheduleResponseDTO>>> GetPsychologistSchedules([FromQuery] PsychologistScheduleSpecParams specParams)
     {
@@ -21,7 +21,7 @@ public class PsychologistSchedulesController(IMediator mediator) : BaseApiContro
     }
 
     // POST /api/psychologist-schedules
-    [InvalidateCache("/api/psychologist-schedules|")]
+    //[InvalidateCache("/api/psychologist-schedules|")]
     [HttpPost]
     public async Task<ActionResult> UpdatePsychologistSchedule([FromBody] UpdatePsychologistScheduleSimpleCommand command)
     {

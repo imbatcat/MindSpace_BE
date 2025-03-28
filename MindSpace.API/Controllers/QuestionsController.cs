@@ -15,7 +15,7 @@ public class QuestionsController(IMediator mediator) : BaseApiController
     // ====================================
 
     // GET /api/questions
-    [Cache(30000)]
+    //[Cache(30000)]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<QuestionResponseDTO>>> GetQuestions(
         [FromQuery] QuestionSpecParams specParams)
@@ -31,7 +31,7 @@ public class QuestionsController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/questions/{id}
-    [Cache(600)]
+    //[Cache(600)]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<QuestionResponseDTO>> GetQuestionById(int id)
     {

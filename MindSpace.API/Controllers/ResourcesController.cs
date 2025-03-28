@@ -23,7 +23,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     // ====================================
 
     // GET /api/resources/articles/{id}
-    [Cache(600)]
+    //[Cache(600)]
     [HttpGet("articles/{id:int}")]
     public async Task<ActionResult<ArticleResponseDTO>> GetResourceAsArticleById(
         [FromRoute] int id)
@@ -33,7 +33,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/resources/blogs/{id}
-    [Cache(600)]
+    //[Cache(600)]
     [HttpGet("blogs/{id:int}")]
     public async Task<ActionResult<BlogResponseDTO>> GetResourceAsBlogById(
         [FromRoute] int id)
@@ -67,7 +67,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     // ==============================
 
     // POST /api/resources/blogs
-    [InvalidateCache("/api/resources/blogs|")]
+    //[InvalidateCache("/api/resources/blogs|")]
     [HttpPost("blogs")]
     public async Task<ActionResult> CreateBlog(
         [FromBody] CreateResourceAsBlogCommand command)
@@ -77,7 +77,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     }
 
     // POST /api/resources/articles
-    [InvalidateCache("/api/resources/blogs|")]
+    //[InvalidateCache("/api/resources/blogs|")]
     [HttpPost("articles")]
     public async Task<ActionResult> CreateArticle(
         [FromBody] CreatedResourceAsArticleCommand command)
@@ -86,8 +86,8 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return CreatedAtAction(nameof(GetResourceAsArticleById), new { result.Id }, null);
     }
 
-    [InvalidateCache("/api/resources|")]
     [HttpPut("{id}/toggle-status")]
+    //[InvalidateCache("/api/resources|")]
     [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
     public async Task<IActionResult> ToggleResourceStatus([FromRoute] int id)
     {

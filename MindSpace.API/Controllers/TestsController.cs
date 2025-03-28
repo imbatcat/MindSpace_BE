@@ -40,7 +40,7 @@ public class TestsController(IMediator mediator) : BaseApiController
     }
 
     // GET /api/tests/{id}
-    [Cache(600)]
+    //[Cache(600)]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<TestResponseDTO>> GetTestById(int id)
     {
@@ -48,7 +48,7 @@ public class TestsController(IMediator mediator) : BaseApiController
         return Ok(test);
     }
 
-    [Cache(600)]
+    //[Cache(600)]
     [HttpGet("most-recent-test")]
     public async Task<ActionResult<TestResponseDTO>> GetMostRecentTest([FromQuery] GetMostRecentTestsQuery query)
     {
@@ -61,7 +61,7 @@ public class TestsController(IMediator mediator) : BaseApiController
     // ==============================
 
     // POST /api/tests/import
-    [InvalidateCache("/api/tests|")]
+    //[InvalidateCache("/api/tests|")]
     [HttpPost("import")]
     public async Task<IActionResult> CreateTestWithImport([FromForm] CreateTestImportCommand command)
     {
@@ -75,7 +75,7 @@ public class TestsController(IMediator mediator) : BaseApiController
     }
 
     // POST /api/tests/manual
-    [InvalidateCache("/api/tests|")]
+    //[InvalidateCache("/api/tests|")]
     [HttpPost("manual")]
     public async Task<IActionResult> CreateTestManual([FromBody] CreateTestManualCommand command)
     {
@@ -84,7 +84,7 @@ public class TestsController(IMediator mediator) : BaseApiController
     }
 
     // PUT /api/tests/toggle-status
-    [InvalidateCache("/api/tests|")]
+    //[InvalidateCache("/api/tests|")]
     [HttpPut("{id}/toggle-status")]
     [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
     public async Task<IActionResult> ToggleTestStatus([FromRoute] int id)
@@ -104,7 +104,7 @@ public class TestsController(IMediator mediator) : BaseApiController
 
     // DELETE /tests/id
     // only allowed for tests is not published and has no response yet
-    [InvalidateCache("/api/tests|")]
+    //[InvalidateCache("/api/tests|")]
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteTest(int id)
     {
