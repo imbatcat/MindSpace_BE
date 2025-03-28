@@ -58,7 +58,7 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.Specialization, a => a.MapFrom(t => t.Specialization));
 
             CreateMap<TestDraft, Test>()
-                .ForMember(d => d.Id, o => o.Ignore())
+                .ForMember(d => d.Id, opt => opt.MapFrom(t => t.TestToUpdateId.HasValue ? t.TestToUpdateId.Value : (int?)null))
                 .ForMember(d => d.Title, a => a.MapFrom(t => t.Title))
                 .ForMember(d => d.TestCode, a => a.MapFrom(t => t.TestCode != null ? t.TestCode : null))
                 .ForMember(d => d.Description, a => a.MapFrom(t => t.Description))
