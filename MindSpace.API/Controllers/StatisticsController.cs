@@ -16,10 +16,13 @@ using MindSpace.Application.Features.Tests.Queries.GetMostRecentTests;
 
 namespace MindSpace.API.Controllers
 {
-    [Route("api/v{version:apiVersion}/statistics")]
     public class StatisticsController
         (IMediator mediator) : BaseApiController
     {
+        // ====================================
+        // === GET
+        // ====================================
+
         // GET /api/v1/statistics/test-responses/time-analysis
         // Get time-based analysis statistics for test responses
         [HttpGet("test-responses/time-analysis")]

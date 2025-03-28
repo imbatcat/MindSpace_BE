@@ -7,6 +7,10 @@ namespace MindSpace.API.Controllers
     /// </summary>
     public class FallbackController : Controller
     {
+        // ====================================
+        // === GET
+        // ====================================
+
         // GET /api/v1/fallback
         // Fallback route to serve index.html for client-side routing
         [HttpGet]

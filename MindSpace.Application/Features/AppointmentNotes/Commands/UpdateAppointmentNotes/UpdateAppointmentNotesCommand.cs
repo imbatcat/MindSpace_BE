@@ -1,6 +1,4 @@
 ﻿using MediatR;
-using MindSpace.Application.DTOs.Appointments;
-using MindSpace.Domain.Entities.Appointments;
 
 namespace MindSpace.Application.Features.AppointmentNotes.Commands.UpdateAppointmentNotes
 {

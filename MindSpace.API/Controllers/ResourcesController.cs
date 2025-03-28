@@ -10,7 +10,6 @@ using MindSpace.Application.Features.Resources.Queries.GetArticles;
 using MindSpace.Application.Features.Resources.Queries.GetBlogs;
 using MindSpace.Application.Features.Resources.Queries.GetResourceAsArticleById;
 using MindSpace.Application.Features.Resources.Queries.GetResourceAsBlogById;
-using MindSpace.Application.Features.SupportingPrograms.Commands.ToggleSupportingProgramStatus;
 using MindSpace.Application.Specifications.ResourceSpecifications;
 using MindSpace.Domain.Entities.Constants;
 
@@ -25,6 +24,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
 
     // GET /api/v1/resources/articles/{id}
     // Get a specific article by ID
+    [Cache(300)]
     [HttpGet("articles/{id:int}")]
     public async Task<ActionResult<ArticleResponseDTO>> GetResourceAsArticleById(
         [FromRoute] int id)
@@ -35,6 +35,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
 
     // GET /api/v1/resources/blogs/{id}
     // Get a specific blog by ID
+    [Cache(300)]
     [HttpGet("blogs/{id:int}")]
     public async Task<ActionResult<BlogResponseDTO>> GetResourceAsBlogById(
         [FromRoute] int id)
@@ -45,6 +46,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
 
     // GET /api/v1/resources/articles
     // Get all articles with pagination and filtering
+    [Cache(300)]
     [HttpGet("articles")]
     public async Task<ActionResult<Pagination<ArticleResponseDTO>>> GetAllArticles(
         [FromQuery] ResourceSpecificationSpecParams specParams)
@@ -55,6 +57,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
 
     // GET /api/v1/resources/blogs
     // Get all blogs with pagination and filtering
+    [Cache(300)]
     [HttpGet("blogs")]
     public async Task<ActionResult<Pagination<BlogResponseDTO>>> GetAllBlogs(
         [FromQuery] ResourceSpecificationSpecParams specParams)
@@ -69,6 +72,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
 
     // POST /api/v1/resources/blogs
     // Create a new blog
+    [InvalidateCache("/api/resources/blogs|")]
     [HttpPost("blogs")]
     public async Task<ActionResult> CreateBlog(
         [FromBody] CreateResourceAsBlogCommand command)
@@ -79,6 +83,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
 
     // POST /api/v1/resources/articles
     // Create a new article
+    [InvalidateCache("/api/resources/articles|")]
     [HttpPost("articles")]
     public async Task<ActionResult> CreateArticle(
         [FromBody] CreatedResourceAsArticleCommand command)
@@ -89,6 +94,7 @@ public class ResourcesController(IMediator mediator) : BaseApiController
 
     // PUT /api/v1/resources/{id}/toggle-status
     // Toggle the status of a resource (Admin and SchoolManager only)
+    [InvalidateCache("/api/resources")]
     [HttpPut("{id}/toggle-status")]
     [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
     public async Task<IActionResult> ToggleResourceStatus([FromRoute] int id)

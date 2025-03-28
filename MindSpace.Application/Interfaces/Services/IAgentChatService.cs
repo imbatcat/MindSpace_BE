@@ -1,8 +1,4 @@
-﻿using MindSpace.Application.DTOs.ApplicationUsers;
-using MindSpace.Application.DTOs.Chat;
-using MindSpace.Domain.Entities.Identity;
-
-namespace MindSpace.Application.Interfaces.Services
+﻿namespace MindSpace.Application.Interfaces.Services
 {
     public interface IAgentChatService
     {

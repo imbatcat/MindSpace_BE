@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 using MindSpace.Domain.Entities.Appointments;

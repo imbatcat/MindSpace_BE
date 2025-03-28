@@ -1,6 +1,5 @@
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Constants;
-using System.Linq.Expressions;
 
 namespace MindSpace.Application.Specifications.AppointmentSpecifications
 {

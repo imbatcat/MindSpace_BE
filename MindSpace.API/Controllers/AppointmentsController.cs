@@ -21,8 +21,8 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
 
     // POST /api/v1/appointments/booking/confirm
     // Confirm a booking appointment
+    [InvalidateCache("/api/appointments/")]
     [HttpPost("booking/confirm")]
-    //[InvalidateCache("/api/appointments/booking/user|")]
     public async Task<IActionResult> ConfirmBookingAppointment([FromBody] ConfirmBookingAppointmentCommand command)
     {
         var result = await mediator.Send(command);
@@ -32,7 +32,6 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     // POST /api/v1/appointments/booking/webhook
     // Handle a webhook event
     [HttpPost("booking/webhook")]
-    //[InvalidateCache("/api/appointments/booking/user|")]
     public async Task<IActionResult> HandleWebhook()
     {
         var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
@@ -79,8 +78,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         return Ok(result);
     }
 
-    // GET /api/v1/appointments/booking/user
-    //[Cache(30000)]
+    // GET /api/v1/appointments/user
     [HttpGet("user")]
     [Authorize]
     public async Task<IActionResult> GetAppointmentsHistoryByUser([FromQuery] AppointmentSpecParams specParams)
@@ -94,8 +92,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         );
     }
 
-    // GET /api/v1/appointments/booking/psychologist
-    //[Cache(30000)]
+    // GET /api/v1/appointments/psychologist
     [HttpGet("psychologist")]
     [Authorize]
     public async Task<IActionResult> GetAppointmentsHistoryByPsychologist([FromQuery] AppointmentSpecParamsForPsychologist specParams)
@@ -109,8 +106,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         );
     }
 
-    // GET /api/v1/appointments/booking/history
-    //[Cache(30000)]
+    // GET /api/v1/appointments/history
     [HttpGet("history")]
     public async Task<IActionResult> GetAppointmentHistoryList([FromQuery] AppointmentSpecParams specParams)
     {

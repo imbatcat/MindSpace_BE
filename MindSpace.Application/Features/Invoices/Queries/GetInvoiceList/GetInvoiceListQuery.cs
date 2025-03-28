@@ -8,7 +8,8 @@ namespace MindSpace.Application.Features.Invoices.Queries.GetInvoiceList
     public class GetInvoiceListQuery : IRequest<PagedResultDTO<InvoiceDTO>>
     {
         public InvoiceSpecParams SpecParams { get; set; }
-        public GetInvoiceListQuery(InvoiceSpecParams specParams) {
+        public GetInvoiceListQuery(InvoiceSpecParams specParams)
+        {
             SpecParams = specParams;
         }
     }

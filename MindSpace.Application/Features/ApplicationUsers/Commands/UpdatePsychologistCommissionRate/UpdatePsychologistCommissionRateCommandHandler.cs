@@ -1,7 +1,5 @@
-using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;

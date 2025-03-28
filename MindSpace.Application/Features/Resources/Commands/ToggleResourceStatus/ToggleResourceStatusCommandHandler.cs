@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.ResourceSpecifications;
-using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Resources;
 using MindSpace.Domain.Exceptions;
 

@@ -6,7 +6,7 @@ namespace MindSpace.Application.Features.PsychologistSchedules.Commands.UpdatePs
     public class UpdatePsychologistScheduleSimpleCommand : IRequest
     {
         public int PsychologistId { get; set; }
-        public DateOnly? StartDate { get; set; } 
+        public DateOnly? StartDate { get; set; }
         public DateOnly? EndDate { get; set; }
         public required List<TimeSlotDTO> Timeslots { get; set; }
     }

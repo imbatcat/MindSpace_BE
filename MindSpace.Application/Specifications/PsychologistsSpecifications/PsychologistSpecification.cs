@@ -1,6 +1,5 @@
 ﻿using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
-using System.Security.Cryptography.Xml;
 
 namespace MindSpace.Application.Specifications.PsychologistsSpecifications
 {

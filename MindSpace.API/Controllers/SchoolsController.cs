@@ -6,14 +6,13 @@ using MindSpace.Application.Features.Schools.Queries.ViewAllSchools;
 
 namespace MindSpace.API.Controllers
 {
-    [Route("api/v{version:apiVersion}/schools")]
     public class SchoolsController(
         IMediator mediator
     ) : BaseApiController
     {
         // GET /api/v1/schools
         // Get all schools
-        //[Cache(30000)]
+        [Cache(3600)]
         [HttpGet]
         public async Task<ActionResult<List<SchoolDTO>>> GetAllSchools()
         {

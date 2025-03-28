@@ -1,7 +1,6 @@
 ﻿namespace MindSpace.Infrastructure.Extensions;
 
 using Domain.Entities.Identity;
-using FUNewsManagement.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +25,7 @@ using MindSpace.Infrastructure.Services.CachingServices;
 using MindSpace.Infrastructure.Services.ChatServices;
 using MindSpace.Infrastructure.Services.EmailServices;
 using MindSpace.Infrastructure.Services.FileReaderServices;
+using MindSpace.Infrastructure.Services.ImageServices;
 using MindSpace.Infrastructure.Services.PaymentServices;
 using MindSpace.Infrastructure.Services.SignalR;
 using Quartz;

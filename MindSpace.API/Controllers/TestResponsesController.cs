@@ -18,6 +18,7 @@ public class TestResponsesController(IMediator mediator) : BaseApiController
 
     // GET /api/v1/test-responses
     // Get all test responses with pagination and filtering
+    [Cache(300)]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<TestResponseOverviewResponseDTO>>> GetTestResponses([FromQuery] TestResponseSpecParams specParams)
     {
@@ -32,6 +33,7 @@ public class TestResponsesController(IMediator mediator) : BaseApiController
 
     // GET /api/v1/test-responses/{id}
     // Get a specific test response by ID
+    [Cache(300)]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<TestResponseResponseDTO>> GetTestResponseById(int id)
     {
@@ -45,6 +47,7 @@ public class TestResponsesController(IMediator mediator) : BaseApiController
 
     // POST /api/v1/test-responses
     // Create a new test response
+    [InvalidateCache("/api/test-responses|")]
     [HttpPost]
     public async Task<ActionResult> CreateTestResponse([FromBody] CreateTestResponseCommand command)
     {

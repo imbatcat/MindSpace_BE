@@ -7,7 +7,6 @@ using MindSpace.Application.Specifications.SpecializationSpecifications;
 
 namespace MindSpace.API.Controllers
 {
-    [Route("api/v{version:apiVersion}/specializations")]
     public class SpecializationsController(
         IMediator mediator) : BaseApiController
     {
@@ -17,8 +16,9 @@ namespace MindSpace.API.Controllers
 
         // GET /api/v1/specializations
         // Get all specializations with pagination and filtering
+        [Cache(3600)]
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<SpecializationDTO>>> GetQuestions(
+        public async Task<ActionResult<IReadOnlyList<SpecializationDTO>>> GetSpecializations(
             [FromQuery] SpecializationSpecParams specParams)
         {
             var specializationDtos = await mediator.Send(new GetSpecializationsQuery(specParams));

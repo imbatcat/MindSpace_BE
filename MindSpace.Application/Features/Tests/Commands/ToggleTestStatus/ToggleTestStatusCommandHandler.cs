@@ -1,11 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
 using MindSpace.Application.Interfaces.Repos;
-using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.TestSpecifications;
 using MindSpace.Domain.Entities.Constants;
-using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Domain.Exceptions;
 

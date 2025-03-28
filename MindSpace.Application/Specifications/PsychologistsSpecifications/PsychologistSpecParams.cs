@@ -10,10 +10,10 @@
         }
 
         public string? Status { get; set; } = "All";
-        public int? SpecializationId { get;set ; }
+        public int? SpecializationId { get; set; }
         public decimal? SessionPriceFrom { get; set; }
         public decimal? SessionPriceTo { get; set; }
-        public float? RatingFrom {  get; set; }
+        public float? RatingFrom { get; set; }
         public string? Sort { get; set; }
     }
 }

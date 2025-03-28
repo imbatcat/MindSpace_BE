@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Appointments;
-using MindSpace.Application.Features.AppointmentNotes.Commands.UpdateAppointmentNotes;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 using MindSpace.Domain.Entities.Appointments;

@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.DTOs;
-using MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryByUser;
+using MindSpace.Application.DTOs.Invoices;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services.AuthenticationServices;
-using MindSpace.Application.Specifications.AppointmentSpecifications;
-using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Application.Specifications.InvoicesSpecifications;
-using MindSpace.Application.DTOs.Invoices;
+using MindSpace.Domain.Entities.Appointments;
 
 namespace MindSpace.Application.Features.Invoices.Queries.GetInvoiceHistoryByUser
 {

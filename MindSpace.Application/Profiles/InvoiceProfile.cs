@@ -6,7 +6,7 @@ namespace MindSpace.Application.Profiles
 {
     public class InvoiceProfile : Profile
     {
-        public InvoiceProfile() 
+        public InvoiceProfile()
         {
             CreateMap<Invoice, InvoiceDTO>()
             .ForMember(d => d.AccountName, opt => opt.MapFrom(i => i.Account.FullName));

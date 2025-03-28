@@ -2,8 +2,8 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs;
-using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.DTOs.Invoices;
+using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Specifications.InvoicesSpecifications;
 using MindSpace.Domain.Entities.Appointments;
 

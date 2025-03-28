@@ -5,7 +5,6 @@ using MindSpace.Application.DTOs.Chat;
 using MindSpace.Application.Interfaces.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System.Collections.Concurrent;
 
 namespace MindSpace.Infrastructure.Services.ChatServices
 {

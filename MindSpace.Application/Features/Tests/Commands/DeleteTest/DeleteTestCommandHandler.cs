@@ -1,14 +1,9 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using MindSpace.Application.Features.Tests.Commands.UpdateTest;
 using MindSpace.Application.Interfaces.Repos;
-using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.TestResponseSpecifications;
-using MindSpace.Application.Specifications.TestSpecifications;
 using MindSpace.Domain.Entities.Tests;
-using MindSpace.Domain.Exceptions;
 
 namespace MindSpace.Application.Features.Tests.Commands.DeleteTest
 {

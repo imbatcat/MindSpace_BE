@@ -40,6 +40,10 @@ namespace MindSpace.API.Controllers
         IMediator mediator,
         UserManager<ApplicationUser> userManager) : BaseApiController
     {
+        // ====================================
+        // === CREATE, PATCH, DELETE, PUT
+        // ====================================
+
         // POST /api/v1/identities/register
         // Register a new parent account
         [HttpPost("register")]
@@ -250,6 +254,10 @@ namespace MindSpace.API.Controllers
             await mediator.Send(new ToggleAccountStatusCommand { UserId = id });
             return NoContent();
         }
+
+        // ==============================
+        // === GET
+        // ==============================
 
         // GET /api/v1/identities/profile
         // Get authenticated user's profile

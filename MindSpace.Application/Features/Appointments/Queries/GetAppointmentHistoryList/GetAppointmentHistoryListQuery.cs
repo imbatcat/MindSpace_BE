@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.DTOs;
+using MindSpace.Application.DTOs.Appointments;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 
 namespace MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryList

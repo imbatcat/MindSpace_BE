@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.Interfaces.Services.ImageServices;
 
-namespace FUNewsManagement.Services
+namespace MindSpace.Infrastructure.Services.ImageServices
 {
     internal class ImageService : IImageService
     {

@@ -5,16 +5,10 @@ using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Specifications.FeedbackSpecifications;
 using MindSpace.Application.Specifications.MeetingRoomSpecifications;
-using MindSpace.Application.Specifications.PsychologistsSpecifications;
 using MindSpace.Domain.Entities;
 using MindSpace.Domain.Entities.Appointments;
 using MindSpace.Domain.Entities.Identity;
 using MindSpace.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MindSpace.Application.Features.Feedbacks.CreateFeedbackForPsychologist
 {

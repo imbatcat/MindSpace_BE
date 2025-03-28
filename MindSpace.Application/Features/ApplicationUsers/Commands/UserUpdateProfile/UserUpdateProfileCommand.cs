@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.FileProviders;
 using MindSpace.Application.DTOs.ApplicationUsers;
 
 namespace MindSpace.Application.Features.ApplicationUsers.Commands.UserUpdateProfile

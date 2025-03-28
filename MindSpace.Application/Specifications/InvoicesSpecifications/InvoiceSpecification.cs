@@ -1,6 +1,4 @@
-﻿using MindSpace.Application.Specifications.AppointmentSpecifications;
-using MindSpace.Domain.Entities.Appointments;
-using MindSpace.Domain.Entities.Constants;
+﻿using MindSpace.Domain.Entities.Appointments;
 
 namespace MindSpace.Application.Specifications.InvoicesSpecifications
 {

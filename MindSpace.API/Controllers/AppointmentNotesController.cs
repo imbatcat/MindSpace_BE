@@ -23,6 +23,7 @@ namespace MindSpace.API.Controllers
 
         // GET /api/v1/appointment-notes?accountId={accountId}
         // Get all appointment notes for a specific account (student/psychologist)
+        [Cache(300)]
         [HttpGet()]
         public async Task<ActionResult<IReadOnlyList<AppointmentNotesDTO>>> GetAppointmentNotesByAccount([FromQuery] AppointmentNotesSpecParams specParams)
         {

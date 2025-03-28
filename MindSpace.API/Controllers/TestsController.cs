@@ -1,9 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.Tests;
-using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
 using MindSpace.Application.Features.Tests.Commands.CreateTestImport;
 using MindSpace.Application.Features.Tests.Commands.CreateTestManual;
 using MindSpace.Application.Features.Tests.Commands.DeleteTest;
@@ -19,6 +17,10 @@ namespace MindSpace.API.Controllers;
 
 public class TestsController(IMediator mediator) : BaseApiController
 {
+    // ====================================
+    // === GET
+    // ====================================
+
     // GET /api/v1/tests
     // Get all tests with pagination and filtering
     [HttpGet]
@@ -52,6 +54,10 @@ public class TestsController(IMediator mediator) : BaseApiController
         var test = await mediator.Send(query);
         return Ok(test);
     }
+
+    // ====================================
+    // === CREATE, PATCH, DELETE, PUT
+    // ====================================
 
     // POST /api/v1/tests/import
     // Create a new test by importing from Excel file

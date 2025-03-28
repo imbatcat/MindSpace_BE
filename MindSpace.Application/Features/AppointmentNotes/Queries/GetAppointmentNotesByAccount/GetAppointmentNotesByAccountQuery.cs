@@ -8,7 +8,8 @@ namespace MindSpace.Application.Features.AppointmentNotes.Queries.GetAppointment
     public class GetAppointmentNotesByAccountQuery : IRequest<PagedResultDTO<AppointmentNotesDTO>>
     {
         public AppointmentNotesSpecParams Params { get; set; }
-        public GetAppointmentNotesByAccountQuery(AppointmentNotesSpecParams specParams) {
+        public GetAppointmentNotesByAccountQuery(AppointmentNotesSpecParams specParams)
+        {
             Params = specParams;
         }
     }

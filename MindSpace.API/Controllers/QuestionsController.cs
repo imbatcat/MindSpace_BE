@@ -17,6 +17,7 @@ public class QuestionsController(IMediator mediator) : BaseApiController
 
     // GET /api/v1/questions
     // Get all questions with pagination and filtering
+    [Cache(3600)] // 1 hour - questions rarely change
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<QuestionResponseDTO>>> GetQuestions(
         [FromQuery] QuestionSpecParams specParams)
@@ -33,6 +34,7 @@ public class QuestionsController(IMediator mediator) : BaseApiController
 
     // GET /api/v1/questions/{id}
     // Get a specific question by ID
+    [Cache(3600)] // 1 hour - questions rarely change
     [HttpGet("{id:int}")]
     public async Task<ActionResult<QuestionResponseDTO>> GetQuestionById(int id)
     {
