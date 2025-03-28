@@ -19,6 +19,8 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195515/mind-space/zp4frywxsde3sya8zshy.jpg",
+                PhoneNumber = "+84345678901",
                 SchoolId = 1,
                 DateOfBirth = new DateTime(2000, 1, 1)
             },
@@ -32,6 +34,8 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195516/mind-space/awdfep4zwr7ngztslnid.jpg",
+                PhoneNumber = "+84345678902",
                 SchoolId = 1,
                 DateOfBirth = new DateTime(2000, 2, 2)
             },
@@ -45,6 +49,8 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195516/mind-space/acz1cb7sbflq0iuexfre.jpg",
+                PhoneNumber = "+84345678903",
                 SchoolId = 1,
                 DateOfBirth = new DateTime(2000, 3, 3)
             },
@@ -58,6 +64,8 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195517/mind-space/lmxhh3gxwwhatnzskgvx.jpg",
+                PhoneNumber = "+84345678904",
                 SchoolId = 2,
                 DateOfBirth = new DateTime(2000, 4, 4)
             },
@@ -71,6 +79,8 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195516/mind-space/gwygrny5ztzxye7t4c3h.jpg",
+                PhoneNumber = "+84345678905",
                 SchoolId = 2,
                 DateOfBirth = new DateTime(2000, 5, 5)
             },
@@ -84,6 +94,8 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195517/mind-space/buybzzdrmmd2uf8xgszq.jpg",
+                PhoneNumber = "+84345678906",
                 DateOfBirth = new DateTime(1990, 1, 1)
             },
             new Psychologist
@@ -100,6 +112,8 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195517/mind-space/o2iyjqqabumef71w7sbq.jpg",
+                PhoneNumber = "+84345678907",
                 DateOfBirth = new DateTime(1980, 1, 1),
                 SpecializationId = 1
             },
@@ -117,6 +131,8 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195518/mind-space/r8ytdesaeoo5un0pdh19.jpg",
+                PhoneNumber = "+84345678908",
                 DateOfBirth = new DateTime(1982, 2, 2),
                 SpecializationId = 2
             },
@@ -134,6 +150,8 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195518/mind-space/fyn9nvy1y8lmzcjlyx1q.jpg",
+                PhoneNumber = "+84345678909",
                 DateOfBirth = new DateTime(1985, 3, 3),
                 SpecializationId = 3
             },
@@ -147,6 +165,8 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195518/mind-space/xg0j9bcn1kge8i9k6cm4.jpg",
+                PhoneNumber = "+84345678910",
                 SchoolId = 1,
                 DateOfBirth = new DateTime(1975, 1, 1)
             },
@@ -160,6 +180,8 @@ internal static class IdentityData
                 Status = UserStatus.Enabled,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195518/mind-space/aknlw64rbxppja5cvesl.jpg",
+                PhoneNumber = "+84345678911",
                 SchoolId = 2,
                 DateOfBirth = new DateTime(1978, 2, 2)
             },
@@ -172,6 +194,8 @@ internal static class IdentityData
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
                 FullName = "Parent One",
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195515/mind-space/zp4frywxsde3sya8zshy.jpg",
+                PhoneNumber = "+84345678912",
                 DateOfBirth = new DateTime(1970, 1, 1)
             },
             new Parent()
@@ -183,6 +207,8 @@ internal static class IdentityData
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
                 FullName = "Parent Two",
+                ImageUrl = "https://res.cloudinary.com/ddewgbug1/image/upload/v1743195516/mind-space/awdfep4zwr7ngztslnid.jpg",
+                PhoneNumber = "+84345678913",
                 DateOfBirth = new DateTime(1972, 2, 2)
             }
         };

@@ -1,5 +1,6 @@
 using AutoMapper;
 using MindSpace.Application.DTOs.ApplicationUsers;
+using MindSpace.Domain.Entities.Constants;
 using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Application.Profiles
@@ -25,6 +26,7 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.DateOfBirth, a => a.MapFrom(u => u.DateOfBirth))
                 .ForMember(d => d.ImageUrl, a => a.MapFrom(u => u.ImageUrl))
                 .ForMember(d => d.Status, a => a.MapFrom(u => u.Status));
+                
 
             CreateMap<ApplicationUser, ApplicationUserProfileDTO>();
 
