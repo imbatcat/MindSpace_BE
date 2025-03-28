@@ -30,8 +30,8 @@ namespace MindSpace.Application.Features.ApplicationUsers.Commands.UserUpdatePro
             }
 
             logger.LogInformation("Updating basic profile information for user {Email}", userFromDatabase.Email);
-            userFromDatabase.PhoneNumber = request.PhoneNumber;
-            userFromDatabase.DateOfBirth = request.BirthDate;
+            userFromDatabase.PhoneNumber = request.PhoneNumber ?? userFromDatabase.PhoneNumber;
+            userFromDatabase.DateOfBirth = request.DateOfBirth ?? userFromDatabase.DateOfBirth;
             userFromDatabase.ImageUrl = request.Image != null ? await UploadImage() : userFromDatabase.ImageUrl;
 
             var isUserPsychologist = false;
