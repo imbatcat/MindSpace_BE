@@ -11,9 +11,9 @@ namespace MindSpace.Application.Specifications.TestResponseSpecifications
 
         // Filter test has been done by student from day range
         public TestResponseSpecification(int studentId, DateTime? startDate, DateTime? endDate)
-            : base(tr => tr.StudentId == studentId)
-        //&& (!startDate.HasValue || tr.CreateAt.Date >= startDate.Value.Date)
-        //&& (!endDate.HasValue || tr.CreateAt.Date <= endDate.Value.Date))
+            : base(tr => tr.StudentId == studentId
+                    && (!startDate.HasValue || tr.CreateAt.Date >= startDate.Value.Date)
+                    && (!endDate.HasValue || tr.CreateAt.Date <= endDate.Value.Date))
         {
             AddInclude(x => x.Test);
             AddInclude(x => x.Student);
