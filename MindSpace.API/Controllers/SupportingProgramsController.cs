@@ -11,7 +11,6 @@ using MindSpace.Application.Features.SupportingPrograms.Commands.UnregisterSuppo
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramByHistory;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
-using MindSpace.Application.Features.Tests.Commands.ToggleTestStatus;
 using MindSpace.Application.Specifications.SupportingProgramHistorySpecifications;
 using MindSpace.Application.Specifications.SupportingProgramSpecifications;
 using MindSpace.Domain.Entities.Constants;
@@ -27,8 +26,8 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     // ====================================
 
     // GET /api/supporting-programs
-    [Cache(30000)]
-    //[HttpGet]
+    //[Cache(30000)]
+    [HttpGet]
     public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingPrograms(
         [FromQuery] SupportingProgramSpecParams specParams)
     {
