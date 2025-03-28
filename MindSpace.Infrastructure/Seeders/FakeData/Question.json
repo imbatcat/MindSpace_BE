@@ -143,5 +143,95 @@
     "Content": "Bạn có hài lòng với các mối quan hệ của mình (gia đình, bạn bè, thầy cô) không?",
     "CreateAt": "2024-05-17T14:00:00Z",
     "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "Content": "Bạn có thường xuyên cảm thấy tự tin về khả năng học tập của mình không?",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "Content": "Bạn có gặp khó khăn trong việc quản lý thời gian học tập không?",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "Content": "Bạn có thường xuyên cảm thấy áp lực từ việc học tập không?",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "Content": "Bạn có cảm thấy mình được hỗ trợ đầy đủ từ gia đình trong việc học tập không?",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "Content": "Bạn có thường xuyên tham gia các hoạt động ngoại khóa không?",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "Content": "Bạn có cảm thấy môi trường học tập hiện tại phù hợp với mình không?",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "Content": "Bạn có thường xuyên gặp khó khăn trong việc giao tiếp với thầy cô không?",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "Content": "Bạn có cảm thấy mình được tôn trọng trong môi trường học tập không?",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "Content": "Bạn có thường xuyên cảm thấy cô đơn hoặc bị cô lập trong trường học không?",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "Content": "Bạn có gặp khó khăn trong việc hòa nhập với bạn bè mới không?",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "Content": "Bạn có thường xuyên cảm thấy lo lắng về tương lai của mình không?",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "Content": "Bạn có cảm thấy mình có đủ kỹ năng để đối mặt với những thách thức trong cuộc sống không?",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "Content": "Bạn có thường xuyên cảm thấy mệt mỏi hoặc kiệt sức sau giờ học không?",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "Content": "Bạn có gặp khó khăn trong việc duy trì thói quen học tập đều đặn không?",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "Content": "Bạn có cảm thấy mình được khuyến khích phát triển tài năng và sở thích không?",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "Content": "Bạn có thường xuyên cảm thấy áp lực từ việc so sánh với bạn bè không?",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "Content": "Bạn có cảm thấy mình có đủ thời gian để nghỉ ngơi và giải trí không?",
+    "CreateAt": "2024-05-17T19:00:00Z",
+    "UpdateAt": "2024-05-17T19:00:00Z"
+  },
+  {
+    "Content": "Bạn có thường xuyên cảm thấy lo lắng về kết quả học tập của mình không?",
+    "CreateAt": "2024-05-17T19:00:00Z",
+    "UpdateAt": "2024-05-17T19:00:00Z"
   }
 ]
