@@ -31,7 +31,25 @@ namespace MindSpace.Application.Specifications.AppointmentSpecifications
             AddInclude(a => a.Student);
         }
 
+        public AppointmentSpecification(int appointmentId)
+            : base(x => x.Id.Equals(appointmentId))
+        {
+            AddInclude(a => a.Student);
+            AddInclude(a => a.Psychologist);
+        }
 
+        public AppointmentSpecification(AppointmentNotesSpecParams specParams)
+            : base(x =>
+                (x.StudentId.Equals(specParams.AccountId) || x.PsychologistId.Equals(specParams.AccountId))
+                && (!specParams.IsNoteShown.HasValue || x.IsNoteShown == specParams.IsNoteShown)
+                && (x.Status == AppointmentStatus.Success)
+                && (!string.IsNullOrEmpty(x.NotesTitle))
+            )
+        {
+            AddInclude(a => a.Student);
+            AddInclude(a => a.Psychologist);
+            AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+        }
 
         /// <summary>
         /// Specification for filtering appointments by student, psychologist and schedule IDs.
@@ -111,6 +129,28 @@ namespace MindSpace.Application.Specifications.AppointmentSpecifications
             && (specParams.StartDate.CompareTo(x.PsychologistSchedule.Date) <= 0 && specParams.EndDate.CompareTo(x.PsychologistSchedule.Date) >= 0)
             && x.Status.Equals(AppointmentStatus.Success)
             )
+        )
+        {
+            AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+
+            if (!string.IsNullOrEmpty(specParams.Sort))
+            {
+                switch (specParams.Sort)
+                {
+                    case "dateAsc":
+                        AddOrderBy(x => x.PsychologistSchedule.Date); break;
+                    case "dateDesc":
+                        AddOrderByDescending(x => x.PsychologistSchedule.Date); break;
+                }
+            }
+        }
+
+        public AppointmentSpecification(AppointmentSpecParams specParams) : base(
+            x => ((string.IsNullOrEmpty(specParams.StudentEmail) || x.Student.Email.ToLower().Contains(specParams.StudentEmail.ToLower().Trim()))
+            && (string.IsNullOrEmpty(specParams.PsychologistName) || x.Psychologist.FullName.ToLower().Contains(specParams.PsychologistName.ToLower().Trim()))
+            && (specParams.StartDate.CompareTo(x.PsychologistSchedule.Date) <= 0 && specParams.EndDate.CompareTo(x.PsychologistSchedule.Date) >= 0)
+            && (!specParams.AppointmentStatus.HasValue || x.Status.Equals(specParams.AppointmentStatus))
+            && (!specParams.SchoolId.HasValue || x.Student.SchoolId == specParams.SchoolId))
         )
         {
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);

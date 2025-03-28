@@ -18,7 +18,8 @@ internal class TestQuestionConfiguration : IEntityTypeConfiguration<TestQuestion
             .HasOne(tq => tq.Test)
             .WithMany(t => t.TestQuestions)
             .HasForeignKey(tq => tq.TestId)
-            .IsRequired();
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder
             .HasOne(tq => tq.Question)

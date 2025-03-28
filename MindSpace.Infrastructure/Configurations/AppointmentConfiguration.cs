@@ -44,11 +44,32 @@ internal class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
 
         // 1 Appointment - 1 MeetingRoom
         builder.HasOne(a => a.MeetingRoom)
-            .WithOne()
+            .WithOne(r => r.Appointment)
             .HasForeignKey<Appointment>(a => a.MeetingRoomId)
             .OnDelete(DeleteBehavior.SetNull);
 
         builder.Property(a => a.MeetingRoomId)
             .IsRequired(false);
+
+        builder.Property(a => a.NotesTitle)
+            .IsRequired(false)
+            .IsUnicode();
+
+        builder.Property(a => a.KeyIssues)
+            .IsRequired(false)
+            .IsUnicode();
+
+        builder.Property(a => a.Suggestions)
+            .IsRequired(false)
+            .IsUnicode();
+
+        builder.Property(a => a.OtherNotes)
+            .IsRequired(false)
+            .IsUnicode();
+
+        builder.Property(a => a.IsNoteShown)
+            .IsRequired(false)
+            .IsUnicode();
+
     }
 }

@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.Tests;
 using MindSpace.Application.Interfaces.Repos;
 using MindSpace.Application.Interfaces.Services;
-using MindSpace.Application.Interfaces.Services.FileReaderServices;
 using MindSpace.Application.Specifications.TestSpecifications;
 using MindSpace.Domain.Entities.Tests;
 using MindSpace.Domain.Exceptions;
@@ -14,9 +12,7 @@ namespace MindSpace.Application.Features.Tests.Commands.CreateTestImport;
 
 public class CreateTestImportCommandHandler(
     IUnitOfWork unitOfWork,
-    ILogger<CreateTestImportCommandHandler> logger,
     IMapper mapper,
-    IExcelReaderService excelReaderService,
     ITestImportService testImportService) : IRequestHandler<CreateTestImportCommand, TestOverviewResponseDTO>
 {
     public async Task<TestOverviewResponseDTO> Handle(CreateTestImportCommand request, CancellationToken cancellationToken)
@@ -28,7 +24,18 @@ public class CreateTestImportCommandHandler(
         }
 
         // Insert test with overview data
-        var testInfo = request.TestInfo;
+        var testInfo = new CreateTestWithoutQuestionsDTO
+        {
+            Title = request.Title,
+            TestCode = request.TestCode,
+            TargetUser = request.TargetUser,
+            Description = request.Description,
+            Price = request.Price,
+            AuthorId = request.AuthorId,
+            SchoolId = request.SchoolId,
+            TestCategoryId = request.TestCategoryId,
+            SpecializationId = request.SpecializationId
+        };
         var testEntity = mapper.Map<Test>(testInfo);
 
         // Check existed test

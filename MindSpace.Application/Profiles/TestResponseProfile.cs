@@ -15,7 +15,8 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.TotalScore, a => a.MapFrom(tp => tp.TotalScore))
                 .ForMember(d => d.Student, a => a.MapFrom(tp => tp.Student))
                 .ForMember(d => d.Parent, a => a.MapFrom(tp => tp.Parent))
-                .ForMember(d => d.Test, a => a.MapFrom(tp => tp.Test));
+                .ForMember(d => d.Test, a => a.MapFrom(tp => tp.Test))
+                .ForMember(d => d.CreateAt, a => a.MapFrom(tp => tp.CreateAt));
 
             CreateProjection<TestResponse, TestResponseResponseDTO>()
                 .ForMember(d => d.TestScoreRankResult, a => a.MapFrom(tp => tp.TestScoreRankResult))
@@ -23,7 +24,8 @@ namespace MindSpace.Application.Profiles
                 .ForMember(d => d.Student, a => a.MapFrom(tp => tp.Student))
                 .ForMember(d => d.Parent, a => a.MapFrom(tp => tp.Parent))
                 .ForMember(d => d.Test, a => a.MapFrom(tp => tp.Test))
-                .ForMember(d => d.TestResponseItems, a => a.MapFrom(tp => tp.TestResponseItems.Select(tri => tri)));
+                .ForMember(d => d.TestResponseItems, a => a.MapFrom(tp => tp.TestResponseItems.Select(tri => tri)))
+                .ForMember(d => d.CreateAt, a => a.MapFrom(tp => tp.CreateAt));
 
             // Map
             CreateMap<CreateTestResponseCommand, TestResponse>()

@@ -11,6 +11,7 @@ using MindSpace.Application.Interfaces.Services;
 using MindSpace.Application.Interfaces.Services.AuthenticationServices;
 using MindSpace.Application.Interfaces.Services.EmailServices;
 using MindSpace.Application.Interfaces.Services.FileReaderServices;
+using MindSpace.Application.Interfaces.Services.ImageServices;
 using MindSpace.Application.Interfaces.Services.PaymentServices;
 using MindSpace.Application.Interfaces.Utilities;
 using MindSpace.Application.Interfaces.Utilities.Seeding;
@@ -24,6 +25,7 @@ using MindSpace.Infrastructure.Services.CachingServices;
 using MindSpace.Infrastructure.Services.ChatServices;
 using MindSpace.Infrastructure.Services.EmailServices;
 using MindSpace.Infrastructure.Services.FileReaderServices;
+using MindSpace.Infrastructure.Services.ImageServices;
 using MindSpace.Infrastructure.Services.PaymentServices;
 using MindSpace.Infrastructure.Services.SignalR;
 using Quartz;
@@ -99,6 +101,9 @@ public static partial class ServiceCollectionExtensions
 
         // Add HttpClient Services
         services.AddHttpClient();
+
+        // Add Image Service
+        services.AddSingleton<IImageService, ImageService>();
 
         // Add Chat Agent Service
         services.AddSingleton<IAgentChatService, GeminiAgentChatService>();

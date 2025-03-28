@@ -27,10 +27,12 @@ namespace MindSpace.Application.Features.Authentications.Commands.RegisterForUse
                 {
                     Email = result["Email"],
                     UserName = result["Username"],
-                    FullName = result["FullName"]
+                    FullName = result["FullName"],
+                    DateOfBirth = string.IsNullOrEmpty(result["DoB"]) ? null : DateTime.Parse(result["DoB"]),
+                    ComissionRate = string.IsNullOrEmpty(result["CommissionRate"]) ? 0m : decimal.Parse(result["CommissionRate"])
                 };
 
-                var specializationSpecification = new SpecializationSpecifications(new SpecializationSpecParams()
+                var specializationSpecification = new SpecializationSpecification(new SpecializationSpecParams()
                 {
                     Name = result["Specialization"]
                 });

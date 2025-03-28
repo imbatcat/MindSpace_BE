@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
 using MindSpace.Application.Features.Appointments.Commands.ConfirmBookingAppointment;
 using MindSpace.Application.Features.Appointments.Commands.HandleWebhook;
+using MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryByPsychologist;
 using MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryByUser;
+using MindSpace.Application.Features.Appointments.Queries.GetAppointmentHistoryList;
 using MindSpace.Application.Features.Appointments.Queries.GetSessionUrl;
 using MindSpace.Application.Specifications.AppointmentSpecifications;
 using Stripe.Checkout;
@@ -17,18 +19,19 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     // === POST, PUT, DELETE, PATCH
     // ==============================
 
-    // POST /api/appointments/booking/confirm
+    // POST /api/v1/appointments/booking/confirm
+    // Confirm a booking appointment
+    [InvalidateCache("/api/appointments/")]
     [HttpPost("booking/confirm")]
-    [InvalidateCache("/api/appointments/booking/user|")]
     public async Task<IActionResult> ConfirmBookingAppointment([FromBody] ConfirmBookingAppointmentCommand command)
     {
         var result = await mediator.Send(command);
         return Ok(result);
     }
 
-    // POST /api/appointments/booking/webhook
+    // POST /api/v1/appointments/booking/webhook
+    // Handle a webhook event
     [HttpPost("booking/webhook")]
-    [InvalidateCache("/api/appointments/booking/user|")]
     public async Task<IActionResult> HandleWebhook()
     {
         var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
@@ -45,9 +48,9 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
     // === GET
     // ==============================
 
-    // GET /api/appointments/booking/expire-session/{sessionId}
+    // GET /api/v1/appointments/booking/expire-session/{sessionId}
     // API FOR TESTING: CHECKING SESSION STATUS
-    [Cache(600)]
+    //[Cache(600)]
     [HttpGet("booking/expire-session/{sessionId}")]
     public async Task<IActionResult> ExpireSession([FromRoute] string sessionId)
     {
@@ -57,7 +60,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         return Ok("Session expired");
     }
 
-    // GET /api/appointments/booking/session-status/{sessionId}
+    // GET /api/v1/appointments/booking/session-status/{sessionId}
     // API FOR TESTING: CHECKING SESSION STATUS
     [HttpGet("booking/session-status/{sessionId}")]
     public async Task<IActionResult> GetSessionStatus([FromRoute] string sessionId)
@@ -67,7 +70,7 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         return Ok(new { Status = session.Status, PaymentStatus = session.PaymentStatus });
     }
 
-    // GET /api/appointments/booking/session-url/{sessionId}
+    // GET /api/v1/appointments/booking/session-url/{sessionId}
     [HttpGet("booking/session-url/{sessionId}")]
     public async Task<IActionResult> GetSessionUrl([FromRoute] string sessionId)
     {
@@ -75,13 +78,39 @@ public class AppointmentsController(IMediator mediator) : BaseApiController
         return Ok(result);
     }
 
-    // GET /api/appointments/booking/user
-    [Cache(30000)]
+    // GET /api/v1/appointments/user
     [HttpGet("user")]
     [Authorize]
     public async Task<IActionResult> GetAppointmentsHistoryByUser([FromQuery] AppointmentSpecParams specParams)
     {
         var result = await mediator.Send(new GetAppointmentHistoryByUserQuery(specParams));
+        return PaginationOkResult(
+            result.Data,
+            result.Count,
+            specParams.PageIndex,
+            specParams.PageSize
+        );
+    }
+
+    // GET /api/v1/appointments/psychologist
+    [HttpGet("psychologist")]
+    [Authorize]
+    public async Task<IActionResult> GetAppointmentsHistoryByPsychologist([FromQuery] AppointmentSpecParamsForPsychologist specParams)
+    {
+        var result = await mediator.Send(new GetAppointmentHistoryByPsychologistQuery(specParams));
+        return PaginationOkResult(
+            result.Data,
+            result.Count,
+            specParams.PageIndex,
+            specParams.PageSize
+        );
+    }
+
+    // GET /api/v1/appointments/history
+    [HttpGet("history")]
+    public async Task<IActionResult> GetAppointmentHistoryList([FromQuery] AppointmentSpecParams specParams)
+    {
+        var result = await mediator.Send(new GetAppointmentHistoryListQuery(specParams));
         return PaginationOkResult(
             result.Data,
             result.Count,

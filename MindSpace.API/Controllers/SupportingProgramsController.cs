@@ -1,16 +1,19 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.SupportingPrograms;
 using MindSpace.Application.Features.SupportingPrograms.Commands.CreateSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Commands.PatchSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Commands.RegisterSupportingProgram;
+using MindSpace.Application.Features.SupportingPrograms.Commands.ToggleSupportingProgramStatus;
 using MindSpace.Application.Features.SupportingPrograms.Commands.UnregisterSupportingProgram;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramByHistory;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingProgramById;
 using MindSpace.Application.Features.SupportingPrograms.Queries.GetSupportingPrograms;
 using MindSpace.Application.Specifications.SupportingProgramHistorySpecifications;
 using MindSpace.Application.Specifications.SupportingProgramSpecifications;
+using MindSpace.Domain.Entities.Constants;
 
 namespace MindSpace.API.Controllers;
 
@@ -22,8 +25,9 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     // === GET
     // ====================================
 
-    // GET /api/supporting-programs
-    [Cache(30000)]
+    // GET /api/v1/supporting-programs
+    // Get all supporting programs with pagination and filtering
+    [Cache(300)]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingPrograms(
         [FromQuery] SupportingProgramSpecParams specParams)
@@ -38,8 +42,9 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         );
     }
 
-    // GET /api/supporting-programs/history?studentId=2
-    [Cache(30000)]
+    // GET /api/v1/supporting-programs/history?studentId={studentId}
+    // Get supporting program history for a specific student
+    [Cache(300)]
     [HttpGet("history")]
     public async Task<ActionResult<IReadOnlyList<SupportingProgramResponseDTO>>> GetSupportingProgramsHistory(
         [FromQuery] SupportingProgramHistorySpecParams specParams)
@@ -55,8 +60,9 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         );
     }
 
-    // GET /api/supporting-programs/{id}
-    [Cache(30000)]
+    // GET /api/v1/supporting-programs/{id}
+    // Get a specific supporting program by ID
+    [Cache(300)]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<SupportingProgramSingleResponseDTO>> GetSupportingProgramById(
         [FromRoute] int id)
@@ -69,7 +75,8 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
     // === CREATE, PATCH, DELETE, PUT
     // ====================================
 
-    // POST /api/supporting-programs
+    // POST /api/v1/supporting-programs
+    // Create a new supporting program
     [InvalidateCache("/api/supporting-programs|")]
     [HttpPost]
     public async Task<ActionResult> CreateSupportingProgram(
@@ -79,7 +86,8 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         return CreatedAtAction(nameof(GetSupportingProgramById), new { createdSP.Id }, null);
     }
 
-    // PATCH /api/supporting-programs/{id}
+    // PATCH /api/v1/supporting-programs/{id}
+    // Update a supporting program
     [InvalidateCache("/api/supporting-programs|")]
     [HttpPatch("{id:int}")]
     public async Task<ActionResult> PatchSupportingProgram(
@@ -91,7 +99,8 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         return NoContent();
     }
 
-    // POST /api/supporting-programs/register
+    // POST /api/v1/supporting-programs/register
+    // Register a student for a supporting program
     [InvalidateCache("/api/supporting-programs/history|")]
     [HttpPost("register")]
     public async Task<ActionResult> RegisterSupportingProgram(
@@ -101,13 +110,25 @@ public class SupportingProgramsController(IMediator mediator) : BaseApiControlle
         return NoContent();
     }
 
-    // POST /api/supporting-programs/unregister
+    // POST /api/v1/supporting-programs/unregister
+    // Unregister a student from a supporting program
     [InvalidateCache("/api/supporting-programs/history|")]
     [HttpPost("unregister")]
     public async Task<ActionResult> UnregisterSupportingProgram(
         [FromBody] UnregisterSupportingProgramCommand unregisterSP)
     {
         await mediator.Send(unregisterSP);
+        return NoContent();
+    }
+
+    // PUT /api/v1/supporting-programs/{id}/toggle-status
+    // Toggle the status of a supporting program (Admin and SchoolManager only)
+    [InvalidateCache("/api/supporting-programs|")]
+    [HttpPut("{id}/toggle-status")]
+    [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
+    public async Task<IActionResult> ToggleSupportingProgramStatus([FromRoute] int id)
+    {
+        await mediator.Send(new ToggleSupportingProgramStatusCommand { Id = id });
         return NoContent();
     }
 }

@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
-using MindSpace.Application.Features.ApplicationUsers.Commands.UpdateProfile;
+using MindSpace.Application.Features.ApplicationUsers.Commands.UpdatePsychologistCommissionRate;
+using MindSpace.Application.Features.ApplicationUsers.Commands.UserUpdateProfile;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllAccounts;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllPsychologists;
 using MindSpace.Application.Features.ApplicationUsers.Queries.GetAllPsychologistsNames;
@@ -34,15 +35,17 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace MindSpace.API.Controllers
 {
+    [Route("api/v{version:apiVersion}/identities")]
     public class IdentitiesController(
         IMediator mediator,
         UserManager<ApplicationUser> userManager) : BaseApiController
     {
-        // ==============================
-        // === POST, PUT, DELETE, PATCH
-        // ==============================
+        // ====================================
+        // === CREATE, PATCH, DELETE, PUT
+        // ====================================
 
-        // POST /api/identities/register
+        // POST /api/v1/identities/register
+        // Register a new parent account
         [HttpPost("register")]
         [AllowAnonymous]
         public async Task<ActionResult> Register([FromBody] RegisterParentCommand command)
@@ -51,7 +54,8 @@ namespace MindSpace.API.Controllers
             return NoContent();
         }
 
-        // POST /api/identities/login
+        // POST /api/v1/identities/login
+        // Login user and get access token
         [HttpPost("login")]
         [AllowAnonymous]
         public async Task<ActionResult<LoginResponseDTO>> Login([FromBody] LoginUserCommand command)
@@ -68,7 +72,8 @@ namespace MindSpace.API.Controllers
             return Ok(response);
         }
 
-        // POST /api/identities/logout
+        // POST /api/v1/identities/logout
+        // Logout user and invalidate refresh token
         [HttpPost("logout")]
         [Authorize]
         public async Task<IActionResult> LogoutAsync()
@@ -82,7 +87,8 @@ namespace MindSpace.API.Controllers
             return NoContent();
         }
 
-        // POST /api/identities/refresh
+        // POST /api/v1/identities/refresh
+        // Refresh access token using refresh token
         [HttpPost("refresh")]
         [AllowAnonymous]
         public async Task<ActionResult<RefreshUserAccessTokenDTO>> Refresh()
@@ -111,7 +117,8 @@ namespace MindSpace.API.Controllers
             return Ok(newTokens);
         }
 
-        // POST /api/identities/revoke/{id}
+        // POST /api/v1/identities/revoke/{id}
+        // Revoke refresh token for a user (Admin only)
         [HttpPost("revoke/{id}")]
         [Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> RevokeRefreshToken(string id)
@@ -127,28 +134,31 @@ namespace MindSpace.API.Controllers
             }
         }
 
-        // POST /api/identities/register-for/manager
+        // POST /api/v1/identities/register-for/manager
+        // Register new school managers
         [HttpPost("register-for/manager")]
-        [InvalidateCache("/api/identities/accounts|")]
+        //[InvalidateCache("/api/identities/accounts|")]
         public async Task<IActionResult> RegisterSchoolManager([FromForm] RegisterSchoolManagerCommand command)
         {
             await mediator.Send(command);
             return Ok("All managers have been added");
         }
 
-        // POST /api/identities/register-for/psychologist
+        // POST /api/v1/identities/register-for/psychologist
+        // Register new psychologists (Admin only)
         [HttpPost("register-for/psychologist")]
         [Authorize(Roles = UserRoles.Admin)]
-        [InvalidateCache("/api/identities/accounts|")]
+        //[InvalidateCache("/api/identities/accounts|")]
         public async Task<IActionResult> RegisterPsychologist([FromForm] RegisterPsychologistCommand command)
         {
             await mediator.Send(command);
             return Ok("All psychologists have been added");
         }
 
-        // POST /api/identities/register-for/student
+        // POST /api/v1/identities/register-for/student
+        // Register new students (SchoolManager only)
         [HttpPost("register-for/student")]
-        [InvalidateCache("/api/identities/accounts|")]
+        //[InvalidateCache("/api/identities/accounts|")]
         [Authorize(Roles = UserRoles.SchoolManager)]
         public async Task<IActionResult> RegisterStudent([FromForm] RegisterStudentsCommand command)
         {
@@ -156,7 +166,8 @@ namespace MindSpace.API.Controllers
             return Ok("Student registered successfully");
         }
 
-        // POST /api/identities/send-email-confirmation
+        // POST /api/v1/identities/send-email-confirmation
+        // Send email confirmation to authenticated user
         [HttpPost("send-email-confirmation")]
         [Authorize]
         public async Task<IActionResult> SendEmailConfirmation()
@@ -172,7 +183,8 @@ namespace MindSpace.API.Controllers
             return NoContent();
         }
 
-        // POST /api/identities/confirm-email
+        // POST /api/v1/identities/confirm-email
+        // Confirm user's email address
         [HttpPost("confirm-email")]
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmailCommand command)
@@ -185,7 +197,8 @@ namespace MindSpace.API.Controllers
             return BadRequest("Email confirmation failed");
         }
 
-        // POST /api/identities/send-reset-password-email
+        // POST /api/v1/identities/send-reset-password-email
+        // Send password reset email
         [HttpPost("send-reset-password-email")]
         [AllowAnonymous]
         public async Task<IActionResult> SendResetPasswordEmail([FromBody] SendResetPasswordEmailCommand command)
@@ -194,7 +207,8 @@ namespace MindSpace.API.Controllers
             return NoContent();
         }
 
-        // POST /api/identities/reset-password
+        // POST /api/v1/identities/reset-password
+        // Reset user's password
         [HttpPost("reset-password")]
         [AllowAnonymous]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand command)
@@ -207,21 +221,35 @@ namespace MindSpace.API.Controllers
             return BadRequest("Password reset failed");
         }
 
-        // PUT /api/identities/profile/{id}
-        [InvalidateCache("/api/identities|")]
-        [HttpPut("profile/{id}")]
+        // PUT /api/v1/identities/profile
+        // Update authenticated user's profile
+        // [InvalidateCache("/api/identities/profile|")]
+        // PUT /api/identities/profile
+        [HttpPut("profile")]
         [Authorize]
-        public async Task<ActionResult<ApplicationUserProfileDTO>> UpdateProfile([FromBody] UpdateProfileCommand command, [FromRoute] int id)
+        public async Task<ActionResult<ApplicationUserProfileDTO>> UserUpdateProfile([FromForm] UserUpdateProfileCommand command)
         {
-            command.UserId = id;
             var result = await mediator.Send(command);
             return Ok(result);
         }
 
-        // PUT /api/identities/accounts/{id}/toggle-status
-        [InvalidateCache("/api/identities/accounts|")]
+        // PUT /api/v1/identities/psychologists/{id}/commission-rate
+        // Update psychologist's commission rate
+        // [InvalidateCache("/api/identities/accounts|")]
+        [HttpPut("psychologists/{id}/commission-rate")]
+        [Authorize]
+        public async Task<ActionResult<ApplicationUserProfileDTO>> UpdatePsychologistCommissionRate([FromRoute] int id, [FromBody] UpdatePsychologistCommissionRateCommand command)
+        {
+            command.PsychologistId = id;
+            await mediator.Send(command);
+            return NoContent();
+        }
+
+        // PUT /api/v1/identities/accounts/{id}/toggle-status
+        // Toggle account status (Admin and SchoolManager only)
+        //[InvalidateCache("/api/identities/accounts|")]
         [HttpPut("accounts/{id}/toggle-status")]
-        [Authorize(Roles = UserRoles.Admin)]
+        [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
         public async Task<IActionResult> ToggleAccountStatus([FromRoute] int id)
         {
             await mediator.Send(new ToggleAccountStatusCommand { UserId = id });
@@ -232,8 +260,9 @@ namespace MindSpace.API.Controllers
         // === GET
         // ==============================
 
-        // GET /api/identities/profile
-        [Cache(600)]
+        // GET /api/v1/identities/profile
+        // Get authenticated user's profile
+        //[Cache(600)]
         [HttpGet("profile")]
         [Authorize]
         public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfile()
@@ -242,18 +271,20 @@ namespace MindSpace.API.Controllers
             return Ok(result);
         }
 
-        // GET /api/identities/profile/{id}
-        [Cache(600)]
+        // GET /api/v1/identities/profile/{id}
+        // Get user profile by ID (Admin and SchoolManager only)
+        //[Cache(600)]
         [HttpGet("profile/{id}")]
-        [Authorize(Roles = UserRoles.Admin)]
+        [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
         public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfileById(int id)
         {
             var result = await mediator.Send(new GetProfileByIdQuery { UserId = id });
             return Ok(result);
         }
 
-        // GET /api/identities/accounts
-        [Cache(30000)]
+        // GET /api/v1/identities/accounts
+        // Get all accounts with pagination and filtering (Admin and SchoolManager only)
+        //[Cache(30000)]
         [HttpGet("accounts")]
         [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllAccounts([FromQuery] ApplicationUserSpecParams specParams)
@@ -267,8 +298,9 @@ namespace MindSpace.API.Controllers
             );
         }
 
-        // GET /api/identities/accounts/students
-        [Cache(30000)]
+        // GET /api/v1/identities/accounts/students
+        // Get all students with pagination and filtering (SchoolManager only)
+        //[Cache(30000)]
         [HttpGet("accounts/students")]
         [Authorize(Roles = UserRoles.SchoolManager)]
         public async Task<ActionResult<Pagination<ApplicationUserProfileDTO>>> GetAllStudents([FromQuery] ApplicationUserSpecParams specParams)
@@ -282,10 +314,10 @@ namespace MindSpace.API.Controllers
             );
         }
 
-        // GET /api/identities/accounts/psychologists
-        [Cache(30000)]
+        // GET /api/v1/identities/accounts/psychologists
+        // Get all psychologists with pagination and filtering
+        //[Cache(30000)]
         [HttpGet("accounts/psychologists")]
-        [Authorize]
         public async Task<ActionResult<Pagination<PsychologistProfileDTO>>> GetAllPsychologists([FromQuery] PsychologistSpecParams specParams)
         {
             var result = await mediator.Send(new GetAllPsychologistsQuery(specParams));
@@ -297,8 +329,9 @@ namespace MindSpace.API.Controllers
             );
         }
 
-        // GET /api/identities/accounts/psychologists/names
-        [Cache(30000)]
+        // GET /api/v1/identities/accounts/psychologists/names
+        // Get list of all psychologist names
+        //[Cache(30000)]
         [HttpGet("accounts/psychologists/names")]
         [Authorize]
         public async Task<ActionResult<List<string>>> GetAllPsychologistsNames()
@@ -307,8 +340,9 @@ namespace MindSpace.API.Controllers
             return Ok(result);
         }
 
-        // GET /api/identities/accounts/psychologists/:id
-        [Cache(30000)]
+        // GET /api/v1/identities/accounts/psychologists/{id}
+        // Get psychologist profile by ID
+        //[Cache(30000)]
         [HttpGet("accounts/psychologists/{id}")]
         [Authorize]
         public async Task<ActionResult<PsychologistProfileDTO>> GetPsychologistById([FromRoute] int id)

@@ -5,6 +5,7 @@ namespace MindSpace.Domain.Entities.Drafts.TestPeriodics
     public class TestDraft
     {
         public required string Id { get; set; }
+        public int? TestToUpdateId { get; set; }
         public string? Title { get; set; } = string.Empty;
         public string? TestCode { get; set; } = string.Empty;
         public string? Description { get; set; } = string.Empty;

@@ -18,9 +18,9 @@ namespace MindSpace.Application.Features.Statistics.Query.GetOverviewStatistics
     public class GetOverviewStatisticsQueryHandler(ILogger<GetOverviewStatisticsQueryHandler> logger,
             IUnitOfWork unitOfWork,
             IMapper mapper,
-            IApplicationUserService<ApplicationUser> applicationUserRepository) : IRequestHandler<GetOverviewStatisticsQuery, CountOverviewDTO>
+            IApplicationUserService<ApplicationUser> applicationUserRepository) : IRequestHandler<GetOverviewStatisticsQuery, CountSchoolOverviewDataDTO>
     {
-        public async Task<CountOverviewDTO> Handle(GetOverviewStatisticsQuery request, CancellationToken cancellationToken)
+        public async Task<CountSchoolOverviewDataDTO> Handle(GetOverviewStatisticsQuery request, CancellationToken cancellationToken)
         {
             int totalStudent = await applicationUserRepository.CountAsync(new ApplicationUserSpecification(request.SchoolId, request.StartDate, request.EndDate));
 
@@ -29,7 +29,7 @@ namespace MindSpace.Application.Features.Statistics.Query.GetOverviewStatistics
             int totalSupportingPrograms = await unitOfWork.Repository<SupportingProgram>().CountAsync(new SupportingProgramSpecification(request.SchoolId, request.StartDate, request.EndDate));
 
             int totalResources = await unitOfWork.Repository<Resource>().CountAsync(new ResourceSpecification(request.SchoolId, request.StartDate, request.EndDate));
-            return new CountOverviewDTO
+            return new CountSchoolOverviewDataDTO
             {
                 TotalStudentsCount = totalStudent,
                 TotalTestsCount = totalTests,

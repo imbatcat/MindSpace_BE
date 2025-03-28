@@ -45,6 +45,7 @@ namespace MindSpace.Application.Profiles
 
             CreateProjection<SupportingProgramHistory, SupportingProgramResponseDTO>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.SupportingProgram.Id))
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.SupportingProgram.Title))
                 .ForMember(dest => dest.ThumbnailUrl, opt => opt.MapFrom(src => src.SupportingProgram.ThumbnailUrl))
                 .ForMember(dest => dest.PdffileUrl, opt => opt.MapFrom(src => src.SupportingProgram.PdffileUrl))
                 .ForMember(dest => dest.MaxQuantity, opt => opt.MapFrom(src => src.SupportingProgram.MaxQuantity))
@@ -53,7 +54,9 @@ namespace MindSpace.Application.Profiles
                 .ForMember(dest => dest.Ward, opt => opt.MapFrom(src => src.SupportingProgram.Address.Ward))
                 .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.SupportingProgram.Address.Province))
                 .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.SupportingProgram.Address.PostalCode))
-                .ForMember(dest => dest.StartDateAt, opt => opt.MapFrom(src => src.SupportingProgram.StartDateAt));
+                .ForMember(dest => dest.StartDateAt, opt => opt.MapFrom(src => src.SupportingProgram.StartDateAt))
+                .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => src.SupportingProgram.IsActive));
+
 
             // =============================
             // === PATCH, POST

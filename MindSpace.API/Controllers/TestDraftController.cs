@@ -7,13 +7,15 @@ using MindSpace.Domain.Entities.Drafts.TestPeriodics;
 
 namespace MindSpace.API.Controllers;
 
+[Route("api/v{version:apiVersion}/test-draft")]
 public class TestDraftController(IMediator mediator) : BaseApiController
 {
     // ====================================
     // === GET
     // ====================================
 
-    // GET /api/test-draft/{id}
+    // GET /api/v1/test-draft/{id}
+    // Get a test draft by ID
     [HttpGet("{id}")]
     public async Task<ActionResult<TestDraft>> GetTestDraftById([FromRoute] string id)
     {
@@ -25,7 +27,8 @@ public class TestDraftController(IMediator mediator) : BaseApiController
     // === POST, PUT, DELETE, PATCH
     // ==============================
 
-    // DELETE /api/test-draft/{id}
+    // DELETE /api/v1/test-draft/{id}
+    // Delete a test draft
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteTestDraft(
         [FromRoute] string id)
@@ -34,7 +37,8 @@ public class TestDraftController(IMediator mediator) : BaseApiController
         return NoContent();
     }
 
-    // POST /api/test-draft
+    // POST /api/v1/test-draft
+    // Create or update a test draft
     [HttpPost]
     public async Task<ActionResult<TestDraft>> UpdateTestDraft(
         [FromBody] TestDraft testDraft)

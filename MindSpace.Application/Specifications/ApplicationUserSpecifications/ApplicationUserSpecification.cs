@@ -101,5 +101,12 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
         )
         {
         }
+
+        public ApplicationUserSpecification(DateTime? startDate, DateTime? endDate) : base(
+            a =>   (!startDate.HasValue || a.CreatedAt >= startDate)
+            && (!endDate.HasValue || a.CreatedAt <= endDate)
+        )
+        {
+        }
     }
 }

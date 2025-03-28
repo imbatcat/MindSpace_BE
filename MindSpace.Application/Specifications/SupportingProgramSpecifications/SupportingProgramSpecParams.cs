@@ -5,6 +5,8 @@
         public int? MinQuantity { get; set; }
         public int? MaxQuantity { get; set; }
 
+        public bool? IsActive { get; set; }
+
         // Filter by Title
         public string? SearchTitle { get; set; } = string.Empty;
 

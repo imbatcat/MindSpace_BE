@@ -2,41 +2,151 @@
   {
     "ResourceType": "Blog",
     "ArticleUrl": null,
-    "Title": "Mental Health Basics",
-    "Introduction": "An introduction to mental health and its importance in daily life.",
-    "ThumbnailUrl": "https://example.com/images/mental-health.jpg",
-    "SchoolManagerId": 10,
+    "Title": "Kiến Thức Cơ Bản Về Sức Khỏe Tinh Thần",
+    "Introduction": "Giới thiệu về sức khỏe tinh thần và tầm quan trọng của nó trong cuộc sống hàng ngày.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196396/mind-space/ts93puksmbmggtce7o4m.jpg",
+    "SchoolManagerId": 11,
     "SpecializationId": 1,
     "IsActive": true
   },
   {
     "ResourceType": "Blog",
     "ArticleUrl": null,
-    "Title": "Stress Management Techniques",
-    "Introduction": "Effective techniques to manage stress and improve well-being.",
-    "ThumbnailUrl": "https://example.com/images/stress-management.jpg",
-    "SchoolManagerId": 10,
-    "SpecializationId": 2,
-    "IsActive": true
-  },
-  {
-    "ResourceType": "Article",
-    "ArticleUrl": "https://example.com/articles/anxiety-guide",
-    "Title": "Understanding Anxiety",
-    "Introduction": "A comprehensive guide on anxiety, its causes, and coping mechanisms.",
-    "ThumbnailUrl": "https://example.com/images/anxiety.jpg",
+    "Title": "Kỹ Thuật Quản Lý Căng Thẳng",
+    "Introduction": "Các kỹ thuật hiệu quả để quản lý căng thẳng và cải thiện sức khỏe tinh thần.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196397/mind-space/cwifrfxflxygnepmltgr.jpg",
     "SchoolManagerId": 11,
     "SpecializationId": 2,
     "IsActive": true
   },
   {
     "ResourceType": "Article",
-    "ArticleUrl": "https://example.com/articles/mindfulness-practices",
-    "Title": "Mindfulness Practices for a Calm Mind",
-    "Introduction": "How mindfulness can improve your mental state and reduce stress.",
-    "ThumbnailUrl": "https://example.com/images/mindfulness.jpg",
+    "ArticleUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743197792/mind-space/awyfsk6e2vp8zpg2zhai.pdf",
+    "Title": "Hiểu Về Lo Âu",
+    "Introduction": "Hướng dẫn toàn diện về lo âu, nguyên nhân và cách đối phó.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196397/mind-space/swq1jcn6d36gqfif9e2h.jpg",
+    "SchoolManagerId": 11,
+    "SpecializationId": 2,
+    "IsActive": true
+  },
+  {
+    "ResourceType": "Article",
+    "ArticleUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743198099/mind-space/zvy3lmj57kzs7trdo9gn.pdf",
+    "Title": "Thực Hành Chánh Niệm Cho Tâm Trí Bình An",
+    "Introduction": "Cách chánh niệm có thể cải thiện trạng thái tinh thần và giảm căng thẳng.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196398/mind-space/qvc2k60kfvnmnkny9wel.jpg",
     "SchoolManagerId": 11,
     "SpecializationId": 3,
     "IsActive": false
+  },
+  {
+    "ResourceType": "Blog",
+    "ArticleUrl": null,
+    "Title": "Kỹ Năng Giao Tiếp Hiệu Quả",
+    "Introduction": "Hướng dẫn phát triển kỹ năng giao tiếp và tương tác xã hội.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196398/mind-space/zp29lklg36gmdei1wepj.jpg",
+    "SchoolManagerId": 11,
+    "SpecializationId": 4,
+    "IsActive": true
+  },
+  {
+    "ResourceType": "Article",
+    "ArticleUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743197792/mind-space/awyfsk6e2vp8zpg2zhai.pdf",
+    "Title": "Phát Triển Trí Tuệ Cảm Xúc",
+    "Introduction": "Cách nhận biết và quản lý cảm xúc của bản thân và người khác.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196399/mind-space/vqleek2xiq1beoehmqas.jpg",
+    "SchoolManagerId": 11,
+    "SpecializationId": 5,
+    "IsActive": true
+  },
+  {
+    "ResourceType": "Blog",
+    "ArticleUrl": null,
+    "Title": "Xây Dựng Lòng Tự Trọng",
+    "Introduction": "Các phương pháp xây dựng và duy trì lòng tự trọng tích cực.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196399/mind-space/wfpxfubtzvlw54q5ip06.jpg",
+    "SchoolManagerId": 10,
+    "SpecializationId": 6,
+    "IsActive": true
+  },
+  {
+    "ResourceType": "Article",
+    "ArticleUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743198099/mind-space/zvy3lmj57kzs7trdo9gn.pdf",
+    "Title": "Quản Lý Thời Gian Hiệu Quả",
+    "Introduction": "Kỹ năng quản lý thời gian và cân bằng giữa học tập và giải trí.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196399/mind-space/sachcxi8ffjpbxqocnos.jpg",
+    "SchoolManagerId": 10,
+    "SpecializationId": 7,
+    "IsActive": true
+  },
+  {
+    "ResourceType": "Blog",
+    "ArticleUrl": null,
+    "Title": "Đối Phó Với Áp Lực Học Tập",
+    "Introduction": "Cách xử lý và vượt qua áp lực trong môi trường học tập.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196400/mind-space/r7gmoem8lcjil8yfbkxy.jpg",
+    "SchoolManagerId": 10,
+    "SpecializationId": 8,
+    "IsActive": true
+  },
+  {
+    "ResourceType": "Article",
+    "ArticleUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743197792/mind-space/awyfsk6e2vp8zpg2zhai.pdf",
+    "Title": "Kỹ Năng Xã Hội Cho Thanh Thiếu Niên",
+    "Introduction": "Hướng dẫn phát triển kỹ năng xã hội và xây dựng mối quan hệ lành mạnh.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196400/mind-space/awxzdplxrzqgyxegugms.jpg",
+    "SchoolManagerId": 10,
+    "SpecializationId": 9,
+    "IsActive": true
+  },
+  {
+    "ResourceType": "Blog",
+    "ArticleUrl": null,
+    "Title": "Phương Pháp Học Tập Hiệu Quả",
+    "Introduction": "Các phương pháp và kỹ thuật học tập hiệu quả cho học sinh.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196404/mind-space/ssllrkluvzfppfhnjaxd.jpg",
+    "SchoolManagerId": 10,
+    "SpecializationId": 10,
+    "IsActive": true
+  },
+  {
+    "ResourceType": "Article",
+    "ArticleUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743198099/mind-space/zvy3lmj57kzs7trdo9gn.pdf",
+    "Title": "Sức Khỏe Số Cho Thanh Thiếu Niên",
+    "Introduction": "Cách sử dụng công nghệ một cách lành mạnh và cân bằng.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196405/mind-space/wzhzbhkidroym4cbuwzd.jpg",
+    "SchoolManagerId": 10,
+    "SpecializationId": 11,
+    "IsActive": true
+  },
+  {
+    "ResourceType": "Blog",
+    "ArticleUrl": null,
+    "Title": "Xây Dựng Mối Quan Hệ Gia Đình",
+    "Introduction": "Cách cải thiện và duy trì mối quan hệ tốt đẹp trong gia đình.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196396/mind-space/ts93puksmbmggtce7o4m.jpg",
+    "SchoolManagerId": 10,
+    "SpecializationId": 12,
+    "IsActive": true
+  },
+  {
+    "ResourceType": "Article",
+    "ArticleUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743197792/mind-space/awyfsk6e2vp8zpg2zhai.pdf",
+    "Title": "Lập Kế Hoạch Nghề Nghiệp",
+    "Introduction": "Hướng dẫn định hướng nghề nghiệp và phát triển sự nghiệp.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196397/mind-space/cwifrfxflxygnepmltgr.jpg",
+    "SchoolManagerId": 10,
+    "SpecializationId": 13,
+    "IsActive": true
+  },
+  {
+    "ResourceType": "Blog",
+    "ArticleUrl": null,
+    "Title": "Sức Khỏe Thể Chất Và Tinh Thần",
+    "Introduction": "Mối quan hệ giữa sức khỏe thể chất và tinh thần.",
+    "ThumbnailUrl": "https://res.cloudinary.com/ddewgbug1/image/upload/v1743196397/mind-space/swq1jcn6d36gqfif9e2h.jpg",
+    "SchoolManagerId": 10,
+    "SpecializationId": 14,
+    "IsActive": true
   }
 ]

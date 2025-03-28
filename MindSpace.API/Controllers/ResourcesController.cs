@@ -1,25 +1,30 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MindSpace.API.RequestHelpers;
 using MindSpace.Application.DTOs.Resources;
 using MindSpace.Application.Features.Resources.Commands.CreateResourceAsArticle;
 using MindSpace.Application.Features.Resources.Commands.CreateResourceAsBlog;
+using MindSpace.Application.Features.Resources.Commands.ToggleResourceStatus;
 using MindSpace.Application.Features.Resources.Queries.GetArticles;
 using MindSpace.Application.Features.Resources.Queries.GetBlogs;
 using MindSpace.Application.Features.Resources.Queries.GetResourceAsArticleById;
 using MindSpace.Application.Features.Resources.Queries.GetResourceAsBlogById;
 using MindSpace.Application.Specifications.ResourceSpecifications;
+using MindSpace.Domain.Entities.Constants;
 
 namespace MindSpace.API.Controllers;
 
+[Route("api/v{version:apiVersion}/resources")]
 public class ResourcesController(IMediator mediator) : BaseApiController
 {
     // ====================================
     // === GET
     // ====================================
 
-    // GET /api/resources/articles/{id}
-    [Cache(600)]
+    // GET /api/v1/resources/articles/{id}
+    // Get a specific article by ID
+    [Cache(300)]
     [HttpGet("articles/{id:int}")]
     public async Task<ActionResult<ArticleResponseDTO>> GetResourceAsArticleById(
         [FromRoute] int id)
@@ -28,8 +33,9 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return Ok(article);
     }
 
-    // GET /api/resources/blogs/{id}
-    [Cache(600)]
+    // GET /api/v1/resources/blogs/{id}
+    // Get a specific blog by ID
+    [Cache(300)]
     [HttpGet("blogs/{id:int}")]
     public async Task<ActionResult<BlogResponseDTO>> GetResourceAsBlogById(
         [FromRoute] int id)
@@ -38,8 +44,9 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return Ok(blog);
     }
 
-    // GET /api/resources/articles
-    [Cache(30000)]
+    // GET /api/v1/resources/articles
+    // Get all articles with pagination and filtering
+    [Cache(300)]
     [HttpGet("articles")]
     public async Task<ActionResult<Pagination<ArticleResponseDTO>>> GetAllArticles(
         [FromQuery] ResourceSpecificationSpecParams specParams)
@@ -48,8 +55,9 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return PaginationOkResult(articles.Data, articles.Count, specParams.PageIndex, specParams.PageSize);
     }
 
-    // GET /api/resources/blogs
-    [Cache(30000)]
+    // GET /api/v1/resources/blogs
+    // Get all blogs with pagination and filtering
+    [Cache(300)]
     [HttpGet("blogs")]
     public async Task<ActionResult<Pagination<BlogResponseDTO>>> GetAllBlogs(
         [FromQuery] ResourceSpecificationSpecParams specParams)
@@ -62,7 +70,8 @@ public class ResourcesController(IMediator mediator) : BaseApiController
     // === POST, PUT, DELETE, PATCH
     // ==============================
 
-    // POST /api/resources/blogs
+    // POST /api/v1/resources/blogs
+    // Create a new blog
     [InvalidateCache("/api/resources/blogs|")]
     [HttpPost("blogs")]
     public async Task<ActionResult> CreateBlog(
@@ -72,13 +81,25 @@ public class ResourcesController(IMediator mediator) : BaseApiController
         return CreatedAtAction(nameof(GetResourceAsBlogById), new { result.Id }, null);
     }
 
-    // POST /api/resources/articles
-    [InvalidateCache("/api/resources/blogs|")]
+    // POST /api/v1/resources/articles
+    // Create a new article
+    [InvalidateCache("/api/resources/articles|")]
     [HttpPost("articles")]
     public async Task<ActionResult> CreateArticle(
         [FromBody] CreatedResourceAsArticleCommand command)
     {
         var result = await mediator.Send(command);
         return CreatedAtAction(nameof(GetResourceAsArticleById), new { result.Id }, null);
+    }
+
+    // PUT /api/v1/resources/{id}/toggle-status
+    // Toggle the status of a resource (Admin and SchoolManager only)
+    [InvalidateCache("/api/resources")]
+    [HttpPut("{id}/toggle-status")]
+    [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
+    public async Task<IActionResult> ToggleResourceStatus([FromRoute] int id)
+    {
+        await mediator.Send(new ToggleResourceStatusCommand { Id = id });
+        return NoContent();
     }
 }

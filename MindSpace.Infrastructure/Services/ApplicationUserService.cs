@@ -148,5 +148,15 @@ namespace MindSpace.Infrastructure.Services
 
             return pagedUsers;
         }
+
+        public async Task<int> CountUserByRoleAsync(string role, DateTime? startDate, DateTime? endDate)
+        {
+            IList<ApplicationUser> usersInRole = await _userManager.GetUsersInRoleAsync(role);
+
+            var specification = new ApplicationUserSpecification(startDate, endDate);
+
+            var query = usersInRole.AsQueryable().Where(specification.Criteria);
+            return query.Count();
+        }
     }
 }

@@ -13,8 +13,9 @@ public class TestScoreRanksController(IMediator mediator) : BaseApiController
     // === GET
     // ====================================
 
-    // GET /api/test-score-ranks?totalScore={totalScore}&testId={testId}
-    [Cache(600)]
+    // GET /api/v1/test-score-ranks?totalScore={totalScore}&testId={testId}
+    // Get the rank of a test score based on total score and test ID
+    [Cache(300)]
     [HttpGet]
     public async Task<ActionResult<TestScoreRankResponseDTO>> GetTestScoreRankByTotalScore([FromQuery] int totalScore, int testId)
     {

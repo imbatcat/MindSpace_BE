@@ -27,7 +27,8 @@ namespace MindSpace.Application.Features.Authentications.Commands.RegisterForUse
                 {
                     Email = result["Email"],
                     UserName = result["Username"],
-                    FullName = result["FullName"]
+                    FullName = result["FullName"],
+                    DateOfBirth = string.IsNullOrEmpty(result["DoB"]) ? null : DateTime.Parse(result["DoB"])
                 };
 
                 Address newSchoolAddress = new Address()

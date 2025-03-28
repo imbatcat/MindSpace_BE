@@ -17,6 +17,7 @@ namespace MindSpace.API.Controllers
         // ==============================
 
         // POST /api/v1/chat-agents/generate
+        // Generate chat content using AI agent
         [HttpPost("generate")]
         public async Task<ActionResult<ChatResponseDTO>> GenerateContentAsync(
             [FromBody] GenerateChatContentCommand chatAgentCommand)

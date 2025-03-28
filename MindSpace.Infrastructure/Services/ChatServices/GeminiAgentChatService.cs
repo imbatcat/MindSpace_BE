@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MindSpace.Application.Commons.Constants;
 using MindSpace.Application.DTOs.Chat;
 using MindSpace.Application.Interfaces.Services;
 using Newtonsoft.Json;
@@ -39,26 +40,25 @@ namespace MindSpace.Infrastructure.Services.ChatServices
 
         public async Task<string> GenerateContentAsync(string prompt)
         {
-            string url = $"{_apiUrl}?key={_apiKey}";
 
-            // Fetch relevant a
+            string url = $"{_apiUrl}?key={_apiKey}";
 
             // Request Object for Gemini Prompting
             var request = new ContentRequest()
             {
                 contents = new[]
                 {
-                    new Content()
-                    {
-                        Parts = new[]
+                        new Content()
                         {
-                            new Part()
+                            Parts = new[]
                             {
-                                Text = prompt
+                                new Part()
+                                {
+                                    Text = prompt
+                                }
                             }
                         }
                     }
-                }
             };
 
             // Serialize the request object into prompt
@@ -86,28 +86,28 @@ namespace MindSpace.Infrastructure.Services.ChatServices
             }
         }
 
-        public string GenerateScopedSuggestion(IEnumerable<string> listOfLimitations, string prompt)
+        public string GenerateScopedSuggestion(
+            IEnumerable<string> listOfSpecialization,
+            IEnumerable<string> listOfTestCategory,
+            IEnumerable<string> listOfSupportingPrograms,
+            IEnumerable<(string psychologistName, string specializationName)> psychologists,
+            string prompt)
         {
-            // If null then just get prompt from user
-            if (listOfLimitations == null || !listOfLimitations.Any()) return prompt;
+            if (string.IsNullOrWhiteSpace(prompt)) return "Câu trả lời không khả dụng. Hãy đặt câu hỏi cho tụi mình nhé.";
 
-            // Impose some rules for agent
-            string limitations = string.Join("\n- ", listOfLimitations);
-            string systemInstruction = $"""
-                You are an AI assistant specializing in the following psychology domains:
-                - {limitations}
+            // Format the system prompt using the template
+            var systemPrompt = string.Format(
+                ChatTemplates.SystemPrompts.BasePrompt,
+                string.Join(", ", AppCts.AiChatKeywords.SpecificationsKeywords),
+                string.Join(", ", AppCts.AiChatKeywords.PsychologicalKeywords),
+                string.Join(", ", AppCts.AiChatKeywords.SupportingPrograms),
+                string.Join(", ", listOfSpecialization),
+                string.Join(", ", listOfTestCategory),
+                string.Join(", ", listOfSupportingPrograms),
+                prompt
+            );
 
-                **Response Guidelines:**
-                - Your response must be **strictly limited** to these psychology specializations.
-                - If the user’s query is **outside these topics**, politely decline and request a refined query.
-                - Keep your response **concise (max 3-4 sentences)** while ensuring clarity.
-                - Avoid unnecessary details and stay relevant.
-
-                **User Query:** {prompt}
-                **Your concise response:** 
-               """;
-
-            return systemInstruction;
+            return systemPrompt;
         }
     }
 }

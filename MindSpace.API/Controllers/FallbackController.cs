@@ -7,7 +7,13 @@ namespace MindSpace.API.Controllers
     /// </summary>
     public class FallbackController : Controller
     {
-        // Redirect to the index.html if unmatching any routes
+        // ====================================
+        // === GET
+        // ====================================
+
+        // GET /api/v1/fallback
+        // Fallback route to serve index.html for client-side routing
+        [HttpGet]
         public IActionResult Index()
         {
             return PhysicalFile(Path.Combine(Directory.GetCurrentDirectory(),

@@ -10,7 +10,9 @@ namespace MindSpace.API.Controllers
         IMediator mediator
     ) : BaseApiController
     {
-        [Cache(30000)]
+        // GET /api/v1/schools
+        // Get all schools
+        [Cache(3600)]
         [HttpGet]
         public async Task<ActionResult<List<SchoolDTO>>> GetAllSchools()
         {
