@@ -1,26 +1,56 @@
 [
   {
     "Rating": 4.5,
-    "FeedbackContent": "The psychologist was very helpful and understanding.",
+    "FeedbackContent": "Bác sĩ tâm lý rất tận tâm và thấu hiểu. Tôi cảm thấy được lắng nghe và tôn trọng trong suốt buổi tư vấn.",
     "PsychologistId": 7,
     "StudentId": 1
   },
   {
+    "Rating": 4.8,
+    "FeedbackContent": "Chuyên gia tư vấn rất chuyên nghiệp, đưa ra những lời khuyên hữu ích và thực tế.",
+    "PsychologistId": 7,
+    "StudentId": 2
+  },
+  {
+    "Rating": 4.2,
+    "FeedbackContent": "Buổi tư vấn rất hiệu quả, tôi đã học được nhiều kỹ năng mới để đối phó với căng thẳng.",
+    "PsychologistId": 7,
+    "StudentId": 3
+  },
+  {
     "Rating": 5.0,
-    "FeedbackContent": "Great experience! I feel much better after the session.",
+    "FeedbackContent": "Trải nghiệm tuyệt vời! Tôi cảm thấy tâm trạng tốt hơn rất nhiều sau buổi tư vấn.",
+    "PsychologistId": 8,
+    "StudentId": 1
+  },
+  {
+    "Rating": 4.6,
+    "FeedbackContent": "Bác sĩ tâm lý rất am hiểu và có phương pháp tư vấn hiệu quả. Tôi rất hài lòng với buổi tư vấn.",
     "PsychologistId": 8,
     "StudentId": 2
   },
   {
-    "Rating": 3.8,
-    "FeedbackContent": "The session was good, but I expected more guidan`e.",
-    "PsychologistId": 9,
+    "Rating": 4.3,
+    "FeedbackContent": "Môi trường tư vấn thoải mái, chuyên gia tận tâm lắng nghe và đưa ra những gợi ý hữu ích.",
+    "PsychologistId": 8,
     "StudentId": 3
   },
   {
-    "Rating": 4.2,
-    "FeedbackContent": "Helpful advice and a comfortable environment.",
-    "PsychologistId": 7,
+    "Rating": 4.7,
+    "FeedbackContent": "Buổi tư vấn rất bổ ích, tôi đã nhận được nhiều lời khuyên quý giá để cải thiện sức khỏe tinh thần.",
+    "PsychologistId": 9,
+    "StudentId": 1
+  },
+  {
+    "Rating": 4.4,
+    "FeedbackContent": "Chuyên gia tư vấn rất chuyên nghiệp và thấu hiểu. Tôi cảm thấy được hỗ trợ rất nhiều.",
+    "PsychologistId": 9,
+    "StudentId": 2
+  },
+  {
+    "Rating": 4.1,
+    "FeedbackContent": "Buổi tư vấn tốt, tôi đã học được cách đối phó với những khó khăn trong cuộc sống.",
+    "PsychologistId": 9,
     "StudentId": 3
   }
 ]

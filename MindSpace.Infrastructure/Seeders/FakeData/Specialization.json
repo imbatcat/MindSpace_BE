@@ -73,5 +73,30 @@
     "Name": "Tâm lý học Trường học",
     "CreatedAt": "2024-01-17T01:30:00Z",
     "UpdatedAt": "2024-02-12T01:05:00Z"
+  },
+  {
+    "Name": "Tâm lý học Gia đình",
+    "CreatedAt": "2024-01-18T02:40:00Z",
+    "UpdatedAt": "2024-02-13T02:15:00Z"
+  },
+  {
+    "Name": "Tâm lý học Văn hóa",
+    "CreatedAt": "2024-01-19T03:50:00Z",
+    "UpdatedAt": "2024-02-14T03:25:00Z"
+  },
+  {
+    "Name": "Tâm lý học Nhân cách",
+    "CreatedAt": "2024-01-20T04:00:00Z",
+    "UpdatedAt": "2024-02-15T04:35:00Z"
+  },
+  {
+    "Name": "Tâm lý học Phát triển Trẻ em",
+    "CreatedAt": "2024-01-21T05:10:00Z",
+    "UpdatedAt": "2024-02-16T05:45:00Z"
+  },
+  {
+    "Name": "Tâm lý học Thanh thiếu niên",
+    "CreatedAt": "2024-01-22T06:20:00Z",
+    "UpdatedAt": "2024-02-17T06:55:00Z"
   }
 ]

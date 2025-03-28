@@ -7,9 +7,9 @@
     "AccountId": 1,
     "Amount": 50000.0,
     "TransactionCode": 12412,
-    "Provider": "BIDV",
-    "PaymentMethod": "MOMO",
-    "PaymentDescription": "This is an example, real data for this field will get rawly from payment gateway, for example, TransactionCode_12412_Amount_50000_Transactiontime_20250202T080200_Bank_BIDV",
+    "Provider": "Stripe",
+    "PaymentMethod": "Card",
+    "PaymentDescription": "TransactionCode_12412_Amount_50000_Transactiontime_20250202T080200_Provider_Stripe_Method_Card",
     "PaymentType": "Purchase"
   },
   {
@@ -20,9 +20,9 @@
     "AccountId": 2,
     "Amount": 30000.0,
     "TransactionCode": 32416,
-    "Provider": "TPBank",
-    "PaymentMethod": "VNPAY",
-    "PaymentDescription": "TransactionCode_32416_Amount_30000_Transactiontime_20250203T080000_Bank_TPBank",
+    "Provider": "Stripe",
+    "PaymentMethod": "Card",
+    "PaymentDescription": "TransactionCode_32416_Amount_30000_Transactiontime_20250203T080000_Provider_Stripe_Method_Card",
     "PaymentType": "Purchase"
   },
   {
@@ -33,9 +33,9 @@
     "AccountId": 3,
     "Amount": 45000.0,
     "TransactionCode": 562336,
-    "Provider": "MBBank",
-    "PaymentMethod": "VNPAY",
-    "PaymentDescription": "TransactionCode_562336_Amount_45000_Transactiontime_20250204T080000_Bank_MBBank",
+    "Provider": "Stripe",
+    "PaymentMethod": "Card",
+    "PaymentDescription": "TransactionCode_562336_Amount_45000_Transactiontime_20250204T080000_Provider_Stripe_Method_Card",
     "PaymentType": "Purchase"
   }
 ]

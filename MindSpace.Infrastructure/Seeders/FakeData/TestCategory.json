@@ -1,11 +1,62 @@
 [
   {
-    "Name": "Psychological"
+    "Name": "Tâm lý học"
   },
   {
-    "Name": "Parenting"
+    "Name": "Nuôi dạy con"
   },
   {
-    "Name": "Periodic"
+    "Name": "Định kỳ"
+  },
+  {
+    "Name": "Học tập"
+  },
+  {
+    "Name": "Giao tiếp"
+  },
+  {
+    "Name": "Xã hội"
+  },
+  {
+    "Name": "Cảm xúc"
+  },
+  {
+    "Name": "Hành vi"
+  },
+  {
+    "Name": "Nhận thức"
+  },
+  {
+    "Name": "Phát triển"
+  },
+  {
+    "Name": "Sức khỏe"
+  },
+  {
+    "Name": "Nghề nghiệp"
+  },
+  {
+    "Name": "Gia đình"
+  },
+  {
+    "Name": "Bạn bè"
+  },
+  {
+    "Name": "Môi trường"
+  },
+  {
+    "Name": "Kỹ năng"
+  },
+  {
+    "Name": "Thái độ"
+  },
+  {
+    "Name": "Động lực"
+  },
+  {
+    "Name": "Tính cách"
+  },
+  {
+    "Name": "Tự đánh giá"
   }
 ]

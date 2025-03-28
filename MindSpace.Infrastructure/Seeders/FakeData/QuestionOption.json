@@ -1,86 +1,1298 @@
 ﻿[
   {
-    "QuestionId": 25,
-    "DisplayedText": "Tốt",
-    "CreateAt": "2024-05-16T15:00:00Z",
-    "UpdateAt": "2024-05-16T15:00:00Z"
+    "QuestionId": 1,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "QuestionId": 25,
-    "DisplayedText": "Bình thường",
-    "CreateAt": "2024-05-16T15:00:00Z",
-    "UpdateAt": "2024-05-16T15:00:00Z"
+    "QuestionId": 1,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
   },
   {
-    "QuestionId": 25,
-    "DisplayedText": "Không tốt",
-    "CreateAt": "2024-05-16T15:00:00Z",
-    "UpdateAt": "2024-05-16T15:00:00Z"
-  },
-  {
-    "QuestionId": 26,
+    "QuestionId": 1,
     "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 1,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 2,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 2,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 2,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 2,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 3,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 3,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 3,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 3,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 4,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 4,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 4,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 4,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 5,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 5,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 5,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 5,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 6,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 6,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 6,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 6,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 7,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 7,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 7,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 7,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-01-01T08:00:00Z",
+    "UpdateAt": "2024-01-29T10:00:00Z"
+  },
+  {
+    "QuestionId": 8,
+    "DisplayedText": "Không bao giờ",
     "CreateAt": "2024-05-16T15:00:00Z",
     "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
-    "QuestionId": 26,
+    "QuestionId": 8,
     "DisplayedText": "Thỉnh thoảng",
     "CreateAt": "2024-05-16T15:00:00Z",
     "UpdateAt": "2024-05-16T15:00:00Z"
   },
   {
+    "QuestionId": 8,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 8,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 9,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 9,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 9,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 9,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 10,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 10,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 10,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 10,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 11,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 11,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 11,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 11,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 12,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 12,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 12,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 12,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 13,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 13,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 13,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 13,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 14,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 14,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 14,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 14,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 15,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 15,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 15,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 15,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 16,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 16,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 16,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 16,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 17,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 17,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 17,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 17,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 18,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 18,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 18,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 18,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 19,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 19,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 19,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 19,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 20,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 20,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 20,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 20,
+    "DisplayedText": "Hầu như luôn luôn",
+    "CreateAt": "2024-05-16T15:00:00Z",
+    "UpdateAt": "2024-05-16T15:00:00Z"
+  },
+  {
+    "QuestionId": 21,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 21,
+    "DisplayedText": "1-2 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 21,
+    "DisplayedText": "3-5 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 21,
+    "DisplayedText": "Hơn 5 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 22,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 22,
+    "DisplayedText": "1-2 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 22,
+    "DisplayedText": "3-5 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 22,
+    "DisplayedText": "Hơn 5 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 23,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 23,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 23,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 23,
+    "DisplayedText": "Luôn luôn",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 24,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 24,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 24,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 24,
+    "DisplayedText": "Luôn luôn",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 25,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 25,
+    "DisplayedText": "1-2 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 25,
+    "DisplayedText": "3-5 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 25,
+    "DisplayedText": "Hơn 5 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
     "QuestionId": 26,
-    "DisplayedText": "Hiểm khi",
-    "CreateAt": "2024-05-16T15:00:00Z",
-    "UpdateAt": "2024-05-16T15:00:00Z"
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 26,
+    "DisplayedText": "1-2 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 26,
+    "DisplayedText": "3-5 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 26,
+    "DisplayedText": "Hơn 5 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
   },
   {
     "QuestionId": 27,
-    "DisplayedText": "Có",
-    "CreateAt": "2024-05-16T15:00:00Z",
-    "UpdateAt": "2024-05-16T15:00:00Z"
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
   },
   {
     "QuestionId": 27,
-    "DisplayedText": "Không",
-    "CreateAt": "2024-05-16T15:00:00Z",
-    "UpdateAt": "2024-05-16T15:00:00Z"
+    "DisplayedText": "1-2 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 27,
+    "DisplayedText": "3-5 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 27,
+    "DisplayedText": "Hơn 5 lần",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
   },
   {
     "QuestionId": 28,
-    "DisplayedText": "Có",
-    "CreateAt": "2024-05-16T15:00:00Z",
-    "UpdateAt": "2024-05-16T15:00:00Z"
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
   },
   {
     "QuestionId": 28,
-    "DisplayedText": "Bình thường",
-    "CreateAt": "2024-05-16T15:00:00Z",
-    "UpdateAt": "2024-05-16T15:00:00Z"
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
   },
   {
     "QuestionId": 28,
-    "DisplayedText": "Không",
-    "CreateAt": "2024-05-16T15:00:00Z",
-    "UpdateAt": "2024-05-16T15:00:00Z"
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 28,
+    "DisplayedText": "Luôn luôn",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
   },
   {
     "QuestionId": 29,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 29,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 29,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 29,
+    "DisplayedText": "Luôn luôn",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 30,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 30,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 30,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 30,
+    "DisplayedText": "Luôn luôn",
+    "CreateAt": "2024-05-17T11:00:00Z",
+    "UpdateAt": "2024-05-17T11:00:00Z"
+  },
+  {
+    "QuestionId": 31,
+    "DisplayedText": "Rất hài lòng",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 31,
     "DisplayedText": "Hài lòng",
-    "CreateAt": "2024-05-16T15:00:00Z",
-    "UpdateAt": "2024-05-16T15:00:00Z"
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
   },
   {
-    "QuestionId": 29,
+    "QuestionId": 31,
     "DisplayedText": "Bình thường",
-    "CreateAt": "2024-05-16T15:00:00Z",
-    "UpdateAt": "2024-05-16T15:00:00Z"
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
   },
   {
-    "QuestionId": 29,
+    "QuestionId": 31,
     "DisplayedText": "Không hài lòng",
-    "CreateAt": "2024-05-16T15:00:00Z",
-    "UpdateAt": "2024-05-16T15:00:00Z"
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 32,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 32,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 32,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 32,
+    "DisplayedText": "Luôn luôn",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 33,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 33,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 33,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 33,
+    "DisplayedText": "Luôn luôn",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 34,
+    "DisplayedText": "Rất hòa đồng",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 34,
+    "DisplayedText": "Hòa đồng",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 34,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 34,
+    "DisplayedText": "Không hòa đồng",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 35,
+    "DisplayedText": "Rất hài lòng",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 35,
+    "DisplayedText": "Hài lòng",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 35,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 35,
+    "DisplayedText": "Không hài lòng",
+    "CreateAt": "2024-05-17T14:00:00Z",
+    "UpdateAt": "2024-05-17T14:00:00Z"
+  },
+  {
+    "QuestionId": 36,
+    "DisplayedText": "Rất tự tin",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 36,
+    "DisplayedText": "Tự tin",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 36,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 36,
+    "DisplayedText": "Không tự tin",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 37,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 37,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 37,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 37,
+    "DisplayedText": "Luôn luôn",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 38,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 38,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 38,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 38,
+    "DisplayedText": "Luôn luôn",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 39,
+    "DisplayedText": "Rất nhiều",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 39,
+    "DisplayedText": "Nhiều",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 39,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 39,
+    "DisplayedText": "Không nhiều",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 40,
+    "DisplayedText": "Rất nhiều",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 40,
+    "DisplayedText": "Nhiều",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 40,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 40,
+    "DisplayedText": "Không nhiều",
+    "CreateAt": "2024-05-17T15:00:00Z",
+    "UpdateAt": "2024-05-17T15:00:00Z"
+  },
+  {
+    "QuestionId": 41,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 41,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 41,
+    "DisplayedText": "Hiếm khi",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 41,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 42,
+    "DisplayedText": "Rất phù hợp",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 42,
+    "DisplayedText": "Phù hợp",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 42,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 42,
+    "DisplayedText": "Không phù hợp",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 43,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 43,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 43,
+    "DisplayedText": "Hiếm khi",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 43,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 44,
+    "DisplayedText": "Rất được tôn trọng",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 44,
+    "DisplayedText": "Được tôn trọng",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 44,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 44,
+    "DisplayedText": "Không được tôn trọng",
+    "CreateAt": "2024-05-17T16:00:00Z",
+    "UpdateAt": "2024-05-17T16:00:00Z"
+  },
+  {
+    "QuestionId": 45,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 45,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 45,
+    "DisplayedText": "Hiếm khi",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 45,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 46,
+    "DisplayedText": "Rất khó khăn",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 46,
+    "DisplayedText": "Khó khăn",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 46,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 46,
+    "DisplayedText": "Dễ dàng",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 47,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 47,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 47,
+    "DisplayedText": "Hiếm khi",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 47,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 48,
+    "DisplayedText": "Rất đủ",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 48,
+    "DisplayedText": "Đủ",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 48,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 48,
+    "DisplayedText": "Không đủ",
+    "CreateAt": "2024-05-17T17:00:00Z",
+    "UpdateAt": "2024-05-17T17:00:00Z"
+  },
+  {
+    "QuestionId": 49,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 49,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 49,
+    "DisplayedText": "Hiếm khi",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 49,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 50,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 50,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 50,
+    "DisplayedText": "Hiếm khi",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 50,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 51,
+    "DisplayedText": "Rất được khuyến khích",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 51,
+    "DisplayedText": "Được khuyến khích",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 51,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 51,
+    "DisplayedText": "Không được khuyến khích",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 52,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 52,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 52,
+    "DisplayedText": "Hiếm khi",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 52,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T18:00:00Z",
+    "UpdateAt": "2024-05-17T18:00:00Z"
+  },
+  {
+    "QuestionId": 53,
+    "DisplayedText": "Rất đủ",
+    "CreateAt": "2024-05-17T19:00:00Z",
+    "UpdateAt": "2024-05-17T19:00:00Z"
+  },
+  {
+    "QuestionId": 53,
+    "DisplayedText": "Đủ",
+    "CreateAt": "2024-05-17T19:00:00Z",
+    "UpdateAt": "2024-05-17T19:00:00Z"
+  },
+  {
+    "QuestionId": 53,
+    "DisplayedText": "Bình thường",
+    "CreateAt": "2024-05-17T19:00:00Z",
+    "UpdateAt": "2024-05-17T19:00:00Z"
+  },
+  {
+    "QuestionId": 53,
+    "DisplayedText": "Không đủ",
+    "CreateAt": "2024-05-17T19:00:00Z",
+    "UpdateAt": "2024-05-17T19:00:00Z"
+  },
+  {
+    "QuestionId": 54,
+    "DisplayedText": "Thường xuyên",
+    "CreateAt": "2024-05-17T19:00:00Z",
+    "UpdateAt": "2024-05-17T19:00:00Z"
+  },
+  {
+    "QuestionId": 54,
+    "DisplayedText": "Thỉnh thoảng",
+    "CreateAt": "2024-05-17T19:00:00Z",
+    "UpdateAt": "2024-05-17T19:00:00Z"
+  },
+  {
+    "QuestionId": 54,
+    "DisplayedText": "Hiếm khi",
+    "CreateAt": "2024-05-17T19:00:00Z",
+    "UpdateAt": "2024-05-17T19:00:00Z"
+  },
+  {
+    "QuestionId": 54,
+    "DisplayedText": "Không bao giờ",
+    "CreateAt": "2024-05-17T19:00:00Z",
+    "UpdateAt": "2024-05-17T19:00:00Z"
   }
 ]

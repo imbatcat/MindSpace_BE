@@ -169,6 +169,8 @@ internal static class IdentityData
                 NormalizedUserName = "PARENT1",
                 Email = "parent1@example.com",
                 NormalizedEmail = "PARENT1@EXAMPLE.COM",
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
                 FullName = "Parent One",
                 DateOfBirth = new DateTime(1970, 1, 1)
             },
@@ -178,6 +180,8 @@ internal static class IdentityData
                 NormalizedUserName = "PARENT2",
                 Email = "parent2@example.com",
                 NormalizedEmail = "PARENT2@EXAMPLE.COM",
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
                 FullName = "Parent Two",
                 DateOfBirth = new DateTime(1972, 2, 2)
             }
