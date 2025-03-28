@@ -31,5 +31,27 @@
     "SessionId": "cs_test_u1v2w3x4y5z6a7b8c9d0",
     "MeetingRoomId": null,
     "Status": "Success"
+  },
+  {
+    "CreateAt": "2025-02-04T08:00:00Z",
+    "UpdateAt": "2025-02-04T08:00:00Z",
+    "StudentId": 4,
+    "PsychologistId": 8,
+    "PsychologistScheduleId": 8,
+    "SpecializationId": 3,
+    "SessionId": "cs_test_u1v2w3x4y5z6a7b8c9d1",
+    "MeetingRoomId": null,
+    "Status": "Success"
+  },
+  {
+    "CreateAt": "2025-02-04T08:00:00Z",
+    "UpdateAt": "2025-02-04T08:00:00Z",
+    "StudentId": 5,
+    "PsychologistId": 7,
+    "PsychologistScheduleId": 8,
+    "SpecializationId": 3,
+    "SessionId": "cs_test_u1v2w3x4y5z6a7b8c9d2",
+    "MeetingRoomId": null,
+    "Status": "Success"
   }
 ]
