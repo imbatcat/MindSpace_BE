@@ -20,33 +20,27 @@ namespace MindSpace.Application.Specifications.TestSpecifications
         )
         { }
 
-
         /// <summary>
-        /// Constructor for General Filter and Pagination
+        /// Constructor for General Filter and Pagination and filter if the student already complete the test
         /// </summary>
         /// <param name="specParams"></param>
-        public TestSpecification(TestSpecParams specParams)
+        /// <param name="completedTestIds">List of test IDs that have been completed</param>
+        /// <param name="excludeCompleted">If true, exclude tests that have been completed. If false, only include completed tests.</param>
+        public TestSpecification(TestSpecParams specParams, List<int>? completedTestIds = null)
             : base
             (
-                  t =>
-                  (
-                   string.IsNullOrEmpty(specParams.Title) || t.Title.ToLower().Contains(specParams.Title.ToLower()))
-                   && (
-                        string.IsNullOrEmpty(specParams.TestCode)
-                        || (
-                            !string.IsNullOrEmpty(t.TestCode)
-                             && t.TestCode.ToLower().Contains(specParams.TestCode.ToLower())
-                           )
-                      )
+                  t => (string.IsNullOrEmpty(specParams.Title) || t.Title.ToLower().Contains(specParams.Title.ToLower()))
+                   && (string.IsNullOrEmpty(specParams.TestCode) || t.TestCode.ToLower().Contains(specParams.TestCode.ToLower()))
                    && (!specParams.TargetUser.HasValue || t.TargetUser == specParams.TargetUser)
                    && (!specParams.MinPrice.HasValue || t.Price >= specParams.MinPrice)
                    && (!specParams.MaxPrice.HasValue || t.Price <= specParams.MaxPrice)
                    && (!specParams.TestCategoryId.HasValue || t.TestCategoryId == specParams.TestCategoryId)
                    && (!specParams.SpecializationId.HasValue || t.SpecializationId == specParams.SpecializationId)
                    && (!specParams.AuthorId.HasValue || t.AuthorId == specParams.AuthorId)
+                   && (!specParams.StudentId.HasValue || completedTestIds == null || !specParams.ExcludeFromCompletedTest.HasValue
+                        || (specParams.ExcludeFromCompletedTest.HasValue == true ? !completedTestIds.Contains(t.Id) : completedTestIds.Contains(t.Id)))
             )
         {
-
             // Add Paging
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
 

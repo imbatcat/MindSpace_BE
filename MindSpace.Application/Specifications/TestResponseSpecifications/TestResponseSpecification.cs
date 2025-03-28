@@ -9,11 +9,22 @@ namespace MindSpace.Application.Specifications.TestResponseSpecifications
         {
         }
 
+        // Filter test has been done by student from day range
+        public TestResponseSpecification(int studentId, DateTime? startDate, DateTime? endDate)
+            : base(tr => tr.StudentId == studentId
+                    && (!startDate.HasValue || tr.CreateAt.Date >= startDate.Value.Date)
+                    && (!endDate.HasValue || tr.CreateAt.Date <= endDate.Value.Date))
+        {
+            AddInclude(x => x.Test);
+            AddInclude(x => x.Student);
+        }
+
         public TestResponseSpecification(int testId, bool check)
             : base(tr => tr.TestId == testId)
         {
         }
-        public TestResponseSpecification(TestResponseSpecParams specParams)
+
+        public TestResponseSpecification(TestResponseSpecParams specParams, bool isSorting, bool isPaging)
             : base(tr =>
                     string.IsNullOrEmpty(specParams.TestScoreRankResult) || (!string.IsNullOrEmpty(tr.TestScoreRankResult) && tr.TestScoreRankResult.ToLower().Contains(specParams.TestScoreRankResult.ToLower())) &&
                     (!specParams.StudentId.HasValue || tr.StudentId == specParams.StudentId) &&
@@ -24,19 +35,25 @@ namespace MindSpace.Application.Specifications.TestResponseSpecifications
             )
         {
             // Add Paging
-            AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+            if (isPaging)
+            {
+                AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+            }
 
             // Add Sorting
-            if (!string.IsNullOrEmpty(specParams.Sort))
+            if (isSorting)
             {
-                switch (specParams.Sort)
+                if (!string.IsNullOrEmpty(specParams.Sort))
                 {
-                    //case "totalScore": // for psy tests only
-                    //    AddOrderBy(x => x.TotalScore.ToString() ?? 0); break;
-                    case "createAt":
-                        AddOrderByDescending(x => x.CreateAt.ToString()); break;
-                    default:
-                        AddOrderBy(x => x.Id.ToString()); break;
+                    switch (specParams.Sort)
+                    {
+                        //case "totalScore": // for psy tests only
+                        //    AddOrderBy(x => x.TotalScore.ToString() ?? 0); break;
+                        case "createAt":
+                            AddOrderByDescending(x => x.CreateAt.ToString()); break;
+                        default:
+                            AddOrderBy(x => x.Id.ToString()); break;
+                    }
                 }
             }
         }
