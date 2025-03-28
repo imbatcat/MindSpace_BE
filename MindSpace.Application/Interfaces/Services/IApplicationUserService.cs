@@ -100,5 +100,7 @@ namespace MindSpace.Application.Interfaces.Services
         /// <param name="specParams"></param>
         /// <returns></returns>
         Task<List<ApplicationUser>> FilterUserByRoleAsync(string role, ApplicationUserSpecParams specParams);
+
+        Task<int> CountUserByRoleAsync(string role, DateTime? StartDate, DateTime? EndDate);
     }
 }
