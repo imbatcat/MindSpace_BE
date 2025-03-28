@@ -16,7 +16,7 @@ namespace MindSpace.API.Controllers
         // ====================================
 
         // GET /api/specializations
-        [Cache(30000)]
+        //[Cache(30000)]
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<SpecializationDTO>>> GetQuestions(
             [FromQuery] SpecializationSpecParams specParams)

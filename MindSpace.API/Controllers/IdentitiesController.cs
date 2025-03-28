@@ -130,7 +130,7 @@ namespace MindSpace.API.Controllers
 
         // POST /api/identities/register-for/manager
         [HttpPost("register-for/manager")]
-        [InvalidateCache("/api/identities/accounts|")]
+        //[InvalidateCache("/api/identities/accounts|")]
         public async Task<IActionResult> RegisterSchoolManager([FromForm] RegisterSchoolManagerCommand command)
         {
             await mediator.Send(command);
@@ -140,7 +140,7 @@ namespace MindSpace.API.Controllers
         // POST /api/identities/register-for/psychologist
         [HttpPost("register-for/psychologist")]
         [Authorize(Roles = UserRoles.Admin)]
-        [InvalidateCache("/api/identities/accounts|")]
+        //[InvalidateCache("/api/identities/accounts|")]
         public async Task<IActionResult> RegisterPsychologist([FromForm] RegisterPsychologistCommand command)
         {
             await mediator.Send(command);
@@ -149,7 +149,7 @@ namespace MindSpace.API.Controllers
 
         // POST /api/identities/register-for/student
         [HttpPost("register-for/student")]
-        [InvalidateCache("/api/identities/accounts|")]
+        //[InvalidateCache("/api/identities/accounts|")]
         [Authorize(Roles = UserRoles.SchoolManager)]
         public async Task<IActionResult> RegisterStudent([FromForm] RegisterStudentsCommand command)
         {
@@ -209,7 +209,7 @@ namespace MindSpace.API.Controllers
         }
 
         // PUT /api/identities/profile
-        [InvalidateCache("/api/identities|")]
+        //[InvalidateCache("/api/identities|")]
         [HttpPut("profile")]
         [Authorize]
         public async Task<ActionResult<ApplicationUserProfileDTO>> UserUpdateProfile([FromForm] UserUpdateProfileCommand command)
@@ -219,7 +219,7 @@ namespace MindSpace.API.Controllers
         }
 
         // PUT /api/identities/psychologists/:id/commission-rate
-        [InvalidateCache("/api/identities|")]
+        //[InvalidateCache("/api/identities|")]
         [HttpPut("psychologists/{id}/commission-rate")]
         [Authorize]
         public async Task<ActionResult<ApplicationUserProfileDTO>> UpdatePsychologistCommissionRate([FromRoute] int id, [FromBody] UpdatePsychologistCommissionRateCommand command)
@@ -230,7 +230,7 @@ namespace MindSpace.API.Controllers
         }
 
         // PUT /api/identities/accounts/{id}/toggle-status
-        [InvalidateCache("/api/identities/accounts|")]
+        //[InvalidateCache("/api/identities/accounts|")]
         [HttpPut("accounts/{id}/toggle-status")]
         [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
         public async Task<IActionResult> ToggleAccountStatus([FromRoute] int id)
@@ -244,7 +244,7 @@ namespace MindSpace.API.Controllers
         // ==============================
 
         // GET /api/identities/profile
-        [Cache(600)]
+        //[Cache(600)]
         [HttpGet("profile")]
         [Authorize]
         public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfile()
@@ -254,7 +254,7 @@ namespace MindSpace.API.Controllers
         }
 
         // GET /api/identities/profile/{id}
-        [Cache(600)]
+        //[Cache(600)]
         [HttpGet("profile/{id}")]
         [Authorize(Roles = $"{UserRoles.Admin},{UserRoles.SchoolManager}")]
         public async Task<ActionResult<ApplicationUserProfileDTO>> GetProfileById(int id)
@@ -309,7 +309,7 @@ namespace MindSpace.API.Controllers
         }
 
         // GET /api/identities/accounts/psychologists/names
-        [Cache(30000)]
+        //[Cache(30000)]
         [HttpGet("accounts/psychologists/names")]
         [Authorize]
         public async Task<ActionResult<List<string>>> GetAllPsychologistsNames()
@@ -319,7 +319,7 @@ namespace MindSpace.API.Controllers
         }
 
         // GET /api/identities/accounts/psychologists/:id
-        [Cache(30000)]
+        //[Cache(30000)]
         [HttpGet("accounts/psychologists/{id}")]
         [Authorize]
         public async Task<ActionResult<PsychologistProfileDTO>> GetPsychologistById([FromRoute] int id)

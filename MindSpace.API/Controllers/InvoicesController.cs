@@ -18,8 +18,8 @@ namespace MindSpace.API.Controllers
         {
             var result = await mediator.Send(new GetInvoiceHistoryByUserQuery(specParams));
             return PaginationOkResult(
-            result.Data,
-            result.Count,
+                result.Data,
+                result.Count,
                 specParams.PageIndex,
                 specParams.PageSize
             );

@@ -8,6 +8,7 @@ namespace MindSpace.API.Controllers
     public class FallbackController : Controller
     {
         // Redirect to the index.html if unmatching any routes
+        [HttpGet]
         public IActionResult Index()
         {
             return PhysicalFile(Path.Combine(Directory.GetCurrentDirectory(),
