@@ -43,6 +43,5 @@ namespace MindSpace.Application.Features.Statistics.Query.GetRevenueBySpecializa
             }
             return keyValuePairs;
         }
-
     }
 }

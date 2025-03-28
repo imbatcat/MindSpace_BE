@@ -5,7 +5,7 @@
     "Title": "Kiến Thức Cơ Bản Về Sức Khỏe Tinh Thần",
     "Introduction": "Giới thiệu về sức khỏe tinh thần và tầm quan trọng của nó trong cuộc sống hàng ngày.",
     "ThumbnailUrl": "https://example.com/images/mental-health.jpg",
-    "SchoolManagerId": 10,
+    "SchoolManagerId": 11,
     "SpecializationId": 1,
     "IsActive": true
   },
@@ -15,7 +15,7 @@
     "Title": "Kỹ Thuật Quản Lý Căng Thẳng",
     "Introduction": "Các kỹ thuật hiệu quả để quản lý căng thẳng và cải thiện sức khỏe tinh thần.",
     "ThumbnailUrl": "https://example.com/images/stress-management.jpg",
-    "SchoolManagerId": 10,
+    "SchoolManagerId": 11,
     "SpecializationId": 2,
     "IsActive": true
   },
@@ -45,7 +45,7 @@
     "Title": "Kỹ Năng Giao Tiếp Hiệu Quả",
     "Introduction": "Hướng dẫn phát triển kỹ năng giao tiếp và tương tác xã hội.",
     "ThumbnailUrl": "https://example.com/images/communication.jpg",
-    "SchoolManagerId": 12,
+    "SchoolManagerId": 11,
     "SpecializationId": 4,
     "IsActive": true
   },
@@ -55,7 +55,7 @@
     "Title": "Phát Triển Trí Tuệ Cảm Xúc",
     "Introduction": "Cách nhận biết và quản lý cảm xúc của bản thân và người khác.",
     "ThumbnailUrl": "https://example.com/images/emotional-intelligence.jpg",
-    "SchoolManagerId": 13,
+    "SchoolManagerId": 11,
     "SpecializationId": 5,
     "IsActive": true
   },
@@ -65,7 +65,7 @@
     "Title": "Xây Dựng Lòng Tự Trọng",
     "Introduction": "Các phương pháp xây dựng và duy trì lòng tự trọng tích cực.",
     "ThumbnailUrl": "https://example.com/images/self-esteem.jpg",
-    "SchoolManagerId": 14,
+    "SchoolManagerId": 10,
     "SpecializationId": 6,
     "IsActive": true
   },
@@ -75,7 +75,7 @@
     "Title": "Quản Lý Thời Gian Hiệu Quả",
     "Introduction": "Kỹ năng quản lý thời gian và cân bằng giữa học tập và giải trí.",
     "ThumbnailUrl": "https://example.com/images/time-management.jpg",
-    "SchoolManagerId": 15,
+    "SchoolManagerId": 10,
     "SpecializationId": 7,
     "IsActive": true
   },
@@ -85,7 +85,7 @@
     "Title": "Đối Phó Với Áp Lực Học Tập",
     "Introduction": "Cách xử lý và vượt qua áp lực trong môi trường học tập.",
     "ThumbnailUrl": "https://example.com/images/academic-pressure.jpg",
-    "SchoolManagerId": 16,
+    "SchoolManagerId": 10,
     "SpecializationId": 8,
     "IsActive": true
   },
@@ -95,7 +95,7 @@
     "Title": "Kỹ Năng Xã Hội Cho Thanh Thiếu Niên",
     "Introduction": "Hướng dẫn phát triển kỹ năng xã hội và xây dựng mối quan hệ lành mạnh.",
     "ThumbnailUrl": "https://example.com/images/social-skills.jpg",
-    "SchoolManagerId": 17,
+    "SchoolManagerId": 10,
     "SpecializationId": 9,
     "IsActive": true
   },
@@ -105,7 +105,7 @@
     "Title": "Phương Pháp Học Tập Hiệu Quả",
     "Introduction": "Các phương pháp và kỹ thuật học tập hiệu quả cho học sinh.",
     "ThumbnailUrl": "https://example.com/images/study-methods.jpg",
-    "SchoolManagerId": 18,
+    "SchoolManagerId": 10,
     "SpecializationId": 10,
     "IsActive": true
   },
@@ -115,7 +115,7 @@
     "Title": "Sức Khỏe Số Cho Thanh Thiếu Niên",
     "Introduction": "Cách sử dụng công nghệ một cách lành mạnh và cân bằng.",
     "ThumbnailUrl": "https://example.com/images/digital-wellness.jpg",
-    "SchoolManagerId": 19,
+    "SchoolManagerId": 10,
     "SpecializationId": 11,
     "IsActive": true
   },
@@ -125,7 +125,7 @@
     "Title": "Xây Dựng Mối Quan Hệ Gia Đình",
     "Introduction": "Cách cải thiện và duy trì mối quan hệ tốt đẹp trong gia đình.",
     "ThumbnailUrl": "https://example.com/images/family-relationships.jpg",
-    "SchoolManagerId": 20,
+    "SchoolManagerId": 10,
     "SpecializationId": 12,
     "IsActive": true
   },
@@ -135,7 +135,7 @@
     "Title": "Lập Kế Hoạch Nghề Nghiệp",
     "Introduction": "Hướng dẫn định hướng nghề nghiệp và phát triển sự nghiệp.",
     "ThumbnailUrl": "https://example.com/images/career-planning.jpg",
-    "SchoolManagerId": 21,
+    "SchoolManagerId": 10,
     "SpecializationId": 13,
     "IsActive": true
   },
@@ -145,7 +145,7 @@
     "Title": "Sức Khỏe Thể Chất Và Tinh Thần",
     "Introduction": "Mối quan hệ giữa sức khỏe thể chất và tinh thần.",
     "ThumbnailUrl": "https://example.com/images/physical-mental-health.jpg",
-    "SchoolManagerId": 22,
+    "SchoolManagerId": 10,
     "SpecializationId": 14,
     "IsActive": true
   }
