@@ -223,7 +223,8 @@ namespace MindSpace.API.Controllers
 
         // PUT /api/v1/identities/profile
         // Update authenticated user's profile
-        //[InvalidateCache("/api/identities|")]
+        // [InvalidateCache("/api/identities/profile|")]
+        // PUT /api/identities/profile
         [HttpPut("profile")]
         [Authorize]
         public async Task<ActionResult<ApplicationUserProfileDTO>> UserUpdateProfile([FromForm] UserUpdateProfileCommand command)
@@ -234,7 +235,7 @@ namespace MindSpace.API.Controllers
 
         // PUT /api/v1/identities/psychologists/{id}/commission-rate
         // Update psychologist's commission rate
-        //[InvalidateCache("/api/identities|")]
+        // [InvalidateCache("/api/identities/accounts|")]
         [HttpPut("psychologists/{id}/commission-rate")]
         [Authorize]
         public async Task<ActionResult<ApplicationUserProfileDTO>> UpdatePsychologistCommissionRate([FromRoute] int id, [FromBody] UpdatePsychologistCommissionRateCommand command)
@@ -317,7 +318,6 @@ namespace MindSpace.API.Controllers
         // Get all psychologists with pagination and filtering
         //[Cache(30000)]
         [HttpGet("accounts/psychologists")]
-        [Authorize]
         public async Task<ActionResult<Pagination<PsychologistProfileDTO>>> GetAllPsychologists([FromQuery] PsychologistSpecParams specParams)
         {
             var result = await mediator.Send(new GetAllPsychologistsQuery(specParams));

@@ -7,7 +7,7 @@ namespace MindSpace.Application.Features.ApplicationUsers.Commands.UserUpdatePro
     public class UserUpdateProfileCommand : IRequest<ApplicationUserProfileDTO>
     {
         public required string PhoneNumber { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public IFormFile? Image { get; set; }
         public string? Bio { get; set; }
         public decimal? SessionPrice { get; set; }
