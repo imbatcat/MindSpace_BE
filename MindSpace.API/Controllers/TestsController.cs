@@ -108,7 +108,7 @@ public class TestsController(IMediator mediator) : BaseApiController
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteTest(int id)
     {
-        await mediator.Send(new DeleteTestCommand { TestId = id});
+        await mediator.Send(new DeleteTestCommand { TestId = id });
         return NoContent();
     }
 }

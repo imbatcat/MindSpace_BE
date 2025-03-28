@@ -29,7 +29,7 @@ namespace MindSpace.Application.Features.TestResponses.Queries.GetTestResponses
         {
             _logger.LogInformation("Get list of Test Responses with Spec: {@Spec}", request.SpecParams);
 
-            var spec = new TestResponseSpecification(request.SpecParams);
+            var spec = new TestResponseSpecification(request.SpecParams, true, true);
 
             // Use Projection map to DTO
             var listDto = await _unitOfWork.Repository<TestResponse>().GetAllWithSpecProjectedAsync<TestResponseOverviewResponseDTO>(spec, _mapper.ConfigurationProvider);
