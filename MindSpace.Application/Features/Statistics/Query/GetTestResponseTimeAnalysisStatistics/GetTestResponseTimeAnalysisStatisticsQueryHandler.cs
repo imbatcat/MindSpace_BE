@@ -10,8 +10,7 @@ namespace MindSpace.Application.Features.Statistics.Query.GetTestResponseTimeAna
 {
     public class GetTestResponseTimeAnalysisStatisticsQueryHandler(
             ILogger<GetTestResponseTimeAnalysisStatisticsQueryHandler> logger,
-            IUnitOfWork unitOfWork,
-            IMapper mapper) : IRequestHandler<GetTestResponseTimeAnalysisStatisticsQuery, TimeGroupAnalysisDto>
+            IUnitOfWork unitOfWork) : IRequestHandler<GetTestResponseTimeAnalysisStatisticsQuery, TimeGroupAnalysisDto>
     {
         public async Task<TimeGroupAnalysisDto> Handle(GetTestResponseTimeAnalysisStatisticsQuery request, CancellationToken cancellationToken)
         {

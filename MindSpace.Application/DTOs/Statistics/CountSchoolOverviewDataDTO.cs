@@ -1,6 +1,6 @@
 ﻿namespace MindSpace.Application.DTOs.Statistics
 {
-    public class CountOverviewDTO
+    public class CountSchoolOverviewDataDTO
     {
         public int TotalStudentsCount { get; set; }
         public int TotalTestsCount { get; set; }

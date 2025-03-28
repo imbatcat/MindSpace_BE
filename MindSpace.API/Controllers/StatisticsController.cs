@@ -3,15 +3,21 @@ using Microsoft.AspNetCore.Mvc;
 using MindSpace.Application.DTOs.Statistics;
 using MindSpace.Application.DTOs.Statistics.AppointmentStatistics;
 using MindSpace.Application.DTOs.Statistics.SupportingProgramStatistics;
+using MindSpace.Application.DTOs.Statistics.SystemStatistics;
 using MindSpace.Application.DTOs.Statistics.TestResponseStatistics;
 using MindSpace.Application.DTOs.Statistics.TestResponseStatistics.TestQuestionResponseStatistics;
 using MindSpace.Application.DTOs.Tests;
 using MindSpace.Application.Features.Statistics.Query.GetAppointmentGroupBySpecialization;
 using MindSpace.Application.Features.Statistics.Query.GetOverviewStatistics;
+using MindSpace.Application.Features.Statistics.Query.GetOverviewSystemStatistics;
+using MindSpace.Application.Features.Statistics.Query.GetRevenueBySpecializationStatistics;
+using MindSpace.Application.Features.Statistics.Query.GetRevenueTimeAnalysisStatistics;
 using MindSpace.Application.Features.Statistics.Query.GetSupportingProgramGroupBySpecialization;
 using MindSpace.Application.Features.Statistics.Query.GetTestQuestionResponseStatistics;
 using MindSpace.Application.Features.Statistics.Query.GetTestResponseRankAnalysisStatistics;
 using MindSpace.Application.Features.Statistics.Query.GetTestResponseTimeAnalysisStatistics;
+using MindSpace.Application.Features.Statistics.Query.GetTopPsychologistRevenueStatistics;
+using MindSpace.Application.Features.Statistics.Query.GetTopSchoolRevenue;
 using MindSpace.Application.Features.Tests.Queries.GetMostRecentTests;
 
 namespace MindSpace.API.Controllers
@@ -30,7 +36,7 @@ namespace MindSpace.API.Controllers
             [FromQuery] GetTestResponseTimeAnalysisStatisticsQuery query)
         {
             var result = await mediator.Send(query);
-            return result;
+            return Ok(result);
         }
 
         // GET /api/v1/statistics/test-responses/score-rank-analysis
@@ -40,7 +46,7 @@ namespace MindSpace.API.Controllers
             [FromQuery] GetTestResponseRankAnalysisStatisticsQuery query)
         {
             var result = await mediator.Send(query);
-            return result;
+            return Ok(result);
         }
 
         // GET /api/v1/statistics/test-responses/question-responses-analysis
@@ -50,7 +56,7 @@ namespace MindSpace.API.Controllers
             [FromQuery] GetTestQuestionResponseStatisticsQuery query)
         {
             var result = await mediator.Send(query);
-            return result;
+            return Ok(result);
         }
 
         // GET /api/v1/statistics/top-recent-tests
@@ -60,7 +66,7 @@ namespace MindSpace.API.Controllers
             [FromQuery] GetMostRecentTestsQuery query)
         {
             var result = await mediator.Send(query);
-            return result;
+            return Ok(result);
         }
 
         // GET /api/v1/statistics/appointments
@@ -70,7 +76,7 @@ namespace MindSpace.API.Controllers
             [FromQuery] GetAppointmentGroupBySpecializationQuery query)
         {
             var result = await mediator.Send(query);
-            return result;
+            return Ok(result);
         }
 
         // GET /api/v1/statistics/supporting-programs
@@ -80,17 +86,57 @@ namespace MindSpace.API.Controllers
             [FromQuery] GetSupportingProgramGroupBySpecializationQuery query)
         {
             var result = await mediator.Send(query);
-            return result;
+            return Ok(result);
         }
 
-        // GET /api/v1/statistics/count-overview-data
+        [HttpGet("count-overview-school-data")]
+        // GET /api/v1/statistics/count-overview-school-data
         // Get overview statistics with counts
-        [HttpGet("count-overview-data")]
-        public async Task<ActionResult<CountOverviewDTO>> GetOverviewStatistics(
+        public async Task<ActionResult<CountSchoolOverviewDataDTO>> GetOverviewStatistics(
             [FromQuery] GetOverviewStatisticsQuery query)
         {
             var result = await mediator.Send(query);
-            return result;
+            return Ok(result);
+        }
+
+        [HttpGet("overview-system-data")]
+        public async Task<ActionResult<OverviewStatisticsDTO>> GetOverviewSystemStatistics(
+            [FromQuery] GetOverviewSystemStatisticsQuery query)
+        {
+            var result = await mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("revenue-time-analysis")]
+        public async Task<ActionResult<List<RevenueStatDTO>>> GetRevenueStatistics(
+            [FromQuery] GetRevenueTimeAnalysisStatisticsQuery query)
+        {
+            var result = await mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("top-psychologists")]
+        public async Task<ActionResult<List<PsychologistRevenueStatDTO>>> GetTopPsychologistRevenue(
+            [FromQuery] GetTopPsychologistRevenueQuery query)
+        {
+            var result = await mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("revenue-spec-analysis")]
+        public async Task<ActionResult<List<SpecializationRevenueStatDTO>>> GetRevenueBySpecialization(
+            [FromQuery] GetRevenueBySpecializationQuery query)
+        {
+            var result = await mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("top-schools")]
+        public async Task<ActionResult<List<SchoolRevenueDTO>>> GetTopSchoolRevenue(
+            [FromQuery] GetTopSchoolRevenueQuery query)
+        {
+            var result = await mediator.Send(query);
+            return Ok(result);
         }
     }
 }

@@ -1,15 +1,8 @@
 ﻿using MindSpace.Domain.Entities.Appointments;
+using MindSpace.Domain.Entities.Constants;
 
 namespace MindSpace.Application.Specifications.InvoicesSpecifications
 {
-    /*
-     * public string? TransactionCode { get; set; }
-        public string? Provider { get; set; }
-        public string? PaymentMethod { get; set; }
-        public string? PaymentType { get; set; }
-        public DateTime FromDate { get; set; }
-        public DateTime ToDate { get; set; }
-     */
     public class InvoiceSpecification : BaseSpecification<Invoice>
     {
         public InvoiceSpecification(InvoiceSpecParams specParams)
@@ -46,6 +39,19 @@ namespace MindSpace.Application.Specifications.InvoicesSpecifications
         {
             AddInclude(a => a.Account);
             AddPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+        }
+
+        public InvoiceSpecification(DateTime? startDate, DateTime? endDate, PaymentType? paymentType, bool isIncludedAppointment = false, bool isIncludedPsychologist = false, bool isIncludedStudent = false)
+        : base(x =>
+            (!startDate.HasValue || x.CreateAt >= startDate)
+            && (!endDate.HasValue || x.CreateAt <= endDate)
+        && (!paymentType.HasValue || x.PaymentType == paymentType)
+        )
+        {
+            if (isIncludedAppointment) { AddInclude(x => x.Appointment); }
+            if (isIncludedPsychologist) { AddInclude("Appointment.Psychologist"); }
+            if (isIncludedStudent) { AddInclude("Account.Student"); }
+            
         }
     }
 }
