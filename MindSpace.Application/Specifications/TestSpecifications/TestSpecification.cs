@@ -13,13 +13,12 @@ namespace MindSpace.Application.Specifications.TestSpecifications
         {
         }
 
+
         public TestSpecification(string testCode)
         : base(
-            x =>
-                 x.TestCode.ToLower().Equals(testCode.ToLower())
-            )
-        {
-        }
+            x => x.TestCode.ToLower().Equals(testCode.ToLower())
+        )
+        { }
 
 
         /// <summary>

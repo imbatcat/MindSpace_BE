@@ -6,7 +6,9 @@ using MindSpace.Application.DTOs.Tests;
 using MindSpace.Application.Features.ApplicationUsers.Commands.ToggleAccountStatus;
 using MindSpace.Application.Features.Tests.Commands.CreateTestImport;
 using MindSpace.Application.Features.Tests.Commands.CreateTestManual;
+using MindSpace.Application.Features.Tests.Commands.DeleteTest;
 using MindSpace.Application.Features.Tests.Commands.ToggleTestStatus;
+using MindSpace.Application.Features.Tests.Commands.UpdateTest;
 using MindSpace.Application.Features.Tests.Queries.GetMostRecentTests;
 using MindSpace.Application.Features.Tests.Queries.GetTestById;
 using MindSpace.Application.Features.Tests.Queries.GetTests;
@@ -88,6 +90,25 @@ public class TestsController(IMediator mediator) : BaseApiController
     public async Task<IActionResult> ToggleTestStatus([FromRoute] int id)
     {
         await mediator.Send(new ToggleTestStatusCommand { TestId = id });
+        return Ok("The test status is toggled!");
+    }
+    // PATCH /tests/id
+    [HttpPatch("{id:int}")]
+    // only allowed for tests is not published and has no response yet
+    public async Task<IActionResult> UpdateTest(int id, [FromBody] UpdateTestCommand command)
+    {
+        command.TestId = id;
+        await mediator.Send(command);
+        return Ok($"The test is updated!");
+    }
+
+    // DELETE /tests/id
+    // only allowed for tests is not published and has no response yet
+    [InvalidateCache("/api/tests|")]
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteTest(int id)
+    {
+        await mediator.Send(new DeleteTestCommand { TestId = id});
         return NoContent();
     }
 }

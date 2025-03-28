@@ -8,6 +8,11 @@ namespace MindSpace.Application.Specifications.TestResponseSpecifications
             : base(tr => tr.Id == id)
         {
         }
+
+        public TestResponseSpecification(int testId, bool check)
+            : base(tr => tr.TestId == testId)
+        {
+        }
         public TestResponseSpecification(TestResponseSpecParams specParams)
             : base(tr =>
                     string.IsNullOrEmpty(specParams.TestScoreRankResult) || (!string.IsNullOrEmpty(tr.TestScoreRankResult) && tr.TestScoreRankResult.ToLower().Contains(specParams.TestScoreRankResult.ToLower())) &&
