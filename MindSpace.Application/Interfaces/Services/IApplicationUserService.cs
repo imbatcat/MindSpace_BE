@@ -1,5 +1,6 @@
 ﻿using MindSpace.Application.Interfaces.Specifications;
 using MindSpace.Application.Specifications.ApplicationUserSpecifications;
+using MindSpace.Application.Specifications.PsychologistsSpecifications;
 using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Application.Interfaces.Services
