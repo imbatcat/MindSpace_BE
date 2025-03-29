@@ -3,6 +3,9 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MindSpace.Application.DTOs.ApplicationUsers;
 using MindSpace.Application.Interfaces.Services;
+using MindSpace.Application.Interfaces.Specifications;
+using MindSpace.Application.Specifications.ApplicationUserSpecifications;
+using MindSpace.Application.Specifications.PsychologistsSpecifications;
 using MindSpace.Domain.Entities.Identity;
 
 namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetProfileById
@@ -16,7 +19,10 @@ namespace MindSpace.Application.Features.ApplicationUsers.Queries.GetProfileById
         public async Task<ApplicationUserProfileDTO> Handle(GetProfileByIdQuery request, CancellationToken cancellationToken)
         {
             logger.LogInformation("Getting user profile for user ID: {UserId}", request.UserId);
-            var user = await applicationUserService.GetByIdAsync(request.UserId);
+
+            var spec = new ApplicationUserSpecification(request.UserId);
+
+            var user = await applicationUserService.GetUserWithSpec(spec);
 
             if (user == null)
             {

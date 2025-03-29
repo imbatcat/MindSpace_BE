@@ -12,6 +12,8 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
         /// <param name="id"></param>
         public ApplicationUserSpecification(int userId) : base(x => x.Id.Equals(userId))
         {
+            AddInclude(x => x.Psychologist);
+            AddInclude(x => x.Psychologist.Specialization);
         }
 
         /// <summary>
@@ -103,7 +105,7 @@ namespace MindSpace.Application.Specifications.ApplicationUserSpecifications
         }
 
         public ApplicationUserSpecification(DateTime? startDate, DateTime? endDate) : base(
-            a =>   (!startDate.HasValue || a.CreatedAt >= startDate)
+            a => (!startDate.HasValue || a.CreatedAt >= startDate)
             && (!endDate.HasValue || a.CreatedAt <= endDate)
         )
         {
