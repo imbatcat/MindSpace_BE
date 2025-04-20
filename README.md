@@ -1,3 +1,5 @@
+## Disclaimer - This is a fork, original repo <a href="https://github.com/SWD-MindSpace/MindSpace_BE">here</a>
+
 # MindSpace - School Mental Health Management System
 <div align="center">
     <img src="./readme/images/logo.jpg" alt="MindSpace" height='80px'/>
